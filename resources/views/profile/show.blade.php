@@ -4,7 +4,6 @@
             {{ __('Profile') }}
         </h2>
     </x-slot>
-
     <div>
         <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
             @if (Laravel\Fortify\Features::canUpdateProfileInformation())
@@ -13,7 +12,10 @@
                 <x-jet-section-border />
             @endif
 
-            @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()) && !is_null($user->password))
+            @livewire('social-links')
+            <x-jet-section-border />
+            
+            @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()))
                 <div class="mt-10 sm:mt-0">
                     @livewire('profile.update-password-form')
                 </div>
@@ -30,16 +32,14 @@
             @endif
 
             @if (!is_null($user->password))
-                <x-jet-section-border />
-
                 <div class="mt-10 sm:mt-0">
                     @livewire('profile.logout-other-browser-sessions-form')
                 </div>
+
+                <x-jet-section-border />
             @endif
 
             @if (Laravel\Jetstream\Jetstream::hasAccountDeletionFeatures() && !is_null($user->password))
-                <x-jet-section-border />
-
                 <div class="mt-10 sm:mt-0">
                     @livewire('profile.delete-user-form')
                 </div>

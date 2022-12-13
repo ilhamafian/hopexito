@@ -2,8 +2,8 @@
     <x-jet-authentication-card>
         <div class="mb-4 text-sm text-left text-gray-400">
             <p class="mb-2 font-bold text-gray-300">Forgot your password?</p>
-            Don't panic, it happens to us all the time. Just let us know your email address and we will email you a
-            password reset link that will allow you to create a new "memorable" one.
+            Don't panic, it happens to us all the time. Let us know your email address and we will send you a
+            password reset link that will allow you to create a new one.
         </div>
 
         <x-jet-validation-errors class="mb-4" />

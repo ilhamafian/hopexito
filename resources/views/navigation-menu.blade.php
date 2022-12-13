@@ -1,33 +1,30 @@
-<nav x-data="{ open: false, active: 'text-rose-500' }" class="justify-between text-gray-400 bg-black body-font">
+<nav x-data="{ open: false }" class="justify-between text-gray-400 bg-zinc-900 body-font">
     <!-- Primary Navigation Menu -->
     <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div class="flex justify-between h-24">
             <!-- Logo -->
             <div class="flex items-center shrink-0">
-                <a href="/">
+                <a href="{{ route('explore') }}">
                     <x-jet-application-logo class="block w-auto h-9" />
                 </a>
             </div>
-
             <!-- Settings Dropdown -->
-            <div class="flex flex-wrap items-center justify-center text-base md:ml-auto">
+            <div class="flex flex-wrap items-center justify-center text-base">
                 @if (Route::has('login'))
                     @auth
                         <x-jet-dropdown align="right" width="48">
                             <x-slot name="trigger">
                                 @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-                                    <span class="inline-flex rounded-md">
-                                        <button type="button"
-                                            class="inline-flex items-center px-2 py-2 mx-4 text-sm font-medium leading-4 text-white transition bg-transparent rounded-full focus:ring focus: ring-rose-500 focus:text-rose-500">
-                                            <img class="w-10 h-10 rounded-full object-cover"
+                                    <span class="inline-flex px-4 py-2 rounded-md prose-cyan">
+                                        <button type="button" class="">
+                                            <img class="object-cover w-10 h-10 rounded-full"
                                                 src="{{ Auth::user()->profile_photo_url }}"
                                                 alt="{{ Auth::user()->name }}" />
                                         </button>
                                     </span>
                                 @else
                                     <span class="inline-flex rounded-md">
-                                        <button type="button"
-                                            class="inline-flex items-center px-2 py-2 mx-4 text-sm font-medium leading-4 text-white transition bg-transparent rounded-full hover:text-rose-500 hover:bg-slate-900 focus:ring focus: ring-rose-500 focus:text-rose-500">
+                                        <button type="button" class="">
                                             <span><svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none"
                                                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -74,37 +71,24 @@
                                 </div>
                             </x-slot>
                         </x-jet-dropdown>
-                        <a href="{{ route('profile.show') }}"
-                            class="py-2 transition rounded-full hover:bg-slate-900 focus:ring focus: ring-rose-500 focus:text-rose-500">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 mx-2 text-white hover:text-rose-500"
-                                fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                            </svg>
-                        </a>
+                        @livewire('cart-counter')
                     @else
-                        <a href="{{ route('login') }}" x-bind:class="{{ 'login' == request()->path() ? 'active' : '' }}"
-                            class="px-4 py-2 text-white transition">Log in</a>
-                        <a href="{{ route('register') }}"
-                            x-bind:class="{{ 'register' == request()->path() ? 'active' : '' }}"
-                            class="px-4 py-2 text-white transition">Sign Up</a>
+                        <x-jet-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')">
+                            Login
+                        </x-jet-nav-link>
+                        <x-jet-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">
+                            Sign Up
+                        </x-jet-nav-link>
                         <div class="relative group">
                             <div
-                                class="absolute -inset-1.5 group-hover:-inset-2.5 mx-6 bg-gradient-to-r from-rose-500 to-indigo-500 rounded-full blur opacity-50 group-hover:opacity-100 transition ">
+                                class="absolute -inset-1.5 group-hover:-inset-2.5 mx-6 bg-gradient-to-r from-rose-700 via-fuchsia-700 to-indigo-700 rounded-full blur opacity-50 group-hover:opacity-100 transition">
                             </div>
-                            <a href="{{ url('/sellyourart') }}" x-bind:class="{{ 'sellyourart' == request()->path() ? 'active' : '' }}"
-                                class="relative px-4 py-2 mx-6 text-base text-white bg-black rounded-full group-hover:text-indigo-400 transition">Sell
-                                Your
-                                Art</a>
+                            <x-jet-nav-link href="{{ route('sellyourart') }}"
+                                class="mx-6 bg-zinc-900 border-none rounded-full">
+                                Sell Your Art
+                            </x-jet-nav-link>
                         </div>
-                        <a href="{{ route('login') }}"
-                            class="py-2 transition rounded-full hover:bg-slate-900 focus:ring focus: ring-rose-500 focus:text-rose-500">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 mx-2 text-white hover:text-rose-500"
-                                fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                            </svg>
-                        </a>
+                        @livewire('cart-counter')
                     @endauth
                 @endif
             </div>
@@ -122,7 +106,6 @@
                 </svg>
             </button>
         </div>
-    </div>
     </div>
 
     <!-- Responsive Navigation Menu -->
@@ -191,7 +174,7 @@
                         <x-jet-responsive-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">
                             {{ __('Register') }}
                         </x-jet-responsive-nav-link>
-                        <x-jet-responsive-nav-link href="{{ url('/sellyourart') }}" :active="request()->routeIs('register')">
+                        <x-jet-responsive-nav-link href="{{ url('/sellyourart') }}" :active="request()->routeIs('/sellyourart')">
                             {{ __('Sell Your Art') }}
                         </x-jet-responsive-nav-link>
                     @endauth

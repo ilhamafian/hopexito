@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
+use App\Models\Artist;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -15,10 +16,11 @@ class ProductsController extends Controller
      */
     public function index()
     {   
+        
+        $artist = Artist::find(Auth::user()->id);
         $products = Product::where('shopname', '=', Auth::user()->name)->get();
-        return view('product.index', compact('products'));
+        return view('product.index', compact('products','artist'));
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -41,32 +43,17 @@ class ProductsController extends Controller
         $input = $request->all();
         $input['shopname'] = Auth::user()->name;
 
-        if ($image = $request->file('front_shirt')) {
-            $destinationPath = 'image-front';
-            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $profileImage);
-            $input['image_front'] = "$profileImage";
-        }
-
-        if ($image = $request->file('back_shirt')) {
-            $destinationPath = 'image-back';
-            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $profileImage);
-            $input['image_back'] = "$profileImage";
-        }
-
-        if ($image = $request->file('image_front')) {
-            $destinationPath = 'image-front';
-            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $profileImage);
-            $input['image_front'] = "$profileImage";
-        }
-
-        if ($image = $request->file('image_back')) {
-            $destinationPath = 'image-back';
-            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $profileImage);
-            $input['image_back'] = "$profileImage";
+        // if ($image = $request->file('image_front')) {
+        //     $destinationPath = 'image-front';
+        //     $frontImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+        //     $image->move($destinationPath, $frontImage);
+        //     $input['image_front'] = "$frontImage";
+        // }
+        if($request->hasFile('image_front')){
+            $file = $request->file('image_front');
+            $filename = $file->getClientOriginalName();
+            $folder = uniqid() . '-' . now()->timestamp;
+            $file->storeAs('image-front'. $folder, $filename);            
         }
 
         Product::create($input);

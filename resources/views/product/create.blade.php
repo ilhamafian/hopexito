@@ -5,51 +5,11 @@
             @csrf
             <div class="w-1/2 p-8">
                 <div class="flex flex-row space-x-3">
-                    <div class="relative flex items-center justify-center w-full">
-                        <label for="tshirt-file-front"
-                            class="flex flex-col items-center justify-center w-full transition bg-gray-700 border-2 border-gray-600 border-dashed rounded-lg cursor-pointer hover:bg-gray-600 hover:border-gray-500">
-                            <div class="flex flex-col items-center justify-center p-3">
-                                <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400" fill="none"
-                                    stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12">
-                                    </path>
-                                </svg>
-                                <p class="text-sm text-gray-400">Click to upload <span class="text-indigo-500">Front design</span></p>
-                            </div>
-                            <input id="tshirt-file-front" name="image_front" type="file" class="hidden" />
-                            {{-- <svg x-cloak x-show="formData.image_front.length > 0" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                class="absolute w-4 h-4 text-lime-400 right-2 top-3">
-                                <circle cx="8" cy="8" r="6" fill="#a3e635" />
-                            </svg>
-                            <svg x-cloak x-show="formData.image_front.length == 0" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                class="absolute w-4 h-4 text-rose-500 right-2 top-3">
-                                <circle cx="8" cy="8" r="6" fill="#f43f5e" />
-                            </svg> --}}
-                            <input type='hidden' id='front-shirt-dataURL' name='front_shirt' value=''
-                                class="hidden" />
-                        </label>
+                    <div class="w-full">
+                        <input id="tshirt-file-front" name="image_front" type="file" />
+                        <input type='hidden' id='front-shirt-dataURL' name='front_shirt' value=''
+                            class="hidden" />
                     </div>
-                    {{-- <div class="flex items-center justify-center w-full">
-                        <label for="tshirt-file-back"
-                            class="flex flex-col items-center justify-center w-full transition bg-gray-700 border-2 border-gray-600 border-dashed rounded-lg cursor-pointer hover:bg-gray-600 hover:border-gray-500">
-                            <div class="flex flex-col items-center justify-center p-3">
-                                <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400" fill="none"
-                                    stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12">
-                                    </path>
-                                </svg>
-                                <p class="text-sm text-gray-400">Click to upload <span class="text-indigo-500">Back
-                                        design</span></p>
-                            </div>
-                            <input id="tshirt-file-back" name="image_back" type="file" class="hidden" />
-                            <input type='hidden' id='back-shirt-dataURL' name='back_shirt' value=''
-                                class="hidden" />
-                        </label>
-                    </div> --}}
                 </div>
                 <div class="relative py-2">
                     <x-jet-label for="title" value="{{ __('Title') }}" />
@@ -127,8 +87,8 @@
                 <div class="flex py-2">
                     <div class="relative basis-28">
                         <x-jet-label for="price" value="{{ __('Set the price') }}" />
-                        <x-jet-input type="text" id="price" name="price" class="w-24 mt-1" x-model="formData.price"
-                           />
+                        <x-jet-input type="text" id="price" name="price" class="w-24 mt-1"
+                            x-model="formData.price" />
                         <svg x-cloak x-show="formData.price > 41" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                             class="absolute w-4 h-4 text-lime-400 right-5 top-12">
@@ -157,8 +117,8 @@
                     </div>
 
                     {{-- Save Product Modal --}}
-                    <div class="pt-8" x-data="{ open: false }">
-                        <x-jet-button type="button" x-on:click="open = true" onclick="takeshot()">
+                    <div class="pt-8 w-1/3" x-data="{ open: false }">
+                        <x-jet-button type="button" x-on:click="open = true" onclick="takeshot()" class="py-3">
                             Save Product
                         </x-jet-button>
                         <div x-cloak x-show="open" @keydown.escape.prevent.stop="open = false" role="dialog"
@@ -171,7 +131,7 @@
                             <div x-show="open" x-transition @click="open = false"
                                 class="relative flex items-center justify-center w-full h-full">
                                 <div @click.stop style="max-height: 80vh"
-                                    class="z-20 flex w-full max-w-2xl p-8 overflow-y-auto bg-black border-2 border-indigo-500 rounded-2xl shadow-lg shadow-rose-500">
+                                    class="z-20 flex w-full max-w-2xl p-8 overflow-y-auto bg-zinc-900 border-2 border-indigo-500 rounded-2xl shadow-lg shadow-rose-500">
                                     <div class="w-3/4">
                                         <h2 class="text-3xl font-medium text-white" :id="$id('modal-title')">Confirm
                                         </h2>
@@ -199,7 +159,6 @@
                                         </lord-icon>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -207,13 +166,13 @@
             </div>
             {{-- Canvas Area --}}
             <div x-data="{ flipped: false }">
-                <x-jet-button-utility x-on:click="flipped =! flipped">
+                {{-- <x-jet-button-utility x-on:click="flipped =! flipped">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
                     </svg>
-                </x-jet-button-utility>
+                </x-jet-button-utility> --}}
                 <div class="absolute">
                     <div id="tshirt-front" class="relative bg-neutral-90" x-show="!flipped"
                         x-transition.opacity.0.duration.500ms>
@@ -245,23 +204,30 @@
             </div>
         </form>
     </div>
-    <!-- Include Fabric.js in the page -->
+    {{-- Include Fabric.js --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.0/fabric.min.js"
         integrity="sha512-1+czAStluVmzKLZD98uvRGNVbc+r9zLKV4KeAJmvikygfO71u3dtgo2G8+uB1JjCh2GVln0ofOpz9ZTxqJQX/w=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    {{-- Include html2canvas --}}
     <script src='https://html2canvas.hertzen.com/dist/html2canvas.min.js'></script>
-    <script>
+    {{-- Include Filepond --}}
+    <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
 
-        function getData(){
+    <script>
+        const fileInput = document.querySelector('input[id="tshirt-file-front"]');
+        const pond = FilePond.create(fileInput);
+
+        
+        function getData() {
             return {
-                formData:{
-                    title:"",
-                    tags:"",
-                    price:"",
+                formData: {
+                    title: "",
+                    tags: "",
+                    price: "",
                     margin: 0,
                     commission: "15%"
                 },
-                tooltip:false
+                tooltip: false
             }
         }
 
@@ -352,7 +318,7 @@
             html2canvas($('tshirt-front')).then(
                 function(canvas_front) {
                     $('front-shirt-dataURL').value = canvas_front.toDataURL("image/png", 100);
-                    console.log(canvas_front.toDataURL("image/png",100));
+                    console.log(canvas_front.toDataURL("image/png", 100));
                 })
             /*
             html2canvas($('tshirt-back')).then(

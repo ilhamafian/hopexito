@@ -16,42 +16,26 @@ class GoogleAuthController extends Controller
     }
     public function callbackGoogle(Request $request)
     {
-        try{
+        try {
             $user = Socialite::driver('google')->user();
-            
+
             $findUser = User::where('google_id', $user->id)->first();
 
-            if($findUser){
-                Auth::login($findUser);
+            if ($findUser) {
+               Auth::login($findUser);
                 return redirect()->intended('dashboard');
-            }
-            else{
-                  $user = User::Create([
+            } else {
+                $user = User::Create([
                     'name' => $user->getName(),
                     'email' => $user->getEmail(),
                     'google_id' => $user->getId(),
-                    'role_id' => 2,
-                    'password' => Hash::make($user->getId())
-                  ]);
-                  dd($user);
+                    'role_id' => $request->input('role_id'),
+                ]);
+                Auth::login($user);
+                return redirect()->intended('dashboard');
             }
-        }
-        catch (\Throwable $th){
+        } catch (\Throwable $th) {
             throw $th;
         }
     }
-
-
-        // if (!$user) {
-        //     $new_user = User::Create([
-              
-
-        //     ]);
-        //     Auth::login($user);
-        //     return redirect()->intended('dashboard');
-        // } else {
-        //     Auth::login($user);
-        //     return redirect()->intended('dashboard');
-        // }
-    
 }

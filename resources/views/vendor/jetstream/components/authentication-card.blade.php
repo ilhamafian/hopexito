@@ -1,9 +1,5 @@
-<body class="bg-black">
-    <div class="flex items-center justify-center pt-4">
-        <div class="relative flex justify-center overflow-visible lg:w-1/2">
-            <div class="lg:w-3/4 rounded-2xl bg-black border-2 border-indigo-500 md:shadow-rose-500 md:shadow-lg p-8 text-center ">
-                {{ $slot }}
-            </div>
-        </div>
+<div class="mx-auto mt-4 xl:w-2/5 md:w-2/3">
+    <div class="p-8 text-center bg-black bg-opacity-30 md:border-2 md:border-indigo-500 rounded-2xl md:shadow-rose-500 md:shadow-lg">
+        {{ $slot }}
     </div>
-</body>
+</div>

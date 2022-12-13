@@ -14,8 +14,23 @@
 
             <div class="mt-4">
                 <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" class="block w-full mt-1" type="password" name="password"
-                    autocomplete="current-password" />
+                <div class="relative" x-data="{ showpassword: false }">
+                    <x-jet-input id="password" class="block w-full mt-1" type="password" name="password"
+                        x-bind:type="showpassword ? 'text' : 'password'" autocomplete="current-password" />
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        x-on:click=" showpassword = !showpassword" x-show="showpassword == false" stroke="#f43f5e"
+                        class="absolute w-5 h-5 cursor-pointer right-4 bottom-3">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="#6366f1" x-on:click=" showpassword = !showpassword" x-show="showpassword == true"
+                        class="absolute w-5 h-5 cursor-pointer right-4 bottom-3">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                </div>
             </div>
             <div class="block mt-4">
                 <label for="remember_me" class="flex items-center">
@@ -26,7 +41,7 @@
             <x-jet-validation-errors class="my-4" />
             <div class="flex items-center justify-end mt-6">
                 @if (Route::has('password.request'))
-                    <a class="text-sm text-gray-400 underline hover:text-gray-100"
+                    <a class="text-sm text-gray-400 underline hover:text-indigo-400"
                         href="{{ route('password.request') }}">
                         {{ __('Forgot your password?') }}
                     </a>
@@ -48,13 +63,13 @@
                 </x-jet-button>
             </div>
         </form>
-        <div class="mt-6 grid grid-cols-3 items-center text-zinc-500">
+        <div class="grid items-center grid-cols-3 mt-6 text-zinc-500">
             <hr class="border-zinc-500">
-            <p class="text-center text-sm">OR</p>
+            <p class="text-sm text-center">OR</p>
             <hr class="border-zinc-500">
         </div>
         <a href="{{ route('google-auth') }}"
-            class="cursor-pointer bg-transparent border-2 border-zinc-500 py-2 w-full mx-auto rounded-lg mt-5 flex justify-center items-center text-sm text-white hover:bg-neutral-600 hover:border-neutral-600 transition duration-500">
+            class="flex items-center justify-center w-full py-2 mx-auto mt-5 text-sm text-white transition duration-500 bg-transparent border-2 rounded-lg cursor-pointer border-zinc-500 hover:bg-neutral-600 hover:border-neutral-600">
             <svg class="mr-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="25px">
                 <path fill="#FFC107"
                     d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z" />

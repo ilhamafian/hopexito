@@ -22,35 +22,35 @@
                                     reader.readAsDataURL($refs.photo.files[0]);
                             " />
 
-                    <!-- Current Profile Photo -->
-                    <div class="mt-2" x-show="! photoPreview"">
-                        <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->name }}"
-                            class="object-cover w-20 h-20 rounded-full">
-                    </div>
+                <!-- Current Profile Photo -->
+                <div class="mt-2" x-show="! photoPreview"">
+                    <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->name }}"
+                        class="object-cover w-20 h-20 rounded-full">
+                </div>
 
-                    <!-- New Profile Photo Preview -->
-                    <div class="mt-2" x-show="photoPreview" style="display: none;">
-                        <span class="block w-20 h-20 bg-center bg-no-repeat bg-cover rounded-full"
-                            x-bind:style="'background-image: url(\'' + photoPreview + '\');'">
-                        </span>
-                    </div>
-
-                    <x-jet-secondary-button class="mt-2 mr-2" type="button" x-on:click.prevent="$refs.photo.click()">
+                <!-- New Profile Photo Preview -->
+                <div class="mt-2" x-show="photoPreview" style="display: none;">
+                    <span class="block w-20 h-20 bg-center bg-no-repeat bg-cover rounded-full"
+                        x-bind:style="'background-image: url(\'' + photoPreview + '\');'">
+                    </span>
+                </div>
+                {{-- Delete Existing Profile Photo --}}
+                <div class="flex mt-4">
+                    <x-jet-button-utility class="mr-2" type="button" x-on:click.prevent="$refs.photo.click()">
                         {{ __('Change Avatar') }}
-                    </x-jet-secondary-button>
-
+                    </x-jet-button-utility>
                     @if ($this->user->profile_photo_path)
-                        <x-jet-danger-button type="button" class="mt-2" wire:click="deleteProfilePhoto">
+                        <div type="button"
+                            class="inline-flex items-center hover:bg-rose-500 text-rose-500 hover:text-white rounded-md p-2 cursor-pointer"
+                            wire:click="deleteProfilePhoto">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                             </svg>
-                        </x-jet-danger-button>
-                    @endif    
-
-
-
+                        </div>
+                    @endif
+                </div>
                 <x-jet-input-error for="photo" class="mt-2" />
             </div>
         @endif
@@ -93,6 +93,25 @@
                     </p>
                 @endif
             @endif
+        </div>
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="address" value="{{ __('Address') }}" />
+            <x-jet-input id="address" type="text" class="block w-full mt-1" wire:model.defer="state.address"
+                autocomplete="address" />
+            <x-jet-input-error for="address" class="mt-2" />
+        </div>
+
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="postcode" value="{{ __('Postcode') }}" />
+            <x-jet-input id="postcode" type="text" class="block w-full mt-1"
+                wire:model.defer="state.postcode" />
+            <x-jet-input-error for="postcode" class="mt-2" />
+        </div>
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="state" value="{{ __('State') }}" />
+            <x-jet-input id="state" type="text" class="block w-full mt-1"
+                wire:model.defer="state.state" />
+            <x-jet-input-error for="state" class="mt-2" />
         </div>
     </x-slot>
 

@@ -1,14 +1,14 @@
 <x-app-layout>
-    <div class="min-h-screen text-white bg-black bg-cover"
-        style="background-image:url('image/frame.png')">
+    <div class="min-h-screen"
+        style="background-image:url('')">
         <div class="mx-auto shadow-md backdrop-filter backdrop-blur-xl md:w-3/4 rounded-xl shadow-indigo-500">
-            <div class="flex justify-between px-6 pt-8 mx-auto lg:w-3/4">
+            <div class="flex justify-between px-6 pt-8 mx-auto md:w-3/4">
                 <h1
                     class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-blue-500">
                     Dashboard</h1>
                 <div class="relative group">
                     <div
-                        class="absolute transition rounded-full opacity-50 -inset-1 bg-gradient-to-r from-rose-500 to-indigo-500 blur group-hover:opacity-100">
+                        class="absolute transition rounded-full opacity-50 -inset-0.5 group-hover:-inset-1.5 bg-gradient-to-r from-rose-600 via-fuchsia-600 to-indigo-600 blur group-hover:opacity-100">
                     </div>
                     <a href="{{ route('product.create') }}"
                         class="relative float-right px-4 py-2 text-lg text-white bg-black rounded-full">Add New Work</a>
@@ -27,7 +27,7 @@
                                 <p class="mt-4 text-base font-normal text-gray-300 leading-relax">Upload your art &
                                     choose products. More choices for customers means more chances to sell.</p>
                             </div>
-                            <a href="{{ route('product.index') }}"
+                            <a href="{{ route('product.create') }}"
                                 class="flex px-12 text-sm text-gray-400 transition hover:underline hover:text-rose-500">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">

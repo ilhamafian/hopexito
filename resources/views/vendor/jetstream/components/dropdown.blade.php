@@ -11,7 +11,7 @@
             x-transition:leave="transition ease-in duration-75"
             x-transition:leave-start="transform opacity-100 scale-100"
             x-transition:leave-end="transform opacity-0 scale-95"
-            class="absolute z-50 w-64 mt-4 origin-top-center -left-20"
+            class="absolute z-50 w-64 mt-4 origin-top-center -left-24"
             style="display: none;"
             @click="open = false">
             {{ $content }}

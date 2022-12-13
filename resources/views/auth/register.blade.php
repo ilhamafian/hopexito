@@ -6,37 +6,28 @@
             {{-- Select Role --}}
             <div class="flex flex-row gap-5">
                 <div class="relative w-1/2 h-20">
-                    <input type="radio" name="role_id" x-model="role_id" @click="role_id = 2" value="2"
+                    <input type="radio" name="role_id" x-model="role_id" x-on:click="role_id = 2" value="2"
                         id="seller_radio" class="hidden" />
                     <label for="seller_radio"
                         :class="role_id == 2 ? 'border-indigo-500 bg-gradient-to-tr from-neutral-900 to-violet-900 ' :
                             'border-rose-500 bg-neutral-900'"
-                        class="bg-neutral-900 hover:bg-gradient-to-tr from-neutral-900 to-violet-900 p-8 grid place-items-center text-sm text-white border-2 cursor-pointer rounded-xl hover:border-indigo-500 transition ">Artist
-                        Signup</label>
-                    <svg xmlns="http://www.w3.org/2000/svg" x-show="role_id == 2" x-transition fill="none"
-                        viewBox="0 0 24 24" stroke-width="1.5" stroke="#6366f1"
-                        class="absolute w-6 h-6 bottom-0 left-28 ">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
-                    </svg>
+                        class="grid p-6 text-xs text-white transition border-2 cursor-pointer md:p-8 md:text-sm bg-neutral-900 hover:bg-gradient-to-tr from-neutral-900 to-violet-900 place-items-center rounded-xl hover:border-indigo-500">Artist
+                        Signup
+                    </label>
+
                 </div>
                 <div class="relative w-1/2 h-20">
-                    <input type="radio" name="role_id" x-model="role_id" @click="role_id = 3" value="3"
+                    <input type="radio" name="role_id" x-model="role_id" x-on:click="role_id = 3" value="3"
                         id="user_radio" class="hidden" />
                     <label for="user_radio"
                         :class="role_id == 3 ? 'border-indigo-500 bg-gradient-to-tl from-neutral-900 to-violet-900' :
                             'border-rose-500 bg-neutral-900'"
-                        class="hover:bg-gradient-to-tl from-neutral-900 to-violet-900 p-8 grid place-items-center text-sm text-white border-2 cursor-pointer rounded-xl hover:border-indigo-500 transition">Customer
+                        class="grid p-6 text-xs text-white transition border-2 cursor-pointer md:p-8 md:text-sm hover:bg-gradient-to-tl from-neutral-900 to-violet-900 place-items-center rounded-xl hover:border-indigo-500">Customer
                         Signup</label>
-                    <svg xmlns="http://www.w3.org/2000/svg" x-show="role_id == 3" x-transition fill="none"
-                        viewBox="0 0 24 24" stroke-width="1.5" stroke="#6366f1"
-                        class="absolute w-6 h-6 bottom-0 left-28">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
-                    </svg>
                 </div>
             </div>
-
             {{-- Name --}}
-            <div class="mt-4">
+            <div class="mt-4 lg:mt-8">
                 <x-jet-label x-show="role_id == 2" for="name" value="{{ __('Shop Name') }}" />
                 <x-jet-label x-show="role_id == 3" for="name" value="{{ __('Username') }}" x-cloak />
                 <x-jet-input id="name" class="block w-full mt-1" type="text" name="name" :value="old('name')"
@@ -122,18 +113,18 @@
                 <a class="text-sm text-gray-400 underline hover:text-gray-100" href="{{ route('login') }}">
                     {{ __('Already registered?') }}
                 </a>
-
                 <x-jet-button class="ml-4">
                     {{ __('Register') }}
                 </x-jet-button>
             </div>
-            <div class="mt-6 grid grid-cols-3 items-center text-zinc-500">
+            {{-- Google Auth --}}
+            <div class="grid items-center grid-cols-3 mt-6 text-zinc-500">
                 <hr class="border-zinc-500">
-                <p class="text-center text-sm">OR</p>
+                <p class="text-sm text-center">OR</p>
                 <hr class="border-zinc-500">
             </div>
-            <a href="{{ route('google-auth', $request ->role_id) }}"
-                class="cursor-pointer bg-transparent border-2 border-zinc-500 py-2 w-full mx-auto rounded-lg mt-5 flex justify-center items-center text-sm text-white hover:bg-neutral-600 hover:border-neutral-600 transition duration-500">
+            <a href="{{ route('google-auth') }}"
+                class="flex items-center justify-center w-full py-2 mx-auto mt-5 text-sm text-white transition duration-500 bg-transparent border-2 rounded-lg cursor-pointer border-zinc-500 hover:bg-neutral-600 hover:border-neutral-600">
                 <svg class="mr-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="25px">
                     <path fill="#FFC107"
                         d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z" />
@@ -145,8 +136,7 @@
                         d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z" />
                 </svg>
                 Sign Up with Google
+            </a>
         </form>
-
-        </a>
     </x-jet-authentication-card>
 </x-app-layout>
