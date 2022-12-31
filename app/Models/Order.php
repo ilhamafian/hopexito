@@ -24,9 +24,7 @@ class Order extends Model
         'postcode',
         'state'
     ];
-    /*
-    *HasOne
-    */
+    
     public function productOrder(){
         return $this->hasMany(ProductOrder::class, 'billplz_id', 'billplz_id');
     }
