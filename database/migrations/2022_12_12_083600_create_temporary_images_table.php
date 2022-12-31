@@ -6,26 +6,14 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
-        Schema::create('temporary_images', function (Blueprint $table) {
+        Schema::create('temporary_files', function (Blueprint $table) {
             $table->id();
-            $table->string('folder');
-            $table->string('image');
+            $table->string('filename');
             $table->timestamps();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('temporary_images');

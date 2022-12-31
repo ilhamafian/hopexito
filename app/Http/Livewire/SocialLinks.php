@@ -4,23 +4,21 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Artist;
+use App\Models\TemporaryFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\UploadController;
 use Livewire\WithFileUploads;
 
 class SocialLinks extends Component
 {
     use WithFileUploads;
 
-    public $facebook, $twitter, $instagram, $dribble, $behance, $pinterest, $deviantart, $tiktok, $cover_image;
+    public $facebook, $twitter, $instagram, $dribble, $behance, $pinterest, $deviantart, $tiktok, $filename, $cover_image;
 
-    public function storeLinks()
-    {
-        $cover_name = time() . '_' . $this->cover_image->getClientOriginalExtension();
-        $this->cover_image->storeAs('cover-image', $cover_name, 'public');
-
+    public function store()
+    {   
         Artist::updateOrCreate(['id' => Auth::user()->id], [
-            'cover_image => $cover_name',
             'facebook' => $this->facebook,
             'twitter' => $this->twitter,
             'instagram' => $this->instagram,
@@ -38,7 +36,6 @@ class SocialLinks extends Component
     {
         if (Artist::find(Auth::user()->id)) {
             $artist = Artist::findOrFail(Auth::user()->id);
-            $this->cover_image = $artist->cover_image;
             $this->facebook = $artist->facebook;
             $this->twitter = $artist->twitter;
             $this->instagram = $artist->instagram;

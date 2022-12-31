@@ -89,7 +89,8 @@
                         <x-jet-label for="price" value="{{ __('Set the price') }}" />
                         <x-jet-input type="text" id="price" name="price" class="w-24 mt-1"
                             x-model="formData.price" />
-                        <svg x-cloak x-show="formData.price > 41" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        <input type="hidden" name="commission"  x-bind:value="(formData.price * 0.15).toFixed(2)"/>
+                        {{-- <svg x-cloak x-show="formData.price > 41" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                             class="absolute w-4 h-4 text-lime-400 right-5 top-12">
                             <circle cx="8" cy="8" r="6" fill="#a3e635" />
@@ -101,9 +102,9 @@
                             <circle cx="8" cy="8" r="6" fill="#f43f5e" />
                         </svg>
                         <div x-cloak x-show="tooltip"
-                            class="z-50 absolute bg-black border-rose-500 border-2 rounded mt-1 text-xs p-1 text-gray-300">
+                            class="absolute z-50 p-1 mt-1 text-xs text-gray-300 bg-black border-2 rounded border-rose-500">
                             The minimum value for this product is <span class="text-lime-400">RM42</span>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="basis-28">
                         <x-jet-label for="commission" value="{{ __('Commission') }}" /><br>
@@ -112,12 +113,12 @@
                     </div>
                     <div class="basis-28">
                         <x-jet-label for="margin" value="{{ __('Your margin') }}" /><br>
-                        <x-jet-input type="text" id="margin" class="w-24 mt-1"
+                        <x-jet-input type="text" id="margin" class="w-24 mt-1 text-lime-500" 
                             x-bind:value="'RM' + (formData.price * 0.15).toFixed(2)" disabled />
                     </div>
 
                     {{-- Save Product Modal --}}
-                    <div class="pt-8 w-1/3" x-data="{ open: false }">
+                    <div class="w-1/3 pt-8" x-data="{ open: false }">
                         <x-jet-button type="button" x-on:click="open = true" onclick="takeshot()" class="py-3">
                             Save Product
                         </x-jet-button>
@@ -131,7 +132,7 @@
                             <div x-show="open" x-transition @click="open = false"
                                 class="relative flex items-center justify-center w-full h-full">
                                 <div @click.stop style="max-height: 80vh"
-                                    class="z-20 flex w-full max-w-2xl p-8 overflow-y-auto bg-zinc-900 border-2 border-indigo-500 rounded-2xl shadow-lg shadow-rose-500">
+                                    class="z-20 flex w-full max-w-2xl p-8 overflow-y-auto border-2 border-indigo-500 shadow-lg bg-zinc-900 rounded-2xl shadow-rose-500">
                                     <div class="w-3/4">
                                         <h2 class="text-3xl font-medium text-white" :id="$id('modal-title')">Confirm
                                         </h2>
@@ -142,7 +143,7 @@
                                                 Confirm
                                             </x-jet-button>
                                             <button type="button" x-on:click="open = false"
-                                                class="px-4 hover:rotate-180  transition duration-500">
+                                                class="px-4 transition duration-500 hover:rotate-180">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
                                                     class="w-6 h-6 text-white hover:rotate-180 hover:text-rose-500">
@@ -216,6 +217,15 @@
     <script>
         const fileInput = document.querySelector('input[id="tshirt-file-front"]');
         const pond = FilePond.create(fileInput);
+        FilePond.setOptions({
+            server:{
+                url:'{{ route('upload') }}',
+                headers:{
+                    'X-CSRF-TOKEN': '{{  csrf_token() }}'
+                }
+            }
+      
+        });
 
         
         function getData() {
@@ -224,7 +234,7 @@
                     title: "",
                     tags: "",
                     price: "",
-                    margin: 0,
+                    margin: "",
                     commission: "15%"
                 },
                 tooltip: false

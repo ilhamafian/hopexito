@@ -1,8 +1,8 @@
 <x-app-layout>
     {{-- Hero Section --}}
-    <div class="relative z-50 w-full">
+    <div class="relative z-20 w-full">
         <div
-            class="flex flex-row w-3/4 mx-auto mt-12 mb-24 shadow-md backdrop-filter backdrop-blur-3xl rounded-2xl bg-black bg-opacity-30 shadow-rose-500">
+            class="flex flex-row w-3/4 mx-auto mt-12 mb-24 bg-black shadow-md backdrop-filter backdrop-blur-3xl rounded-2xl bg-opacity-30 shadow-rose-500">
             <div class="w-1/2 py-48 text-center">
                 <h3 class="py-2 text-2xl font-bold text-white">With Creativity, Comes Easy Money.</h3>
                 <p class="py-4 text-white lg:px-10">Sell your art printed on high-quality products to a global

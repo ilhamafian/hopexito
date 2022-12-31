@@ -15,6 +15,9 @@ module.exports = {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },
         },
+        transitionDuration: {
+            DEFAULT: '300ms'
+        },
     },
 
     plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],

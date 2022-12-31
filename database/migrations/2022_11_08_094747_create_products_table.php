@@ -20,7 +20,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('tags');
             $table->double('price');
-            $table->string('image_front')->nullable();
+            $table->double('commission');
+            $table->string('image_front');
             $table->string('image_back')->nullable();
             $table->timestamps();
         });

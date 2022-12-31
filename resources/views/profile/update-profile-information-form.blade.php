@@ -41,7 +41,7 @@
                     </x-jet-button-utility>
                     @if ($this->user->profile_photo_path)
                         <div type="button"
-                            class="inline-flex items-center hover:bg-rose-500 text-rose-500 hover:text-white rounded-md p-2 cursor-pointer"
+                            class="inline-flex items-center p-2 rounded-md cursor-pointer hover:bg-rose-500 text-rose-500 hover:text-white"
                             wire:click="deleteProfilePhoto">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor" stroke-width="2">
@@ -82,9 +82,9 @@
             @else
                 <p class="mt-2 text-sm text-rose-500">
                     {{ __('Your email address is unverified.') }}
-                    <button type="button" class="text-sm text-indigo-600 hover:text-indigo-500 hover:underline"
+                    <button type="button" class="text-sm text-indigo-500 hover:text-indigo-400 hover:underline"
                         wire:click.prevent="sendEmailVerification">
-                        {{ __('Click here to re-send the verification email.') }}
+                        {{ __('Click here to send the verification email.') }}
                     </button>
                 </p>
                 @if ($this->verificationLinkSent)
@@ -103,14 +103,30 @@
 
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="postcode" value="{{ __('Postcode') }}" />
-            <x-jet-input id="postcode" type="text" class="block w-full mt-1"
-                wire:model.defer="state.postcode" />
+            <x-jet-input id="postcode" type="text" class="block w-full mt-1" wire:model.defer="state.postcode" />
             <x-jet-input-error for="postcode" class="mt-2" />
         </div>
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="state" value="{{ __('State') }}" />
-            <x-jet-input id="state" type="text" class="block w-full mt-1"
-                wire:model.defer="state.state" />
+            <select id="state" wire:model.defer="state.state" class="text-white block w-full p-2.5 bg-neutral-800 border border-neutral-500 rounded-md focus:ring-indigo-500" >
+                <option selected class="">Choose a state</option>
+                <option value="Johor">Johor</option>
+                <option value="Kedah">Kedah</option>
+                <option value="Kelantan">Kelantan</option>
+                <option value="Melaka">Melaka</option>
+                <option value="Negeri Sembilan">Negeri Sembilan</option>
+                <option value="Pahang">Pahang</option>
+                <option value="Perak">Perak</option>
+                <option value="Perlis">Perlis</option>
+                <option value="Pulau Pinang">Pulau Pinang</option>
+                <option value="Selangor">Selangor</option>
+                <option value="Terengganu">Terengganu</option>
+                <option value="Kuala Lumpur">Kuala Lumpur</option>
+                <option value="Putrajaya">Putrajaya</option>
+                <option value="Sarawak">Sarawak</option>
+                <option value="Sabah">Sabah</option>
+                <option value="Labuan">Labuan</option>
+              </select>
             <x-jet-input-error for="state" class="mt-2" />
         </div>
     </x-slot>

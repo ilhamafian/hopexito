@@ -10,6 +10,7 @@ class Artist extends Model
     use HasFactory;
     protected $table = 'artists';
     protected $fillable = [
+        'id',
         'bio',
         'cover_image',
         'facebook',

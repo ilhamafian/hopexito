@@ -6,7 +6,7 @@
         <x-slot name="description">{{ $description }}</x-slot>
     </x-jet-section-title>
 
-    <div class="mt-5 border-2 bg-black bg-opacity-40 border-indigo-500 shadow-md md:mt-0 md:col-span-2 shadow-rose-500 rounded-2xl">
+    <div class="mt-5 border-2 border-indigo-500 shadow-md bg-black/50 shadow-rose-500 md:col-span-2 rounded-2xl">
         <form wire:submit.prevent="{{ $submit }}"  enctype="multipart/form-data">
             <div class="px-4 py-5 sm:p-6 rounded-2xl {{ isset($actions) }}">
                 <div class="grid grid-cols-6 gap-6">

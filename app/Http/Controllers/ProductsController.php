@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Artist;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\TemporaryFile;
+
 
 class ProductsController extends Controller
 {
@@ -16,7 +19,6 @@ class ProductsController extends Controller
      */
     public function index()
     {   
-        
         $artist = Artist::find(Auth::user()->id);
         $products = Product::where('shopname', '=', Auth::user()->name)->get();
         return view('product.index', compact('products','artist'));
@@ -40,23 +42,13 @@ class ProductsController extends Controller
 
     public function store(Request $request)
     {
+        $temporaryFile = TemporaryFile::where('filename', $request->image_front)->first();
+        if($temporaryFile){
+            $temporaryFile->delete();
+        }
         $input = $request->all();
         $input['shopname'] = Auth::user()->name;
-
-        // if ($image = $request->file('image_front')) {
-        //     $destinationPath = 'image-front';
-        //     $frontImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-        //     $image->move($destinationPath, $frontImage);
-        //     $input['image_front'] = "$frontImage";
-        // }
-        if($request->hasFile('image_front')){
-            $file = $request->file('image_front');
-            $filename = $file->getClientOriginalName();
-            $folder = uniqid() . '-' . now()->timestamp;
-            $file->storeAs('image-front'. $folder, $filename);            
-        }
-
-        Product::create($input);
+        $product = Product::create($input); 
         return redirect()->route('dashboard')->with('success', 'Product created successfully.');
     }
 
@@ -68,7 +60,9 @@ class ProductsController extends Controller
      */
     public function show(Product $product)
     { 
-        return view('product.show', compact('product'));
+        $user = User::where('name',$product->shopname)->first();
+        $products = Product::where('shopname', '=', $product->shopname)->get();
+        return view('product.show', compact('product','products','user'));
     }
 
     /**

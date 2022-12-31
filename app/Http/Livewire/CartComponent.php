@@ -3,33 +3,47 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use Gloudemans\Shoppingcart\Facades\Cart;
+use Gloudemans\Shoppingcart\Facades\Cart as SessionCart;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Cart;
 
 class CartComponent extends Component
 {
-    public function increaseQuantity(Cart $cart, $rowId)
+    public function increaseQuantity($rowId)
     {
-        $cart = Cart::get($rowId);
-        Cart::update($rowId, $cart->qty + 1);
+        $cart = Cart::findOrFail($rowId);
+        $quantity = $cart->quantity;
+        $cart->update(['quantity' => $quantity + 1, 'subtotal' => $cart->subtotal / $quantity * ($quantity + 1), 'weight' => $cart->weight / $quantity * ($quantity + 1)]);
         return redirect()->back();
     }
 
-    public function decreaseQuantity(Cart $cart, $rowId)
+    public function decreaseQuantity($rowId)
     {
-        $cart = Cart::get($rowId);
-        if($cart->qty - 1 == 0){
-            return redirect()->back();
+        $cart = Cart::findOrFail($rowId);
+        $quantity = $cart->quantity;
+        $cart->update(['quantity' => $quantity - 1, 'subtotal' => $cart->subtotal / $quantity * ($quantity - 1), 'weight' => $cart->weight / $quantity * ($quantity - 1)]);
+        return redirect()->back();
+    }
+
+    public function destroyCart($rowId)
+    {
+        Cart::where('id', $rowId)->delete();
+        return redirect()->back();
+    }
+
+    private function total()
+    {
+        $total = 0;
+        foreach (Cart::where('email', Auth::user()->email)->get() as $cart) {
+            $total += $cart->subtotal;
         }
-        else{
-            Cart::update($rowId, $cart->qty - 1);
-            return redirect()->back();
-        }
+        return $total;
     }
 
     public function render()
     {
-        $cart = Cart::content();
-
-        return view('livewire.cart-component',compact('cart'));
+        $cart = Cart::where('email', Auth::user()->email)->orderBy('created_at')->get();
+        $total = $this->total();
+        return view('livewire.cart-component', compact('cart', 'total'));
     }
 }
