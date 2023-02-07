@@ -1,0 +1,1 @@
+<h2 class="mb-4 text-xl tracking-wider text-indigo-400">{{ $slot }}</h2>

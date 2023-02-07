@@ -16,17 +16,24 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('artist_id');
             $table->string('shopname');
+            $table->string('collection_id')->nullable();
             $table->string('title');
+            $table->string('slug')->unique();
             $table->string('tags');
             $table->double('price');
+            $table->double('discount')->default(1);
             $table->double('commission');
+            $table->string('color');
+            $table->string('category');
             $table->string('image_front');
-            $table->string('image_back')->nullable();
+            $table->integer('status')->default(1);
+            $table->integer('sold')->default(0);
             $table->timestamps();
         });
         DB::statement("ALTER TABLE products ADD 
-        (front_shirt MEDIUMBLOB, back_shirt MEDIUMBLOB)");
+        (product_image MEDIUMBLOB)");
     }
 
     /**
@@ -38,4 +45,5 @@ return new class extends Migration
     {
         Schema::dropIfExists('products');
     }
+    
 };

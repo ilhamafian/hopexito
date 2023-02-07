@@ -1,12 +1,8 @@
-<div {{ $attributes->merge(['class' => 'md:grid md:grid-cols-3 md:gap-6']) }}>
+<div
+    {{ $attributes->merge(['class' => 'lg:w-[900px] w-full p-5 my-5 border-2 border-indigo-500 shadow-xl bg-black/50 shadow-rose-500/20 rounded-2xl']) }}>
     <x-jet-section-title>
         <x-slot name="title">{{ $title }}</x-slot>
         <x-slot name="description">{{ $description }}</x-slot>
     </x-jet-section-title>
-
-    <div class="mt-5 md:mt-0 md:col-span-2">
-        <div class="px-4 py-5 border-2 border-indigo-500 shadow-md bg-black/50 sm:p-6 shadow-rose-500 rounded-2xl">
-            {{ $content }}
-        </div>
-    </div>
+    {{ $content }}
 </div>

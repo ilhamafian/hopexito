@@ -2,7 +2,10 @@
 
 namespace App\Actions\Fortify;
 
+use App\Models\Artist;
 use App\Models\User;
+use App\Models\Wallet;
+use App\Models\WalletTransaction;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
@@ -28,18 +31,29 @@ class CreateNewUser implements CreatesNewUsers
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 
-        if ($input['role_id'] == 2) 
-        {
+        if ($input['role_id'] == 2) {
             $artist =  User::create([
                 'name' => $input['name'],
                 'email' => $input['email'],
                 'role_id' => $input['role_id'],
                 'password' => Hash::make($input['password']),
             ]);
+
+            Wallet::create([
+                'id' => uniqid(8),
+                'user_id' => $artist->id,
+                'name' => $artist->name,
+                'commission' => 20,
+                'balance' => 20,
+                'status' => 1
+            ]);
+
+            Artist::create([
+                'id' => $artist->id
+            ]);
+
             return $artist->assignRole('artist');
-        }
-        else
-        {
+        } else {
             $customer =  User::create([
                 'name' => $input['name'],
                 'email' => $input['email'],

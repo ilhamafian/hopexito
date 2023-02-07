@@ -4,9 +4,7 @@
          <div class="flex justify-between h-20">
              <!-- Logo -->
              <div class="flex items-center shrink-0">
-                 <a href="{{ route('explore') }}">
-                     <x-jet-application-logo class="block w-auto" />
-                 </a>
+                 <x-jet-application-logo class="block w-auto" />
              </div>
              <div class="items-center hidden w-1/2 lg:flex">
                  <x-jet-searchbar></x-jet-searchbar>
@@ -41,41 +39,51 @@
                                  </x-slot>
                                  <x-slot name="content">
                                      <!-- Account Management -->
-                                     <div class="">
-                                         <div
-                                             class="block px-4 py-2 text-lg text-center text-white bg-neutral-800 rounded-t-xl">
-                                             {{ Auth::user()->name }}
-                                         </div>
+                                     <div
+                                         class="block px-4 py-2 text-lg text-center text-white rounded-t-lg bg-neutral-800">
+                                         {{ Auth::user()->name }}
+                                     </div>
+                                     <div class="p-1 text-sm rounded-b-lg bg-neutral-800">
                                          @if (Auth::user()->role_id == 2)
-                                         <x-jet-dropdown-link href="{{ route('dashboard') }}">
-                                             {{ __('Dashboard') }}
-                                         </x-jet-dropdown-link>
-                                         <x-jet-dropdown-link href="{{ route('product.create') }}">
-                                             {{ __('Add New Work') }}
-                                         </x-jet-dropdown-link>
-                                         <x-jet-dropdown-link href="{{ route('people', Auth::user()->name) }}">
-                                             {{ __('Manage Portfolio') }}
-                                         </x-jet-dropdown-link>
-                                         @endif
-                                         <x-jet-dropdown-link href="{{ route('order.index') }}">
-                                            {{ __('My Orders') }}
-                                        </x-jet-dropdown-link>
-                                         <x-jet-dropdown-link href="{{ route('profile.show') }}">
-                                            {{ __('Account Settings') }}
-                                        </x-jet-dropdown-link>
-
-                                         @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
-                                             <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">
-                                                 {{ __('API Tokens') }}
+                                             <x-jet-dropdown-link href="{{ route('dashboard') }}">
+                                                 {{ __('Dashboard') }}
                                              </x-jet-dropdown-link>
+                                             <x-jet-dropdown-link href="{{ route('people', Auth::user()->name) }}">
+                                                 {{ __('Your Profile') }}
+                                             </x-jet-dropdown-link>
+                                             <x-jet-dropdown-link href="{{ route('product.manage') }}">
+                                                 {{ __('Manage Products') }}
+                                             </x-jet-dropdown-link>
+                                             <x-jet-button type="button"
+                                                 onclick="location.href='{{ route('product.create') }}'"
+                                                 class="w-60 px-8 py-2.5 mx-1 mb-3 text-white rounded-full bg-rose-500 ">
+                                                 <span class="mx-auto">Add new product</span>
+                                             </x-jet-button>
+                                             <div class="border-t border-indigo-500 border-1"></div>
+                                             <x-jet-dropdown-link href="{{ route('order.index') }}">
+                                                 {{ __('Order History') }}
+                                             </x-jet-dropdown-link>
+                                             <x-jet-dropdown-link href="{{ route('profile.show') }}">
+                                                 {{ __('Account Settings') }}
+                                             </x-jet-dropdown-link>
+                                         @elseif(Auth::user()->role_id == 3)
+                                             <x-jet-dropdown-link href="{{ route('order.index') }}">
+                                                 {{ __('Order History') }}
+                                             </x-jet-dropdown-link>
+                                             <x-jet-dropdown-link href="{{ route('profile.show') }}">
+                                                 {{ __('Account Settings') }}
+                                             </x-jet-dropdown-link>
+                                             <x-jet-button type="button"
+                                                 onclick="location.href='{{ route('sellyourart') }}'"
+                                                 class="w-56 px-8 py-2.5 mx-3 mb-3 text-white rounded-full bg-rose-500 ">
+                                                 <span class="mx-auto">Sell your art</span>
+                                             </x-jet-button>
                                          @endif
-
                                          <div class="border-t border-indigo-500 border-1"></div>
-
                                          <form method="POST" action="{{ route('logout') }}" x-data>
                                              @csrf
                                              <x-jet-dropdown-link href="{{ route('logout') }}"
-                                                 @click.prevent="$root.submit();" class="text-rose-500 rounded-b-xl">
+                                                 @click.prevent="$root.submit();" class="text-rose-500">
                                                  {{ __('Log Out') }}
                                              </x-jet-dropdown-link>
                                          </form>
@@ -83,31 +91,32 @@
                                  </x-slot>
                              </x-jet-dropdown>
                              @livewire('cart-counter')
-                             @endif
-                         @else
-                             <x-jet-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')">
-                                 Login
-                             </x-jet-nav-link>
-                             <x-jet-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">
-                                 Sign Up
-                             </x-jet-nav-link>
-                             <div class="relative group">
-                                 <div
-                                     class="absolute -inset-1.5 group-hover:-inset-2.5 mx-6 bg-gradient-to-r from-rose-700 via-fuchsia-700 to-indigo-700 rounded-full blur opacity-50 group-hover:opacity-100 transition">
-                                 </div>
-                                 <x-jet-nav-link href="{{ route('sellyourart') }}"
-                                     class="mx-6 border-none rounded-full bg-zinc-900">
-                                     Sell Your Art
-                                 </x-jet-nav-link>
+                         @endif
+                     @else
+                         <x-jet-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')">
+                             Login
+                         </x-jet-nav-link>
+                         <x-jet-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">
+                             Sign Up
+                         </x-jet-nav-link>
+                         <div class="relative group">
+                             <div
+                                 class="absolute -inset-1.5 group-hover:-inset-2.5 mx-6 bg-gradient-to-r from-rose-700 via-fuchsia-700 to-indigo-700 rounded-full blur opacity-50 group-hover:opacity-100 transition">
                              </div>
-                             @livewire('cart-counter')
+                             <x-jet-nav-link href="{{ route('sellyourart') }}"
+                                 class="mx-6 border-none rounded-full bg-zinc-900">
+                                 Sell Your Art
+                             </x-jet-nav-link>
+                         </div>
+                         @livewire('cart-counter')
                      @endauth
                  @endif
              </div>
              <!-- Hamburger -->
              <div class="flex items-center -mr-2 sm:hidden">
+                @livewire('cart-counter')
                  <button @click="open = ! open"
-                     class="inline-flex items-center justify-center p-2 text-gray-400 transition rounded-md hover:text-white hover:bg-rose-500 focus:outline-none focus:bg-rose-500 focus:white">
+                     class="inline-flex items-center justify-center p-2 text-gray-400 transition rounded-md hover:text-white hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">
                      <svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                          <path :class="{ 'hidden': open, 'inline-flex': !open }" class="inline-flex"
                              stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -122,7 +131,7 @@
          <!-- Responsive Navigation Menu -->
          <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
              <!-- Responsive Settings Options -->
-             <div class="pt-4 pb-1 border-t-2 border-cyan-500">
+             <div class="pt-4 pb-1 border-t-4 border-fuchsia-500">
                  @if (Route::has('login'))
                      @auth
                          <div class="flex items-center px-4">
@@ -130,7 +139,7 @@
                                  <span class="inline-flex rounded-md">
                                      <button type="button"
                                          class="inline-flex items-center px-2 py-2 mx-4 text-sm font-medium leading-4 text-white transition bg-transparent rounded-full focus:ring focus: ring-rose-500 focus:text-rose-500">
-                                         <img class="w-10 h-10 rounded-full" src="{{ Auth::user()->profile_photo_url }}"
+                                         <img class="w-14 h-14 rounded-full" src="{{ Auth::user()->profile_photo_url }}"
                                              alt="{{ Auth::user()->name }}" />
                                      </button>
                                  </span>
@@ -147,8 +156,8 @@
                                  </span>
                              @endif
                              <div>
-                                 <div class="text-base font-medium text-gray-800">{{ Auth::user()->name }}</div>
-                                 <div class="text-sm font-medium text-gray-500">{{ Auth::user()->email }}</div>
+                                 <div class="text-base font-medium">{{ Auth::user()->name }}</div>
+                                 <div class="text-sm font-medium">{{ Auth::user()->email }}</div>
                              </div>
                          </div>
 
@@ -157,24 +166,29 @@
                              <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                                  {{ __('Dashboard') }}
                              </x-jet-responsive-nav-link>
-                             <x-jet-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
-                                 {{ __('Profile') }}
+                             <x-jet-responsive-nav-link href="{{ route('people', Auth::user()->name) }}" :active="request()->routeIs('people', Auth::user()->name)">
+                                 {{ __('Your Profile') }}
                              </x-jet-responsive-nav-link>
-                             <x-jet-responsive-nav-link href="{{ route('product.create') }}" :active="request()->routeIs('product.create')">
-                                 {{ __('Add New Work') }}
+                             <x-jet-responsive-nav-link href="{{ route('product.manage') }}" :active="request()->routeIs('product.manage')">
+                                 {{ __('Manage Products') }}
                              </x-jet-responsive-nav-link>
-
-
+                             <x-jet-section-border/>
+                             <x-jet-responsive-nav-link href="{{ route('order.index') }}" :active="request()->routeIs('order.index')">
+                                {{ __('Order History') }}
+                            </x-jet-responsive-nav-link>
+                            <x-jet-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
+                                {{ __('Account Settings') }}
+                            </x-jet-responsive-nav-link>
                              @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                                  <x-jet-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">
                                      {{ __('API Tokens') }}
                                  </x-jet-responsive-nav-link>
                              @endif
-
                              <!-- Authentication -->
                              <form method="POST" action="{{ route('logout') }}" x-data>
                                  @csrf
-                                 <x-jet-responsive-nav-link href="{{ route('logout') }}" @click.prevent="$root.submit();">
+                                 <x-jet-responsive-nav-link href="{{ route('logout') }}"
+                                     @click.prevent="$root.submit();">
                                      {{ __('Log Out') }}
                                  </x-jet-responsive-nav-link>
                              </form>
@@ -183,9 +197,9 @@
                                  {{ __('Login') }}
                              </x-jet-responsive-nav-link>
                              <x-jet-responsive-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">
-                                 {{ __('Register') }}
+                                 {{ __('Sign Up') }}
                              </x-jet-responsive-nav-link>
-                             <x-jet-responsive-nav-link href="{{ url('/sellyourart') }}" :active="request()->routeIs('/sellyourart')">
+                             <x-jet-responsive-nav-link href="{{ route('sellyourart') }}" :active="request()->routeIs('sellyourart')">
                                  {{ __('Sell Your Art') }}
                              </x-jet-responsive-nav-link>
                          @endauth

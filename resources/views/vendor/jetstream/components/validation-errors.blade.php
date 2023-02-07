@@ -2,7 +2,7 @@
     <div {{ $attributes }}>
         <div class="font-medium text-rose-500">{{ __('Whoops! Something went wrong.') }}</div>
 
-        <ul class="mx-auto mt-3 text-xs text-rose-500 text-center">
+        <ul class="mx-auto mt-3 text-rose-500 text-center">
             @foreach ($errors->all() as $error)
                 <div class="flex justify-center gap-2 my-2">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">

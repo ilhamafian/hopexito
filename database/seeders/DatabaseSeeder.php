@@ -3,9 +3,13 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Artist;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use App\Models\User;
+use App\Models\Wallet;
+use App\Models\WalletTransaction;
 use Spatie\Permission\Models\Permission;
 
 class DatabaseSeeder extends Seeder
@@ -33,6 +37,20 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('1234567890'),
             'role_id' => 2
         ]);
+
+        Wallet::create([
+            'id' => uniqid(8),
+            'name' => $artist->name,
+            'user_id' => $artist->id,
+            'commission' => 20,
+            'balance' => 20,
+            'status' => 1
+        ]);
+
+        Artist::create([
+            'id' => $artist->id
+        ]);
+
         $artist->assignRole($artist_role);
 
         $customer_role = Role::create(['name'=> 'customer']);

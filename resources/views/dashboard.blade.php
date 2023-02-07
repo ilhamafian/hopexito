@@ -1,110 +1,137 @@
+@section('title', 'Artist Dashboard | HopeXito')
 <x-app-layout>
-    <div class="min-h-screen"
-        style="background-image:url('')">
-        <div class="mx-auto shadow-md backdrop-filter backdrop-blur-xl md:w-3/4 rounded-xl shadow-indigo-500">
-            <div class="flex justify-between px-6 pt-8 mx-auto md:w-3/4">
+    <x-jet-session-message />
+    <div class="relative z-20 min-h-screen pt-8">
+        <div
+            class="max-w-6xl mx-auto shadow-md backdrop-filter backdrop-blur-3xl rounded-3xl bg-black/30 shadow-fuchsia-500">
+            <div class="flex flex-col items-center justify-between max-w-5xl px-6 pt-8 mx-auto sm:flex-row">
                 <h1
-                    class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-blue-500">
+                    class="text-3xl font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-fuchsia-500 to-fuchsia-500">
                     Dashboard</h1>
                 <div class="relative group">
                     <div
-                        class="absolute transition rounded-full opacity-50 -inset-0.5 group-hover:-inset-1.5 bg-gradient-to-r from-rose-600 via-fuchsia-600 to-indigo-600 blur group-hover:opacity-100">
+                        class="absolute inset-0 hidden transition rounded-full opacity-50 md:block group-hover:-inset-1 bg-gradient-to-r from-indigo-600 via-purple-600 to-fuchsia-600 blur group-hover:opacity-100">
                     </div>
                     <a href="{{ route('product.create') }}"
-                        class="relative float-right px-4 py-2 text-lg text-white bg-black rounded-full">Add New Work</a>
+                        class="relative float-right px-5 py-2.5 mt-4 tracking-widest text-white rounded-full bg-neutral-900 sm:mt-0">Add
+                        New
+                        Product</a>
                 </div>
             </div>
-            <section class="flex justify-content-center">
-                <div class="flex flex-wrap mx-auto my-12 lg:flex-nowrap h-96">
-                    <div class="flex w-full">
-                        <div
-                            class="relative flex flex-col items-start m-1 transition-all duration-300 ease-in-out delay-150 transform shadow-sm bg-zinc-900 rounded-xl lg:w-80 lg:-mr-16 lg:hover:-translate-x-16 lg:hover:-translate-y-8 hover:bg-gradient-to-tr from-black to-indigo-900">
-                            <div class="px-6 py-6 cursor-default">
-                                <h4 class="mt-4 text-2xl font-semibold">
-                                    <img src="image\dashboard-card1.png" class="w-16 h-16 mb-4 rounded-xl">
-                                    <span class="text-slate-300">Create product</span>
-                                </h4>
-                                <p class="mt-4 text-base font-normal text-gray-300 leading-relax">Upload your art &
-                                    choose products. More choices for customers means more chances to sell.</p>
-                            </div>
-                            <a href="{{ route('product.create') }}"
-                                class="flex px-12 text-sm text-gray-400 transition hover:underline hover:text-rose-500">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                                </svg>
-                                Add designs
-                            </a>
+            <div class="grid max-w-5xl grid-cols-1 gap-4 py-16 mx-auto text-white md:grid-cols-3">
+                <div class="block mx-2 h-96 group sm:mx-0">
+                    <div
+                        class=" relative flex flex-col space-y-3 h-full rounded-3xl border-4 border-indigo-500 bg-black/40 p-8 transition group-hover:-translate-x-2 group-hover:-translate-y-2 group-hover:shadow-[8px_8px_0_0_#ec4899]">
+                        <div class="text-center">
+                            <lord-icon src="https://cdn.lordicon.com/edxgdhxu.json" trigger="loop" delay="2000"
+                                colors="primary:#6366f1,secondary:#e879f9" state="hover-1" class="w-32 h-32">
+                            </lord-icon>
                         </div>
-                    </div>
-                    <div class="flex w-full">
-                        <div
-                            class="relative flex flex-col items-start m-1 transition duration-300 ease-in-out delay-150 transform shadow-sm bg-neutral-900 rounded-xl lg:w-80 lg:-mr-16 lg:hover:-translate-x-16 lg:hover:-translate-y-8 hover:bg-gradient-to-tr from-black to-violet-900">
-                            <div class="px-6 py-6 cursor-default">
-                                <h4 class="mt-4 text-2xl font-semibold">
-                                    <img src="image\dashboard-card2.png" class="w-16 h-16 mb-4 rounded-xl">
-                                    <span class="text-slate-300">Set up shop</span>
-                                </h4>
-                                <p class="mt-4 text-base font-normal text-gray-300 leading-relax">Customize your shop so
-                                    it's more memorable and engaging. Make it truly unique.</p>
-                            </div>
-                            <a href="{{ route('profile.show') }}"
-                                class="flex px-12 py-1 text-sm text-gray-400 transition hover:underline hover:text-rose-500">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                                </svg>
-                                Add an avatar
-                            </a>
-                            <a href="{{ route('profile.show') }}#add-cover-image"
-                                class="flex px-12 py-1 text-sm text-gray-400 transition hover:underline hover:text-rose-500">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                                </svg>
-                                Add a cover image
-                            </a>
-                            <a href="{{ route('profile.show') }}#add-cover-image"
-                                class="flex px-12 py-1 text-sm text-gray-400 transition hover:underline hover:text-rose-500">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                                </svg>
-                                Add a social link
-                            </a>
-                        </div>
-                    </div>
-                    <div class="flex w-full">
-                        <div
-                            class="relative flex flex-col items-start m-1 transition duration-300 ease-in-out delay-150 transform shadow-sm bg-stone-900 rounded-xl lg:w-80 lg:hover:-translate-x-16 lg:hover:-translate-y-8 hover:bg-gradient-to-tr from-black to-purple-900">
-                            <div class="px-6 py-6 cursor-default">
-                                <h4 class="mt-4 text-2xl font-semibold">
-                                    <img src="image\dashboard-card3.png" class="w-16 h-16 mb-4 rounded-xl">
-                                    <span class="text-slate-300">Get paid</span>
-                                </h4>
-                                <p class="mt-4 text-base font-normal text-gray-300 leading-relax">Confirm your account
-                                    and payment details to open your shop and get selling.</p>
-                            </div>
-                            <a href="{{ route('profile.show') }}"
-                                class="flex px-12 py-1 text-sm text-gray-400 transition hover:underline hover:text-rose-500">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                                </svg>
-                                Confirm your email
-                            </a>
-                            <a href="{{ route('profile.show') }}#add-cover-image"
-                                class="flex px-12 py-1 text-sm text-gray-400 transition hover:underline hover:text-rose-500">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                                </svg>
-                                Add payment details
-                            </a>
-                        </div>
+                        <p class="my-3 text-lg text-indigo-400">Create product</p>
+                        <p class="">Upload your art & choose products. More choices for customers means more
+                            chances to sell.</p>
+                        <a href="{{ route('product.create') }}"
+                            class="flex items-center mt-2 text-sm text-indigo-300 transition hover:text-pink-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="1">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                            </svg>
+                            Add designs
+                        </a>
                     </div>
                 </div>
-            </section>
+                <div class="block mx-2 h-96 group sm:mx-0">
+                    <div
+                        class=" relative flex flex-col h-full rounded-3xl border-4 border-indigo-500 bg-black/40 p-8 transition group-hover:-translate-x-2 group-hover:-translate-y-2 group-hover:shadow-[8px_8px_0_0_#ec4899]">
+                        <div class="text-center">
+                            <lord-icon src="https://cdn.lordicon.com/vqrsuymp.json" trigger="loop" delay="2000"
+                                colors="primary:#6366f1,secondary:#e879f9" class="w-32 h-32">
+                            </lord-icon>
+                        </div>
+                        <p class="my-3 text-lg text-indigo-400">Setup Shop</p>
+                        <p class="">Customize your shop so it's more memorable and engaging. Make it truly unique.
+                        </p>
+
+                        <a href="{{ route('profile.show') }}"
+                            class="flex items-center mt-2 text-sm text-indigo-300 transition hover:text-pink-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="1">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                            </svg>
+                            Add an avatar
+                        </a>
+                        <a href="{{ route('profile.show') }}"
+                            class="flex items-center text-sm text-indigo-300 transition hover:text-pink-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="1">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                            </svg>
+                            Add a cover image
+                        </a>
+                        <a href="{{ route('profile.show') }}"
+                            class="flex items-center text-sm text-indigo-300 transition hover:text-pink-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="1">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                            </svg>
+                            Add a social link
+                        </a>
+                    </div>
+                </div>
+                <div class="block mx-2 h-96 group sm:mx-0">
+                    <div
+                        class=" relative flex flex-col h-full rounded-3xl border-4 border-indigo-500 bg-black/40 p-8 transition group-hover:-translate-x-2 group-hover:-translate-y-2 group-hover:shadow-[8px_8px_0_0_#ec4899]">
+                        <div class="text-center">
+                            <lord-icon src="https://cdn.lordicon.com/nqwqiffl.json" trigger="loop" delay="2000"
+                                colors="primary:#6366f1,secondary:#e879f9" class="w-32 h-32">
+                            </lord-icon>
+                        </div>
+                        <p class="my-3 text-lg text-indigo-400">Get Paid</p>
+                        <p class="">Confirm your account
+                            and payment details to open your shop and get selling.</p>
+
+                        <a href="{{ route('profile.show') }}"
+                            class="flex items-center mt-2 text-sm text-indigo-300 transition hover:text-pink-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="1">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                            </svg>
+                            Confirm your email address
+                        </a>
+                        <a href="#wallet"
+                            class="flex items-center text-sm text-indigo-300 transition hover:text-pink-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="1">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                            </svg>
+                            Add payment details
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    <div
+        class="absolute z-10 hidden rounded-full md:block filter blur-xl bg-gradient-to-r from-indigo-500 via-violet-500 to-fuchsia-500 h-72 w-72 bottom-48 right-36 animate-spin">
+    </div>
+    <div
+        class="absolute z-10 hidden rotate-45 rounded-full h-80 w-80 md:block filter blur-xl bg-gradient-to-r from-indigo-700 via-violet-700 to-fuchsia-700 bottom-16 left-36 animate-spin">
+    </div>
+    <div class="mb-48" id="wallet">
+        @livewire('wallet')
+    </div>
+    <div class="relative bg-black/50 h-72 w-full py-16">
+        <img src="image/discord-icon.png" class="absolute left-48 -top-16 hidden lg:block -rotate-12" />
+        <img src="image/xito-icon.png" class="absolute right-72 bottom-12 hidden lg:block rotate-12 w-32 h-32" />
+        <div class="max-w-2xl mx-auto text-center space-y-2">
+            <h1
+                class="text-3xl font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-fuchsia-500 to-fuchsia-500">
+                Join Our Discord Community</h1>
+            <p class="text-white pb-6">Join the designers online community on our Discord server and be a part of the <span class="bg-indigo-500 px-1 uppercase">hope</span></p>
+            <a href="https://discord.gg/AZu2ngA4uk" target="_blank">
+                <x-jet-button-custom>Join HopeXito Designers Club</x-jet-button-custom>
+            </a>
+        </div>
+    </div>
+    <x-jet-section-border />
 </x-app-layout>

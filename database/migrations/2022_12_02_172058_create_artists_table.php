@@ -25,9 +25,8 @@ return new class extends Migration
             $table->string('pinterest')->nullable();
             $table->string('deviantart')->nullable();
             $table->string('tiktok')->nullable();
-            $table->string('bank_name')->nullable();
-            $table->string('account_number')->nullable();
             $table->timestamps();
+
         });
     }
 

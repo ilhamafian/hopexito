@@ -17,7 +17,10 @@
         "vite": "^3.0.0"
     },
     "dependencies": {
+        "@marcreichel/alpine-typewriter": "^1.0.1",
+        "@ryangjchandler/alpine-clipboard": "^2.2.0",
         "@vitejs/plugin-basic-ssl": "^1.0.1",
+        "apexcharts": "^3.36.3",
         "filepond": "^4.30.4"
     }
 }

@@ -16,10 +16,23 @@ class JetstreamServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerComponent('button-utility');
+        $this->registerComponent('button-custom');
         $this->registerComponent('searchbar');
         $this->registerComponent('footer');
         $this->registerComponent('admin-sidebar');
-        $this->registerComponent('login-modal');
+        $this->registerComponent('session-message');
+        $this->registerComponent('admin-card');
+        $this->registerComponent('admin-layout');
+        $this->registerComponent('modal-custom');
+        $this->registerComponent('modal-custom-2');
+        $this->registerComponent('modal-custom-3');
+        $this->registerComponent('admin-nav');
+        $this->registerComponent('header');
+        $this->registerComponent('carousel');
+        $this->registerComponent('wallet-card');
+        $this->registerComponent('lightning');
+        $this->registerComponent('gradient-card');
+        $this->registerComponent('title');
     }
     protected function registerComponent(string $component)
     {

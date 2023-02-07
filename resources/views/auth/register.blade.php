@@ -1,28 +1,31 @@
+@section('title', 'Sign Up | HopeXito')
 <x-app-layout>
     <x-jet-authentication-card>
         <form method="POST" action="{{ route('register') }}" x-data="{ role_id: 2 }">
             @csrf
-            <h1 class="pb-6 text-2xl text-center text-white">Join Hopexito</h1>
+            <div class="h-12 ">
+                <span x-data="{ texts: ['Join HopeXito', 'Get Started'] }" x-typewriter.4s="texts"
+                    class="text-xl tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500"></span>
+            </div>
             {{-- Select Role --}}
             <div class="flex flex-row gap-5">
                 <div class="relative w-1/2 h-20">
                     <input type="radio" name="role_id" x-model="role_id" x-on:click="role_id = 2" value="2"
                         id="seller_radio" class="hidden" />
                     <label for="seller_radio"
-                        :class="role_id == 2 ? 'border-indigo-500 bg-gradient-to-tr from-neutral-900 to-violet-900 ' :
-                            'border-rose-500 bg-neutral-900'"
-                        class="grid p-6 text-xs text-white transition border-2 cursor-pointer md:p-8 md:text-sm bg-neutral-900 hover:bg-gradient-to-tr from-neutral-900 to-violet-900 place-items-center rounded-xl hover:border-indigo-500">Artist
+                        :class="role_id == 2 ? 'border-indigo-500' :
+                            'border-gray-900 bg-black'"
+                        class="grid p-6 text-white transition border-2 cursor-pointer md:p-8 md:text-sm place-items-center rounded-xl hover:border-indigo-500">Artist
                         Signup
                     </label>
-
                 </div>
                 <div class="relative w-1/2 h-20">
                     <input type="radio" name="role_id" x-model="role_id" x-on:click="role_id = 3" value="3"
                         id="user_radio" class="hidden" />
-                    <label for="user_radio"
-                        :class="role_id == 3 ? 'border-indigo-500 bg-gradient-to-tl from-neutral-900 to-violet-900' :
-                            'border-rose-500 bg-neutral-900'"
-                        class="grid p-6 text-xs text-white transition border-2 cursor-pointer md:p-8 md:text-sm hover:bg-gradient-to-tl from-neutral-900 to-violet-900 place-items-center rounded-xl hover:border-indigo-500">Customer
+                    <label x-cloak for="user_radio"
+                        :class="role_id == 3 ? 'border-indigo-500' :
+                            'border-gray-900 bg-black'"
+                        class="grid px-3 py-6 text-white transition border-2 cursor-pointer md:p-8 md:text-sm place-items-center rounded-xl hover:border-indigo-500">Customer
                         Signup</label>
                 </div>
             </div>
@@ -82,24 +85,32 @@
 
                 </div>
             </div>
+            <x-jet-validation-errors class="mt-6 text-xs" />
+            <div class="flex items-center justify-end mt-6">
+                <a class="text-xs text-gray-300 underline hover:text-indigo-400" href="{{ route('login') }}">
+                    {{ __('Already registered?') }}
+                </a>
+                <x-jet-button class="ml-4">
+                    {{ __('Sign Up') }}
+                </x-jet-button>
+            </div>
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
-                <div class="mt-4">
+                <div class="mt-6">
                     <x-jet-label for="terms">
-                        <div class="flex items-center">
-                            <x-jet-checkbox name="terms" id="terms" />
-
+                        <div class="flex items-center text-xs">
+                            <x-jet-checkbox name="terms" id="terms" class="hidden" checked />
                             <div class="ml-2">
-                                {!! __('I agree to the :terms_of_service and :privacy_policy', [
+                                {!! __('By signing up, you agree to our :terms_of_service and :privacy_policy', [
                                     'terms_of_service' =>
                                         '<a target="_blank" href="' .
                                         route('terms.show') .
-                                        '" class="text-sm text-gray-600 underline hover:text-gray-900">' .
+                                        '" class="text-gray-300 underline hover:text-indigo-400">' .
                                         __('Terms of Service') .
                                         '</a>',
                                     'privacy_policy' =>
                                         '<a target="_blank" href="' .
                                         route('policy.show') .
-                                        '" class="text-sm text-gray-600 underline hover:text-gray-900">' .
+                                        '" class="text-gray-300 underline hover:text-indigo-400">' .
                                         __('Privacy Policy') .
                                         '</a>',
                                 ]) !!}
@@ -108,15 +119,7 @@
                     </x-jet-label>
                 </div>
             @endif
-            <x-jet-validation-errors class="my-4" />
-            <div class="flex items-center justify-end mt-6">
-                <a class="text-sm text-gray-400 underline hover:text-gray-100" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-                <x-jet-button class="ml-4">
-                    {{ __('Register') }}
-                </x-jet-button>
-            </div>
+            <br>
             {{-- Google Auth --}}
             <div class="grid items-center grid-cols-3 mt-6 text-zinc-500">
                 <hr class="border-zinc-500">
@@ -124,7 +127,7 @@
                 <hr class="border-zinc-500">
             </div>
             <a href="{{ route('google-auth') }}"
-                class="flex items-center justify-center w-full py-2 mx-auto mt-5 text-sm text-white transition duration-500 bg-transparent border-2 rounded-lg cursor-pointer border-zinc-500 hover:bg-neutral-600 hover:border-neutral-600">
+                class="flex items-center justify-center w-full py-2 mx-auto mt-5 text-sm text-white transition duration-500 bg-transparent border-2 rounded-lg cursor-pointer border-zinc-500 hover:bg-neutral-900 hover:border-neutral-600">
                 <svg class="mr-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="25px">
                     <path fill="#FFC107"
                         d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z" />

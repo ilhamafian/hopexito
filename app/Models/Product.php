@@ -13,14 +13,36 @@ class Product extends Model
     protected $table = 'products';
     protected $fillable = [
         'title',
+        'slug',
         'tags',
+        'artist_id',
         'shopname',
+        'collection_id',
         'price',
+        'discount',
         'commission',
+        'color',
+        'category',
         'image_front',
-        'image_front_name',
-        'image_back',
-        'front_shirt',
-        'back_shirt'
+        'status',
+        'sold',
+        'product_image',
     ];
+
+    public function productUser(){
+        return $this->hasOne(User::class,'id','artist_id');
+    }
+    public function productOrder(){
+        return $this->hasMany(ProductOrder::class, 'product_id', 'id');
+    }
+    public function productCart(){
+        return $this->hasMany(Cart::class, 'product_id', 'id');
+    }
+    public function productCollection(){
+        return $this->hasOne(ProductCollection::class, 'id', 'collection_id');
+    }
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

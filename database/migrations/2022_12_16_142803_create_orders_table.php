@@ -15,12 +15,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->string('billplz_id')->primary();
+            $table->uuid('id')->primary();
             $table->string('collection_id');
             $table->string('email');
             $table->string('name');
             $table->string('description');
+            $table->double('delivery');
+            $table->integer('status');
             $table->double('amount');
+            $table->string('tracking_number')->nullable();
             $table->string('paid');
             $table->string('paid_at');
             $table->string('address');

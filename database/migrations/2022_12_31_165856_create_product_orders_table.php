@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -15,17 +14,17 @@ return new class extends Migration
     public function up()
     {
         Schema::create('product_orders', function (Blueprint $table) {
-            $table->string('id')->primary();
-            $table->string('billplz_id');
+            $table->uuid('id')->primary();
+            $table->uuid('billplz_id')->references('id')->on('orders');
             $table->integer('product_id');
+            $table->string('title');
             $table->double('price');
             $table->integer('quantity');
             $table->string('size');
             $table->string('color');
             $table->timestamps();
         });
-        DB::statement("ALTER TABLE product_orders ADD 
-        (product_image MEDIUMBLOB)");
+
     }
 
     /**

@@ -74,4 +74,12 @@ class User extends Authenticatable
 
         return $this->getPhotoUrl();
     }
+
+    public function artist(){
+        return $this->hasOne(Artist::class, 'id', 'id');
+    }
+
+    public function products(){
+        return $this->hasMany(Product::class, 'artist_id','id');
+    }
 }

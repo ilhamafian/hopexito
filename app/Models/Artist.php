@@ -21,7 +21,5 @@ class Artist extends Model
         'pinterest',
         'deviantart',
         'tiktok',
-        'bank_name',
-        'account_number',
     ];
 }

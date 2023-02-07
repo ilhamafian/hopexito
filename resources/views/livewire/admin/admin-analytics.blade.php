@@ -1,0 +1,113 @@
+@inject('carbon', 'Carbon\Carbon')
+<div class="flex">
+    <x-jet-admin-sidebar />
+    <x-jet-admin-layout>
+        <div class="grid grid-cols-3 gap-12 text-center text-white">
+            <x-jet-admin-card>
+                <span class="px-4 py-2 rounded-lg bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500">
+                    Average Product Price(RM)
+                </span>
+                <div class="block p-2 mt-4 text-3xl">
+                    {{ number_format($averagePrice, 2) }}
+                </div>
+            </x-jet-admin-card>
+            <x-jet-admin-card>
+                <span class="px-4 py-2 rounded-lg bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500">
+                    Total Sales(RM)
+                </span>
+                <div class="block p-2 mt-4 text-3xl">
+                    {{ number_format($totalSales, 2) }}
+                </div>
+            </x-jet-admin-card>
+            <x-jet-admin-card>
+                <span class="px-4 py-2 rounded-lg bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500">
+                    Total Commission(RM)
+                </span>
+                <div class="block p-2 mt-4 text-3xl">
+                    {{ number_format($totalCommission, 2) }}
+                </div>
+            </x-jet-admin-card>
+        </div>
+        <div class="grid grid-cols-4 gap-12 mt-8 text-center text-white">
+            <x-jet-admin-card>
+                <span class="px-4 py-2 rounded-lg bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500">
+                    Total Product
+                </span>
+                <div class="block p-2 mt-4 text-4xl">
+                    {{ $totalProducts }}
+                </div>
+            </x-jet-admin-card>
+            <x-jet-admin-card>
+                <span class="px-4 py-2 rounded-lg bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500">
+                    Total Product Sold
+                </span>
+                <div class="block p-2 mt-4 text-3xl">
+                    {{ $totalSold }}
+                </div>
+            </x-jet-admin-card>
+            <x-jet-admin-card>
+                <span class="px-4 py-2 rounded-lg bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500">
+                    Total Users
+                </span>
+                <div class="block p-2 mt-4 text-3xl">
+                    {{ $totalUsers }}
+                </div>
+            </x-jet-admin-card>
+            <x-jet-admin-card>
+                <span class="px-4 py-2 rounded-lg bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500">
+                    Total Artists
+                </span>
+                <div class="block p-2 mt-4 text-3xl">
+                    {{ $totalArtists }}
+                </div>
+            </x-jet-admin-card>
+        </div>
+        <x-jet-section-border />
+        <div class="grid grid-cols-2 gap-12 text-center text-white" x-data="{ x: 0 }">
+            <x-jet-admin-card>
+                <x-jet-header>Product Leaderboard</x-jet-header>
+                @foreach ($products as $item)
+                    <a class="flex flex-col m-3" href="{{ route('product.show', $item->slug) }}">
+                        <div class="relative group">
+                            <div
+                                class="absolute transition duration-1000 rounded-lg opacity-25 -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 blur group-hover:opacity-100 group-hover:duration-200">
+                            </div>
+                            <div class="relative flex items-center justify-between px-6 py-4 bg-black rounded-lg">
+                                <p class="text-white">{{ $item->title }}</p>
+                                <div class="flex items-center gap-4">
+                                    <p class="transition text-fuchsia-400 group-hover:text-orange-400">
+                                        {{ $item->shopname }}</p>
+                                    <div class="px-6 py-2 rounded-lg bg-rose-500">
+                                        {{ $item->sold }} sold
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                @endforeach
+            </x-jet-admin-card>
+            <x-jet-admin-card>
+                <x-jet-header>Commission Leaderboard</x-jet-header>
+                @foreach ($wallets as $wallet)
+                    <a class="flex flex-col m-3" href="{{ route('people', $wallet->name) }}">
+                        <div class="relative group">
+                            <div
+                                class="absolute transition duration-1000 rounded-lg opacity-25 -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 blur group-hover:opacity-100 group-hover:duration-200">
+                            </div>
+                            <div class="relative flex items-center justify-between px-6 py-4 bg-black rounded-lg">
+                                <p class="text-white">{{ $wallet->name }}</p>
+                                <div class="flex items-center gap-4">
+                                    <p class="transition text-fuchsia-400 group-hover:text-orange-400">
+                                        RM {{ number_format($wallet->balance, 2) }}</p>
+                                    <div class="px-6 py-2 rounded-lg bg-rose-500">
+                                        RM {{ number_format($wallet->commission, 2) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                @endforeach
+            </x-jet-admin-card>
+        </div>
+    </x-jet-admin-layout>
+</div>

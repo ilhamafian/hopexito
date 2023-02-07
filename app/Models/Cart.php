@@ -22,6 +22,9 @@ class Cart extends Model
         'weight',
         'size',
         'color',
-        'product_image',
     ];
+
+    public function cartProduct(){
+        return $this->hasOne(Product::class, 'id', 'product_id');
+    }
 }

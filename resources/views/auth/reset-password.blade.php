@@ -1,3 +1,4 @@
+@section('title', 'Reset Password | HopeXito')
 <x-app-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">

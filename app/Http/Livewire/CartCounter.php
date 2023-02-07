@@ -9,20 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class CartCounter extends Component
 {
-    public $showingModal = false;
-
-    public $listeners = [
-        'hideMe' => 'hideModal'
-    ];
-    
-    public function showModal(){
-        $this->showingModal = true;
-    }
-
-    public function hideModal(){
-        $this->showingModal = false;
-    }
-
     public function render()
     {
         if(Auth::check()){

@@ -12,12 +12,15 @@ class Order extends Model
     protected $table = 'orders';
     protected $casts = ['id' => 'string'];
     protected $fillable = [
-        'billplz_id',
+        'id',
         'collection_id',
         'email',
         'name',
         'description',
+        'delivery',
+        'status',
         'amount',
+        'tracking_number',
         'paid',
         'paid_at',
         'address',
@@ -26,6 +29,6 @@ class Order extends Model
     ];
     
     public function productOrder(){
-        return $this->hasMany(ProductOrder::class, 'billplz_id', 'billplz_id');
+        return $this->hasMany(ProductOrder::class, 'billplz_id', 'id');
     }
 }

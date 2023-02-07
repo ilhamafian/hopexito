@@ -1,340 +1,71 @@
+@section('title', 'Choose Product | HopeXito')
 <x-app-layout>
-    <div class="container mx-auto lg:px-5 lg:py-12 bg-neutral-900" x-data="getData()">
-        <form method="POST" action="{{ route('product.store') }}" enctype="multipart/form-data"
-            class="flex mx-auto lg:w-3/4 md:w-full">
-            @csrf
-            <div class="w-1/2 p-8">
-                <div class="flex flex-row space-x-3">
-                    <div class="w-full">
-                        <input id="tshirt-file-front" name="image_front" type="file" />
-                        <input type='hidden' id='front-shirt-dataURL' name='front_shirt' value=''
-                            class="hidden" />
+    <x-jet-session-message />
+    <div class="relative z-20 min-h-screen pt-8">
+        <img src="../image/product-selection/product-selection.jpg"
+            class="absolute inset-0 hidden w-full h-full bg-cover lg:block" />
+        <div
+            class="max-w-6xl mx-auto shadow-md backdrop-filter backdrop-blur-[6px] rounded-3xl bg-black/40 shadow-fuchsia-500">
+            <div class="max-w-5xl px-6 pt-8 mx-auto sm:flex-row">
+                <h1
+                    class="text-3xl font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-fuchsia-500 to-fuchsia-500">
+                    Products Selection</h1>
+            </div>
+            <div class="grid max-w-5xl grid-cols-1 gap-4 py-16 mx-auto text-white md:grid-cols-3">
+                <div class="block h-48 mx-2 group sm:mx-0">
+                    <a href="{{ route('product.template', 1) }}"
+                        class=" relative flex flex-col items-center h-full rounded-3xl border-4 border-indigo-500 bg-black/40 p-8 transition group-hover:-translate-x-2 group-hover:-translate-y-2 group-hover:shadow-[8px_8px_0_0_#ec4899]">
+                        <p class="my-3 text-lg text-indigo-400">T-Shirt</p>
+                        <img src="../image/product-selection/tshirt.png"
+                            class="w-16 h-16 p-2 bg-indigo-500 rounded-full" />
+                    </a>
+                </div>
+                <div class="block h-48 mx-2 group sm:mx-0">
+                    <a href="{{ route('product.template', 2) }}"
+                        class=" relative flex flex-col items-center h-full rounded-3xl border-4 border-indigo-500 bg-black/40 p-8 transition group-hover:-translate-x-2 group-hover:-translate-y-2 group-hover:shadow-[8px_8px_0_0_#ec4899]">
+                        <p class="my-3 text-lg text-indigo-400">Totebag</p>
+                        <img src="../image/product-selection/totebag.png"
+                            class="w-16 h-16 p-2 bg-indigo-500 rounded-full" />
+                        <p class="absolute px-2 uppercase rounded-md bg-rose-500/90 bottom-14">Coming Soon</p>
+                    </a>
+                </div>
+                <div class="block h-48 mx-2 group sm:mx-0">
+                    <div
+                        class=" relative flex flex-col items-center h-full rounded-3xl border-4 border-indigo-500 bg-black/40 p-8 transition group-hover:-translate-x-2 group-hover:-translate-y-2 group-hover:shadow-[8px_8px_0_0_#ec4899]">
+                        <p class="my-3 text-lg text-indigo-400">Oversized T-Shirt</p>
+                        <img src="../image/product-selection/oversized.png"
+                            class="w-16 h-16 p-2 bg-indigo-500 rounded-full" />
+                        <p class="absolute px-2 uppercase rounded-md bg-rose-500/90 bottom-14">Coming Soon</p>
                     </div>
                 </div>
-                <div class="relative py-2">
-                    <x-jet-label for="title" value="{{ __('Title') }}" />
-                    <x-jet-input id="title" class="block w-full mt-1" type="text" name="title"
-                        placeholder="Title related to your artwork" />
-                    {{-- <svg x-show="formData.title.length > 0" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                        class="absolute w-4 h-4 text-lime-400 right-2 bottom-5">
-                        <circle cx="8" cy="8" r="6" fill="#a3e635" />
-                    </svg>
-                    <svg x-show="formData.title.length == 0" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                        class="absolute w-4 h-4 text-rose-500 right-2 bottom-5 ">
-                        <circle cx="8" cy="8" r="6" fill="#f43f5e" />
-                    </svg> --}}
-                </div>
-                <div class="relative py-2">
-                    <x-jet-label for="tags" value="{{ __('Tags') }}" />
-                    <x-jet-input id="tags" class="block w-full mt-1" type="text" name="tags"
-                        placeholder="Separate tags with commas" />
-                    {{-- <svg x-show="formData.tags.length > 0" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                        class="absolute w-4 h-4 text-lime-400 right-2 bottom-5">
-                        <circle cx="8" cy="8" r="6" fill="#a3e635" />
-                    </svg>
-                    <svg x-show="formData.tags.length == 0" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                        class="absolute w-4 h-4 text-rose-500 right-2 bottom-5 ">
-                        <circle cx="8" cy="8" r="6" fill="#f43f5e" />
-                    </svg> --}}
-                </div>
-                <div class="flex py-2">
-                    <div class="flex flex-col w-1/3">
-                        <x-jet-label for="" value="{{ __('Tshirt Color') }}" />
-                        <div class="space-x-1">
-                            <input type="button" class="w-8 h-8 bg-white rounded-full " id="white"></a>
-                            <input type="button" class="w-8 h-8 bg-black rounded-full" id="black"></a>
-                            <input type="button" class="h-8 w-8 rounded-full bg-[#cabfad]" id="sand"></a>
-                        </div>
-                    </div>
-                    <div class="flex flex-col w-1/3">
-                        <x-jet-label for="" value="{{ __('Alignment') }}" />
-                        <div>
-                            <x-jet-button-utility id="centerH">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-                                </svg>
-                            </x-jet-button-utility>
-                            <x-jet-button-utility id="centerV">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
-                                </svg>
-                            </x-jet-button-utility>
-                        </div>
-                    </div>
-                    <div class="flex flex-col w-1/3">
-                        <x-jet-label for="" value="{{ __('Size') }}" />
-                        <div>
-                            <x-jet-button-utility id="A3">
-                                A3
-                            </x-jet-button-utility>
-                            <x-jet-button-utility id="A4">
-                                A4
-                            </x-jet-button-utility>
-                            <x-jet-button-utility id="A5">
-                                A5
-                            </x-jet-button-utility>
-                        </div>
+                <div class="block h-48 mx-2 group sm:mx-0">
+                    <div
+                        class=" relative flex flex-col items-center h-full rounded-3xl border-4 border-indigo-500 bg-black/40 p-8 transition group-hover:-translate-x-2 group-hover:-translate-y-2 group-hover:shadow-[8px_8px_0_0_#ec4899]">
+                        <p class="my-3 text-lg text-indigo-400">Hoodie</p>
+                        <img src="../image/product-selection/hoodie.png"
+                            class="w-16 h-16 p-2 bg-indigo-500 rounded-full" />
+                        <p class="absolute px-2 uppercase rounded-md bg-rose-500/90 bottom-14">Coming Soon</p>
                     </div>
                 </div>
-                <div class="flex py-2">
-                    <div class="relative basis-28">
-                        <x-jet-label for="price" value="{{ __('Set the price') }}" />
-                        <x-jet-input type="text" id="price" name="price" class="w-24 mt-1"
-                            x-model="formData.price" />
-                        <input type="hidden" name="commission"  x-bind:value="(formData.price * 0.15).toFixed(2)"/>
-                        {{-- <svg x-cloak x-show="formData.price > 41" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                            class="absolute w-4 h-4 text-lime-400 right-5 top-12">
-                            <circle cx="8" cy="8" r="6" fill="#a3e635" />
-                        </svg>
-                        <svg x-cloak x-show="formData.price < 42" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            x-on:mouseenter="tooltip = true" x-on:mouseleave="tooltip = false" viewBox="0 0 24 24"
-                            stroke-width="1.5" stroke="currentColor"
-                            class="absolute w-4 h-4 text-rose-500 right-5 top-12">
-                            <circle cx="8" cy="8" r="6" fill="#f43f5e" />
-                        </svg>
-                        <div x-cloak x-show="tooltip"
-                            class="absolute z-50 p-1 mt-1 text-xs text-gray-300 bg-black border-2 rounded border-rose-500">
-                            The minimum value for this product is <span class="text-lime-400">RM42</span>
-                        </div> --}}
+                <div class="block h-48 mx-2 group sm:mx-0">
+                    <div
+                        class=" relative flex flex-col items-center h-full rounded-3xl border-4 border-indigo-500 bg-black/40 p-8 transition group-hover:-translate-x-2 group-hover:-translate-y-2 group-hover:shadow-[8px_8px_0_0_#ec4899]">
+                        <p class="my-3 text-lg text-indigo-400">Sweater</p>
+                        <img src="../image/product-selection/sweater.png"
+                            class="w-16 h-16 p-2 bg-indigo-500 rounded-full" />
+                        <p class="absolute px-2 uppercase rounded-md bg-rose-500/90 bottom-14">Coming Soon</p>
                     </div>
-                    <div class="basis-28">
-                        <x-jet-label for="commission" value="{{ __('Commission') }}" /><br>
-                        <x-jet-input type="text" id="commission" class="w-24 mt-1"
-                            x-bind:placeholder="formData.commission" disabled />
-                    </div>
-                    <div class="basis-28">
-                        <x-jet-label for="margin" value="{{ __('Your margin') }}" /><br>
-                        <x-jet-input type="text" id="margin" class="w-24 mt-1 text-lime-500" 
-                            x-bind:value="'RM' + (formData.price * 0.15).toFixed(2)" disabled />
-                    </div>
-
-                    {{-- Save Product Modal --}}
-                    <div class="w-1/3 pt-8" x-data="{ open: false }">
-                        <x-jet-button type="button" x-on:click="open = true" onclick="takeshot()" class="py-3">
-                            Save Product
-                        </x-jet-button>
-                        <div x-cloak x-show="open" @keydown.escape.prevent.stop="open = false" role="dialog"
-                            aria-modal="true" x-id="['modal-title']" :aria-labelledby="$id('modal-title')"
-                            class="fixed inset-0 z-20">
-                            <!-- Overlay -->
-                            <div x-show="open" x-transition.opacity class="fixed inset-0 bg-black bg-opacity-80">
-                            </div>
-                            <!-- Panel -->
-                            <div x-show="open" x-transition @click="open = false"
-                                class="relative flex items-center justify-center w-full h-full">
-                                <div @click.stop style="max-height: 80vh"
-                                    class="z-20 flex w-full max-w-2xl p-8 overflow-y-auto border-2 border-indigo-500 shadow-lg bg-zinc-900 rounded-2xl shadow-rose-500">
-                                    <div class="w-3/4">
-                                        <h2 class="text-3xl font-medium text-white" :id="$id('modal-title')">Confirm
-                                        </h2>
-                                        <p class="mt-2 text-gray-300">This product will appear in the marketplace.
-                                        </p>
-                                        <div class="flex mt-8 space-x-2">
-                                            <x-jet-button type="submit" class="">
-                                                Confirm
-                                            </x-jet-button>
-                                            <button type="button" x-on:click="open = false"
-                                                class="px-4 transition duration-500 hover:rotate-180">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                                    class="w-6 h-6 text-white hover:rotate-180 hover:text-rose-500">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        d="M6 18L18 6M6 6l12 12" />
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="w-1/4">
-                                        <lord-icon src="https://cdn.lordicon.com/ridbdkcb.json" trigger="loop"
-                                            delay="0" colors="primary:#f43f5e,secondary:#6366f1"
-                                            style="width:150px;height:150px">
-                                        </lord-icon>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                </div>
+                <div class="block h-48 mx-2 group sm:mx-0">
+                    <div
+                        class=" relative flex flex-col items-center h-full rounded-3xl border-4 border-indigo-500 bg-black/40 p-8 transition group-hover:-translate-x-2 group-hover:-translate-y-2 group-hover:shadow-[8px_8px_0_0_#ec4899]">
+                        <p class="my-3 text-lg text-indigo-400">Sublimation</p>
+                        <img src="../image/product-selection/jersey.png"
+                            class="w-16 h-16 p-2 bg-indigo-500 rounded-full" />
+                        <p class="absolute px-2 uppercase rounded-md bg-rose-500/90 bottom-14">Coming Soon</p>
                     </div>
                 </div>
             </div>
-            {{-- Canvas Area --}}
-            <div x-data="{ flipped: false }">
-                {{-- <x-jet-button-utility x-on:click="flipped =! flipped">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
-                    </svg>
-                </x-jet-button-utility> --}}
-                <div class="absolute">
-                    <div id="tshirt-front" class="relative bg-neutral-90" x-show="!flipped"
-                        x-transition.opacity.0.duration.500ms>
-                        <img id="tshirt-front-background" class="w-[452px] bg-white"
-                            src="../image/mockup-shirt-front.png" />
-                        <div id="drawingArea" class="absolute top-[110px] left-[122px] z-0 w-[210px] h-[280px]">
-                            <div class="w-210[px] h-[280px] relative select-none">
-                                <canvas id="tshirt-front-canvas" width="210" height="280">
-
-                                </canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="absolute">
-                    <div x-cloak id="tshirt-back" class="relative bg-neutral-900" x-show="flipped"
-                        x-transition.opacity.0.duration.500ms>
-                        <img id="tshirt-back-background" class="w-[452px] bg-white"
-                            src="../image/mockup-shirt-back.png" />
-                        <div id="drawingArea" class="absolute top-[110px] left-[122px] z-10 w-[210px]z-0 h-[280px]">
-                            <div class="w-210[px] h-[280px] relative select-none ">
-                                <canvas id="tshirt-back-canvas" width="210" height="280">
-
-                                </canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
+        </div>
     </div>
-    {{-- Include Fabric.js --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.0/fabric.min.js"
-        integrity="sha512-1+czAStluVmzKLZD98uvRGNVbc+r9zLKV4KeAJmvikygfO71u3dtgo2G8+uB1JjCh2GVln0ofOpz9ZTxqJQX/w=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    {{-- Include html2canvas --}}
-    <script src='https://html2canvas.hertzen.com/dist/html2canvas.min.js'></script>
-    {{-- Include Filepond --}}
-    <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
-
-    <script>
-        const fileInput = document.querySelector('input[id="tshirt-file-front"]');
-        const pond = FilePond.create(fileInput);
-        FilePond.setOptions({
-            server:{
-                url:'{{ route('upload') }}',
-                headers:{
-                    'X-CSRF-TOKEN': '{{  csrf_token() }}'
-                }
-            }
-      
-        });
-
-        
-        function getData() {
-            return {
-                formData: {
-                    title: "",
-                    tags: "",
-                    price: "",
-                    margin: "",
-                    commission: "15%"
-                },
-                tooltip: false
-            }
-        }
-
-        let canvas_front = new fabric.Canvas('tshirt-front-canvas');
-        let canvas_back = new fabric.Canvas('tshirt-back-canvas');
-
-        fabric.Object.prototype.cornerSize = 0
-        fabric.Object.prototype.borderColor = "rgba(0,0,0,0)"
-
-        var $ = function(id) {
-            return document.getElementById(id)
-        };
-
-        // Switch shirt color
-        $("white").onclick = function() {
-            $("tshirt-front-background").style.background = '#fff';
-            $("tshirt-back-background").style.background = '#fff';
-        }
-        $("black").onclick = function() {
-            $("tshirt-front-background").style.background = '#000';
-            $("tshirt-back-background").style.background = '#000';
-        }
-        $("sand").onclick = function() {
-            $("tshirt-front-background").style.background = '#cabfad';
-            $("tshirt-back-background").style.background = '#cabfad';
-        }
-
-        // When the user clicks on upload a custom picture (Front)  
-        $('tshirt-file-front').addEventListener("change", function(e) {
-
-            var reader = new FileReader();
-
-            reader.onload = function(event) {
-                var imgObj = new Image();
-                imgObj.src = event.target.result;
-
-                // When the picture loads, create the image in Fabric.js
-                imgObj.onload = function() {
-                    var img = new fabric.Image(imgObj);
-
-                    img.scaleToHeight(100);
-                    img.scaleToWidth(100);
-                    canvas_front.centerObject(img);
-                    canvas_front.add(img);
-                    canvas_front.renderAll();
-
-                    $("centerH").onclick = function() {
-                        canvas_front.centerObjectH(img);
-                    }
-                    $("centerV").onclick = function() {
-                        canvas_front.centerObjectV(img);
-                    }
-                    $("A5").onclick = function() {
-                        img.scaleToHeight(70).scaleToWidth(70).center();
-                        canvas_front.renderAll();
-                    }
-                    $("A4").onclick = function() {
-                        img.scaleToHeight(120).scaleToWidth(120).center();
-                        canvas_front.renderAll();
-                    }
-                    $("A3").onclick = function() {
-                        img.scaleToHeight(140).scaleToWidth(140).center();
-                        canvas_front.renderAll();
-                    }
-                };
-            };
-            // If the user selected a picture, load it
-            if (e.target.files[0]) {
-                reader.readAsDataURL(e.target.files[0]);
-            }
-        }, false);
-
-        // When the user selects a picture that has been added and press the DEL key
-        // The object will be removed !
-        document.addEventListener("keydown", function(e) {
-            var keyCode = e.keyCode;
-
-            if (keyCode == 46) {
-                canvas_front.remove(canvas_front.getActiveObject());
-                canvas_back.remove(canvas_back.getActiveObject());
-                $("tshirt-file-front").value = "";
-                $("tshirt-file-back").value = "";
-            }
-        }, false);
-
-        function takeshot() {
-
-            html2canvas($('tshirt-front')).then(
-                function(canvas_front) {
-                    $('front-shirt-dataURL').value = canvas_front.toDataURL("image/png", 100);
-                    console.log(canvas_front.toDataURL("image/png", 100));
-                })
-            /*
-            html2canvas($('tshirt-back')).then(
-                function(canvas_back) {
-                    //  $('back-shirt-dataURL').value = canvas_back.toDataURL("image/png",100);
-                })*/
-        }
-    </script>
 </x-app-layout>

@@ -1,14 +1,15 @@
 <x-jet-action-section>
-    <x-slot name="title">
-        {{ __('Browser Sessions') }}
-    </x-slot>
-
-    <x-slot name="description">
-        {{ __('Manage and log out your active sessions on other browsers and devices.') }}
-    </x-slot>
+ 
 
     <x-slot name="content">
-        <div class="max-w-xl text-sm text-gray-400">
+        <x-slot name="title">
+            {{ __('Browser Sessions') }}
+        </x-slot>
+    
+        <x-slot name="description">
+            {{ __('Manage and log out your active sessions on other browsers and devices.') }}
+        </x-slot>
+        <div class="max-w-xl mt-4 text-sm text-gray-400">
             {{ __('If necessary, you may log out of all of your other browser sessions across all of your devices. Some of your recent sessions are listed below; however, this list may not be exhaustive. If you feel your account has been compromised, you should also update your password.') }}
         </div>
 
@@ -35,11 +36,11 @@
                             </div>
 
                             <div>
-                                <div class="text-xs text-gray-400">
+                                <div class="text-gray-400">
                                     {{ $session->ip_address }},
 
                                     @if ($session->is_current_device)
-                                        <span class="text-lime-500 font-semibold">{{ __('This device') }}</span>
+                                        <span class="font-semibold text-lime-500">{{ __('This device') }}</span>
                                     @else
                                         {{ __('Last active') }} {{ $session->last_active }}
                                     @endif
@@ -71,7 +72,7 @@
                 {{ __('Please enter your password to confirm you would like to log out of your other browser sessions across all of your devices.') }}
 
                 <div class="mt-4" x-data="{}" x-on:confirming-logout-other-browser-sessions.window="setTimeout(() => $refs.password.focus(), 250)">
-                    <x-jet-input type="password" class="mt-1 block w-3/4"
+                    <x-jet-input type="password" class="block w-3/4 mt-1"
                                 placeholder="{{ __('Password') }}"
                                 x-ref="password"
                                 wire:model.defer="password"

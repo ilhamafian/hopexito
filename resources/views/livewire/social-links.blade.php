@@ -3,38 +3,38 @@
         {{ __('Link to other sites') }}
     </x-slot>
     <x-slot name="description">
-        {{ __('Fill in your account details for other sites you use and we will display them on your profile.') }}
+        {{ __('Fill in your links to the other sites and we will display it on your profile.') }}
     </x-slot>
     <x-slot name="form">
-        <div class="col-span-3">
+        <div class="col-span-6 md:col-span-3">
             <x-jet-label for="facebook" value="{{ __('Facebook') }}" />
             <x-jet-input id="facebook" type="text" class="block w-full mt-1" wire:model.defer="facebook" />
         </div>
-        <div class="col-span-3">
+        <div class="col-span-6 md:col-span-3">
             <x-jet-label for="twitter" value="{{ __('Twitter') }}" />
             <x-jet-input id="twitter" type="text" class="block w-full mt-1" wire:model.defer="twitter" />
         </div>
-        <div class="col-span-3">
+           <div class="col-span-6 md:col-span-3">
             <x-jet-label for="instagram" value="{{ __('Instagram') }}" />
             <x-jet-input id="instagram" type="text" class="block w-full mt-1" wire:model.defer="instagram" />
         </div>
-        <div class="col-span-3">
+           <div class="col-span-6 md:col-span-3">
             <x-jet-label for="dribble" value="{{ __('Dribbble') }}" />
             <x-jet-input id="dribble" type="text" class="block w-full mt-1" wire:model.defer="dribble" />
         </div>
-        <div class="col-span-3">
+           <div class="col-span-6 md:col-span-3">
             <x-jet-label for="behance" value="{{ __('Behance') }}" />
             <x-jet-input id="behance" type="text" class="block w-full mt-1" wire:model.defer="behance" />
         </div>
-        <div class="col-span-3">
+           <div class="col-span-6 md:col-span-3">
             <x-jet-label for="pinterest" value="{{ __('Pinterest') }}" />
             <x-jet-input id="pinterest" type="text" class="block w-full mt-1" wire:model.defer="pinterest" />
         </div>
-        <div class="col-span-3">
+           <div class="col-span-6 md:col-span-3">
             <x-jet-label for="deviantart" value="{{ __('DeviantArt') }}" />
             <x-jet-input id="deviantart" type="text" class="block w-full mt-1" wire:model.defer="deviantart" />
         </div>
-        <div class="col-span-3">
+           <div class="col-span-6 md:col-span-3">
             <x-jet-label for="tiktok" value="{{ __('Tiktok') }}" />
             <x-jet-input id="tiktok" type="text" class="block w-full mt-1" wire:model.defer="tiktok" />
         </div>

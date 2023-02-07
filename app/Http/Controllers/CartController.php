@@ -20,14 +20,21 @@ class CartController extends Controller
         //
     }
 
+    // store cart into database
     public function store(Request $request)
     {
+        $request->validate([
+            'size' => 'required',
+            'color' => 'required',
+        ]);
+        
         $product = Product::findOrFail($request->input('product_id'));
         $cart = SessionCart::instance('cart')->add(['id' => $product->id, 'name' => $product->title, 'qty' => $request->input('quantity'), 'price' => $product->price, 'weight' => 500 * $request->input('quantity'), 'options' => ['size' => $request->input('size'), 'image' => $product->front_shirt, 'color' => $request->input('color'), 'shopname' => $product->shopname]]);
-   
+        $rowId = $cart->rowId;
+        $rowId = uniqid(10);
         if (Auth::check()) {
             Cart::create([
-                'id' => $cart->rowId,
+                'id' => $rowId,
                 'product_id' => $cart->id,
                 'email' => Auth::user()->email,
                 'shopname' => $cart->options['shopname'],
@@ -41,7 +48,8 @@ class CartController extends Controller
                 'product_image' => $cart->options['image']
             ]);
         }
-        return redirect()->route('product.show', $product->id)->with('message', 'Successfully added to cart.');
+        session()->flash('message','Successfully added to cart');
+        return redirect()->route('product.show', $product->slug);
     }
 
     public function show(Cart $cart)

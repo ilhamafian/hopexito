@@ -1,12 +1,13 @@
+@section('title', 'Login | HopeXito')
 <x-app-layout>
     <x-jet-authentication-card>
-        @if (session('status'))
-            <div class="mb-4 text-sm font-medium text-green-600">
-                {{ session('status') }}
-            </div>
-        @endif
+        <x-jet-session-message />
         <form method="POST" action="{{ route('login') }}">
             @csrf
+            <div class="h-12 ">
+                <span x-data="{ texts: ['Login to HopeXito', 'Welcome Back!'] }" x-typewriter.3s="texts"
+                    class="text-xl tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500"></span>
+            </div>
             <div>
                 <x-jet-label for="email" value="{{ __('Email') }}" />
                 <x-jet-input id="email" class="block w-full mt-1" type="text" name="email" :value="old('email')" />

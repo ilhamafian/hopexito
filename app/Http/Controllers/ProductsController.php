@@ -2,98 +2,78 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 use App\Models\Artist;
 use App\Models\Product;
-use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\TemporaryFile;
-
+use App\Models\ProductTemplate;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class ProductsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
-    {   
-        $artist = Artist::find(Auth::user()->id);
-        $products = Product::where('shopname', '=', Auth::user()->name)->get();
-        return view('product.index', compact('products','artist'));
+    {
+        // 
     }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    // product template selection page
     public function create()
     {
-        return view('product.create');
+        $template = ProductTemplate::all();
+        return view('product.create', compact('template'));
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-
+    //  generate product template, views/product/template
+    public function template($id)
+    {
+        $template = ProductTemplate::findOrFail($id);
+        $colors = explode(',', $template->color);
+        return view('product.template', compact('template', 'colors'));
+    }
+    // store products into database
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required|max:255',
+            'tags' => 'required|max:255',
+            'price' => 'required|numeric|min:',
+            'commission' => 'required|numeric',
+            'color' => 'required',
+        ]);
         $temporaryFile = TemporaryFile::where('filename', $request->image_front)->first();
-        if($temporaryFile){
+        if ($temporaryFile) {
             $temporaryFile->delete();
         }
         $input = $request->all();
+        $input['color'] = implode(',', $request->input('color'));
+        $input['artist_id'] = Auth::user()->id;
         $input['shopname'] = Auth::user()->name;
-        $product = Product::create($input); 
-        return redirect()->route('dashboard')->with('success', 'Product created successfully.');
+        $input['slug'] = Str::random(30);
+        Product::create($input);
+        session()->flash('message', 'Product Created');
+        return redirect()->route('product.create');
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
+    // display product page, views/product/show
     public function show(Product $product)
-    { 
-        $user = User::where('name',$product->shopname)->first();
-        $products = Product::where('shopname', '=', $product->shopname)->get();
-        return view('product.show', compact('product','products','user'));
+    {
+        $user = User::where('name', $product->shopname)->first();
+        $products = Product::where('shopname', $product->shopname)->inRandomOrder()->take(8)->get();
+        $discover = Product::where('shopname', '!=' , $product->shopname)->inRandomOrder()->take(8)->get();
+        $totalDesigns = Product::where('shopname', $product->shopname)->count();
+        $colors = explode(',', $product->color);
+        return view('product.show', compact('product','products','user','colors','totalDesigns','discover'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Product $product)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Product $product)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Product $product)
     {
         //

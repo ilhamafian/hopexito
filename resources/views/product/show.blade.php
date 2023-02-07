@@ -1,29 +1,31 @@
+@section('title', $product->title . ' | HopeXito')
 <x-app-layout>
-    <section class="overflow-hidden text-gray-700 bg-neutral-900">
-        <div class="container px-5 py-24 mx-auto">
+    <section class="min-h-screen text-gray-700 bg-neutral-900">
+        <x-jet-session-message />
+        <div class="py-4 mx-auto">
             <div class="flex flex-wrap mx-auto lg:w-4/5">
-                <img class="object-cover object-center w-full rounded lg:w-1/2" src="{{ $product->front_shirt }}">
+                <img class="object-cover object-center w-full rounded lg:w-1/2" src="{{ $product->product_image }}">
                 <div
                     class="relative flex flex-col w-full p-6 mt-6 lg:w-1/2 lg:pl-10 lg:py-6 lg:mt-0 col-span-full lg:col-span-4">
-                    <div class="z-0">
-                        <img src="{{ $product->front_shirt }}" alt=""
-                            class="absolute inset-0 object-cover w-full h-full blur-sm" />
-                        <div
-                            class="absolute inset-0 w-full h-full opacity-95 bg-gradient-to-tr from-neutral-900 via-zinc-900 to-fuchsia-800/70 rounded-xl blur-lg">
+                    <div class="z-10 md:py-16">
+                        <p class="my-1 text-2xl font-medium text-indigo-500 ">{{ $product->title }}</p>
+                        <div class="flex items-center space-x-8">
+                            <p class="text-sm text-gray-300">Designed by <a
+                                    href="{{ route('people', $product->shopname) }}"><span
+                                        class="font-bold tracking-wider text-indigo-400 hover:text-indigo-500">{{ $product->shopname }}</span></a>
+                            </p>
                         </div>
-                    </div>
-                    <div class="z-10">
-                        <h1 class="my-2 font-mono text-3xl font-medium text-indigo-500 ">{{ $product->title }}</h1>
-                        <p class="text-sm text-gray-300">Designed and sold by <a
-                                href="{{ route('people', $product->shopname) }}"><span
-                                    class="font-bold tracking-wider text-indigo-400 hover:text-indigo-500">{{ $product->shopname }}</span></a>
-                        </p>
-                        <h1 class="my-2 font-mono text-3xl font-medium text-indigo-400">
+                        <h1 class="my-2 text-2xl font-medium text-indigo-400">
                             RM{{ number_format($product->price, 2) }}</h1>
                         <form action="{{ route('cart.store') }}" method="POST" class="mt-6" x-data="{ size: '', color: '' }">
                             @csrf
-                            <input type="hidden" name="product_id" value="{{ $product->id }}" />
-                            <h2 class="text-indigo-300">Choose Size</h2>
+                            <div class="flex items-center gap-2">
+                                <input type="hidden" name="product_id" value="{{ $product->id }}" />
+                                <h2 class="text-indigo-300">Choose Size</h2>
+                                @error('size')
+                                    <p class="w-2 h-2 rounded-full bg-rose-500"></p>
+                                @enderror
+                            </div>
                             <div class="flex flex-row gap-2 my-2">
                                 <div class="w-16">
                                     <input type="radio" name="size" id="XS" value="XS" class="hidden"
@@ -60,35 +62,30 @@
                                         :class="size == 'XL' ? 'border-indigo-500 text-lime-400 transition' : 'border-white '"
                                         class="grid p-2 text-sm text-white transition border-2 cursor-pointer place-items-center hover:scale-105">XL</label>
                                 </div>
+
                             </div>
-                            <h2 class="text-indigo-300">Choose Color</h2>
+                            <div class="flex items-center gap-2">
+                                <h2 class="text-indigo-300">Choose Color</h2>
+                                @error('color')
+                                    <p class="w-2 h-2 rounded-full bg-rose-500"></p>
+                                @enderror
+                            </div>
                             <div class="flex flex-row gap-2 my-2">
-                                <div class="w-24">
-                                    <input type="radio" name="color" id="black" value="black" class="hidden"
-                                        x-on:click="color = 'black'" x-model="color" />
-                                    <label for="black"
-                                        :class="color == 'black' ? 'border-indigo-500 text-lime-400 transition' :
-                                            'border-white '"
-                                        class="grid p-2 text-sm text-white transition border-2 cursor-pointer place-items-center hover:scale-105">Black</label>
-                                </div>
-                                <div class="w-24">
-                                    <input type="radio" name="color" id="white" value="white" class="hidden"
-                                        x-on:click="color = 'white'" x-model="color" />
-                                    <label for="white"
-                                        :class="color == 'white' ? 'border-indigo-500 text-lime-400 transition' :
-                                            'border-white '"
-                                        class="grid p-2 text-sm text-white transition border-2 cursor-pointer place-items-center hover:scale-105">White</label>
-                                </div>
-                                <div class="w-24">
-                                    <input type="radio" name="color" id="sand" value="sand"
-                                        class="hidden" x-on:click="color = 'sand'" x-model="color" />
-                                    <label for="sand"
-                                        :class="color == 'sand' ? 'border-indigo-500 text-lime-400 transition' : 'border-white '"
-                                        class="grid p-2 text-sm text-white transition border-2 cursor-pointer place-items-center hover:scale-105">Sand</label>
-                                </div>
+                                @foreach ($colors as $color)
+                                    <div class="w-24">
+                                        <input type="radio" name="color" id="{{ $color }}"
+                                            value="{{ $color }}" class="hidden"
+                                            x-on:click="color = '{{ $color }}'" x-model="color" />
+                                        <label for="{{ $color }}"
+                                            :class="color == '{{ $color }}' ?
+                                                'border-indigo-500 text-lime-400 transition' :
+                                                'border-white '"
+                                            class="grid p-2 text-sm text-white transition border-2 cursor-pointer place-items-center hover:scale-105">{{ $color }}</label>
+                                    </div>
+                                @endforeach
                             </div>
-                            <div class="flex my-8 space-x-6">
-                                <div class="flex items-center rounded-md ring-4 ring-indigo-500"
+                            <div class="flex flex-col gap-4 my-8 md:flex-row">
+                                <div class="flex items-center justify-between px-4 rounded-md md:px-0 ring-4 ring-indigo-500"
                                     x-data="{
                                         quantity: 1,
                                         minus(value) {
@@ -102,86 +99,118 @@
                                     }">
                                     <svg x-on:click="minus(1)" xmlns="http://www.w3.org/2000/svg" fill="none"
                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                        class="w-8 h-8 m-3 cursor-pointer text-lime-400">
+                                        class="m-3 cursor-pointer w-7 h-7 text-lime-400">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15" />
                                     </svg>
                                     <input type="text" name="quantity" x-model="quantity"
                                         class="w-16 text-lg text-center text-white bg-transparent border-none" />
                                     <svg x-on:click="plus(1)" xmlns="http://www.w3.org/2000/svg" fill="none"
                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                        class="w-8 h-8 m-3 cursor-pointer text-lime-400">
+                                        class="m-3 cursor-pointer w-7 h-7 text-lime-400">
                                         <path stroke-linecap="round" stroke-linejoin="round"
                                             d="M12 4.5v15m7.5-7.5h-15" />
                                     </svg>
                                 </div>
                                 @if (Auth::check())
-                                    <x-jet-button>
-                                        Add to Cart
+                                    <x-jet-button class="w-full py-4 mt-4 md:mt-0 md:w-auto">
+                                        <span class="mx-auto">Add to Cart</span>
                                     </x-jet-button>
                                 @else
-                                    <x-jet-button type="button"
-                                        onclick="window.location.href='{{ route('login') }}'">
-                                        Add to Cart
-                                    </x-jet-button>
+                                    <div x-data="{ modal: false }">
+                                        <x-jet-button type="button" class="w-full py-4 mt-4 md:mt-0 md:w-auto"
+                                            x-on:click="modal = true">
+                                            Add to Cart
+                                        </x-jet-button>
+                                        <x-jet-modal-custom>
+                                            <div class="flex flex-col">
+                                                <p class="mb-8 text-xs text-indigo-500">Sign up or login to complete
+                                                    purchase and
+                                                    unlock exclusive deals.</p>
+                                                <div class="flex h-10 gap-2">
+                                                    <x-jet-button-utility
+                                                        onclick="window.location.href='{{ route('login') }}'"
+                                                        class="w-full">
+                                                        <span class="mx-auto">Login</span>
+                                                    </x-jet-button-utility>
+                                                    <x-jet-button
+                                                        onclick="window.location.href='{{ route('register') }}'"
+                                                        class="w-full">
+                                                        <span class="mx-auto">Sign up</span>
+                                                    </x-jet-button>
+                                                </div>
+                                            </div>
+                                        </x-jet-modal-custom>
+                                    </div>
                                 @endif
                             </div>
                         </form>
-                        @if (session('message'))
-                            <div class="items-center p-2 leading-none text-indigo-100 transition duration-500 bg-indigo-800 lg:rounded-full lg:inline-flex"
-                                role="alert" x-data="{ open: true }" x-bind:class="open ? '' : 'opacity-0'">
-                                <span
-                                    class="flex px-2 py-1 mr-3 text-xs font-bold uppercase bg-indigo-500 rounded-full">Success</span>
-                                <span class="flex-auto mr-2 font-semibold text-left">{{ session('message') }}</span>
-                                <svg x-on:click="open =! open" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                    class="w-6 h-6 opacity-75 cursor-pointer">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                                </svg>
-                            </div>
-                        @endif
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <div class="w-full mx-auto border-fuchsia-500 border-y-2 sm:py-12 sm:px-6 lg:max-w-7xl lg:px-8 ">
-        <div class="flex">
-            <img class="object-cover w-20 h-20 mr-6 rounded-full" src="{{ $user->profile_photo_url }}"
-                alt="{{ $user->name }}" />
-            <div class="flex-col my-auto">
-                <a class="text-lg text-slate-300 hover:text-indigo-400"
-                    href="{{ route('people', $product->shopname) }}">{{ $user->name }}
-                    <br> <span class="text-sm">{{ $products->count() }} Design(s)</span>
-                </a>
+    <x-jet-gradient-card>
+        <div class="min-h-screen py-8 bg-black/90 rounded-xl">
+            <div class="relative w-full px-2 py-6 mx-auto lg:max-w-7xl">
+                <x-jet-title>
+                    From the same designer
+                </x-jet-title>
+                <div class="grid grid-cols-2 gap-2 mx-auto mt-6 md:gap-6 sm:grid-cols-3 lg:grid-cols-4">
+                    @foreach ($products as $product)
+                        <a href="{{ route('product.show', $product->slug) }}">
+                            <div
+                                class="relative p-1 transition shadow-lg cursor-pointer group rounded-xl hover:shadow-fuchsia-500/50 bg-white/5 backdrop-filter backdrop-blur-3xl">
+                                <div class="w-full overflow-hidden rounded-t-lg min-h-75">
+                                    <img src="{{ $product->product_image }}" alt="{{ $product->title }}"
+                                        class="w-full h-full transition ease-in-out rounded-t-lg hover:scale-125">
+                                </div>
+                                <div class="flex flex-col justify-between px-2 py-1 tracking-wider md:px-4 md:py-2">
+                                    <div class="text-sm text-white truncate md:font-medium">
+                                        {{ $product->title }}
+                                    </div>
+                                    <h2 class=" hover:text-fuchsia-500">By {{ $product->shopname }}
+                                    </h2>
+                                    <h2 class="m-1 text-lg text-center md:m-2 text-fuchsia-500">
+                                        RM{{ number_format($product->price, 2) }}</h2>
+                                </div>
+                            </div>
+                        </a>
+                    @endforeach
+                </div>
             </div>
 
-
         </div>
+    </x-jet-gradient-card>
 
-        <h2
-            class="mt-4 text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-orange-500 to-orange-500">
-            From the same designer</h2>
-        <div class="grid grid-cols-1 mt-6 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+    <x-jet-gradient-card>
+        <div class="py-8 bg-black/90 md:rounded-xl">
+            <div class="relative w-full px-2 py-6 mx-auto lg:max-w-7xl">
+                <x-jet-title>Discover other similar products</x-jet-title>
+                <div class="grid grid-cols-2 gap-2 mx-auto mt-6 md:gap-6 sm:grid-cols-3 lg:grid-cols-4">
+                    @foreach ($discover as $item)
+                        <a href="{{ route('product.show', $item->slug) }}">
+                            <div
+                                class="relative p-1 transition shadow-lg cursor-pointer group rounded-xl hover:shadow-fuchsia-500/50 bg-white/5 backdrop-filter backdrop-blur-3xl">
+                                <div class="w-full overflow-hidden rounded-lg min-h-75">
+                                    <img src="{{ $item->product_image }}" alt="{{ $item->title }}"
+                                        class="w-full h-full transition ease-in-out rounded-t-lg hover:scale-125">
+                                </div>
+                                <div class="flex flex-col justify-between px-2 py-1 tracking-wider md:px-4 md:py-2">
+                                    <div class="font-medium text-white truncate">
+                                        {{ $item->title }}
+                                    </div>
+                                    <h2 class="text-sm text-gray-400 hover:text-fuchsia-500">By
+                                        {{ $item->shopname }}
+                                    </h2>
+                                    <h2 class="m-1 text-lg text-center md:m-2 text-fuchsia-500">
+                                        RM{{ number_format($item->price, 2) }}</h2>
+                                </div>
 
-            @foreach ($products as $product)
-                <a href="{{ route('product.show', $product->id) }}">
-                    <div
-                        class="relative transition shadow-lg cursor-pointer group rounded-xl hover:shadow-fuchsia-700/30">
-                        <div class="w-full overflow-hidden min-h-75 group-hover:opacity-75 lg:aspect-none lg:h-75">
-                            <img src="{{ $product->front_shirt }}" alt="{{ $product->title }}"
-                                class=" w-full h-full transition duration-[1000ms] ease-in-out lg:h-full lg:w-full hover:scale-125">
-                        </div>
-                        <div class="flex flex-col justify-between px-8 py-4 tracking-wider">
-                            <div class="font-medium text-white truncate">
-                                {{ $product->title }}
                             </div>
-                            <h2 class="text-sm text-gray-400 hover:text-cyan-500">By {{ $product->shopname }}</h2>
-                            <h2 class="m-2 text-lg text-center text-fuchsia-500">
-                                RM{{ number_format($product->price, 2) }}</h2>
-                        </div>
-                    </div>
-                </a>
-            @endforeach
+                        </a>
+                    @endforeach
+                </div>
+            </div>
         </div>
-    </div>
+    </x-jet-gradient-card>
 </x-app-layout>
