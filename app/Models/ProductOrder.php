@@ -21,11 +21,8 @@ class ProductOrder extends Model
         'color',
     ];
 
-<<<<<<< Updated upstream
-    // test commit dev_meor
-=======
+    
     public function product(){
         return $this->hasOne(Product::class, 'id', 'product_id');
     }
->>>>>>> Stashed changes
 }
