@@ -36,7 +36,7 @@ class ProductsController extends Controller
         $request->validate([
             'title' => 'required|max:255',
             'tags' => 'required|max:255',
-            'price' => 'required|numeric|min:',
+            'price' => 'required|numeric|min:42',
             'commission' => 'required|numeric',
             'color' => 'required',
         ]);
