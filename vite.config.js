@@ -15,13 +15,13 @@ export default defineConfig({
         }),
 
     ],
-    server: {
-        port: 3000,
-        https: true,
-        hmr: {
-            host: "hopexito.com",
-            port: 3001,
-            protocol: "wss",
-        },
-    },
+    // server: {
+    //     port: 3000,
+    //     https: true,
+    //     hmr: {
+    //         host: "hopexito.com",
+    //         port: 3001,
+    //         protocol: "wss",
+    //     },
+    // },
 });
