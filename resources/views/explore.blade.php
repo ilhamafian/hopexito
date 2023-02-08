@@ -73,7 +73,7 @@
                                                             alt="{{ $user->artist->title }}" class="w-[480px] h-64">
                                                     @else
                                                         <img src="/image/cover-image.png" alt=""
-                                                            class="object-cover w-full h-full transition duration-1000 ease-in-out hover:scale-125">
+                                                            class="object-cover w-[480px] h-64 transition duration-1000 ease-in-out hover:scale-125">
                                                     @endif
                                                 </div>
                                                 <img class="absolute left-0 right-0 object-cover w-16 h-16 m-auto rounded-full bottom-20"
@@ -171,8 +171,8 @@
             @foreach ($collections as $item)
                 <div class="relative">
                     <img src="{{ asset('storage/collection-image/' . $item->collection_image) }}"
-                        class="w-full h-full rounded-lg shadow-lg" />
-                    <div class="absolute bottom-0 p-1 rounded-lg md:bottom-3 md:left-12 bg-white/20">
+                        class="w-full rounded-lg shadow-lg lg:h-96" />
+                    <div class="absolute p-1 rounded-lg bottom-2 md:bottom-3 md:left-12 bg-white/20">
                         <div class="flex gap-2 md:gap-8">
                             @foreach ($item->product->slice(0, 2) as $product)
                                 <a href="{{ route('product.show', $product->slug) }}" class="">

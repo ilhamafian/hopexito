@@ -114,7 +114,7 @@
              </div>
              <!-- Hamburger -->
              <div class="flex items-center -mr-2 sm:hidden">
-                @livewire('cart-counter')
+                 @livewire('cart-counter')
                  <button @click="open = ! open"
                      class="inline-flex items-center justify-center p-2 text-gray-400 transition rounded-md hover:text-white hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">
                      <svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
@@ -139,7 +139,7 @@
                                  <span class="inline-flex rounded-md">
                                      <button type="button"
                                          class="inline-flex items-center px-2 py-2 mx-4 text-sm font-medium leading-4 text-white transition bg-transparent rounded-full focus:ring focus: ring-rose-500 focus:text-rose-500">
-                                         <img class="w-14 h-14 rounded-full" src="{{ Auth::user()->profile_photo_url }}"
+                                         <img class="rounded-full w-14 h-14" src="{{ Auth::user()->profile_photo_url }}"
                                              alt="{{ Auth::user()->name }}" />
                                      </button>
                                  </span>
@@ -163,27 +163,37 @@
 
                          <div class="mt-3 space-y-1">
                              <!-- Account Management -->
-                             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                                 {{ __('Dashboard') }}
-                             </x-jet-responsive-nav-link>
-                             <x-jet-responsive-nav-link href="{{ route('people', Auth::user()->name) }}" :active="request()->routeIs('people', Auth::user()->name)">
-                                 {{ __('Your Profile') }}
-                             </x-jet-responsive-nav-link>
-                             <x-jet-responsive-nav-link href="{{ route('product.manage') }}" :active="request()->routeIs('product.manage')">
-                                 {{ __('Manage Products') }}
-                             </x-jet-responsive-nav-link>
-                             <x-jet-section-border/>
+                             @if (Auth::user()->role_id == 2)
+                                 <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                                     {{ __('Dashboard') }}
+                                 </x-jet-responsive-nav-link>
+                                 <x-jet-responsive-nav-link href="{{ route('people', Auth::user()->name) }}"
+                                     :active="request()->routeIs('people', Auth::user()->name)">
+                                     {{ __('Your Profile') }}
+                                 </x-jet-responsive-nav-link>
+                                 <x-jet-responsive-nav-link href="{{ route('product.manage') }}" :active="request()->routeIs('product.manage')">
+                                     {{ __('Manage Products') }}
+                                 </x-jet-responsive-nav-link>
+                                 <x-jet-section-border />
+                             @endif
                              <x-jet-responsive-nav-link href="{{ route('order.index') }}" :active="request()->routeIs('order.index')">
-                                {{ __('Order History') }}
+                                 {{ __('Order History') }}
+                             </x-jet-responsive-nav-link>
+                             <x-jet-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
+                                 {{ __('Account Settings') }}
+                             </x-jet-responsive-nav-link>
+                             @if (Auth::user()->role_id == 3)
+                             <x-jet-responsive-nav-link href="{{ route('sellyourart') }}" :active="request()->routeIs('sellyourart')">
+                                {{ __('Sell Your Art') }}
                             </x-jet-responsive-nav-link>
-                            <x-jet-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
-                                {{ __('Account Settings') }}
-                            </x-jet-responsive-nav-link>
+                            @endif
+                              
                              @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                                  <x-jet-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">
                                      {{ __('API Tokens') }}
                                  </x-jet-responsive-nav-link>
                              @endif
+                             <div class="border-t border-indigo-500 border-1"></div>
                              <!-- Authentication -->
                              <form method="POST" action="{{ route('logout') }}" x-data>
                                  @csrf

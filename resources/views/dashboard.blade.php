@@ -13,7 +13,7 @@
                         class="absolute inset-0 hidden transition rounded-full opacity-50 md:block group-hover:-inset-1 bg-gradient-to-r from-indigo-600 via-purple-600 to-fuchsia-600 blur group-hover:opacity-100">
                     </div>
                     <a href="{{ route('product.create') }}"
-                        class="relative float-right px-5 py-2.5 mt-4 tracking-widest text-white rounded-full bg-neutral-900 sm:mt-0">Add
+                        class="hidden lg:block relative float-right px-5 py-2.5 mt-4 tracking-widest text-white rounded-full bg-neutral-900 sm:mt-0">Add
                         New
                         Product</a>
                 </div>
@@ -120,14 +120,14 @@
     <div class="mb-48" id="wallet">
         @livewire('wallet')
     </div>
-    <div class="relative bg-black/50 h-72 w-full py-16">
-        <img src="image/discord-icon.png" class="absolute left-48 -top-16 hidden lg:block -rotate-12" />
-        <img src="image/xito-icon.png" class="absolute right-72 bottom-12 hidden lg:block rotate-12 w-32 h-32" />
-        <div class="max-w-2xl mx-auto text-center space-y-2">
+    <div class="relative w-full py-16 bg-black/50 h-72">
+        <img src="image/discord-icon.png" class="absolute hidden left-48 -top-16 lg:block -rotate-12" />
+        <img src="image/xito-icon.png" class="absolute hidden w-32 h-32 right-72 bottom-12 lg:block rotate-12" />
+        <div class="max-w-2xl mx-auto space-y-2 text-center">
             <h1
                 class="text-3xl font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-fuchsia-500 to-fuchsia-500">
                 Join Our Discord Community</h1>
-            <p class="text-white pb-6">Join the designers online community on our Discord server and be a part of the <span class="bg-indigo-500 px-1 uppercase">hope</span></p>
+            <p class="pb-6 text-white">Join the designers online community on our Discord server and be a part of the <span class="px-1 uppercase bg-indigo-500">hope</span></p>
             <a href="https://discord.gg/AZu2ngA4uk" target="_blank">
                 <x-jet-button-custom>Join HopeXito Designers Club</x-jet-button-custom>
             </a>

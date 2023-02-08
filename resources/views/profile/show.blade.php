@@ -2,6 +2,7 @@
 <x-app-layout>
     <x-jet-session-message />
     <div x-data="{ nav: 1 }" class="flex flex-col mx-auto mb-20 lg:flex-row max-w-7xl">
+        @if (Auth::user()->role_id == 2)
         <div class="mx-auto lg:min-h-screen h-72">
             <x-jet-gradient-card>
                 <ul class="relative flex flex-col gap-2 px-12 py-12 space-y-2 text-white bg-black rounded-xl ">
@@ -55,6 +56,7 @@
                 </ul>
             </x-jet-gradient-card>
         </div>
+        @endif
         <div>
             <div x-cloak x-show="nav == 1" x-transition.opacity x-transition:enter.duration.500ms
                 x-transition:leave.duration.100ms>

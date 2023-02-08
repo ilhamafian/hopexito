@@ -21,13 +21,13 @@
                     </a>
                 </div>
                 <div class="block h-48 mx-2 group sm:mx-0">
-                    <a href="{{ route('product.template', 2) }}"
+                    <div
                         class=" relative flex flex-col items-center h-full rounded-3xl border-4 border-indigo-500 bg-black/40 p-8 transition group-hover:-translate-x-2 group-hover:-translate-y-2 group-hover:shadow-[8px_8px_0_0_#ec4899]">
                         <p class="my-3 text-lg text-indigo-400">Totebag</p>
                         <img src="../image/product-selection/totebag.png"
                             class="w-16 h-16 p-2 bg-indigo-500 rounded-full" />
                         <p class="absolute px-2 uppercase rounded-md bg-rose-500/90 bottom-14">Coming Soon</p>
-                    </a>
+                    </div>
                 </div>
                 <div class="block h-48 mx-2 group sm:mx-0">
                     <div
