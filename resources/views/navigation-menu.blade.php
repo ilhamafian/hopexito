@@ -90,7 +90,7 @@
                                      </div>
                                  </x-slot>
                              </x-jet-dropdown>
-                             @livewire('cart-counter')
+                             @livewire('cart.cart-counter')
                          @endif
                      @else
                          <x-jet-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')">
@@ -108,13 +108,13 @@
                                  Sell Your Art
                              </x-jet-nav-link>
                          </div>
-                         @livewire('cart-counter')
+                         @livewire('cart.cart-counter')
                      @endauth
                  @endif
              </div>
              <!-- Hamburger -->
              <div class="flex items-center -mr-2 sm:hidden">
-                 @livewire('cart-counter')
+                 @livewire('cart.cart-counter')
                  <button @click="open = ! open"
                      class="inline-flex items-center justify-center p-2 text-gray-400 transition rounded-md hover:text-white hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">
                      <svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">

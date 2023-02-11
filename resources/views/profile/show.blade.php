@@ -41,7 +41,7 @@
                             </p>
                         </button>
                     @endif
-                    <button x-on:click="nav = 2" class="flex items-center gap-2 hover:text-indigo-500"
+                    {{-- <button x-on:click="nav = 2" class="flex items-center gap-2 hover:text-indigo-500"
                         :class="nav == 2 ? 'text-indigo-400' : ''">
                         <svg x-cloak x-show="nav == 2" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="absolute w-6 h-6">
@@ -52,7 +52,7 @@
                         <p class="pl-8">
                             Advance Settings
                         </p>
-                    </button>
+                    </button> --}}
                 </ul>
             </x-jet-gradient-card>
         </div>

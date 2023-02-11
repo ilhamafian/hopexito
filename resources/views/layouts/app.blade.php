@@ -71,11 +71,10 @@
     @livewire('navigation-menu')
 </head>
 
-<body class="text-gray-300 text-xs sm:text-sm antialiased select-none font-poppins bg-zinc-900 border-box leading-6">
+<body class="text-xs antialiased leading-6 text-gray-200 select-none sm:text-sm font-poppins bg-zinc-900 border-box">
     {{ $slot }}
     @stack('modals')
     @livewireScripts
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 </body>
 {{-- Global Footer --}}
 <x-jet-footer></x-jet-footer>

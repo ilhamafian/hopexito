@@ -7,7 +7,8 @@ use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ExploreController;
 use App\Http\Controllers\UploadController;
-use App\Http\Controllers\OrderController;
+use App\Http\Livewire\Manage\ManageProduct;
+use App\Http\Livewire\Manage\ManageOrder;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Admin\AdminAnalytics;
 use App\Http\Livewire\Admin\AdminOrder;
@@ -48,8 +49,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('billplz-callback', [PaymentController::class, 'callback'])->name('billplz-callback');
     Route::get('billplz-redirect', [PaymentController::class, 'redirect'])->name('billplz-redirect');
     // order controller
-    Route::get('order/index', [OrderController::class, 'index'])->name('order.index');
-    Route::get('product/manage', [OrderController::class, 'manage'])->name('product.manage');
+    Route::get('order/index', ManageOrder::class)->name('order.index');
+    Route::get('product/manage', ManageProduct::class)->name('product.manage');
 });
 
 // route resource product

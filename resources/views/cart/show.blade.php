@@ -69,6 +69,16 @@
 
                         <div class="grid w-full max-w-screen-sm grid-cols-3 gap-3">
                             <div>
+                                <input class="hidden" id="maybank" type="radio" name="radio" value="BP-FKR01"
+                                    x-on:click="radio = BP-FKR01" x-model="radio">
+                                <label class="flex flex-col p-4 border-2 rounded-md cursor-pointer bg-neutral-900"
+                                    :class="radio == 'BP-FKR01' ? 'ring ring-indigo-500 border-indigo-500' :
+                                        'border-neutral-500'"
+                                    for="maybank">
+                                    <img src="image\fpx-logo\maybank.png" class="h-4 md:h-8" />
+                                </label>
+                            </div>
+                            <div>
                                 <input class="hidden" id="maybank" type="radio" name="radio" value="MB2U0227"
                                     x-on:click="radio = MB2U0227" x-model="radio">
                                 <label class="flex flex-col p-4 border-2 rounded-md cursor-pointer bg-neutral-900"

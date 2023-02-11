@@ -61,7 +61,7 @@
                 <div class="flex flex-col py-2 md:flex-row">
                     <div class="flex flex-col basis-1/3">
                         <div class="flex">
-                            <x-jet-label for="" value="{{ __('Default Color') }}" />
+                            <x-jet-label for="" value="{{ __('Preview Color') }}" />
                             <div class="relative flex flex-col pl-2 group">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-indigo-500">
@@ -70,8 +70,8 @@
                                 </svg>
                                 <div class="absolute bottom-0 hidden mb-6 group-hover:flex">
                                     <span
-                                        class="relative z-10 p-2 leading-none text-white whitespace-no-wrap bg-black shadow-lg w-96 text-xs">Select
-                                        a default color that best represents your design and enhances its overall
+                                        class="relative z-10 p-2 text-xs leading-none text-white whitespace-no-wrap bg-black shadow-lg w-96">Select
+                                        a preview color that best represents your design and enhances its overall
                                         appearance.</span>
                                 </div>
                             </div>
@@ -94,15 +94,18 @@
                                 </svg>
                                 <div class="absolute bottom-0 flex-col hidden mb-6 group-hover:flex">
                                     <span
-                                        class="relative z-10 p-2 leading-none text-white whitespace-no-wrap bg-black shadow-lg w-96 text-xs">Sometimes designs do not fit with every color. Choose
-                                        the colors that you want to be available for your design</span>
+                                        class="relative z-10 p-2 text-xs leading-none text-white whitespace-no-wrap bg-black shadow-lg w-96">Sometimes
+                                        designs do not fit with every color. Choose
+                                        the colors that would be available for your product.</span>
                                 </div>
                             </div>
                         </div>
                         <div class="flex items-center gap-2">
                             @foreach ($colors as $color)
-                                <x-jet-checkbox name="color[]"
-                                    class="p-3.5 checked:text-indigo-500 border-0 rounded-md"
+                                @if($color == 'white')
+                                <x-jet-checkbox name="color[]" class="p-3.5 border-0 rounded-md text-indigo-500" value="{{ $color }}" />
+                                @endif
+                                <x-jet-checkbox name="color[]" class="p-3.5 border-0 rounded-md"
                                     style="background-color:{{ $color }}" value="{{ $color }}" />
                             @endforeach
                             @error('color')
@@ -144,7 +147,7 @@
                 </div>
                 <div class="flex gap-3 py-3">
                     <x-jet-checkbox x-model="checkbox" x-on:click="checkbox != checkbox" />
-                    <p class="text-justify text-gray-400 text-xs">I have the right to sell products containing this
+                    <p class="text-xs text-justify text-gray-400">I have the right to sell products containing this
                         artwork,
                         including (1) any featured company's
                         name or logo, (2) any featured person's name or face, (3) any featured words or images
@@ -168,8 +171,8 @@
                                 </x-jet-button>
                                 <button type="button" x-on:click="modal3 = false"
                                     class="px-4 transition duration-500 hover:rotate-180">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="2" stroke="currentColor"
                                         class="w-6 h-6 text-white hover:rotate-180 hover:text-rose-500">
                                         <path stroke-linecap="round" stroke-linejoin="round"
                                             d="M6 18L18 6M6 6l12 12" />
@@ -178,9 +181,8 @@
                             </div>
                         </div>
                         <div class="w-1/4">
-                            <lord-icon src="https://cdn.lordicon.com/ridbdkcb.json" trigger="loop"
-                                delay="0" colors="primary:#f43f5e,secondary:#6366f1"
-                                style="width:150px;height:150px">
+                            <lord-icon src="https://cdn.lordicon.com/ridbdkcb.json" trigger="loop" delay="0"
+                                colors="primary:#f43f5e,secondary:#6366f1" style="width:150px;height:150px">
                             </lord-icon>
                         </div>
                     </x-jet-modal-custom-3>
@@ -233,6 +235,7 @@
         // Filepond Init
         const fileInput = document.querySelector('input[id="tshirt-file-front"]');
         const pond = FilePond.create(fileInput);
+
         FilePond.setOptions({
             server: {
                 url: '{{ route('upload') }}',
@@ -240,7 +243,6 @@
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 }
             }
-
         });
         // Fabric Init
         let canvas = new fabric.Canvas('tshirt-front-canvas');
@@ -276,7 +278,7 @@
                     var slider = $("resize");
 
                     function onSliderChange(value) {
-                        var sizePercent = value / 300;
+                        var sizePercent = value / 1000;
                         img.scale(sizePercent).center().setCoords();
                         canvas.renderAll();
                     }

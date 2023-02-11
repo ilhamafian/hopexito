@@ -2,16 +2,17 @@
 
 namespace App\Models;
 
+use App\Notifications\CustomResetPasswordNotification;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
     use HasFactory;
@@ -28,7 +29,7 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'name','email','password','google_id','role_id','address','postcode','state'
+        'name', 'email', 'password', 'google_id', 'role_id', 'address', 'postcode', 'state'
     ];
 
     /**
@@ -61,7 +62,7 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-     /**
+    /**
      * Get the URL to the user's profile photo.
      *
      * @return string
@@ -75,11 +76,22 @@ class User extends Authenticatable
         return $this->getPhotoUrl();
     }
 
-    public function artist(){
-        return $this->hasOne(Artist::class, 'id', 'id');
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new CustomResetPasswordNotification($token));
     }
 
-    public function products(){
-        return $this->hasMany(Product::class, 'artist_id','id');
+    public function artist()
+    {
+        return $this->hasOne(Artist::class, 'id', 'id');
     }
+    public function wallet()
+    {
+        return $this->hasOne(Wallet::class, 'user_id', 'id');
+    }
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'artist_id', 'id');
+    }
+
 }

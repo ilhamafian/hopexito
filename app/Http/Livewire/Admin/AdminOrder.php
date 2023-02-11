@@ -5,7 +5,6 @@ namespace App\Http\Livewire\Admin;
 use Livewire\Component;
 use App\Models\Order;
 use App\Models\Product;
-use Illuminate\Support\Facades\Storage;
 use Livewire\WithPagination;
 
 class AdminOrder extends Component

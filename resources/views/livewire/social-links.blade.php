@@ -3,7 +3,7 @@
         {{ __('Link to other sites') }}
     </x-slot>
     <x-slot name="description">
-        {{ __('Fill in your links to the other sites and we will display it on your profile.') }}
+        {{ __('Fill in links to your other sites to display and share it on your profile.') }}
     </x-slot>
     <x-slot name="form">
         <div class="col-span-6 md:col-span-3">

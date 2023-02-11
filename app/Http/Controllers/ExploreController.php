@@ -9,7 +9,6 @@ use App\Models\ProductCollection;
 use App\Models\Search;
 use App\Models\User;
 use App\Models\Wallet;
-use GuzzleHttp\Handler\Proxy;
 use Illuminate\Support\Facades\Auth;
 
 class ExploreController extends Controller
@@ -17,13 +16,13 @@ class ExploreController extends Controller
     // views/sellyourart
     public function sellyourart()
     {
-        $sellers = User::where('role_id', 2)->inRandomOrder()->take(4)->get();
+        $sellers = User::where('role_id', 2)->withCount('products')->inRandomOrder()->take(4)->get();
         return view('sellyourart', compact('sellers'));
     }
     // views/explore
     public function explore()
     {
-        $users = User::where('role_id', 2)->inRandomOrder()->take(4)->get();
+        $users = User::where('role_id', 2)->withCount('products')->inRandomOrder()->take(4)->get();
         $products = Product::where('status',1)->inRandomOrder()->take(8)->get();
         $collections = ProductCollection::inrandomOrder()->take(2)->get();
         return view('explore', compact('users','products','collections'));

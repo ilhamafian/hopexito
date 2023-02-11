@@ -5,14 +5,17 @@
             {{ __('Profile Personalization') }}
         </x-slot>
         <x-slot name="description">
-            {{ __('Update your profile\'s cover image and bio.') }}
+            {{ __('Update your profile\'s cover image and bio for a more personalized look.') }}
         </x-slot>
     </x-jet-section-title>
     <div class="flex flex-col px-4 py-5 sm:p-6 rounded-2xl">
         <form method="POST" action="{{ route('upload.cover') }}" enctype="multipart/form-data" class="">
             @csrf
             <x-jet-label for="cover-image" value="{{ __('Cover Image') }}" />
-            <input type="file" id="cover-image" name="cover_image" wire:model.defer="cover_image" class="w-full">
+            @if (Auth::user()->artist->cover_image)
+                <img src="{{ asset('storage/cover-image/' . Auth::user()->artist->cover_image) }}" class="w-full rounded-lg h-96">
+            @endif
+            <input type="file" id="cover-image" name="cover_image" wire:model.defer="cover_image" class="w-full mt-2">
             <x-jet-label for="bio" value="{{ __('Bio') }}" />
             <textarea id="bio" name="bio" rows="4" wire:model.defer="bio"
                 class="mb-4 block p-2.5 w-full caret-teal-500 bg-neutral-800 border border-neutral-500 focus:ring-indigo-500 rounded-md text-white"
