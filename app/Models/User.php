@@ -93,5 +93,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Product::class, 'artist_id', 'id');
     }
+    public function productCollections()
+    {
+        return $this->hasMany(ProductCollection::class, 'name', 'name');
+    }
 
 }

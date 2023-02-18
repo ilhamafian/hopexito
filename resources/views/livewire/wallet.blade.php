@@ -16,7 +16,7 @@
                 </svg>
             </button>
         </div>
-        <div x-cloak class="w-full p-4 mt-2  bg-indigo-400 rounded-lg" x-show="open" x-transition:enter.duration.500>
+        <div x-cloak class="w-full p-4 mt-2 bg-indigo-400 rounded-lg" x-show="open" x-transition:enter.duration.500>
             <ul class="grid grid-cols-3 list-disc list-inside">
                 <li>Lifetime Commission
                     <p>Lifetime Commission </p>
@@ -62,7 +62,7 @@
                             Request Withdrawal
                         </x-jet-button>
                     @else
-                        <p class="px-1 mt-4  text-rose-400">Withdrawal request will be available again once
+                        <p class="px-1 mt-4 text-rose-400">Withdrawal request will be available again once
                             latest request has been approved.</p>
                     @endif
                 </div>
@@ -74,17 +74,17 @@
                     <div class="absolute w-full px-8 top-8">
                         <div class="h-8 my-1">
                             <p class="">Bank Holder Name</p>
-                            <p class=" tracking-widest text-lime-400">{{ $wallet->bank_holder_name }}</p>
+                            <p class="tracking-widest  text-lime-400">{{ $wallet->bank_holder_name }}</p>
                         </div>
                         <div class="flex justify-between">
                             <div class="h-8 my-1">
                                 <p class="">Bank Account Number</p>
-                                <p class=" tracking-widest text-lime-400">
+                                <p class="tracking-widest  text-lime-400">
                                 </p>
                             </div>
                             <div class="h-8 my-1">
                                 <p class="">Bank Name</p>
-                                <p class=" tracking-widest text-lime-400">{{ $wallet->bank_name }}</p>
+                                <p class="tracking-widest  text-lime-400">{{ $wallet->bank_name }}</p>
                             </div>
                         </div>
                         <div class="flex gap-2 mt-10">
@@ -108,7 +108,7 @@
             <div class="flex-col hidden gap-2 mt-6 text-white lg:flex" x-show="nav == 1"
                 x-transition:enter.duration.500>
                 <div class="w-full p-2 rounded-lg bg-black/50">
-                    <div class="flex  text-center">
+                    <div class="flex text-center">
                         <p class="basis-[16%]"><span class="px-3 py-1 rounded-md bg-violet-500">Old Balance</span>
                         </p>
                         <p class="basis-[10%]"><span class="px-3 py-1 rounded-md bg-violet-500">Amount</span>
@@ -127,7 +127,6 @@
                 @foreach ($withdrawal as $item)
                     <div class="w-full p-3 transition rounded-lg shadow-md bg-black/50 hover:shadow-fuchsia-400/30">
                         <div class="flex items-center text-sm text-center">
-                            <p class="basis-[5%]">{{ $item->id }}
                             </p>
                             <p class="basis-[16%]">{{ number_format($item->balance, 2) }}
                             </p>
@@ -187,11 +186,11 @@
                             <p class="basis-[20%]">{{ number_format($item->new_balance, 2) }}</p>
                             @if ($item->status == 3)
                                 <p class="relative basis-[16%]"><span
-                                        class="px-3 bg-green-400/80 rounded-md">Income</span>
+                                        class="px-3 rounded-md bg-green-400/80">Income</span>
                                 </p>
                             @elseif($item->status == 4)
                                 <p class="relative basis-[16%]"><span
-                                        class="px-3 bg-cyan-400/80 rounded-md">Bonus</span>
+                                        class="px-3 rounded-md bg-cyan-400/80">Bonus</span>
                                 </p>
                             @endif
                             <p class="basis-[30%]">

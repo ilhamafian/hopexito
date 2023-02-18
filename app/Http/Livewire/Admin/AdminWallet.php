@@ -13,10 +13,8 @@ class AdminWallet extends Component
 
     // approve request withdrawal
     public function approve($id){
-        $wallet = Wallet::where('user_id', $id)->where('status', 2)->first();
-        $walletTransaction = WalletTransaction::where('user_id', $id)->where('status', 1)->first();
-        $wallet->update(['status' => 1]);
-        $walletTransaction->update(['status' => 2]);
+        $wallet = Wallet::where('user_id', $id)->where('status', 2)->update(['status' => 1]);
+        $walletTransaction = WalletTransaction::where('user_id', $id)->where('status', 1)->update(['status' => 2]);
 
         session()->flash('message', 'Withdrawal Approved');
         return redirect()->route('admin.wallets');

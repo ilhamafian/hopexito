@@ -20,17 +20,17 @@
                     @foreach ($order->productOrder as $item)
                         <div class="flex p-4 space-x-8">
                             <img class="w-40 transition rounded-lg" src="{{ $item->product->product_image }}" alt="" />
-                            <div class="relative flex-col space-y-1 w-full">
+                            <div class="relative flex-col w-full space-y-1">
                                 <p class="text-indigo-400">{{ $item->title }}</p>
                                 <p class= uppercase">{{ $item->size }} / {{ $item->color }}
                                 </p>
                                 <p class="tracking-wider text-fuchsia-400">RM{{ number_format($item->price, 2) }} x
                                     {{ $item->quantity }}</p>
-                                <div class="absolute bottom-2">
+                                {{-- <div class="absolute bottom-2">
                                     <x-jet-button-custom onclick="window.location.href='{{ route('product.show', $item->product_id) }}'">
                                         Buy Again
                                     </x-jet-button-custom>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     @endforeach
@@ -65,19 +65,19 @@
                     <p class="absolute w-full h-2 rounded-full bg-neutral-800"></p>
                     @if ($order->status == 1)
                         <p
-                            class="absolute w-[10%] h-2 bg-gradient-to-r from-green-200 via-green-400 to-purple-700 rounded-full">
+                            class="absolute w-[10%] h-2 bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 rounded-full">
                         </p>
                     @elseif($order->status == 2)
                         <p
-                            class="absolute h-2 bg-gradient-to-r from-green-200 via-green-400 to-purple-700 rounded-full w-[40%]">
+                            class="absolute h-2 bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 rounded-full w-[40%]">
                         </p>
                     @elseif($order->status == 3)
                         <p
-                            class="absolute w-[70%] h-2 bg-gradient-to-r from-green-200 via-green-400 to-purple-700 rounded-full">
+                            class="absolute w-[70%] h-2 bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 rounded-full">
                         </p>
                     @elseif($order->status == 4)
                         <p
-                            class="absolute w-full h-2 rounded-full bg-gradient-to-r from-green-200 via-green-400 to-purple-700">
+                            class="absolute w-full h-2 rounded-full bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500">
                         </p>
                     @endif
                 </div>

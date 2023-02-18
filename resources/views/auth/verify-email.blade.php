@@ -5,7 +5,7 @@
         </x-slot>
 
         <div class="mb-4 text-left">
-            {{ __('Please confirm your email by clicking the send verification email.  If you didn\'t receive the email, we will gladly send you another.') }}
+            {{ __('We\'ve sent you an email to confirm your email address. Please check your inbox and click on the confirmation link to complete the process. If you didn\'t receive the email, don\'t worry - we\'ll be happy to send you another one.') }}
         </div>
 
         @if (session('status') == 'verification-link-sent')
@@ -14,7 +14,7 @@
             </div>
         @endif
 
-        <div class="mx-auto mt-4">
+        <div class="mx-auto mt-10">
             <form method="POST" action="{{ route('verification.send') }}">
                 @csrf
                 <x-jet-button type="submit">

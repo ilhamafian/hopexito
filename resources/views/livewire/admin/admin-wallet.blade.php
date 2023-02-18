@@ -13,9 +13,9 @@
                     </div>
                 </x-jet-admin-card>
                 <x-jet-admin-card>
-                    <span class="px-4 py-2 rounded-lg bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500">
+                    <p class="px-4 py-2 rounded-lg bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500">
                         Total Available Balance (RM)
-                    </span>
+                    </p>
                     <div class="block p-2 mt-4 text-4xl">
                         {{ number_format($totalBalance, 2) }}
                     </div>

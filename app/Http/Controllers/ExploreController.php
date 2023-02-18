@@ -47,7 +47,7 @@ class ExploreController extends Controller
     }
     public function shop()
     {
-        $products = Product::inrandomOrder()->paginate(16);
+        $products = Product::inrandomOrder()->paginate(64);
         return view('shop/all', compact('products'));
     }
     // return seller profile, views/people

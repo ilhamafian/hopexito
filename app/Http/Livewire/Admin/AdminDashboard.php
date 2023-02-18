@@ -9,9 +9,10 @@ use Livewire\Component;
 
 class AdminDashboard extends Component
 {
+    public $search;
+
     public function deleteArtist($id){
-        // WalletTransaction::where('id', $id)->delete();
-        Wallet::where('id', $id)->delete();
+        Wallet::where('user_id', $id)->delete();
         Artist::where('id', $id)->delete();
         User::where('id', $id)->delete();
         session()->flash('message', 'User Deleted');
@@ -20,7 +21,8 @@ class AdminDashboard extends Component
 
     public function render()
     {
-        $artists = User::where('role_id', 2)->get();
+        $search = '%' . $this->search . '%';
+        $artists = User::where('role_id', 2)->where('name','like',$search)->paginate(20);
 
         return view('livewire.admin.admin-dashboard', compact('artists'));
     }
