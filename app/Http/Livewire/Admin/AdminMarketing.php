@@ -8,9 +8,29 @@ use App\Models\User;
 use App\Models\Wallet;
 use App\Models\WalletTransaction;
 use Livewire\Component;
+use Livewire\Request;
 
 class AdminMarketing extends Component
 {
+    public $artist_id;
+
+    // add wallet to artist
+    public function addWallet(){
+        $user = User::find($this->artist_id);
+        if($user){
+            Wallet::create([
+                'id' => uniqid(8),
+                'user_id' => $user->id,
+                'name' => $user->name,
+                'commission' => 20,
+                'balance' => 20,
+                'status' => 1
+            ]);
+        }
+
+        session()->flash('message', 'Wallet Added');
+        return redirect()->route('admin.marketing');
+    }
     // clear storage cache
     public function clearCache()
     {

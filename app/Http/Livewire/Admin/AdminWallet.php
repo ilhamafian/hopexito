@@ -26,10 +26,9 @@ class AdminWallet extends Component
         $wallets = Wallet::where('status', 2)->orderBy('updated_at', 'DESC')->get();
         $wallet_requests = WalletTransaction::where('status', 1)->orderBy('updated_at','DESC')->get();
         $wallet_all = Wallet::where('name','like', $search)->get();
-        $totalCommission = Wallet::sum('commission');
-        $totalBalance = Wallet::sum('balance');
-        $totalWithdrawal = WalletTransaction::sum('withdrawal');
+        $wallet_data = Wallet::get();
+        $walletTransaction_data = WalletTransaction::get();
     
-        return view('livewire.admin.admin-wallet',compact('wallets','wallet_requests','wallet_all','totalCommission','totalBalance','totalWithdrawal'));
+        return view('livewire.admin.admin-wallet',compact('wallets','wallet_requests','wallet_all','wallet_data','walletTransaction_data'));
     }
 }

@@ -3,13 +3,13 @@
     <x-jet-admin-sidebar />
     <x-jet-admin-layout>
         <div class="" x-data="{ modal: false, id: '', tab: 1 }">
-            <div class="grid grid-cols-3 gap-12 text-center text-white">
+            <div class="grid grid-cols-4 gap-6 text-center text-white">
                 <x-jet-admin-card>
                     <span class="px-4 py-2 rounded-lg bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500">
                         Total Commission (RM)
                     </span>
                     <div class="block p-2 mt-4 text-4xl">
-                        {{ number_format($totalCommission, 2) }}
+                        {{ number_format($wallet_data->sum('commission'), 2) }}
                     </div>
                 </x-jet-admin-card>
                 <x-jet-admin-card>
@@ -17,7 +17,7 @@
                         Total Available Balance (RM)
                     </p>
                     <div class="block p-2 mt-4 text-4xl">
-                        {{ number_format($totalBalance, 2) }}
+                        {{ number_format($wallet_data->sum('balance'), 2) }}
                     </div>
                 </x-jet-admin-card>
                 <x-jet-admin-card>
@@ -25,7 +25,15 @@
                         Total Withdrawal (RM)
                     </span>
                     <div class="block p-2 mt-4 text-4xl">
-                        {{ number_format($totalWithdrawal, 2) }}
+                        {{ number_format($walletTransaction_data->sum('withdrawal'), 2) }}
+                    </div>
+                </x-jet-admin-card>
+                <x-jet-admin-card>
+                    <span class="px-4 py-2 rounded-lg bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500">
+                        Total Wallets
+                    </span>
+                    <div class="block p-2 mt-4 text-4xl">
+                        {{ $wallet_data->count() }}
                     </div>
                 </x-jet-admin-card>
             </div>

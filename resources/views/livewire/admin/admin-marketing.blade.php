@@ -27,11 +27,22 @@
                 </div>
             </x-jet-gradient-card>
             <x-jet-gradient-card>
-                <div class="flex flex-col p-6 bg-black rounded-xl">
-                    <x-jet-header>Advance Settings</x-jet-header>
+                <div class="flex flex-col h-full p-6 bg-black rounded-xl">
+                    <x-jet-header>Storage Optimization</x-jet-header>
                     <div class="gap-2 p-2 overflow-y-scroll rounded-lg ring-2 ring-violet-500 max-h-96">
                         <x-jet-button-utility wire:click="clearCache">
                             Clear Image Cache
+                        </x-jet-button-utility>
+                    </div>
+                </div>
+            </x-jet-gradient-card>
+            <x-jet-gradient-card>
+                <div class="flex flex-col p-6 bg-black rounded-xl">
+                    <x-jet-header>Wallet Master</x-jet-header>
+                    <div class="gap-2 p-2 overflow-y-scroll rounded-lg ring-2 ring-violet-500 max-h-96">
+                        <x-jet-input type="text" name="artist_id" class="block w-full mb-2" wire:model="artist_id"/>
+                        <x-jet-button-utility wire:click="addWallet()">
+                            Add Wallet To User
                         </x-jet-button-utility>
                     </div>
                 </div>
