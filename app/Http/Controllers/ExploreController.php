@@ -54,7 +54,7 @@ class ExploreController extends Controller
     public function people($shopname)
     {   
         $user = User::where('name',$shopname)->first();
-        $products = Product::where('shopname',$shopname)->get();
+        $products = Product::where('artist_id',$user->id)->get();
         $productsCollection = ProductCollection::where('name', $shopname)->get();
 
         return view('people', compact('user','products','productsCollection'));
