@@ -47,6 +47,18 @@
                     </div>
                 </div>
             </x-jet-gradient-card>
+            <x-jet-gradient-card>
+                <div class="flex flex-col p-6 bg-black rounded-xl">
+                    <x-jet-header>Fix Name</x-jet-header>
+                    <div class="gap-2 p-2 overflow-y-scroll rounded-lg ring-2 ring-violet-500 max-h-96">
+                        <x-jet-input type="text" name="name" class="mb-2" wire:model="name"/>
+                        <x-jet-input type="text" name="newName" class="mb-2" wire:model="newName"/>
+                        <x-jet-button-utility wire:click="fixName()">
+                            Fix Artist Name
+                        </x-jet-button-utility>
+                    </div>
+                </div>
+            </x-jet-gradient-card>
         </div>
     </x-jet-admin-layout>
 </div>

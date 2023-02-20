@@ -2,17 +2,30 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\Models\Cart;
+use App\Models\Order;
 use App\Models\Product;
+use App\Models\ProductCollection;
 use App\Models\TemporaryFile;
 use App\Models\User;
 use App\Models\Wallet;
 use App\Models\WalletTransaction;
 use Livewire\Component;
-use Livewire\Request;
 
 class AdminMarketing extends Component
 {
-    public $artist_id;
+    public $artist_id, $name, $newName;
+
+    public function fixName(){
+        Product::where('shopname', $this->name)->update(['shopname' => $this->newName]);
+        Cart::where('shopname', $this->name)->update(['shopname' => $this->newName]);
+        Order::where('name', $this->name)->update(['name' => $this->newName]);
+        ProductCollection::where('name', $this->name)->update(['name' => $this->newName]);
+        Wallet::where('name', $this->name)->update(['name' => $this->newName]);
+        
+        session()->flash('message', 'Name Fixed');
+        return redirect()->route('admin.marketing');
+    }
 
     // add wallet to artist
     public function addWallet(){

@@ -1,12 +1,10 @@
 @inject('carbon', 'Carbon\Carbon')
 <div class="relative my-5" x-data="{ modal: false, nav: 1, open: false, toggle() { this.open = !this.open } }">
     <x-jet-wallet-card>
-
-
         <h1
             class="text-3xl font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500">
             Your Wallet</h1>
-        <div class="group">
+        {{-- <div class="group">
             <button class="w-full transition border-b-2 border-indigo-500 group-hover:border-rose-400"
                 x-on:click="toggle()">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
@@ -37,7 +35,7 @@
                     <p></p>
                 </li>
             </ul>
-        </div>
+        </div> --}}
         <div class="grid grid-cols-1 md:grid-cols-2 md:flex-row">
             <div class="grid grid-cols-2 gap-4 mt-10 text-white">
                 <div class="">
@@ -74,17 +72,18 @@
                     <div class="absolute w-full px-8 top-8">
                         <div class="h-8 my-1">
                             <p class="">Bank Holder Name</p>
-                            <p class="tracking-widest  text-lime-400">{{ $wallet->bank_holder_name }}</p>
+                            <p class="tracking-widest text-lime-400">{{ $wallet->bank_holder_name }}</p>
                         </div>
                         <div class="flex justify-between">
                             <div class="h-8 my-1">
                                 <p class="">Bank Account Number</p>
-                                <p class="tracking-widest  text-lime-400">
+                                <p class="tracking-widest text-lime-400">
+                                    {{ $wallet->bank_account_number }}
                                 </p>
                             </div>
                             <div class="h-8 my-1">
                                 <p class="">Bank Name</p>
-                                <p class="tracking-widest  text-lime-400">{{ $wallet->bank_name }}</p>
+                                <p class="tracking-widest text-lime-400">{{ $wallet->bank_name }}</p>
                             </div>
                         </div>
                         <div class="flex gap-2 mt-10">
@@ -124,6 +123,7 @@
                         </p>
                     </div>
                 </div>
+                
                 @foreach ($withdrawal as $item)
                     <div class="w-full p-3 transition rounded-lg shadow-md bg-black/50 hover:shadow-fuchsia-400/30">
                         <div class="flex items-center text-sm text-center">

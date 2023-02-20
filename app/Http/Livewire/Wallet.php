@@ -70,20 +70,24 @@ class Wallet extends Component
     public function render()
     {
         $wallet = UserWallet::where('user_id', Auth::user()->id)->first();
-        // $decrypted = Crypt::decryptString($wallet->bank_account_number);
-        
-        $income = $wallet->walletTransaction()
-            ->where('status', 3)
-            ->orWhere('status', 4)
-            ->orderBy('updated_at','desc')
+        $withdrawal = $wallet->walletTransaction()
+            ->where('user_id', Auth::user()->id)
+            ->where(function ($query) {
+                $query->where('status', 1)
+                      ->orWhere('status', 2);
+            })
+            ->orderBy('updated_at', 'desc')
             ->orderBy('id', 'desc')
             ->paginate(10);
-        $withdrawal = $wallet->walletTransaction()
-            ->where('status', 1)
-            ->orWhere('status', 2)
-            ->orderBy('updated_at','desc')
+        $income = $wallet->walletTransaction()
+            ->where(function ($query) {
+                $query->where('status', 3)
+                      ->orWhere('status', 4);
+            })
+            ->orderBy('updated_at', 'desc')
+            ->orderBy('id', 'desc')
             ->paginate(10);
-            
-        return view('livewire.wallet', compact('wallet', 'income', 'withdrawal'));
+    
+        return view('livewire.wallet', compact('wallet', 'withdrawal', 'income'));
     }
 }
