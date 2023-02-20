@@ -58,7 +58,7 @@
                                         </svg>
                                     </p>
                                 @endif
-                                @if ($artist->artist->cover_image)
+                                @if ($artist->artist && $artist->artist->cover_image)
                                     <p class="basis-[7%] text-lime-500"><svg xmlns="http://www.w3.org/2000/svg"
                                             fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                                             class="w-6 h-6 mx-auto">
