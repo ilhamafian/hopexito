@@ -2,10 +2,18 @@
 
 namespace App\Providers;
 
+use App\Events\AddedToCart;
+use App\Events\PurchaseCompleted;
+use App\Events\UserHasCheckout;
+use App\Listeners\MixpanelAddToCart;
+use App\Listeners\MixpanelCompletePurchase;
+use App\Listeners\MixpanelLogin;
+use App\Listeners\MixpanelUserCheckout;
+use App\Listeners\MixpanelUserRegistration;
+use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -17,7 +25,21 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+            MixpanelUserRegistration::class,
         ],
+        Login::class => [
+            MixpanelLogin::class,
+        ],
+        PurchaseCompleted::class => [
+            MixpanelCompletePurchase::class,
+        ],
+        UserHasCheckout::class => [
+            MixpanelUserCheckout::class,
+        ],
+        AddedToCart::class => [
+            MixpanelAddToCart::class,
+        ]
+
     ];
 
     /**

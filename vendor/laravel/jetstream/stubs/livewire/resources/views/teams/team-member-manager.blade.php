@@ -52,7 +52,7 @@
                                             </div>
 
                                             <!-- Role Description -->
-                                            <div class="mt-2 text-gray-600 text-left">
+                                            <div class="mt-2 text-xs text-gray-600 text-left">
                                                 {{ $role->description }}
                                             </div>
                                         </div>
@@ -196,7 +196,7 @@
                             </div>
 
                             <!-- Role Description -->
-                            <div class="mt-2 text-gray-600">
+                            <div class="mt-2 text-xs text-gray-600">
                                 {{ $role->description }}
                             </div>
                         </div>

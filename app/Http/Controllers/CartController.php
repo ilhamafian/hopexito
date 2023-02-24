@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\AddedToCart;
 use App\Models\Product;
 use App\Models\Cart;
 use Gloudemans\Shoppingcart\Facades\Cart as SessionCart;
@@ -33,7 +34,7 @@ class CartController extends Controller
         $rowId = $cart->rowId;
         $rowId = uniqid(10);
         if (Auth::check()) {
-            Cart::create([
+            $cart = Cart::create([
                 'id' => $rowId,
                 'product_id' => $cart->id,
                 'email' => Auth::user()->email,
@@ -47,6 +48,7 @@ class CartController extends Controller
                 'color' => $cart->options['color'],
                 'product_image' => $cart->options['image']
             ]);
+            event(new AddedToCart($cart));
         }
         session()->flash('message','Successfully added to cart');
         return redirect()->route('product.show', $product->slug);

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\PurchaseCompleted;
+use App\Events\UserHasCheckout; 
 use App\Models\Cart;
 use Illuminate\Http\Request;
 use App\Models\Order;
@@ -57,6 +59,13 @@ class PaymentController extends Controller
     private function total()
     {
         return $total = $this->subtotal() + $this->delivery();
+    }
+
+    private function mixpanel(){
+        $carts = Cart::where('email', Auth::user()->email)->orderBy('created_at')->get();
+        foreach($carts as $cart){
+            event(new UserHasCheckout($cart));
+        }
     }
 
     public function createBill()
@@ -151,7 +160,7 @@ class PaymentController extends Controller
 
             if ($billplz['paid'] == 'true') {
                 // Store order from successful payments.
-                Order::create([
+                $order = Order::create([
                     'id' => $billplz['id'],
                     'collection_id' => config('billplz.collection'),
                     'email' => Auth::user()->email,
@@ -166,6 +175,7 @@ class PaymentController extends Controller
                     'postcode' => Auth::user()->postcode,
                     'state' => Auth::user()->state
                 ]);
+                event(new PurchaseCompleted($order));
                 // Store products in the order
                 foreach ($carts as $cart) {
                     ProductOrder::create([
