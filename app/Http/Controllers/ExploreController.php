@@ -30,7 +30,7 @@ class ExploreController extends Controller
             ->withCount('products')
             ->having('products_count', '>', 4)
             ->inRandomOrder()
-            ->take(1)
+            ->take(4)
             ->get();
 
         $products = Product::where('status',1)->inRandomOrder()->take(8)->get();
