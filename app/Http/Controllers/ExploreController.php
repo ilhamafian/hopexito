@@ -33,7 +33,13 @@ class ExploreController extends Controller
             ->take(4)
             ->get();
 
-        $products = Product::where('status',1)->inRandomOrder()->take(8)->get();
+        $featured = $users->pluck('id');
+        $products = Product::where('status',1)
+        ->whereIn('artist_id', $featured)
+        ->inRandomOrder()
+        ->take(8)
+        ->get();
+        
         $collections = ProductCollection::inrandomOrder()->take(2)->get();
         return view('explore', compact('users','products','collections'));
     }
