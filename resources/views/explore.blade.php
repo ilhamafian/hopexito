@@ -1,6 +1,6 @@
 @section('title', 'Explore | HopeXito')
 <x-app-layout>
-    <div class="flex flex-col items-center max-w-xl min-h-screen gap-12 pb-48 mx-auto lg:flex-row lg:max-w-7xl">
+    <div class="flex flex-col items-center min-h-screen gap-12 pb-24 mx-auto lg:flex-row lg:max-w-7xl">
         <div class="flex flex-col p-4 space-y-2">
             <x-jet-title>Discover Unique Art from Independent Artists</x-jet-title>
             <p class="px-2 pb-6 lg:pb-10">Shop custom designs featuring independent artists. Find unique art to match your style

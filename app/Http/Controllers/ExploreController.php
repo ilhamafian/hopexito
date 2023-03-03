@@ -22,7 +22,17 @@ class ExploreController extends Controller
     // views/explore
     public function explore()
     {
-        $users = User::where('role_id', 2)->withCount('products')->inRandomOrder()->take(4)->get();
+        $users = User::where('role_id', 2)
+            ->whereNotNull('profile_photo_path')
+            ->whereHas('artist', function($query){
+                $query->whereNotNull('cover_image');
+            })
+            ->withCount('products')
+            ->having('products_count', '>', 4)
+            ->inRandomOrder()
+            ->take(1)
+            ->get();
+
         $products = Product::where('status',1)->inRandomOrder()->take(8)->get();
         $collections = ProductCollection::inrandomOrder()->take(2)->get();
         return view('explore', compact('users','products','collections'));
