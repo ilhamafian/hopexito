@@ -87,6 +87,10 @@ class PaymentController extends Controller
     // prompt payment gateway 
     public function storeBill(Request $request)
     {
+        $request->validate([
+            'radio' => 'required'
+        ]);
+        
         $billplz = array(
             'collection_id' => config('billplz.collection'),
             'email' => Auth::user()->email,

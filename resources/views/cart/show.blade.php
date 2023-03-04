@@ -42,6 +42,11 @@
                                 value="{{ Auth::user()->name }}" disabled />
                         </div>
                         <div class="col-span-6 sm:col-span-4">
+                            <x-jet-label for="phone" value="{{ __('Phone Number') }}" />
+                            <x-jet-input id="phone" type="text" name="phone" class="block w-full mt-1"
+                                value="{{ Auth::user()->phone }}" disabled />
+                        </div>
+                        <div class="col-span-6 sm:col-span-4">
                             <x-jet-label for="address" value="{{ __('Address') }}" />
                             <x-jet-input id="address" type="text" name="address" class="block w-full mt-1"
                                 value="{{ Auth::user()->address }}" disabled />
@@ -66,7 +71,9 @@
                             </svg>
                             <h2 class="font-medium">Payment Method (FPX Online Banking)</h2>
                         </div>
-
+                        @error('radio')
+                            <p class="mt-1 text-rose-500">Please choose a bank</p>
+                        @enderror
                         <div class="grid w-full max-w-screen-sm grid-cols-3 gap-3">
                             {{-- <div>
                                 <input class="hidden" id="maybank" type="radio" name="radio" value="BP-FKR01"
@@ -81,9 +88,9 @@
                             <div>
                                 <input class="hidden" id="maybank" type="radio" name="radio" value="MB2U0227"
                                     x-on:click="radio = MB2U0227" x-model="radio">
-                                <label class="flex flex-col p-4 border-2 rounded-md cursor-pointer bg-neutral-900"
+                                <label class="flex flex-col p-4 border-2 rounded-md cursor-pointer bg-transparent"
                                     :class="radio == 'MB2U0227' ? 'ring ring-indigo-500 border-indigo-500' :
-                                        'border-neutral-500'"
+                                        'border-neutral-700'"
                                     for="maybank">
                                     <img src="image\fpx-logo\maybank.png" class="h-4 md:h-8" />
                                 </label>
@@ -91,9 +98,9 @@
                             <div>
                                 <input class="hidden" id="demo" type="radio" name="radio" value="BIMB0340"
                                     x-on:click="radio = BIMB0340" x-model="radio">
-                                <label class="flex flex-col p-4 border-2 rounded-md cursor-pointer bg-neutral-900"
+                                <label class="flex flex-col p-4 border-2 rounded-md cursor-pointer bg-transparent"
                                     :class="radio == 'BIMB0340' ? 'ring ring-indigo-500 border-indigo-500' :
-                                        'border-neutral-500'"
+                                        'border-neutral-700'"
                                     for="demo">
                                     <img src="image\fpx-logo\bank-islam.png" class="h-4 md:h-8" />
                                 </label>
@@ -101,9 +108,9 @@
                             <div>
                                 <input class="hidden" id="cimb" type="radio" name="radio" value="BCBB0235"
                                     x-on:click="radio = BCBB0235" x-model="radio">
-                                <label class="flex flex-col p-4 border-2 rounded-md cursor-pointer bg-neutral-900"
+                                <label class="flex flex-col p-4 border-2 rounded-md cursor-pointer bg-transparent"
                                     :class="radio == 'BCBB0235' ? 'ring ring-indigo-500 border-indigo-500' :
-                                        'border-neutral-500'"
+                                        'border-neutral-700'"
                                     for="cimb">
                                     <img src="image\fpx-logo\cimb.png" class="h-4 md:h-8" />
                                 </label>
@@ -111,9 +118,9 @@
                             <div>
                                 <input class="hidden" id="rhb" type="radio" name="radio" value="RHB0218"
                                     x-on:click="radio = RHB0218" x-model="radio">
-                                <label class="flex flex-col p-4 border-2 rounded-md cursor-pointer bg-neutral-900"
+                                <label class="flex flex-col p-4 border-2 rounded-md cursor-pointer bg-transparent"
                                     :class="radio == 'RHB0218' ? 'ring ring-indigo-500 border-indigo-500' :
-                                        'border-neutral-500'"
+                                        'border-neutral-700'"
                                     for="rhb">
                                     <img src="image\fpx-logo\rhb.png" class="h-4 md:h-8" />
                                 </label>
@@ -121,9 +128,9 @@
                             <div>
                                 <input class="hidden" id="ambank" type="radio" name="radio" value="AMBB0209"
                                     x-on:click="radio = AMBB0209" x-model="radio">
-                                <label class="flex flex-col p-4 border-2 rounded-md cursor-pointer bg-neutral-900"
+                                <label class="flex flex-col p-4 border-2 rounded-md cursor-pointer bg-transparent"
                                     :class="radio == 'AMBB0209' ? 'ring ring-indigo-500 border-indigo-500' :
-                                        'border-neutral-500'"
+                                        'border-neutral-700'"
                                     for="ambank">
                                     <img src="image\fpx-logo\ambank.png" class="h-4 md:h-8" />
                                 </label>
@@ -131,9 +138,9 @@
                             <div>
                                 <input class="hidden" id="affin" type="radio" name="radio" value="ABB0233"
                                     x-on:click="radio = ABB0233" x-model="radio">
-                                <label class="flex flex-col p-4 border-2 rounded-md cursor-pointer bg-neutral-900"
+                                <label class="flex flex-col p-4 border-2 rounded-md cursor-pointer bg-transparent"
                                     :class="radio == 'ABB0233' ? 'ring ring-indigo-500 border-indigo-500' :
-                                        'border-neutral-500'"
+                                        'border-neutral-700'"
                                     for="affin">
                                     <img src="image\fpx-logo\affin.png" class="h-4 md:h-8" />
                                 </label>
@@ -141,9 +148,9 @@
                             <div>
                                 <input class="hidden" id="bsn" type="radio" name="radio" value="BSN0601"
                                     x-on:click="radio = BSN0601" x-model="radio">
-                                <label class="flex flex-col p-4 border-2 rounded-md cursor-pointer bg-neutral-900"
+                                <label class="flex flex-col p-4 border-2 rounded-md cursor-pointer bg-transparent"
                                     :class="radio == 'BSN0601' ? 'ring ring-indigo-500 border-indigo-500' :
-                                        'border-neutral-500'"
+                                        'border-neutral-700'"
                                     for="bsn">
                                     <img src="image\fpx-logo\bsn.png" class="h-4 md:h-8" />
                                 </label>
@@ -151,9 +158,9 @@
                             <div>
                                 <input class="hidden" id="bank-rakyat" type="radio" name="radio"
                                     value="BKRM0602" x-on:click="radio = BKRM0602" x-model="radio">
-                                <label class="flex flex-col p-4 border-2 rounded-md cursor-pointer bg-neutral-900"
+                                <label class="flex flex-col p-4 border-2 rounded-md cursor-pointer bg-transparent"
                                     :class="radio == 'BKRM0602' ? 'ring ring-indigo-500 border-indigo-500' :
-                                        'border-neutral-500'"
+                                        'border-neutral-700'"
                                     for="bank-rakyat">
                                     <img src="image\fpx-logo\bank-rakyat.png" class="h-4 md:h-8" />
                                 </label>
@@ -161,15 +168,75 @@
                             <div>
                                 <input class="hidden" id="uob" type="radio" name="radio" value="UOB0226"
                                     x-on:click="radio = UOB0226" x-model="radio">
-                                <label class="flex flex-col p-4 border-2 rounded-md cursor-pointer bg-neutral-900"
+                                <label class="flex flex-col p-4 border-2 rounded-md cursor-pointer bg-transparent"
                                     :class="radio == 'UOB0226' ? 'ring ring-indigo-500 border-indigo-500' :
-                                        'border-neutral-500'"
+                                        'border-neutral-700'"
                                     for="uob">
                                     <img src="image\fpx-logo\uob.png" class="h-4 md:h-8" />
                                 </label>
                             </div>
+                            <div>
+                                <input class="hidden" id="hlb" type="radio" name="radio" value="HLB0224"
+                                    x-on:click="radio = HLB0224" x-model="radio">
+                                <label class="flex flex-col p-4 border-2 rounded-md cursor-pointer bg-transparent"
+                                    :class="radio == 'HLB0224' ? 'ring ring-indigo-500 border-indigo-500' :
+                                        'border-neutral-700'"
+                                    for="hlb">
+                                    <img src="image\fpx-logo\hlb.png" class="h-4 md:h-8" />
+                                </label>
+                            </div>
+                            <div>
+                                <input class="hidden" id="pb" type="radio" name="radio" value="PBB0233"
+                                    x-on:click="radio = PBB0233" x-model="radio">
+                                <label class="flex flex-col p-4 border-2 rounded-md cursor-pointer bg-transparent"
+                                    :class="radio == 'PBB0233' ? 'ring ring-indigo-500 border-indigo-500' :
+                                        'border-neutral-700'"
+                                    for="pb">
+                                    <img src="image\fpx-logo\pb.png" class="h-4 md:h-8" />
+                                </label>
+                            </div>
+                            <div>
+                                <input class="hidden" id="scb" type="radio" name="radio" value="SCB0216"
+                                    x-on:click="radio = SCB0216" x-model="radio">
+                                <label class="flex flex-col p-4 border-2 rounded-md cursor-pointer bg-transparent"
+                                    :class="radio == 'SCB0216' ? 'ring ring-indigo-500 border-indigo-500' :
+                                        'border-neutral-700'"
+                                    for="scb">
+                                    <img src="image\fpx-logo\scb.png" class="h-4 md:h-8" />
+                                </label>
+                            </div>
+                            <div>
+                                <input class="hidden" id="ocbc" type="radio" name="radio" value="OCBC0229"
+                                    x-on:click="radio = OCBC0229" x-model="radio">
+                                <label class="flex flex-col p-4 border-2 rounded-md cursor-pointer bg-transparent"
+                                    :class="radio == 'OCBC0229' ? 'ring ring-indigo-500 border-indigo-500' :
+                                        'border-neutral-700'"
+                                    for="ocbc">
+                                    <img src="image\fpx-logo\ocbc.png" class="h-4 md:h-8" />
+                                </label>
+                            </div>
+                            <div>
+                                <input class="hidden" id="hsbc" type="radio" name="radio" value="HSBC0223"
+                                    x-on:click="radio = HSBC0223" x-model="radio">
+                                <label class="flex flex-col p-4 border-2 rounded-md cursor-pointer bg-transparent"
+                                    :class="radio == 'HSBC0223' ? 'ring ring-indigo-500 border-indigo-500' :
+                                        'border-neutral-700'"
+                                    for="hsbc">
+                                    <img src="image\fpx-logo\hsbc.png" class="h-4 md:h-8" />
+                                </label>
+                            </div>
+                            <div>
+                                <input class="hidden" id="alliancebank" type="radio" name="radio" value="ABMB0212"
+                                    x-on:click="radio = ABMB0212" x-model="radio">
+                                <label class="flex flex-col p-4 border-2 rounded-md cursor-pointer bg-transparent"
+                                    :class="radio == 'ABMB0212' ? 'ring ring-indigo-500 border-indigo-500' :
+                                        'border-neutral-700'"
+                                    for="alliancebank">
+                                    <img src="image\fpx-logo\alliancebank.png" class="h-4 md:h-8" />
+                                </label>
+                            </div>
                         </div>
-                        <p class="pt-6 text-sm text-center">By placing this order you agree to the
+                        <p class="pt-2 text-xs">By placing this order you agree to the
                             <a href="{{ route('terms.show') }}"
                                 class="text-indigo-400 underline whitespace-nowrap hover:text-indigo-500">Terms of
                                 Services</a>

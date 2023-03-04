@@ -24,7 +24,7 @@ class ExploreController extends Controller
     {
         $users = User::where('role_id', 2)
             ->whereNotNull('profile_photo_path')
-            ->whereHas('artist', function($query){
+            ->whereHas('artist', function ($query) {
                 $query->whereNotNull('cover_image');
             })
             ->withCount('products')
@@ -34,14 +34,14 @@ class ExploreController extends Controller
             ->get();
 
         $featured = $users->pluck('id');
-        $products = Product::where('status',1)
-        ->whereIn('artist_id', $featured)
-        ->inRandomOrder()
-        ->take(8)
-        ->get();
-        
+        $products = Product::where('status', 1)
+            ->whereIn('artist_id', $featured)
+            ->inRandomOrder()
+            ->take(8)
+            ->get();
+
         $collections = ProductCollection::inrandomOrder()->take(2)->get();
-        return view('explore', compact('users','products','collections'));
+        return view('explore', compact('users', 'products', 'collections'));
     }
     // return search results and track search history
     public function search(Request $request)
@@ -51,7 +51,7 @@ class ExploreController extends Controller
             ->where('title', 'LIKE', "%{$search}%")
             ->orWhere('shopname', 'LIKE', "%{$search}%")
             ->paginate(40);
-        if(Auth::check()){
+        if (Auth::check()) {
             Search::create([
                 'user_id' => Auth::user()->id,
                 'keyword' => $search
@@ -59,7 +59,7 @@ class ExploreController extends Controller
         }
         $search_count = $products->total();
 
-        return view('shop/search', compact('products','search','search_count'));
+        return view('shop/search', compact('products', 'search', 'search_count'));
     }
     public function shop()
     {
@@ -68,15 +68,16 @@ class ExploreController extends Controller
     }
     // return seller profile, views/people
     public function people($shopname)
-    {   
-        $user = User::where('name',$shopname)->first();
-        $products = Product::where('artist_id',$user->id)->get();
+    {
+        $user = User::where('name', $shopname)->first();
+        $products = Product::where('artist_id', $user->id)->get();
         $productsCollection = ProductCollection::where('name', $shopname)->get();
 
-        return view('people', compact('user','products','productsCollection'));
+        return view('people', compact('user', 'products', 'productsCollection'));
     }
     // upgrade user from customer to seller
-    public function upgrade($id){
+    public function upgrade($id)
+    {
         $user = User::findOrFail($id);
         $user->update([
             'role_id' => 2
@@ -94,7 +95,7 @@ class ExploreController extends Controller
         ]);
 
         $user->assignRole('artist');
-        session()->flash('message','You have been upgraded');
+        session()->flash('message', 'You have been upgraded');
         return redirect()->route('dashboard');
     }
 }
