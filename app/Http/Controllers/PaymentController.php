@@ -71,10 +71,10 @@ class PaymentController extends Controller
     public function createBill()
     {
         $user = User::where('name', Auth::user()->name)->first();
-        if ($user['state']) {
+        if ($user['state'] && $user['phone'] && $user['address']) {
             $state = $user['state'];
         } else {
-            session()->flash('message', 'Please update shipping address');
+            session()->flash('message', 'Please complete delivery address');
             return redirect()->route('profile.show');
         }
         $cart = Cart::where('email', Auth::user()->email)->orderBy('created_at')->get();

@@ -4,7 +4,6 @@
     </x-slot>
     <x-slot name="description">
         {{ __('Fill in links to your other sites to display and share it on your profile.') }}
-        <span class="text-xs text-indigo-400"> *without https://</span>
     </x-slot>
     <x-slot name="form">
         <div class="col-span-6 md:col-span-3">
