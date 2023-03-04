@@ -153,7 +153,7 @@
                             {{-- Copy delivery address based on order --}}
                             <div class="relative basis-[15%]">
                                 <x-jet-button-utility type="button" class="w-36 group"
-                                    x-on:click="$clipboard('{{ $order->address }}, {{ $order->postcode }}, {{ $order->state }}'); 
+                                    x-on:click="$clipboard('{{ $order->user->name }}, {{ $order->user->phone }}, {{ $order->user->address }}, {{ $order->user->postcode }}, {{ $order->user->state }}'); 
                                         copied['{{ $order->id }}'] = true; tooltip = true; 
                                         setTimeout(() => tooltip = false, 1000);
                                         setTimeout(() => copied['{{ $order->id }}'] = false, 1000)">

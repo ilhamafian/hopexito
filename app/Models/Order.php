@@ -28,6 +28,10 @@ class Order extends Model
         'state'
     ];
     
+    public function user(){
+        return $this->hasOne(User::class, 'email', 'email');
+    } 
+
     public function productOrder(){
         return $this->hasMany(ProductOrder::class, 'billplz_id', 'id');
     }
