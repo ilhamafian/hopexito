@@ -14,6 +14,7 @@ class ProductTemplate extends Model
         'category',
         'commission',
         'mockup_image',
+        'mockup_image_2',
         'status',
         'min',
         'color'

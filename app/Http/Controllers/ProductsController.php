@@ -44,6 +44,11 @@ class ProductsController extends Controller
         if ($temporaryFile) {
             $temporaryFile->delete();
         }
+        $temporaryFile_2 = TemporaryFile::where('filename', $request->image_back)->first();
+        if ($temporaryFile_2) {
+            $temporaryFile_2->delete();
+        }
+        
         $input = $request->all();
         $input['color'] = implode(',', $request->input('color'));
         $input['artist_id'] = Auth::user()->id;

@@ -24,9 +24,11 @@ class Product extends Model
         'color',
         'category',
         'image_front',
+        'image_back',
         'status',
         'sold',
         'product_image',
+        'product_image_2'
     ];
 
     public function productUser(){

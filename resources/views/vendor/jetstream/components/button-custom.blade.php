@@ -18,5 +18,5 @@
     <span
         class="absolute w-0 h-0 transition-all duration-300 ease-out bg-white rounded-full group-hover:w-full group-hover:h-56 opacity-5"></span>
     <span
-        class="relative font-sans font-semibold tracking-widest text-white uppercase text-xs">{{ $slot }}</span>
+        class="relative font-sans font-medium tracking-wider text-white uppercase text-xs">{{ $slot }}</span>
 </button>

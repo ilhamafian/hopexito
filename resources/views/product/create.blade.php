@@ -13,7 +13,7 @@
             </div>
             <div class="grid max-w-5xl grid-cols-1 gap-4 py-16 mx-auto text-white md:grid-cols-3">
                 <div class="block h-48 mx-2 group sm:mx-0">
-                    <a href="{{ route('product.template', 1) }}"
+                    <a href="{{ route('product.template', 3) }}"
                         class=" relative flex flex-col items-center h-full rounded-3xl border-4 border-indigo-500 bg-black/40 p-8 transition group-hover:-translate-x-2 group-hover:-translate-y-2 group-hover:shadow-[8px_8px_0_0_#ec4899]">
                         <p class="my-3 text-lg text-indigo-400">T-Shirt</p>
                         <img src="../image/product-selection/tshirt.png"

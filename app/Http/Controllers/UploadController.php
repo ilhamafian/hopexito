@@ -25,6 +25,17 @@ class UploadController extends Controller
             ]);
             return $filename;
         }
+        if ($request->hasFile('image_back')) {
+            $file = $request->file('image_back');
+            $extension = $file->getClientOriginalExtension();
+            $filename = uniqid('181') . '-' . Auth::user()->name . '.' . $extension;
+            $file->storeAs('public/image-back/', $filename);
+
+            TemporaryFile::create([
+                'filename' => $filename
+            ]);
+            return $filename;
+        }
         // request from views/
         if ($request->hasFile('cover_image')) {
             $file = $request->file('cover_image');
@@ -41,6 +52,19 @@ class UploadController extends Controller
         // request from views/livewire/admin/product
         if ($request->hasFile('mockup_image')) {
             $file = $request->file('mockup_image');
+            $extension = $file->getClientOriginalExtension();
+            $filename = uniqid('12b') . '-' . Auth::user()->name . '.' . $extension;
+            $file->storeAs('public/mockup-image/', $filename);
+
+            TemporaryFile::create([
+                'filename' => $filename
+            ]);
+
+            return $filename;
+        }
+        // request from views/livewire/admin/product
+        if ($request->hasFile('mockup_image_2')) {
+            $file = $request->file('mockup_image_2');
             $extension = $file->getClientOriginalExtension();
             $filename = uniqid('12b') . '-' . Auth::user()->name . '.' . $extension;
             $file->storeAs('public/mockup-image/', $filename);
@@ -83,7 +107,7 @@ class UploadController extends Controller
             'bio' => $request->bio
         ])->save();
 
-        session()->flash('message','Profile Updated');
+        session()->flash('message', 'Profile Updated');
         return redirect()->route('profile.show');
     }
     // upload product template image
@@ -92,6 +116,7 @@ class UploadController extends Controller
         $request->validate([
             'category' => 'required|string',
             'mockup_image' => 'required|string',
+            'mockup_image_2' => 'required|string',
             'commission' => 'required|numeric',
             'min' => 'required|numeric',
             'color' => 'required'
@@ -101,10 +126,15 @@ class UploadController extends Controller
         if ($temp) {
             $temp->delete();
         }
+        $temp_2 = TemporaryFile::where('filename', $request->mockup_image_2)->first();
+        if ($temp_2) {
+            $temp_2->delete();
+        }
 
         ProductTemplate::create([
             'category' => $request->category,
             'mockup_image' => $request->mockup_image,
+            'mockup_image_2' => $request->mockup_image_2,
             'commission' => $request->commission,
             'status' => 1,
             'min' => $request->min,

@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class AdminProduct extends Component
 {
-    public $mockup_image, $commission, $category, $min, $color, $search;
+    public $mockup_image, $mockup_image_2, $commission, $category, $min, $color, $search;
 
     // remove product from database
     public function deleteProduct($id)

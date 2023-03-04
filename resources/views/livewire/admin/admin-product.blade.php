@@ -11,6 +11,10 @@
                         <x-jet-label for="mockup_image" value="{{ __('Mockup Image') }}" />
                         <input type="file" id="mockup-image" name="mockup_image" wire:model.defer="mockup_image"
                             class="w-full">
+                        <x-jet-label for="mockup_image_2" value="{{ __('Mockup Image 2') }}" />
+                        <input type="file" id="mockup-image-2" name="mockup_image_2" wire:model.defer="mockup_image_2"
+                            class="w-full">
+
                         <x-jet-label for="category" value="{{ __('Category') }}" />
                         <select id="category" wire:model.defer="category" name="category"
                             class="text-white block w-full p-2.5 bg-neutral-800 border border-neutral-500 rounded-md focus:ring-indigo-500">
@@ -114,7 +118,10 @@
             <script>
                 FilePond.registerPlugin(FilePondPluginImagePreview);
                 const fileInput = document.querySelector('input[id="mockup-image"]');
+                const fileInputBack = document.querySelector('input[id="mockup-image-2"]');
                 const pond = FilePond.create(fileInput);
+                const pond_2 = FilePond.create(fileInputBack);
+
                 FilePond.setOptions({
                     server: {
                         url: '{{ route('upload') }}',
