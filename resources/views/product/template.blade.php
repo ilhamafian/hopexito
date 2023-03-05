@@ -240,7 +240,7 @@
                 @unless($template->category != 'Shirt')
                     <x-jet-input type="hidden" value="{{ $template->category }}" class="hidden" name="category" />
                     <div>
-                        <div class="" x-show="open == false">
+                        <div class="" x-show="open == false" x-transition:enter.duration.300ms>
                             <div id="tshirt-front" class="relative">
                                 <img id="tshirt-front-background"
                                     class="lg:w-[1000px] lg:h-[1000px] xl:w-[880px] xl:h-[900px] mx-auto bg-white"
@@ -256,7 +256,7 @@
                         </div>
                     </div>
                     <div>
-                        <div class="" x-show="open == true">
+                        <div class="" x-show="open == true" x-transition:enter.duration.300ms>
                             <div id="tshirt-back" class="relative">
                                 <img id="tshirt-back-background"
                                     class="lg:w-[1000px] lg:h-[1000px] xl:w-[880px] xl:h-[900px] mx-auto bg-white"

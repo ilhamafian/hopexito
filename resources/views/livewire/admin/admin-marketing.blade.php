@@ -29,10 +29,13 @@
             <x-jet-gradient-card>
                 <div class="flex flex-col h-full p-6 bg-black rounded-xl">
                     <x-jet-header>Storage Optimization</x-jet-header>
-                    <div class="gap-2 p-2 overflow-y-scroll rounded-lg ring-2 ring-violet-500 max-h-96">
+                    <div class="p-2 overflow-y-scroll rounded-lg ring-2 ring-violet-500 max-h-96">
                         <x-jet-button-utility wire:click="clearCache">
                             Clear Image Cache
                         </x-jet-button-utility>
+                        {{-- <x-jet-button-utility wire:click="clearMoreCache">
+                            Deep Cleaning
+                        </x-jet-button-utility> --}}
                     </div>
                 </div>
             </x-jet-gradient-card>
