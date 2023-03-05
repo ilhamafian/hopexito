@@ -121,8 +121,8 @@
         @livewire('wallet')
     </div>
     <div class="relative w-full py-16 bg-black/50 h-72">
-        <img src="image/discord-icon.png" class="absolute hidden left-48 -top-16 lg:block -rotate-12" />
-        <img src="image/xito-icon.png" class="absolute hidden w-32 h-32 right-72 bottom-12 lg:block rotate-12" />
+        <img src="image/discord-icon.png" class="absolute hidden left-0 xl:left-48 -top-16 lg:block -rotate-12" />
+        <img src="image/xito-icon.png" class="absolute hidden w-32 h-32 lg:right-16 xl:right-72 bottom-12 lg:block rotate-12" />
         <div class="max-w-2xl mx-auto space-y-2 text-center">
             <h1
                 class="text-3xl font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-fuchsia-500 to-fuchsia-500">

@@ -1,5 +1,5 @@
 @if (session()->has('message'))
-    <div class="fixed z-50 inline-flex items-center transition duration-500 rounded-full top-14 right-2 xl:top-24 xl:right-24"
+    <div class="fixed z-50 inline-flex items-center transition duration-500 rounded-full top-14 lg:top-20 right-2 xl:top-24 xl:right-24"
         role="alert" x-data="{ open: true }" x-bind:class="open ? '' : 'opacity-0'" x-init="() => { setTimeout(() => { open = false }, 3000); }"
         x-delay="1000">
         <div class="relative p-0.5 inline-flex items-center justify-center overflow-hidden group rounded-md">

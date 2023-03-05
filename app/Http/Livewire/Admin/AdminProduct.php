@@ -17,6 +17,11 @@ class AdminProduct extends Component
         session()->flash('message', 'Product Deleted');
         return redirect()->route('admin.products');
     }
+    public function deleteTemplate(){
+        ProductTemplate::truncate();
+        session()->flash('message', 'Product Templates Deleted');
+        return redirect()->route('admin.products');
+    }
 
     public function render()
     {

@@ -1,11 +1,11 @@
 @section('title', $template->category . ' | HopeXito')
 <x-app-layout>
     <x-jet-session-message />
-    <div class="min-h-screen pb-24 mx-auto bg-neutral-900" x-data="{ modal3: false, price: '', checkbox: false, open: false }">
+    <div class="min-h-screen pb-24 mx-auto bg-neutral-900" x-data="{ modal: false, price: '', checkbox: false, open: false, confirm: false }">
         <form method="POST" action="{{ route('product.store') }}" enctype="multipart/form-data"
-            class="flex flex-col w-full lg:mx-16 lg:flex-row">
+            class="flex flex-col w-full xl:mx-16 xl:flex-row">
             @csrf
-            <div class="w-full p-8 lg:w-1/3 lg:pt-24">
+            <div class="w-full p-8 lg:px-24 xl:px-0 xl:w-1/3 lg:pt-24">
                 <div class="relative flex flex-col">
                     <x-jet-label for="tshirt-file-front" value="{{ __('Front Design') }}" />
                     <div class="w-full">
@@ -68,7 +68,7 @@
                         <p class="absolute mt-1 bottom-4 right-3 text-rose-500">Tags are required</p>
                     @enderror
                 </div>
-                <div class="flex flex-col py-2 md:flex-row">
+                <div class="flex flex-col py-4 md:flex-row">
                     <div class="flex flex-col basis-1/3">
                         <div class="flex">
                             <x-jet-label for="" value="{{ __('Preview Color') }}" />
@@ -112,12 +112,18 @@
                         </div>
                         <div class="flex items-center gap-2">
                             @foreach ($colors as $color)
-                                @if ($color == 'white')
-                                    <x-jet-checkbox name="color[]" class="p-3.5 border-0 rounded-md text-indigo-500"
+                                @if ($color == 'White')
+                                    <x-jet-checkbox id="color" name="color[]" class="p-3.5 bg-white"
                                         value="{{ $color }}" />
                                 @endif
-                                <x-jet-checkbox name="color[]" class="p-3.5 border-0 rounded-md"
-                                    style="background-color:{{ $color }}" value="{{ $color }}" />
+                                @if ($color == 'Gray')
+                                    <x-jet-checkbox id="color" name="color[]" class="p-3.5 bg-[#808080]"
+                                        value="{{ $color }}" />
+                                @endif
+                                @if ($color == 'Black')
+                                    <x-jet-checkbox id="color" name="color[]" class="p-3.5 bg-[#000]"
+                                        value="{{ $color }}" />
+                                @endif
                             @endforeach
                             @error('color')
                                 <p class="w-2 h-2 rounded-full bg-rose-500"></p>
@@ -182,59 +188,66 @@
                         name or logo, (2) any featured person's name or face, (3) any featured words or images
                         created by someone else, and (4) does not contain any offensive or mature images.</p>
                 </div>
-                <div class="bg-indigo-500/30 rounded-md p-2 flex gap-2 text-xs">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
-                      </svg>
-                    <p>Please make sure the mockup is flipped to front design before proceeding.</p>
-                </div>
                 {{-- Save Product Modal --}}
                 <div class="py-2">
-                    <x-jet-button type="button" x-bind:disabled="!checkbox || open"
-                        x-on:click="modal3 = true; takeshot(); open != open; setTimeout(() => { open = !open; }, 500);"
+                    <x-jet-button type="button" x-bind:disabled="!checkbox"
+                        x-on:click="open = false; modal = true; takeshot(); open != open; setTimeout(() => { open = !open; }, 300); confirm == true; setTimeout(() => { confirm = true; }, 1500);"
                         class="w-full py-3">
                         <span class="mx-auto">Save Product</span>
                     </x-jet-button>
-                    <x-jet-modal-custom-3>
-                        <div class="w-3/4">
-                            <h2 class="text-3xl font-medium text-white" :id="$id('modal-title')">Confirm
-                            </h2>
-                            <p class="mt-2 text-gray-300">This product will appear in the marketplace.
-                            </p>
-                            <div class="flex mt-8 space-x-2">
-                                <x-jet-button type="submit" class="">
-                                    Confirm
-                                </x-jet-button>
-                                <button type="button" x-on:click="modal3 = false"
-                                    class="px-4 transition duration-500 hover:rotate-180">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="2" stroke="currentColor"
-                                        class="w-6 h-6 text-white hover:rotate-180 hover:text-rose-500">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M6 18L18 6M6 6l12 12" />
-                                    </svg>
-                                </button>
+                    <div x-cloak x-show="modal == true" @keydown.escape.prevent.stop="modal = false; confirm = false"
+                        class="fixed inset-0 z-50">
+                        <!-- Overlay -->
+                        <div x-show="modal" x-transition.opacity class="fixed inset-0 bg-black/80 rounded-xl">
+                        </div>
+                        <!-- Panel -->
+                        <div x-show="modal" x-transition x-on:click="modal = false; confirm = false"
+                            class="relative flex items-center justify-center w-full h-full">
+                            <div @click.stop style="max-height: 80vh"
+                                class="z-20 flex w-full p-8 px-12 overflow-y-auto border-2 border-indigo-500 shadow-md md:w-1/3 bg-zinc-900 rounded-2xl shadow-rose-500/50">
+                                <div class="w-3/4">
+                                    <h2 class="text-3xl font-medium text-white" :id="$id('modal-title')">Confirm
+                                    </h2>
+                                    <p class="mt-2 text-gray-300">This product will appear in the marketplace.
+                                    </p>
+                                    <div class="flex mt-8 space-x-2">
+                                        <svg x-show="confirm == false" viewBox="0 0 24 24"
+                                            class="w-6 h-6 text-indigo-400 animate-spin">
+                                            <path fill="currentColor"
+                                                d="M12,4V2A10,10 0 0,0 2,12H4A8,8 0 0,1 12,4Z" />
+                                        </svg>
+                                        <x-jet-button type="submit" class="" x-show="confirm == true">
+                                            Confirm
+                                        </x-jet-button>
+                                        <button type="button" x-on:click="modal = false"
+                                            class="px-4 transition duration-500 hover:rotate-180">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                                class="w-6 h-6 text-white hover:rotate-180 hover:text-rose-500">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M6 18L18 6M6 6l12 12" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="w-1/4">
-                            <lord-icon src="https://cdn.lordicon.com/ridbdkcb.json" trigger="loop" delay="0"
-                                colors="primary:#f43f5e,secondary:#6366f1" style="width:150px;height:150px">
-                            </lord-icon>
-                        </div>
-                    </x-jet-modal-custom-3>
+                    </div>
                 </div>
             </div>
             {{-- Mockup template --}}
-            <div class="flex flex-col">
+            <div class="">
                 @unless($template->category != 'Shirt')
                     <x-jet-input type="hidden" value="{{ $template->category }}" class="hidden" name="category" />
                     <div>
-                        <div class="absolute" x-show="open == false">
-                            <div id="tshirt-front" class="relative bg-neutral-90">
-                                <img id="tshirt-front-background" class="w-[880px] h-[900px] bg-white"
+                        <div class="" x-show="open == false">
+                            <div id="tshirt-front" class="relative">
+                                <img id="tshirt-front-background"
+                                    class="lg:w-[1000px] lg:h-[1000px] xl:w-[880px] xl:h-[900px] mx-auto bg-white"
                                     src="{{ asset('storage/mockup-image/' . $template->mockup_image) }}"
                                     alt="" />
-                                <div id="drawingArea" class="absolute top-52 left-60 z-0 w-[405px] h-[525px]">
+                                <div id="drawingArea"
+                                    class="absolute xl:top-52 lg:top-60 lg:left-[390px] xl:left-60 z-0 w-[405px] lg:h-[580px] xl:h-[525px]">
                                     <div class="w-[405px] h-[525px] relative select-none">
                                         <canvas id="tshirt-front-canvas" width="405" height="525" />
                                     </div>
@@ -243,12 +256,14 @@
                         </div>
                     </div>
                     <div>
-                        <div class="absolute" x-show="open == true">
-                            <div id="tshirt-back" class="relative bg-neutral-90">
-                                <img id="tshirt-back-background" class="w-[880px] h-[900px] bg-white"
+                        <div class="" x-show="open == true">
+                            <div id="tshirt-back" class="relative">
+                                <img id="tshirt-back-background"
+                                    class="lg:w-[1000px] lg:h-[1000px] xl:w-[880px] xl:h-[900px] mx-auto bg-white"
                                     src="{{ asset('storage/mockup-image/' . $template->mockup_image_2) }}"
                                     alt="" />
-                                <div id="drawingArea" class="absolute top-52 left-60 z-0 w-[405px] h-[525px]">
+                                <div id="drawingArea"
+                                    class="absolute xl:top-52 lg:top-60 lg:left-[390px] xl:left-60 z-0 w-[405px] lg:h-[580px] xl:h-[525px]">
                                     <div class="w-[405px] h-[525px] relative select-none">
                                         <canvas id="tshirt-back-canvas" width="405" height="525" />
                                     </div>
@@ -407,16 +422,21 @@
 
         // Capture dataurl
         function takeshot() {
-            html2canvas($('tshirt-front')).then(function(canvas) {
-                $('front-shirt-dataURL').value = canvas.toDataURL("image/png", 100);
-                console.log($('front-shirt-dataURL').value);
-                setTimeout(function() {
-                    html2canvas($('tshirt-back')).then(function(canvas_2) {
-                        $('back-shirt-dataURL').value = canvas_2.toDataURL("image/png", 100);
-                        console.log($('back-shirt-dataURL').value);
-                    });
-                }, 500);
-            });
+            setTimeout(function() {
+                html2canvas($('tshirt-front')).then(function(canvas) {
+                    $('front-shirt-dataURL').value = canvas.toDataURL("image/png", 100);
+                    console.log($('front-shirt-dataURL').value);
+
+                    // add a delay of 100ms before taking screenshot of the back
+                    setTimeout(function() {
+                        html2canvas($('tshirt-back')).then(function(canvas_2) {
+                            $('back-shirt-dataURL').value = canvas_2.toDataURL("image/png",
+                                100);
+                            console.log($('back-shirt-dataURL').value);
+                        });
+                    }, 350);
+                });
+            }, 100);
         }
     </script>
 </x-app-layout>

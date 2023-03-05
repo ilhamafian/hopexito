@@ -1,10 +1,9 @@
 @section('title', $product->title . ' | HopeXito')
 <x-app-layout>
-    <section class="min-h-screen text-gray-700 bg-neutral-900" x-data="{ preview: 1 }">
+    <section class="min-h-screen text-gray-700 bg-neutral-900 pb-12" x-data="{ preview: 1 }">
         <x-jet-session-message />
         <div class="py-4 mx-auto">
             <div class="flex flex-wrap mx-auto lg:w-4/5">
-                <section>
                     <div class="relative mx-auto max-w-screen-xl px-4">
                         <div class="grid gap-8 lg:grid-cols-4 lg:items-start">
                             <div class="lg:col-span-2">
@@ -14,7 +13,7 @@
                                             src="{{ $product->product_image }}">
                                     </div>
                                     <div
-                                        class="absolute bottom-4 left-1/2 inline-flex -translate-x-1/2 items-center rounded-full bg-black/75 px-3 py-1.5 text-white">
+                                        class="absolute bottom-4 hidden left-1/2 xl:inline-flex -translate-x-1/2 items-center rounded-full bg-black/75 px-3 py-1.5 text-white">
                                         <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -24,13 +23,13 @@
                                         <span class="ml-1.5 text-xs"> Hover to zoom </span>
                                     </div>
                                 </div>
-                                <div class="relative" x-show="preview == 2">
+                                <div x-cloak class="relative" x-show="preview == 2">
                                     <div class="w-full overflow-hidden rounded-lg">
                                         <img class="w-full h-full transition hover:scale-125"
                                             src="{{ $product->product_image_2 }}">
                                     </div>
                                     <div
-                                        class="absolute bottom-4 left-1/2 inline-flex -translate-x-1/2 items-center rounded-full bg-black/75 px-3 py-1.5 text-white">
+                                        class="absolute bottom-4 hidden left-1/2 xl:inline-flex -translate-x-1/2 items-center rounded-full bg-black/75 px-3 py-1.5 text-white">
                                         <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -40,10 +39,10 @@
                                         <span class="ml-1.5 text-xs"> Hover to zoom </span>
                                     </div>
                                 </div>
-                                <div class="mt-1 flex gap-2 cursor-pointer">
+                                <div class="mt-3 flex gap-3 cursor-pointer">
                                     <img alt="Tee" src="{{ $product->product_image }}" x-on:click="preview = 1"
                                         class="h-36 w-36 rounded-md object-cover"
-                                        x-bind:class="preview == 1 ? 'ring ring-indigo-500' : ''" />1
+                                        x-bind:class="preview == 1 ? 'ring ring-indigo-500' : ''" />
                                     @if ($product->product_image_2)
                                         <img alt="Tee" src="{{ $product->product_image_2 }}"
                                             x-on:click="preview = 2" class="h-36 w-36 rounded-md object-cover"
@@ -205,12 +204,6 @@
                             </div>
                         </div>
                     </div>
-                </section>
-                {{-- <img class="object-cover object-center w-full rounded lg:w-1/2" src="{{ $product->product_image }}">
-                @if ($product->product_image_2)
-                <img class="object-cover object-center w-full rounded lg:w-1/2" src="{{ $product->product_image_2 }}">
-                @endif --}}
-
             </div>
         </div>
     </section>
@@ -227,7 +220,7 @@
                                 class="relative p-1 transition shadow-lg cursor-pointer group rounded-xl hover:shadow-fuchsia-500/50 bg-white/5 backdrop-filter backdrop-blur-3xl">
                                 <div class="w-full overflow-hidden rounded-t-lg min-h-75">
                                     <img src="{{ $product->product_image }}" alt="{{ $product->title }}"
-                                        class="w-full h-full transition ease-in-out rounded-t-lg hover:scale-125">
+                                        class="w-full h-full transition ease-in-out hover:scale-125">
                                 </div>
                                 <div class="flex flex-col justify-between px-2 py-1 tracking-wider md:px-4 md:py-2">
                                     <div class="text-sm text-white truncate md:font-medium">
@@ -243,13 +236,12 @@
                     @endforeach
                 </div>
             </div>
-
         </div>
     </x-jet-gradient-card>
     <x-jet-gradient-card>
         <div class="py-8 bg-black/90 md:rounded-xl">
             <div class="relative w-full px-2 py-6 mx-auto lg:max-w-7xl">
-                <x-jet-title>Discover other similar products</x-jet-title>
+                <x-jet-title>Discover other products</x-jet-title>
                 <div class="grid grid-cols-2 gap-2 mx-auto mt-6 md:gap-6 sm:grid-cols-3 lg:grid-cols-4">
                     @foreach ($discover as $item)
                         <a href="{{ route('product.show', $item->slug) }}">

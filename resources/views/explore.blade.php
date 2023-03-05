@@ -1,12 +1,13 @@
 @section('title', 'Explore | HopeXito')
 <x-app-layout>
-    <div class="flex flex-col items-center min-h-screen gap-12 pb-24 mx-auto lg:flex-row lg:max-w-7xl">
-        <div class="flex flex-col p-4 space-y-2">
+    <div class="flex flex-col items-center min-h-screen gap-12 pb-28 mx-auto lg:flex-row lg:max-w-5xl xl:max-w-7xl">
+        <div class="flex flex-col px-12 lg:px-0 py-16 lg:py-0 space-y-2 text-center lg:text-left">
             <x-jet-title>Discover Unique Art from Independent Artists</x-jet-title>
-            <p class="px-2 pb-6 lg:pb-10">Shop custom designs featuring independent artists. Find unique art to match your style
+            <p class="px-2 lg:px-0 pb-6 lg:pb-10 max-w-md mx-auto lg:mx-0">Shop custom designs featuring independent
+                artists. Find unique art to match your style
                 and support
                 talent.</p>
-            <div class="text-center w-96">
+            <div class="text-center w-96 mx-auto lg:mx-0">
                 <a href="{{ route('shop.all') }}"
                     class="w-full relative p-0.5 inline-flex items-center justify-center font-bold overflow-hidden group rounded-md">
                     <span
@@ -19,7 +20,7 @@
             </div>
         </div>
         <div class="">
-            <img class="w-full shadow-lg shadow-purple-500 rounded-3xl" src="image/surface-pro.png" />
+            <img class="max-w-2xl shadow-lg shadow-purple-500 rounded-3xl" src="image/surface-pro.png" />
         </div>
     </div>
     <x-jet-gradient-card>
@@ -142,7 +143,7 @@
     </x-jet-gradient-card>
     <div class="min-h-screen px-2 bg-gradient-to-b from-neutral-900 via-purple-900/40 to-indigo-900/70 md:px-28 pt-28">
         <x-jet-title>Featured Products</x-jet-title>
-        <div class="grid grid-cols-2 gap-2 mx-auto mt-6 md:gap-6 sm:grid-cols-3 lg:grid-cols-4">
+        <div class="grid grid-cols-2 gap-2 mx-auto mt-6 md:gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             @foreach ($products as $product)
                 <a href="{{ route('product.show', $product->slug) }}">
                     <div
@@ -167,12 +168,11 @@
     </div>
     <div class="min-h-screen px-2 bg-gradient-to-b from-indigo-900/70 via-violet-900/40 to-black/50 md:px-28 pt-28">
         <x-jet-title>Explore Designers Collection</x-jet-title>
-        <div class="grid grid-cols-1 gap-2 mt-6 lg:grid-cols-2 md:gap-12">
+        <div class="relative grid grid-cols-1 gap-2 mt-6 lg:grid-cols-2 md:gap-12">
             @foreach ($collections as $item)
-                <div class="relative">
-                    <img src="{{ asset('storage/collection-image/' . $item->collection_image) }}"
-                        class="w-full rounded-lg shadow-lg lg:h-96" />
-                    <div class="absolute p-1 rounded-lg bottom-2 md:bottom-3 md:left-12 bg-white/20">
+                <div style="background-image: url('{{ asset('storage/collection-image/' . $item->collection_image) }}')"
+                    class="relative block overflow-hidden bg-center bg-no-repeat bg-cover md:rounded-xl ">
+                    <div class="absolute p-1 lg:m-4 xl:m-10 rounded-lg top-0 bg-white/20">
                         <div class="flex gap-2 md:gap-8">
                             @foreach ($item->product->slice(0, 2) as $product)
                                 <a href="{{ route('product.show', $product->slug) }}" class="">
@@ -181,16 +181,17 @@
                                 </a>
                             @endforeach
                         </div>
-                        <div class="hidden p-4 mt-4 transition bg-black rounded-lg shadow-lg hover:shadow-fuchsia-500/4 sm:block">
+                        <div
+                            class="hidden p-4 mt-4 transition bg-black rounded-lg shadow-lg hover:shadow-fuchsia-500/4 sm:block">
                             <div class="flex justify-between">
                                 {{ $item->title }}
                                 <div class="flex items-center gap-2">
                                     See more
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-                                </svg>
+                                        stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                                    </svg>
                                 </div>
                             </div>
                         </div>
@@ -198,5 +199,6 @@
                 </div>
             @endforeach
         </div>
+      
     </div>
 </x-app-layout>

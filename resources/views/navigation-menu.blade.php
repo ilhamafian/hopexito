@@ -6,11 +6,11 @@
              <div class="flex items-center shrink-0">
                  <x-jet-application-logo class="block w-auto" />
              </div>
-             <div class="items-center hidden w-1/2 lg:flex">
+             <div class="items-center hidden w-1/2 md:flex">
                  <x-jet-searchbar></x-jet-searchbar>
              </div>
              <!-- Settings Dropdown -->
-             <div class="flex-wrap items-center justify-center hidden text-base lg:flex">
+             <div class="flex-wrap items-center justify-center hidden text-base md:flex">
                  @if (Route::has('login'))
                      @auth
                          @if (Auth::user()->role_id == 2 || Auth::user()->role_id == 3)
@@ -113,7 +113,7 @@
                  @endif
              </div>
              <!-- Hamburger -->
-             <div class="flex items-center -mr-2 sm:hidden">
+             <div class="flex items-center -mr-2 md:hidden">
                  @livewire('cart.cart-counter')
                  <button @click="open = ! open"
                      class="inline-flex items-center justify-center p-2 text-gray-400 transition rounded-md hover:text-white hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">
@@ -129,7 +129,7 @@
          </div>
 
          <!-- Responsive Navigation Menu -->
-         <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
+         <div :class="{ 'block': open, 'hidden': !open }" class="hidden md:hidden">
              <!-- Responsive Settings Options -->
              <div class="pt-4 pb-1 border-t-4 border-fuchsia-500">
                  @if (Route::has('login'))

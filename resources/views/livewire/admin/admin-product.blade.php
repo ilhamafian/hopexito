@@ -86,6 +86,9 @@
                     </span>
                     <div class="block p-2 mt-4 text-5xl">
                         {{ $totalTemplates }}
+                        <x-jet-button-custom wire:click="deleteTemplate">
+                            Delete All Product Templates
+                        </x-jet-button-custom>
                     </div>
                 </x-jet-admin-card>
             </div>
