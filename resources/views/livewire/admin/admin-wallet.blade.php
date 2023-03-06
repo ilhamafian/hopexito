@@ -129,7 +129,7 @@
                                     </button>
                                 </div>
                                 <div
-                                    class="p-1 shadow-xl rounded-2xl bg-gradient-to-r from-lime-400 via-indigo-400 to-orange-400">
+                                    class="p-1 shadow-xl rounded-2xl bg-gradient-to-br from-indigo-500 via-sky-500 to-pink-400">
                                     <div class="flex justify-between px-4 py-1 font-bold tracking-wider text-black">
                                         <p>{{ $wallet->name }}</p>
                                         <p>{{ $wallet->id }}</p>
@@ -137,13 +137,13 @@
                                     <div class="grid grid-cols-2 p-4 text-center bg-black rounded-xl">
                                         <div class="">
                                             <p class="text-xs">Lifetime Commission</p>
-                                            <p class="text-lg text-lime-400">
+                                            <p class="text-lg text-indigo-400">
                                                 {{ number_format($wallet->commission, 2) }}
                                             </p>
                                         </div>
                                         <div class="border-l-2 border-indigo-500">
                                             <p class="text-xs">Available Balance</p>
-                                            <p class="text-lg text-orange-400">{{ number_format($wallet->balance, 2) }}
+                                            <p class="text-lg text-pink-400">{{ number_format($wallet->balance, 2) }}
                                             </p>
                                         </div>
                                     </div>

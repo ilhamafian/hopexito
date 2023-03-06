@@ -76,8 +76,8 @@
                     <div class="w-full p-3 rounded-lg bg-black/50">
                         <div class="flex items-center text-sm text-center text-white">
                             <p class="basis-[5%]">{{ $cart->product_id }}</p>
-                            <p class="basis-[15%]">{{ $cart->email }}</p>
-                            <p class="basis-[18%]">{{ $cart->title }}</p>
+                            <p class="basis-[15%] truncate">{{ $cart->email }}</p>
+                            <p class="basis-[18%] truncate">{{ $cart->title }}</p>
                             <p class="basis-[6%]">{{ $cart->quantity }}</p>
                             <p class="basis-[7%]">{{ number_format($cart->price, 2) }}</p>
                             <p class="basis-[9%]">{{ number_format($cart->subtotal, 2) }}</p>
