@@ -26,7 +26,7 @@ class AdminProduct extends Component
     public function render()
     {
         $search = '%' . $this->search . '%';
-        $products = Product::where('title','like', $search)->get();
+        $products = Product::where('title', 'like', $search)->select('id', 'title','slug')->get();
         $totalProducts = Product::count();
         $totalSold = Product::sum('sold');
         $averagePrice = Product::average('price');

@@ -137,12 +137,14 @@
     </x-slot>
 
     <x-slot name="actions">
-        <x-jet-action-message class="mr-3" on="saved">
-            {{ __('Saved.') }}
-        </x-jet-action-message>
-
-        <x-jet-button wire:loading.attr="disabled" wire:target="photo">
-            {{ __('Save') }}
-        </x-jet-button>
+        <div class="flex items-center">
+            <x-jet-action-message class="mr-3" on="saved">
+                {{ __('Saved.') }}
+            </x-jet-action-message>
+    
+            <x-jet-button wire:loading.attr="disabled" wire:target="photo">
+                {{ __('Save') }}
+            </x-jet-button>
+        </div>
     </x-slot>
 </x-jet-form-section>

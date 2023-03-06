@@ -97,9 +97,9 @@
                     <x-jet-header>List of Products</x-jet-header>
                     <x-jet-input class="" type="text" wire:model.lazy="search"
                         placeholder="Search by product name" />
-                    <div class="grid max-h-screen grid-cols-6 gap-2 mt-5 overflow-scroll">
+                    <div class="grid max-h-screen grid-cols-4 gap-2 mt-5 overflow-scroll">
                         @foreach ($products as $product)
-                            <a href="{{ route('product.show', $product->slug) }}" class="relative h-12"
+                            <a href="{{ route('product.show', $product->slug) }}" class="relative h-14"
                                 x-data="{ open: false }" x-on:mouseenter="open = true" x-on:mouseleave="open = false">
                                 <p class="px-3 py-2 transition rounded-md bg-emerald-500 hover:bg-indigo-500">
                                     {{ $product->title }}</p>

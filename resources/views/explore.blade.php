@@ -145,12 +145,15 @@
         <x-jet-title>Featured Products</x-jet-title>
         <div class="grid grid-cols-2 gap-2 mx-auto mt-6 md:gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             @foreach ($products as $product)
-                <a href="{{ route('product.show', $product->slug) }}">
+                <a href="{{ route('product.show', $product->slug) }}" x-data="{open: false}">
                     <div
                         class="relative p-1 transition shadow-lg cursor-pointer group rounded-xl hover:shadow-fuchsia-500/50 bg-white/5 backdrop-filter backdrop-blur-3xl">
-                        <div class="w-full overflow-hidden rounded-lg min-h-75">
-                            <img src="{{ $product->product_image }}" alt="{{ $product->title }}"
-                                class="w-full h-full transition ease-in-out rounded-t-lg hover:scale-125">
+                        <div class="w-full overflow-hidden rounded-lg min-h-75" x-on:mouseenter="open = true" x-on:mouseleave="open = false">
+                            <img src="{{ $product->product_image }}" alt="{{ $product->title }}" x-show="open == false"
+                                class="w-full h-full transition ease-in-out rounded-t-lg">
+                            <img src="{{ $product->product_image_2 }}" alt="{{ $product->title }}"
+                                x-show="open == true"
+                                class="w-full h-full transition ease-in-out rounded-t-lg">
                         </div>
                         <div class="flex flex-col justify-between px-2 py-1 tracking-wider md:px-4 md:py-2">
                             <div class="text-sm text-white truncate md:font-medium">
@@ -199,6 +202,6 @@
                 </div>
             @endforeach
         </div>
-      
+
     </div>
 </x-app-layout>

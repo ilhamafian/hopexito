@@ -7,6 +7,7 @@ use App\Models\Cart;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\ProductCollection;
+use App\Models\ProductOrder;
 use App\Models\ProductTemplate;
 use App\Models\TemporaryFile;
 use App\Models\User;
@@ -17,7 +18,21 @@ use Livewire\Component;
 
 class AdminMarketing extends Component
 {
-    public $artist_id, $name, $newName;
+    public $order_id, $artist_id, $name, $newName;
+
+    public function deleteOrder(){
+        $order = Order::find($this->order_id);
+        $product_order = ProductOrder::where('billplz_id', $this->order_id)->get();
+        if($order){
+            $order->delete();
+            foreach($product_order as $item){
+                $item->delete();
+            }
+        }
+
+        session()->flash('message', 'Order Deleted');
+        return redirect()->route('admin.marketing');
+    }
 
     public function fixName(){
         Product::where('shopname', $this->name)->update(['shopname' => $this->newName]);

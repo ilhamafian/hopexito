@@ -43,8 +43,8 @@ class CreateNewUser implements CreatesNewUsers
                 'id' => uniqid(8),
                 'user_id' => $artist->id,
                 'name' => $artist->name,
-                'commission' => 20,
-                'balance' => 20,
+                'commission' => 0,
+                'balance' => 0,
                 'status' => 1
             ]);
 

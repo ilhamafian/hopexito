@@ -62,6 +62,17 @@
                     </div>
                 </div>
             </x-jet-gradient-card>
+            <x-jet-gradient-card>
+                <div class="flex flex-col p-6 bg-black rounded-xl">
+                    <x-jet-header>Order Master</x-jet-header>
+                    <div class="gap-2 p-2 overflow-y-scroll rounded-lg ring-2 ring-violet-500 max-h-96">
+                        <x-jet-input type="text" name="order_id" class="block w-full mb-2" wire:model="order_id"/>
+                        <x-jet-button-utility wire:click="deleteOrder()">
+                            Delete Order
+                        </x-jet-button-utility>
+                    </div>
+                </div>
+            </x-jet-gradient-card>
         </div>
     </x-jet-admin-layout>
 </div>
