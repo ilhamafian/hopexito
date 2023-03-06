@@ -37,7 +37,7 @@
                             <div class="flex items-center text-center">
                                 <p class="basis-[20%] text-left">{{ $artist->name }}</p>
                                 @if ($artist->email_verified_at)
-                                    <p class="basis-[20%] text-left text-lime-500">{{ $artist->email }} </p>
+                                    <p class="basis-[20%] text-left text-lime-500 truncate">{{ $artist->email }} </p>
                                 @else
                                     <p class="basis-[20%] text-left text-rose-500">{{ $artist->email }} </p>
                                 @endif
