@@ -72,7 +72,15 @@ class ExploreController extends Controller
 
     public function collection()
     {
-        $productsCollection = ProductCollection::with('product:slug,collection_id,product_image,product_image_2,title,price,shopname')->get();
+        $productsCollection = ProductCollection::with('product:slug,collection_id,product_image,product_image_2,title,price,shopname')
+        ->whereHas('product', function ($query) {
+            $query->select('collection_id')
+                ->groupBy('collection_id')
+                ->havingRaw('COUNT(*) > 1');
+        })
+        ->inRandomOrder()
+        ->take(2)
+        ->get();
         return view('shop/collection', compact('productsCollection'));
     }
 
