@@ -79,7 +79,7 @@ class ExploreController extends Controller
                 ->havingRaw('COUNT(*) > 1');
         })
         ->inRandomOrder()
-        ->get();
+        ->paginate(5);
         return view('shop/collection', compact('productsCollection'));
     }
 

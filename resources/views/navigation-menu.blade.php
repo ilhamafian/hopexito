@@ -91,6 +91,10 @@
                                  </x-slot>
                              </x-jet-dropdown>
                              @livewire('cart.cart-counter')
+                             @else
+                             <x-jet-button-custom onclick="window.location.href='{{ route('admin.dashboard') }}'">
+                                Siapa tekan dia anjing
+                             </x-jet-button-custom>
                          @endif
                      @else
                          <x-jet-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')">
