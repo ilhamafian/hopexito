@@ -24,11 +24,8 @@ Route::redirect('/', 'explore');
 Route::get('auth/google', [GoogleAuthController::class, 'redirect'])->name('google-auth');
 Route::get('auth/google/call-back', [GoogleAuthController::class, 'callbackGoogle']);
 
-// protected route
-Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
-    Route::get('dashboard', [Controller::class, 'redirectUser'])->name('dashboard');
-    Route::get('product/template/{product}', [ProductsController::class, 'template'])->name('product.template');
-    // admin controller
+// admin controller
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'admin'])->group(function () {
     Route::get('admin/dashboard', AdminDashboard::class)->name('admin.dashboard');
     Route::get('admin/analytics', AdminAnalytics::class)->name('admin.analytics');
     Route::get('admin/orders', AdminOrder::class)->name('admin.orders');
@@ -36,6 +33,12 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('admin/wallets', AdminWallet::class)->name('admin.wallets');
     Route::get('admin/products', AdminProduct::class)->name('admin.products');
     Route::get('admin/marketing', AdminMarketing::class)->name('admin.marketing');
+});
+
+// protected route
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
+    Route::get('dashboard', [Controller::class, 'redirectUser'])->name('dashboard');
+    Route::get('product/template/{product}', [ProductsController::class, 'template'])->name('product.template');
     // upload controller 
     Route::post('upload', [UploadController::class, 'store'])->name('upload');
     Route::post('upload/cover_image', [UploadController::class, 'upload_cover'])->name('upload.cover');
