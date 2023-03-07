@@ -41,7 +41,14 @@ class ExploreController extends Controller
             ->take(8)
             ->get();
 
-        $collections = ProductCollection::inrandomOrder()->take(2)->get();
+            $collections = ProductCollection::inRandomOrder()
+            ->whereHas('product', function ($query) {
+                $query->select('collection_id')
+                    ->groupBy('collection_id')
+                    ->havingRaw('COUNT(*) > 1');
+            })
+            ->take(2)
+            ->get();
         return view('explore', compact('users', 'products', 'collections'));
     }
     // return search results and track search history
