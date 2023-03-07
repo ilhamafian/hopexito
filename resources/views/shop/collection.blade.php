@@ -64,5 +64,8 @@
                 @endforeach
             </div>
         </div>
+        <div class="mx-auto mb-20 max-w-7xl">
+            {{ $productsCollection->links('/vendor/pagination/tailwind') }}
+        </div>
     </div>
 </x-app-layout>
