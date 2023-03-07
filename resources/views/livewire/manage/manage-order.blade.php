@@ -1,5 +1,5 @@
 @inject('carbon', 'Carbon\Carbon')
-@section('title', 'Manage Orders | HopeXito')
+@section('title', 'Order History | HopeXito')
 <div class="max-w-3xl min-h-screen mx-auto mt-8 mb-32 text-white">
     <x-jet-session-message/>
     <h1 class="px-2 text-2xl font-bold text-transparent md:px-0 lg:text-3xl bg-clip-text bg-gradient-to-r from-red-400 to-indigo-800">

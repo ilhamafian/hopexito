@@ -100,7 +100,7 @@
                     @else
                         <a class="sm:p-1 p-0.5">
                             <svg xmlns="http://www.w3.org/2000/svg"
-                                class="p-0.5 w-6 h-6 bg-gray-700 sm:w-8 sm:h-8 rounded-full">
+                                class=" w-6 h-6 bg-gray-700 sm:w-8 sm:h-8 rounded-full">
                                 <path
                                     d="M26 4.9c0-.1 0-.1 0 0C23.3 2.4 19.8 1 16 1c-1.7 0-3.3.3-4.9.8-.2 0-.4.1-.6.2C5 4.2 1 9.7 1 16c0 4.1 1.6 7.7 4.2 10.4l.1.1C8 29.3 11.8 31 16 31c8.3 0 15-6.7 15-15 0-4.4-1.9-8.4-5-11.1zM16 4c2.7 0 5.1.9 7.1 2.4-.6 1-2.2 2.8-5.4 4-1-2.1-2.3-4.2-3.8-6.2.7-.1 1.4-.2 2.1-.2zm-5.1 1.2c1.6 2 2.8 4.1 3.9 6.2-2.6.6-5.8.8-10 .6 1.1-3.1 3.3-5.5 6.1-6.8zM4 16c0-.4 0-.8.1-1.2 1.4.2 2.7.2 3.9.2 3.2 0 5.8-.3 8-.9.2.4.3.8.5 1.2-5.3 1.8-8.6 5.4-10.3 7.6C4.9 21 4 18.6 4 16zm12 12c-2.9 0-5.5-1-7.6-2.7 1.2-1.7 4.1-5.3 9.1-7 1.3 4.4 1.7 7.9 1.8 9.2-1 .3-2.1.5-3.3.5zm3-14.8c3.4-1.4 5.4-3.2 6.4-4.7 1.4 1.7 2.3 3.9 2.6 6.2-3.1-.6-5.9-.6-8.4-.1-.3-.4-.4-.9-.6-1.4zm3.3 13c-.2-1.8-.7-5-1.8-8.7 2.1-.3 4.6-.3 7.3.3-.5 3.5-2.6 6.6-5.5 8.4z" />
                             </svg>
@@ -138,7 +138,7 @@
                         <a class="sm:p-1 p-0.5">
                             <svg xmlns="http://www.w3.org/2000/svg" width="2500" height="2500"
                                 viewBox="0 0 999.9 999.9"
-                                class="p-0.5 w-6 h-6 bg-gray-700 sm:w-8 sm:h-8 rounded-full">
+                                class="w-6 h-6 bg-gray-700 sm:w-8 sm:h-8 rounded-full">
                                 <path
                                     d="M0 500c2.6-141.9 52.7-260.4 150.4-355.4S364.6 1.3 500 0c145.8 2.6 265.3 52.4 358.4 149.4 93.1 97 140.3 213.9 141.6 350.6-2.6 140.6-52.7 258.8-150.4 354.5-97.7 95.6-214.2 144.1-349.6 145.4-46.9 0-93.7-7.2-140.6-21.5 9.1-14.3 18.2-30.6 27.3-48.8 10.4-22.1 23.4-63.8 39.1-125 3.9-16.9 9.8-39.7 17.6-68.4 9.1 15.6 24.7 29.9 46.9 43 58.6 27.3 120.4 24.7 185.5-7.8 67.7-39.1 114.6-99.6 140.6-181.6 23.4-85.9 20.5-165.7-8.8-239.2C778.3 277 725.9 224 650.4 191.4c-95-27.3-187.5-24.4-277.3 8.8s-152.3 90.2-187.5 170.9C176.5 401 171 430.7 169 460c-2 29.3-1 57.9 2.9 85.9s13.7 53.1 29.3 75.2 36.5 39.1 62.5 50.8c6.5 2.6 11.7 2.6 15.6 0 5.2-2.6 10.4-13 15.6-31.2 5.2-18.2 7.2-30.6 5.9-37.1-1.3-2.6-3.9-7.2-7.8-13.7-27.3-44.3-36.5-90.8-27.3-139.6 9.1-48.8 29.3-90.2 60.5-124 48.2-43 104.5-66.4 168.9-70.3 64.4-3.9 119.5 13.7 165 52.7 24.7 28.6 40.7 63.1 47.8 103.5s7.2 79.1 0 116.2c-7.2 37.1-19.9 71.9-38.1 104.5-32.6 50.8-71 76.8-115.2 78.1-26-1.3-47.2-11.4-63.5-30.3s-21.2-40.7-14.6-65.4c2.6-14.3 10.4-42.3 23.4-84 13-41.7 20.2-72.9 21.5-93.7-3.9-49.5-26.7-74.9-68.4-76.2-32.6 3.9-56.6 18.6-72.3 43.9s-24.1 54.4-25.4 86.9c3.9 37.8 9.8 63.8 17.6 78.1-14.3 58.6-25.4 105.5-33.2 140.6-2.6 9.1-9.8 37.1-21.5 84s-18.2 82.7-19.5 107.4V957C206.3 914 133.3 851.9 80 770.5 26.7 689.1 0 598.9 0 500z" />
                             </svg>
@@ -259,26 +259,33 @@
                         <x-jet-admin-card>
                             <div class="grid grid-cols-2 gap-2 mx-auto mt-6 sm:grid-cols-3 lg:grid-cols-4">
                                 @foreach ($item->product as $product)
-                                    <a href="{{ route('product.show', $product->slug) }}">
-                                        <div
-                                            class="relative p-1 transition shadow-lg cursor-pointer group rounded-xl hover:shadow-fuchsia-500/50 bg-white/5 backdrop-filter backdrop-blur-3xl">
-                                            <div class="w-full overflow-hidden rounded-lg min-h-75">
+                                <a href="{{ route('product.show', $product->slug) }}" x-data="{ open: false }">
+                                    <div
+                                        class="relative p-1 transition shadow-lg cursor-pointer group rounded-xl hover:shadow-fuchsia-500/50 bg-white/5 backdrop-filter backdrop-blur-3xl">
+                                        <div class="w-full overflow-hidden rounded-lg min-h-75" x-on:mouseenter="open = true"
+                                            x-on:mouseleave="open = false">
+                                            @if ($product->product_image_2)
                                                 <img src="{{ $product->product_image }}" alt="{{ $product->title }}"
-                                                    class="w-full h-full transition ease-in-out rounded-t-lg hover:scale-125">
-                                            </div>
-                                            <div
-                                                class="flex flex-col justify-between px-2 py-1 tracking-wider md:px-4 md:py-2">
-                                                <div class="text-sm text-white truncate md:font-medium">
-                                                    {{ $product->title }}
-                                                </div>
-                                                <h2 class=" hover:text-fuchsia-500">By {{ $product->shopname }}
-                                                </h2>
-                                                <h2 class="m-1 text-lg text-center md:m-2 text-fuchsia-500">
-                                                    RM{{ number_format($product->price, 2) }}</h2>
-                                            </div>
+                                                    x-show="open == false" class="w-full h-full transition ease-in-out rounded-t-lg">
+                        
+                                                <img src="{{ $product->product_image_2 }}" alt="{{ $product->title }}"
+                                                    x-show="open == true" class="w-full h-full transition ease-in-out rounded-t-lg">
+                                            @else
+                                                <img src="{{ $product->product_image }}" alt="{{ $product->title }}"
+                                                    class="w-full h-full transition ease-in-out rounded-t-lg">
+                                            @endif
                                         </div>
-
-                                    </a>
+                                        <div class="flex flex-col justify-between px-2 py-1 tracking-wider md:px-4 md:py-2">
+                                            <div class="text-sm text-white truncate md:font-medium">
+                                                {{ $product->title }}
+                                            </div>
+                                            <h2 class="hover:text-fuchsia-500">By {{ $product->shopname }}
+                                            </h2>
+                                            <h2 class="m-1 text-lg text-center md:m-2 text-fuchsia-500">
+                                                RM{{ number_format($product->price, 2) }}</h2>
+                                        </div>
+                                    </div>
+                                </a>
                                 @endforeach
                             </div>
                         </x-jet-admin-card>

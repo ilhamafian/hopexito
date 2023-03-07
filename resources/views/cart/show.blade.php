@@ -1,3 +1,4 @@
+@section('title', 'Checkout | HopeXito')
 <x-app-layout>
     <x-jet-session-message />
     <div class="relative w-full mx-auto text-white bg-zinc-900">
