@@ -25,8 +25,8 @@
     </div>
     <x-jet-gradient-card>
         <div class="relative h-[700px] flex items-center bg-black rounded-xl">
-            <img src="image/doodle.png" class="absolute hidden w-60 h-60 top-8 left-8 lg:block" />
-            <img src="image/doodle-2.png" class="absolute hidden h-48 W-48 bottom-4 left-96 lg:block" />
+            {{-- <img src="image/doodle.png" class="absolute hidden w-60 h-60 top-8 left-8 lg:block" />
+            <img src="image/doodle-2.png" class="absolute hidden h-48 W-48 bottom-4 left-96 lg:block" /> --}}
             <div class="mx-auto max-w-[1240px] px-4 sm:px-6 sm:py-24 lg:mr-0 lg:pl-8 lg:pr-0">
                 <div class="grid grid-cols-1 gap-y-8 lg:grid-cols-3 lg:items-center lg:gap-x-16">
                     <div class="max-w-xl text-center sm:text-left">
@@ -175,39 +175,48 @@
             @endforeach
         </div>
     </div>
-    <div class="min-h-screen px-2 bg-gradient-to-b from-indigo-900/70 via-violet-900/40 to-black/50 md:px-28 pt-28">
+    <div class=" min-h-screen px-2 bg-gradient-to-b from-indigo-900/70 via-violet-900/40 to-black/50 xl:px-28 pt-28">
         <x-jet-title>Explore Designers Collection</x-jet-title>
-        <div class="relative grid grid-cols-1 gap-2 mt-6 lg:grid-cols-2 md:gap-12">
+        <div class="grid grid-cols-1 gap-2 mt-6 lg:grid-cols-2 xl:gap-12">
             @foreach ($collections as $item)
-                <div style="background-image: url('{{ asset('storage/collection-image/' . $item->collection_image) }}')"
-                    class="relative block overflow-hidden bg-center bg-no-repeat bg-cover md:rounded-xl ">
-                    <div class="absolute p-1 lg:m-4 xl:m-10 rounded-lg top-0 bg-white/20">
+                <div class="relative rounded-xl ">
+                    <img src="{{ asset('storage/collection-image/' . $item->collection_image) }}"
+                        class="z-0 absolute lg:inset-y-2 xl:inset-y-6 rounded-xl xl:h-96 lg:h-80" />
+                    <div class="z-50 relative p-1 lg:m-4 xl:m-10 rounded-lg top-0 bg-white/20">
                         <div class="flex gap-2 md:gap-8">
                             @foreach ($item->product->slice(0, 2) as $product)
-                                <a href="{{ route('product.show', $product->slug) }}" class="">
+                                <a href="{{ route('product.show', $product->slug) }}" class="group"
+                                    x-data="{ open: false }" x-on:mouseenter="open = true"
+                                    x-on:mouseleave="open = false">
                                     <img src="{{ $product->product_image }}" alt="{{ $product->title }}"
-                                        class="w-64 rounded-lg ">
+                                        x-show="open == false" class="w-64 lg:h-56 xl:h-64 rounded-lg ">
+                                    <img src="{{ $product->product_image_2 }}" alt="{{ $product->title }}"
+                                        x-show="open == true" class="w-64 lg:h-56 xl:h-64 rounded-lg ">
                                 </a>
                             @endforeach
                         </div>
                         <div
-                            class="hidden p-4 mt-4 transition bg-black rounded-lg shadow-lg hover:shadow-fuchsia-500/4 sm:block">
-                            <div class="flex justify-between">
+                            class="p-4 mt-4 transition bg-black rounded-lg shadow-lg hover:shadow-fuchsia-500/4 group">
+                            <a href="{{ route('people', $item->name) }}"
+                                class="flex justify-between px-4 group-hover:text-indigo-400">
                                 {{ $item->title }}
-                                <div class="flex items-center gap-2">
-                                    See more
+                                <div class="flex items-center gap-3">
+                                    View Shop
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        stroke-width="1.5" stroke="currentColor"
+                                        class="w-6 h-6 group-hover:translate-x-3 transition">
                                         <path stroke-linecap="round" stroke-linejoin="round"
                                             d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
                                     </svg>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
                 </div>
             @endforeach
         </div>
-
+        <x-jet-button-custom class="w-full mt-4 h-14" onclick="window.location.href='{{ route('shop.collection') }}'">
+            Discover More Collections
+        </x-jet-button-custom>
     </div>
 </x-app-layout>

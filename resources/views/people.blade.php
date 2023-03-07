@@ -239,7 +239,7 @@
             <div class="relative flex flex-col gap-4 my-4">
                 @foreach ($productsCollection as $item)
                     <div style="background-image: url('{{ asset('storage/collection-image/' . $item->collection_image) }}')"
-                        class="relative block overflow-hidden bg-center bg-no-repeat bg-cover md:rounded-xl ">
+                        class="relative block overflow-hidden bg-center bg-no-repeat bg-cover md:rounded-xl">
                         <span
                             class="absolute z-10 items-center hidden px-3 py-1 font-semibold text-white bg-black rounded-full md:inline-flex right-4 top-4">
                             {{ $item->product->count() }}
@@ -255,7 +255,7 @@
                                 {{ $item->title }}</h3>
                         </div>
                     </div>
-                    <div class="max-w-5xl mx-auto md:-translate-y-60 -translate-y-72">
+                    <div class="max-w-5xl mx-auto md:-translate-y-60 -translate-y-72 -mb-28">
                         <x-jet-admin-card>
                             <div class="grid grid-cols-2 gap-2 mx-auto mt-6 sm:grid-cols-3 lg:grid-cols-4">
                                 @foreach ($item->product as $product)

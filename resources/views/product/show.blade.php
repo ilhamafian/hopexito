@@ -4,9 +4,9 @@
         <x-jet-session-message />
         <div class="py-4 mx-auto">
             <div class="flex flex-wrap mx-auto lg:w-4/5">
-                    <div class="relative mx-auto max-w-screen-xl px-4">
-                        <div class="grid gap-8 lg:grid-cols-4 lg:items-start">
-                            <div class="lg:col-span-2">
+                    <div class="relative mx-auto max-w-screen-xl md:px-4">
+                        <div class="grid gap-8 md:grid-cols-4 lg:items-start">
+                            <div class="md:col-span-2 col-span-3">
                                 <div class="relative" x-show="preview == 1" x-transition:enter.duration.500ms>
                                     <div class="w-full overflow-hidden rounded-lg" id="product-image">
                                         <img class="w-full h-full"
@@ -19,13 +19,13 @@
                                             src="{{ $product->product_image_2 }}">
                                     </div>
                                 </div>
-                                <div class="mt-3 flex gap-3 cursor-pointer">
+                                <div class="mt-3 flex gap-3 cursor-pointer px-2">
                                     <img alt="Tee" src="{{ $product->product_image }}" x-on:click="preview = 1"
-                                        class="h-36 w-36 rounded-md object-cover"
+                                        class="lg:h-36 h-28 w-28 lg:w-36 rounded-md object-cover"
                                         x-bind:class="preview == 1 ? 'ring ring-indigo-500' : ''" />
                                     @if ($product->product_image_2)
                                         <img alt="Tee" src="{{ $product->product_image_2 }}"
-                                            x-on:click="preview = 2" class="h-36 w-36 rounded-md object-cover"
+                                            x-on:click="preview = 2" class="lg:h-36 w-28 h-28 lg:w-36 rounded-md object-cover"
                                             x-bind:class="preview == 2 ? 'ring ring-indigo-500' : ''" />
                                     @endif
                                 </div>
@@ -146,7 +146,7 @@
                                                 </svg>
                                             </div>
                                             @if (Auth::check())
-                                                <x-jet-button class="w-full py-4 mt-4 md:mt-0 md:w-auto">
+                                                <x-jet-button class="w-full py-4 mt-4 md:mt-0">
                                                     <span class="mx-auto">Add to Cart</span>
                                                 </x-jet-button>
                                             @else

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ExploreController extends Controller
 {
+ 
     // views/sellyourart
     public function sellyourart()
     {
@@ -61,6 +62,13 @@ class ExploreController extends Controller
 
         return view('shop/search', compact('products', 'search', 'search_count'));
     }
+
+    public function collection()
+    {
+        $productsCollection = ProductCollection::with('product:slug,collection_id,product_image,product_image_2,title,price,shopname')->get();
+        return view('shop/collection', compact('productsCollection'));
+    }
+
     public function shop()
     {
         $products = Product::inrandomOrder()->paginate(64);

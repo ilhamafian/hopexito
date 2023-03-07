@@ -61,6 +61,7 @@ Route::get('sellyourart', [ExploreController::class, 'sellyourart'])->name('sell
 Route::get('explore', [ExploreController::class, 'explore'])->name('explore');
 Route::get('shop', [ExploreController::class, 'search'])->name('search');
 Route::get('shop/all', [ExploreController::class, 'shop'])->name('shop.all');
+Route::get('collection', [ExploreController::class, 'collection'])->name('shop.collection');
 Route::get('{shopname}', [ExploreController::class, 'people'])->name('people');
 Route::post('sellyourart/{id}', [ExploreController::class, 'upgrade'])->name('upgrade');
 
