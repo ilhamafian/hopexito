@@ -79,7 +79,6 @@ class ExploreController extends Controller
                 ->havingRaw('COUNT(*) > 1');
         })
         ->inRandomOrder()
-        ->take(2)
         ->get();
         return view('shop/collection', compact('productsCollection'));
     }

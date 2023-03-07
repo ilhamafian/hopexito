@@ -181,17 +181,23 @@
             @foreach ($collections as $item)
                 <div class="relative rounded-xl ">
                     <img src="{{ asset('storage/collection-image/' . $item->collection_image) }}"
-                        class="z-0 absolute lg:inset-y-2 xl:inset-y-6 rounded-xl xl:h-96 lg:h-80" />
+                        class="z-0 absolute lg:inset-y-2 xl:inset-y-6 rounded-xl xl:h-96 lg:h-80 w-full" />
                     <div class="z-50 relative p-1 lg:m-4 xl:m-10 rounded-lg top-0 bg-white/20">
                         <div class="flex gap-2 md:gap-8">
                             @foreach ($item->product->slice(0, 2) as $product)
                                 <a href="{{ route('product.show', $product->slug) }}" class="group"
                                     x-data="{ open: false }" x-on:mouseenter="open = true"
                                     x-on:mouseleave="open = false">
-                                    <img src="{{ $product->product_image }}" alt="{{ $product->title }}"
-                                        x-show="open == false" class="w-64 lg:h-56 xl:h-64 rounded-lg ">
-                                    <img src="{{ $product->product_image_2 }}" alt="{{ $product->title }}"
-                                        x-show="open == true" class="w-64 lg:h-56 xl:h-64 rounded-lg ">
+                                    @if ($product->product_image_2)
+                                        <img src="{{ $product->product_image }}" alt="{{ $product->title }}"
+                                            x-show="open == false" class="w-64 lg:h-56 xl:h-64 rounded-lg ">
+                                        <img x-cloak src="{{ $product->product_image_2 }}"
+                                            alt="{{ $product->title }}" x-show="open == true"
+                                            class="w-64 lg:h-56 xl:h-64 rounded-lg ">
+                                    @else
+                                        <img src="{{ $product->product_image }}" alt="{{ $product->title }}"
+                                            class="w-64 lg:h-56 xl:h-64 rounded-lg ">
+                                    @endif
                                 </a>
                             @endforeach
                         </div>
@@ -215,7 +221,8 @@
                 </div>
             @endforeach
         </div>
-        <x-jet-button-custom class="w-full mt-4 h-14" onclick="window.location.href='{{ route('shop.collection') }}'">
+        <x-jet-button-custom class="w-full mt-4 h-14"
+            onclick="window.location.href='{{ route('shop.collection') }}'">
             Discover More Collections
         </x-jet-button-custom>
     </div>
