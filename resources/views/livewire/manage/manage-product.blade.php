@@ -48,6 +48,17 @@
                         <ul x-cloak x-show="dropdown == true && id == '{{ $product->id }}' "
                             x-on:click.away="dropdown = false"
                             class="absolute right-0 z-50 p-1 font-sans text-white rounded-lg shadow-lg w-36 top-9 bg-zinc-900">
+                            @if ($product->status == 3)
+                                <button wire:click="unpinProduct('{{ $product->id }}')"
+                                    class="w-full px-4 py-2 text-left rounded-md hover:bg-indigo-500">
+                                    Unpin
+                                </button>
+                            @else
+                                <button wire:click="pinProduct('{{ $product->id }}')"
+                                    class="w-full px-4 py-2 text-left rounded-md hover:bg-indigo-500">
+                                    Pin
+                                </button>
+                            @endif
                             <button wire:click="archiveProduct('{{ $product->id }}')"
                                 class="w-full px-4 py-2 text-left rounded-md hover:bg-indigo-500">
                                 Archive
@@ -127,8 +138,8 @@
                 @csrf
                 <x-jet-header>Create new collection</x-jet-header>
                 <x-jet-label for="collection-image" value="{{ __('Collection Image') }}" />
-                <input type="file" id="collection-image" name="collection_image" wire:model.defer="collection_image"
-                    class="w-full">
+                <input type="file" id="collection-image" name="collection_image"
+                    wire:model.defer="collection_image" class="w-full">
                 <x-jet-label for="title" value="{{ __('Title') }}" />
                 <x-jet-input id="title" class="block w-full mt-1" type="text" name="title" />
                 <x-jet-button class="float-right">Save</x-jet-button>

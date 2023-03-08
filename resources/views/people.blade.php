@@ -15,7 +15,6 @@
             <img class="absolute left-0 right-0 object-cover w-16 h-16 m-auto rounded-full -bottom-8"
                 src="{{ $user->profile_photo_url }}" alt="{{ $user->name }}" />
         </div>
-
         <div class="mt-10 space-y-3 text-center text-black">
             <p class="text-xl font-bold">{{ $user->name }}</p>
             <p class="flex items-center justify-center gap-2">Joined {{ $user->created_at->format('M Y') }}
@@ -29,8 +28,8 @@
             <div class="p-1 mx-auto rounded-full bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 w-fit">
                 <div class="flex justify-center gap-2 p-2 bg-black rounded-full ">
                     @if ($user->artist->facebook)
-                        <a href="{{ (strpos($user->artist->facebook, 'http') === false) ? 'http://' . $user->artist->facebook : $user->artist->facebook }}" target="_blank"
-                            class="sm:p-1 p-0.5 rounded-full focus:ring focus:ring-indigo-500">
+                        <a href="{{ strpos($user->artist->facebook, 'http') === false ? 'http://' . $user->artist->facebook : $user->artist->facebook }}"
+                            target="_blank" class="sm:p-1 p-0.5 rounded-full focus:ring focus:ring-indigo-500">
                             <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 100 100"
                                 class="w-6 h-6 transition bg-indigo-500 rounded-full sm:w-8 sm:h-8 hover:scale-110">
                                 <path
@@ -47,8 +46,8 @@
                         </a>
                     @endif
                     @if ($user->artist->twitter)
-                    <a href="{{ (strpos($user->artist->twitter, 'http') === false) ? 'http://' . $user->artist->twitter : $user->artist->twitter }}" target="_blank"
-                            class="sm:p-1 p-0.5 rounded-full focus:ring focus:ring-indigo-500">
+                        <a href="{{ strpos($user->artist->twitter, 'http') === false ? 'http://' . $user->artist->twitter : $user->artist->twitter }}"
+                            target="_blank" class="sm:p-1 p-0.5 rounded-full focus:ring focus:ring-indigo-500">
                             <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"
                                 class="w-6 h-6  sm:w-8 sm:h-8 transition bg-indigo-500 rounded-full hover:scale-110">
                                 <path
@@ -65,8 +64,8 @@
                         </a>
                     @endif
                     @if ($user->artist->instagram)
-                    <a href="{{ (strpos($user->artist->instagram, 'http') === false) ? 'http://' . $user->artist->instagram : $user->artist->instagram }}" target="_blank"
-                            class="sm:p-1 p-0.5 rounded-full focus:ring focus:ring-indigo-500">
+                        <a href="{{ strpos($user->artist->instagram, 'http') === false ? 'http://' . $user->artist->instagram : $user->artist->instagram }}"
+                            target="_blank" class="sm:p-1 p-0.5 rounded-full focus:ring focus:ring-indigo-500">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
                                 class="p-0.5 w-6 h-6 sm:w-8 sm:h-8 transition hover:scale-110 bg-indigo-500 rounded-full">
                                 <path
@@ -89,8 +88,8 @@
                         </a>
                     @endif
                     @if ($user->artist->dribble)
-                    <a href="{{ (strpos($user->artist->dribble, 'http') === false) ? 'http://' . $user->artist->dribble : $user->artist->dribble }}" target="_blank"
-                            class="sm:p-1 p-0.5 rounded-full focus:ring focus:ring-indigo-500">
+                        <a href="{{ strpos($user->artist->dribble, 'http') === false ? 'http://' . $user->artist->dribble : $user->artist->dribble }}"
+                            target="_blank" class="sm:p-1 p-0.5 rounded-full focus:ring focus:ring-indigo-500">
                             <svg xmlns="http://www.w3.org/2000/svg"
                                 class="w-6 h-6  sm:w-8 sm:h-8 transition bg-indigo-500 rounded-full hover:scale-110">
                                 <path
@@ -107,8 +106,8 @@
                         </a>
                     @endif
                     @if ($user->artist->behance)
-                    <a href="{{ (strpos($user->artist->behance, 'http') === false) ? 'http://' . $user->artist->behance : $user->artist->behance }}" target="_blank"
-                            class="sm:p-1 p-0.5 rounded-full focus:ring focus:ring-indigo-500">
+                        <a href="{{ strpos($user->artist->behance, 'http') === false ? 'http://' . $user->artist->behance : $user->artist->behance }}"
+                            target="_blank" class="sm:p-1 p-0.5 rounded-full focus:ring focus:ring-indigo-500">
                             <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"
                                 class="w-6 h-6  sm:w-8 sm:h-8 transition bg-indigo-500 rounded-full hover:scale-110">
                                 <path
@@ -125,8 +124,8 @@
                         </a>
                     @endif
                     @if ($user->artist->pinterest)
-                    <a href="{{ (strpos($user->artist->pinterest, 'http') === false) ? 'http://' . $user->artist->pinterest : $user->artist->pinterest }}" target="_blank"
-                            class="sm:p-1 p-0.5 rounded-full focus:ring focus:ring-indigo-500">
+                        <a href="{{ strpos($user->artist->pinterest, 'http') === false ? 'http://' . $user->artist->pinterest : $user->artist->pinterest }}"
+                            target="_blank" class="sm:p-1 p-0.5 rounded-full focus:ring focus:ring-indigo-500">
                             <svg xmlns="http://www.w3.org/2000/svg" width="2500" height="2500"
                                 viewBox="0 0 999.9 999.9"
                                 class="w-6 h-6  sm:w-8 sm:h-8 transition bg-indigo-500 rounded-full hover:scale-110">
@@ -137,16 +136,15 @@
                     @else
                         <a class="sm:p-1 p-0.5">
                             <svg xmlns="http://www.w3.org/2000/svg" width="2500" height="2500"
-                                viewBox="0 0 999.9 999.9"
-                                class="w-6 h-6 bg-gray-700 sm:w-8 sm:h-8 rounded-full">
+                                viewBox="0 0 999.9 999.9" class="w-6 h-6 bg-gray-700 sm:w-8 sm:h-8 rounded-full">
                                 <path
                                     d="M0 500c2.6-141.9 52.7-260.4 150.4-355.4S364.6 1.3 500 0c145.8 2.6 265.3 52.4 358.4 149.4 93.1 97 140.3 213.9 141.6 350.6-2.6 140.6-52.7 258.8-150.4 354.5-97.7 95.6-214.2 144.1-349.6 145.4-46.9 0-93.7-7.2-140.6-21.5 9.1-14.3 18.2-30.6 27.3-48.8 10.4-22.1 23.4-63.8 39.1-125 3.9-16.9 9.8-39.7 17.6-68.4 9.1 15.6 24.7 29.9 46.9 43 58.6 27.3 120.4 24.7 185.5-7.8 67.7-39.1 114.6-99.6 140.6-181.6 23.4-85.9 20.5-165.7-8.8-239.2C778.3 277 725.9 224 650.4 191.4c-95-27.3-187.5-24.4-277.3 8.8s-152.3 90.2-187.5 170.9C176.5 401 171 430.7 169 460c-2 29.3-1 57.9 2.9 85.9s13.7 53.1 29.3 75.2 36.5 39.1 62.5 50.8c6.5 2.6 11.7 2.6 15.6 0 5.2-2.6 10.4-13 15.6-31.2 5.2-18.2 7.2-30.6 5.9-37.1-1.3-2.6-3.9-7.2-7.8-13.7-27.3-44.3-36.5-90.8-27.3-139.6 9.1-48.8 29.3-90.2 60.5-124 48.2-43 104.5-66.4 168.9-70.3 64.4-3.9 119.5 13.7 165 52.7 24.7 28.6 40.7 63.1 47.8 103.5s7.2 79.1 0 116.2c-7.2 37.1-19.9 71.9-38.1 104.5-32.6 50.8-71 76.8-115.2 78.1-26-1.3-47.2-11.4-63.5-30.3s-21.2-40.7-14.6-65.4c2.6-14.3 10.4-42.3 23.4-84 13-41.7 20.2-72.9 21.5-93.7-3.9-49.5-26.7-74.9-68.4-76.2-32.6 3.9-56.6 18.6-72.3 43.9s-24.1 54.4-25.4 86.9c3.9 37.8 9.8 63.8 17.6 78.1-14.3 58.6-25.4 105.5-33.2 140.6-2.6 9.1-9.8 37.1-21.5 84s-18.2 82.7-19.5 107.4V957C206.3 914 133.3 851.9 80 770.5 26.7 689.1 0 598.9 0 500z" />
                             </svg>
                         </a>
                     @endif
                     @if ($user->artist->deviantart)
-                    <a href="{{ (strpos($user->artist->deviantart, 'http') === false) ? 'http://' . $user->artist->deviantart : $user->artist->devianart }}" target="_blank"
-                            class="sm:p-1 p-0.5 rounded-full focus:ring focus:ring-indigo-500">
+                        <a href="{{ strpos($user->artist->deviantart, 'http') === false ? 'http://' . $user->artist->deviantart : $user->artist->devianart }}"
+                            target="_blank" class="sm:p-1 p-0.5 rounded-full focus:ring focus:ring-indigo-500">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
                                 class="w-6 h-6  sm:w-8 sm:h-8 transition bg-indigo-500 rounded-full hover:scale-110">
                                 <path
@@ -163,8 +161,8 @@
                         </a>
                     @endif
                     @if ($user->artist->tiktok)
-                    <a href="{{ (strpos($user->artist->tiktok, 'http') === false) ? 'http://' . $user->artist->tiktok : $user->artist->tiktok }}" target="_blank"
-                            class="sm:p-1 p-0.5 rounded-full focus:ring focus:ring-indigo-500">
+                        <a href="{{ strpos($user->artist->tiktok, 'http') === false ? 'http://' . $user->artist->tiktok : $user->artist->tiktok }}"
+                            target="_blank" class="sm:p-1 p-0.5 rounded-full focus:ring focus:ring-indigo-500">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                                 class="w-6 h-6  sm:w-8 sm:h-8 transition bg-indigo-500 rounded-full hover:scale-110">
                                 <path
@@ -181,19 +179,25 @@
                         </a>
                     @endif
                     @if ($user->artist->website)
-                    <a href="{{ (strpos($user->artist->website, 'http') === false) ? 'http://' . $user->artist->website : $user->artist->website }}" target="_blank"
-                            class="sm:p-1 p-0.5 rounded-full focus:ring focus:ring-indigo-500">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 sm:w-8 sm:h-8 transition bg-indigo-500 rounded-full hover:scale-110">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
-                              </svg>
-                              
+                        <a href="{{ strpos($user->artist->website, 'http') === false ? 'http://' . $user->artist->website : $user->artist->website }}"
+                            target="_blank" class="sm:p-1 p-0.5 rounded-full focus:ring focus:ring-indigo-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor"
+                                class="w-6 h-6 sm:w-8 sm:h-8 transition bg-indigo-500 rounded-full hover:scale-110">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
+                            </svg>
+
                         </a>
                     @else
                         <a class="sm:p-1 p-0.5">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 bg-gray-700 rounded-full sm:w-8 sm:h-8">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
-                              </svg>
-                              
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor"
+                                class="w-6 h-6 bg-gray-700 rounded-full sm:w-8 sm:h-8">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
+                            </svg>
+
                         </a>
                     @endif
                 </div>
@@ -220,33 +224,43 @@
             x-transition:leave.duration.100ms>
             <div class="grid grid-cols-2 gap-2 mx-auto mt-6 md:gap-6 sm:grid-cols-3 lg:grid-cols-4">
                 @foreach ($products as $product)
-                <a href="{{ route('product.show', $product->slug) }}" x-data="{ open: false }">
-                    <div
-                        class="relative p-1 transition shadow-lg cursor-pointer group rounded-xl hover:shadow-fuchsia-500/50 bg-white/5 backdrop-filter backdrop-blur-3xl">
-                        <div class="w-full overflow-hidden rounded-lg min-h-75" x-on:mouseenter="open = true"
-                            x-on:mouseleave="open = false">
-                            @if ($product->product_image_2)
-                                <img src="{{ $product->product_image }}" alt="{{ $product->title }}" 
-                                    x-show="open == false" class="w-full h-full transition ease-in-out rounded-t-lg">
+                    <a href="{{ route('product.show', $product->slug) }}" x-data="{ open: false }">
+                        <div
+                            class="relative p-1 transition shadow-lg cursor-pointer group rounded-xl hover:shadow-fuchsia-500/50 bg-white/5 backdrop-filter backdrop-blur-3xl">
+                            <div class="w-full overflow-hidden rounded-lg min-h-75" x-on:mouseenter="open = true"
+                                x-on:mouseleave="open = false">
+                                @if ($product->status == 3)
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor"
+                                        class="absolute right-2 top-2 z-20 w-6 h-6 text-pink-500">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                                    </svg>
+                                @endif
+                                @if ($product->product_image_2)
+                                    <img src="{{ $product->product_image }}" alt="{{ $product->title }}"
+                                        x-show="open == false"
+                                        class="w-full h-full transition ease-in-out rounded-t-lg">
 
-                                <img x-cloak src="{{ $product->product_image_2 }}" alt="{{ $product->title }}"
-                                    x-show="open == true" class="w-full h-full transition ease-in-out rounded-t-lg">
-                            @else
-                                <img src="{{ $product->product_image }}" alt="{{ $product->title }}"
-                                    class="w-full h-full transition ease-in-out rounded-t-lg">
-                            @endif
-                        </div>
-                        <div class="flex flex-col justify-between px-2 py-1 tracking-wider md:px-4 md:py-2">
-                            <div class="text-sm text-white truncate md:font-medium">
-                                {{ $product->title }}
+                                    <img x-cloak src="{{ $product->product_image_2 }}" alt="{{ $product->title }}"
+                                        x-show="open == true"
+                                        class="w-full h-full transition ease-in-out rounded-t-lg">
+                                @else
+                                    <img src="{{ $product->product_image }}" alt="{{ $product->title }}"
+                                        class="w-full h-full transition ease-in-out rounded-t-lg">
+                                @endif
                             </div>
-                            <h2 class="hover:text-fuchsia-500">By {{ $product->shopname }}
-                            </h2>
-                            <h2 class="m-1 text-lg text-center md:m-2 text-fuchsia-500">
-                                RM{{ number_format($product->price, 2) }}</h2>
+                            <div class="flex flex-col justify-between px-2 py-1 tracking-wider md:px-4 md:py-2">
+                                <div class="text-sm text-white truncate md:font-medium">
+                                    {{ $product->title }}
+                                </div>
+                                <h2 class="hover:text-fuchsia-500">By {{ $product->shopname }}
+                                </h2>
+                                <h2 class="m-1 text-lg text-center md:m-2 text-fuchsia-500">
+                                    RM{{ number_format($product->price, 2) }}</h2>
+                            </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
                 @endforeach
             </div>
         </div>
@@ -275,33 +289,37 @@
                         <x-jet-admin-card>
                             <div class="grid grid-cols-2 gap-2 mx-auto mt-6 sm:grid-cols-3 lg:grid-cols-4">
                                 @foreach ($item->product as $product)
-                                <a href="{{ route('product.show', $product->slug) }}" x-data="{ open: false }">
-                                    <div
-                                        class="relative p-1 transition shadow-lg cursor-pointer group rounded-xl hover:shadow-fuchsia-500/50 bg-white/5 backdrop-filter backdrop-blur-3xl">
-                                        <div class="w-full overflow-hidden rounded-lg min-h-75" x-on:mouseenter="open = true"
-                                            x-on:mouseleave="open = false">
-                                            @if ($product->product_image_2)
-                                                <img src="{{ $product->product_image }}" alt="{{ $product->title }}"
-                                                    x-show="open == false" class="w-full h-full transition ease-in-out rounded-t-lg">
-                        
-                                                <img x-cloak src="{{ $product->product_image_2 }}" alt="{{ $product->title }}"
-                                                    x-show="open == true" class="w-full h-full transition ease-in-out rounded-t-lg">
-                                            @else
-                                                <img src="{{ $product->product_image }}" alt="{{ $product->title }}"
-                                                    class="w-full h-full transition ease-in-out rounded-t-lg">
-                                            @endif
-                                        </div>
-                                        <div class="flex flex-col justify-between px-2 py-1 tracking-wider md:px-4 md:py-2">
-                                            <div class="text-sm text-white truncate md:font-medium">
-                                                {{ $product->title }}
+                                    <a href="{{ route('product.show', $product->slug) }}" x-data="{ open: false }">
+                                        <div
+                                            class="relative p-1 transition shadow-lg cursor-pointer group rounded-xl hover:shadow-fuchsia-500/50 bg-white/5 backdrop-filter backdrop-blur-3xl">
+                                            <div class="w-full overflow-hidden rounded-lg min-h-75"
+                                                x-on:mouseenter="open = true" x-on:mouseleave="open = false">
+                                                @if ($product->product_image_2)
+                                                    <img src="{{ $product->product_image }}"
+                                                        alt="{{ $product->title }}" x-show="open == false"
+                                                        class="w-full h-full transition ease-in-out rounded-t-lg">
+
+                                                    <img x-cloak src="{{ $product->product_image_2 }}"
+                                                        alt="{{ $product->title }}" x-show="open == true"
+                                                        class="w-full h-full transition ease-in-out rounded-t-lg">
+                                                @else
+                                                    <img src="{{ $product->product_image }}"
+                                                        alt="{{ $product->title }}"
+                                                        class="w-full h-full transition ease-in-out rounded-t-lg">
+                                                @endif
                                             </div>
-                                            <h2 class="hover:text-fuchsia-500">By {{ $product->shopname }}
-                                            </h2>
-                                            <h2 class="m-1 text-lg text-center md:m-2 text-fuchsia-500">
-                                                RM{{ number_format($product->price, 2) }}</h2>
+                                            <div
+                                                class="flex flex-col justify-between px-2 py-1 tracking-wider md:px-4 md:py-2">
+                                                <div class="text-sm text-white truncate md:font-medium">
+                                                    {{ $product->title }}
+                                                </div>
+                                                <h2 class="hover:text-fuchsia-500">By {{ $product->shopname }}
+                                                </h2>
+                                                <h2 class="m-1 text-lg text-center md:m-2 text-fuchsia-500">
+                                                    RM{{ number_format($product->price, 2) }}</h2>
+                                            </div>
                                         </div>
-                                    </div>
-                                </a>
+                                    </a>
                                 @endforeach
                             </div>
                         </x-jet-admin-card>

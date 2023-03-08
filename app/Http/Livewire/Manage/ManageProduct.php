@@ -15,6 +15,7 @@ class ManageProduct extends Component
 
     public $title, $price, $tags, $commission, $search;
 
+
     // add product to collection
     public function addToCollection($product_id, $collection_id)
     {
@@ -65,6 +66,22 @@ class ManageProduct extends Component
         ]);
 
         session()->flash('message', 'Product Updated');
+        return redirect()->route('product.manage');
+    }
+    // pin product to top by id
+    public function pinProduct($id)
+    {
+        $product = Product::findOrFail($id);
+        $product->update(['status' => 3]);
+        session()->flash('message', 'Product Pinned');
+        return redirect()->route('product.manage');
+    }
+    // pin product to top by id
+    public function unpinProduct($id)
+    {
+        $product = Product::findOrFail($id);
+        $product->update(['status' => 1]);
+        session()->flash('message', 'Product Unpinned');
         return redirect()->route('product.manage');
     }
     // archive product by id
@@ -159,7 +176,7 @@ class ManageProduct extends Component
     public function render()
     {
         $search = '%' . $this->search . '%';
-        $products = Product::where('shopname', Auth::user()->name)->where('status', '<>', 2)->where('title', 'like', $search)->get();
+        $products = Product::where('shopname', Auth::user()->name)->where('status', '<>', 2)->where('title', 'like', $search)->orderBy('status', 'desc')->get();
         $productCollections = ProductCollection::where('name', Auth::user()->name)->get();
         $archives = Product::where('shopname', Auth::user()->name)->where('status', 2)->get();
         $noArchives = $archives->isEmpty();
