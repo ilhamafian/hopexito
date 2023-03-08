@@ -31,7 +31,7 @@ class SocialLinks extends Component
         ]);
         
         session()->flash('message', 'Links Updated');
-        return redirect()->route('profile.show');
+        return redirect()->route('people', Auth::user()->name);  
     }
 
     private function forceFill()
