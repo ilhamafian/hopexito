@@ -17,7 +17,7 @@
             @endif
             <input type="file" id="cover-image" name="cover_image" wire:model.defer="cover_image" class="w-full mt-2">
             <x-jet-label for="bio" value="{{ __('Bio') }}" />
-            <textarea id="bio" name="bio" rows="4" wire:model.defer="bio"
+            <textarea id="bio" name="bio" rows="8" wire:model.defer="bio" maxlength="750"
                 class="mb-4 block p-2.5 w-full caret-teal-500 bg-neutral-800 border border-neutral-500 focus:ring-indigo-500 rounded-md text-white"
                 placeholder="Describe yourself"></textarea>
             <x-jet-button class="float-right my-2">Save</x-jet-button>

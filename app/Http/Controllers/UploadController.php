@@ -94,7 +94,7 @@ class UploadController extends Controller
     {
         $request->validate([
             'cover_image' => 'required|string',
-            'bio' => 'required|string',
+            'bio' => 'string|max:750',
         ]);
 
         $temp = TemporaryFile::where('filename', $request->cover_image)->first();

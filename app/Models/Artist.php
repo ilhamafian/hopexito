@@ -21,5 +21,6 @@ class Artist extends Model
         'pinterest',
         'deviantart',
         'tiktok',
+        'website'
     ];
 }

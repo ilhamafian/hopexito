@@ -29,7 +29,7 @@
             <div class="p-1 mx-auto rounded-full bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 w-fit">
                 <div class="flex justify-center gap-2 p-2 bg-black rounded-full ">
                     @if ($user->artist->facebook)
-                        <a href="{{ $user->artist->facebook }}" target="_blank"
+                        <a href="{{ (strpos($user->artist->facebook, 'http') === false) ? 'http://' . $user->artist->facebook : $user->artist->facebook }}" target="_blank"
                             class="sm:p-1 p-0.5 rounded-full focus:ring focus:ring-indigo-500">
                             <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 100 100"
                                 class="w-6 h-6 transition bg-indigo-500 rounded-full sm:w-8 sm:h-8 hover:scale-110">
@@ -47,7 +47,7 @@
                         </a>
                     @endif
                     @if ($user->artist->twitter)
-                        <a href="{{ $user->artist->twitter }}" target="_blank"
+                    <a href="{{ (strpos($user->artist->twitter, 'http') === false) ? 'http://' . $user->artist->twitter : $user->artist->twitter }}" target="_blank"
                             class="sm:p-1 p-0.5 rounded-full focus:ring focus:ring-indigo-500">
                             <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"
                                 class="w-6 h-6  sm:w-8 sm:h-8 transition bg-indigo-500 rounded-full hover:scale-110">
@@ -65,7 +65,7 @@
                         </a>
                     @endif
                     @if ($user->artist->instagram)
-                        <a href="{{ $user->artist->instagram }}" target="_blank"
+                    <a href="{{ (strpos($user->artist->instagram, 'http') === false) ? 'http://' . $user->artist->instagram : $user->artist->instagram }}" target="_blank"
                             class="sm:p-1 p-0.5 rounded-full focus:ring focus:ring-indigo-500">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
                                 class="p-0.5 w-6 h-6 sm:w-8 sm:h-8 transition hover:scale-110 bg-indigo-500 rounded-full">
@@ -89,7 +89,7 @@
                         </a>
                     @endif
                     @if ($user->artist->dribble)
-                        <a href="{{ $user->artist->dribble }}" target="_blank"
+                    <a href="{{ (strpos($user->artist->dribble, 'http') === false) ? 'http://' . $user->artist->dribble : $user->artist->dribble }}" target="_blank"
                             class="sm:p-1 p-0.5 rounded-full focus:ring focus:ring-indigo-500">
                             <svg xmlns="http://www.w3.org/2000/svg"
                                 class="w-6 h-6  sm:w-8 sm:h-8 transition bg-indigo-500 rounded-full hover:scale-110">
@@ -107,7 +107,7 @@
                         </a>
                     @endif
                     @if ($user->artist->behance)
-                        <a href="{{ $user->artist->behance }}" target="_blank"
+                    <a href="{{ (strpos($user->artist->behance, 'http') === false) ? 'http://' . $user->artist->behance : $user->artist->behance }}" target="_blank"
                             class="sm:p-1 p-0.5 rounded-full focus:ring focus:ring-indigo-500">
                             <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"
                                 class="w-6 h-6  sm:w-8 sm:h-8 transition bg-indigo-500 rounded-full hover:scale-110">
@@ -125,7 +125,7 @@
                         </a>
                     @endif
                     @if ($user->artist->pinterest)
-                        <a href="{{ $user->artist->pinterest }}" target="_blank"
+                    <a href="{{ (strpos($user->artist->pinterest, 'http') === false) ? 'http://' . $user->artist->pinterest : $user->artist->pinterest }}" target="_blank"
                             class="sm:p-1 p-0.5 rounded-full focus:ring focus:ring-indigo-500">
                             <svg xmlns="http://www.w3.org/2000/svg" width="2500" height="2500"
                                 viewBox="0 0 999.9 999.9"
@@ -145,7 +145,7 @@
                         </a>
                     @endif
                     @if ($user->artist->deviantart)
-                        <a href="{{ $user->artist->deviantart }}" target="_blank"
+                    <a href="{{ (strpos($user->artist->deviantart, 'http') === false) ? 'http://' . $user->artist->deviantart : $user->artist->devianart }}" target="_blank"
                             class="sm:p-1 p-0.5 rounded-full focus:ring focus:ring-indigo-500">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
                                 class="w-6 h-6  sm:w-8 sm:h-8 transition bg-indigo-500 rounded-full hover:scale-110">
@@ -163,7 +163,7 @@
                         </a>
                     @endif
                     @if ($user->artist->tiktok)
-                        <a href="{{ $user->artist->tiktok }}" target="_blank"
+                    <a href="{{ (strpos($user->artist->tiktok, 'http') === false) ? 'http://' . $user->artist->tiktok : $user->artist->tiktok }}" target="_blank"
                             class="sm:p-1 p-0.5 rounded-full focus:ring focus:ring-indigo-500">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                                 class="w-6 h-6  sm:w-8 sm:h-8 transition bg-indigo-500 rounded-full hover:scale-110">
@@ -180,10 +180,26 @@
                             </svg>
                         </a>
                     @endif
+                    @if ($user->artist->website)
+                    <a href="{{ (strpos($user->artist->website, 'http') === false) ? 'http://' . $user->artist->website : $user->artist->website }}" target="_blank"
+                            class="sm:p-1 p-0.5 rounded-full focus:ring focus:ring-indigo-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 sm:w-8 sm:h-8 transition bg-indigo-500 rounded-full hover:scale-110">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
+                              </svg>
+                              
+                        </a>
+                    @else
+                        <a class="sm:p-1 p-0.5">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 bg-gray-700 rounded-full sm:w-8 sm:h-8">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
+                              </svg>
+                              
+                        </a>
+                    @endif
                 </div>
             </div>
             @if ($user->artist->bio)
-                <div class="mx-auto mt-3 w-max-2xl">
+                <div class="mx-auto mt-3 max-w-2xl">
                     {{ $user->artist->bio }}
                 </div>
             @endif

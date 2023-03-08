@@ -773,6 +773,7 @@ class ComposerStaticInit4f9e76a659fb2496c45c4ec15baceca1
         'App\\Http\\Livewire\\SocialLinks' => __DIR__ . '/../..' . '/app/Http/Livewire/SocialLinks.php',
         'App\\Http\\Livewire\\Wallet' => __DIR__ . '/../..' . '/app/Http/Livewire/Wallet.php',
         'App\\Http\\Livewire\\Wishlist' => __DIR__ . '/../..' . '/app/Http/Livewire/Wishlist.php',
+        'App\\Http\\Middleware\\AdminMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/AdminMiddleware.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
         'App\\Http\\Middleware\\PreventRequestsDuringMaintenance' => __DIR__ . '/../..' . '/app/Http/Middleware/PreventRequestsDuringMaintenance.php',

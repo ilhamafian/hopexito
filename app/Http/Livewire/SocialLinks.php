@@ -14,7 +14,7 @@ class SocialLinks extends Component
 {
     use WithFileUploads;
 
-    public $facebook, $twitter, $instagram, $dribble, $behance, $pinterest, $deviantart, $tiktok, $filename, $cover_image;
+    public $facebook, $twitter, $instagram, $dribble, $behance, $pinterest, $deviantart, $tiktok, $filename, $cover_image, $website;
 
     public function store()
     {   
@@ -27,9 +27,11 @@ class SocialLinks extends Component
             'pinterest' => $this->pinterest,
             'deviantart' => $this->deviantart,
             'tiktok' => $this->tiktok,
-        ])->save();
-
-        session()->flash('message', 'Saved.');
+            'website' => $this->website
+        ]);
+        
+        session()->flash('message', 'Links Updated');
+        return redirect()->route('profile.show');
     }
 
     private function forceFill()
@@ -44,6 +46,7 @@ class SocialLinks extends Component
             $this->pinterest = $artist->pinterest;
             $this->deviantart = $artist->deviantart;
             $this->tiktok = $artist->tiktok;
+            $this->website = $artist->website;
         }
     }
 

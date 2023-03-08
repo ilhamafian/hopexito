@@ -42,6 +42,7 @@ return array(
     'App\\Http\\Livewire\\SocialLinks' => $baseDir . '/app/Http/Livewire/SocialLinks.php',
     'App\\Http\\Livewire\\Wallet' => $baseDir . '/app/Http/Livewire/Wallet.php',
     'App\\Http\\Livewire\\Wishlist' => $baseDir . '/app/Http/Livewire/Wishlist.php',
+    'App\\Http\\Middleware\\AdminMiddleware' => $baseDir . '/app/Http/Middleware/AdminMiddleware.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',
     'App\\Http\\Middleware\\PreventRequestsDuringMaintenance' => $baseDir . '/app/Http/Middleware/PreventRequestsDuringMaintenance.php',

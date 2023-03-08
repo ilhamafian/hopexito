@@ -14,8 +14,12 @@ class CoverImageBio extends Component
     {
         if (Artist::find(Auth::user()->id)) {
             $artist = Artist::findOrFail(Auth::user()->id);
-            $this->cover_image = $artist->cover_image;
-            $this->bio = $artist->bio;
+            if($artist->cover_image){
+                $this->cover_image = $artist->cover_image;
+            }
+            if($artist->bio){
+                $this->bio = $artist->bio;
+            }
         }
     }
     public function render()

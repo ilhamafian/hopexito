@@ -1,10 +1,9 @@
 @section('title', 'Designers Collection | HopeXito')
 <x-app-layout>
-
-    <div class="w-full min-h-screen px-2 py-12 mx-auto mb-32 md:px-6 lg:max-w-7xl lg:px-8">
+    <div class="w-full min-h-screen px-0 py-12 mx-auto mb-32 md:px-6 lg:max-w-7xl lg:px-8">
         <x-jet-title>Designers Collection</x-jet-title>
         <div>
-            <div class="relative flex flex-col gap-4 my-4">
+            <div class="relative flex flex-col gap-4 my-4 mt-12">
                 @foreach ($productsCollection as $item)
                     <div style="background-image: url('{{ asset('storage/collection-image/' . $item->collection_image) }}')"
                         class="relative block overflow-hidden bg-center bg-no-repeat bg-cover md:rounded-xl ">
