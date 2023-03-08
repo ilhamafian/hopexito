@@ -130,7 +130,7 @@ class PaymentController extends Controller
             $wallet_balance = $wallet->balance;
             $commission = $wallet->commission + $product->commission * $cart->quantity;
             $balance = $wallet->balance + $product->commission * $cart->quantity;
-            $quantity = +$product->sold + $cart->quantity;
+            $quantity = $product->sold + $cart->quantity;
 
             $wallet->update([
                 'commission' => $commission,

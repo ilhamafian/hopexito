@@ -190,6 +190,9 @@
                 </div>
                 {{-- Save Product Modal --}}
                 <div class="py-2">
+                    @if($errors->any())
+                    <p class="my-2 text-rose-500">Error occured, please double check.</p>
+                    @endif
                     <x-jet-button type="button" x-bind:disabled="!checkbox"
                         x-on:click="open = false; modal = true; takeshot(); open != open; setTimeout(() => { open = !open; }, 300); confirm == true; setTimeout(() => { confirm = true; }, 1500);"
                         class="w-full py-3">
@@ -198,7 +201,7 @@
                     <div x-cloak x-show="modal == true" @keydown.escape.prevent.stop="modal = false; confirm = false"
                         class="fixed inset-0 z-50">
                         <!-- Overlay -->
-                        <div x-show="modal" x-transition.opacity class="fixed inset-0 bg-black/80 rounded-xl">
+                        <div x-show="modal" x-transition.opacity class="fixed inset-0 bg-black/90 rounded-xl">
                         </div>
                         <!-- Panel -->
                         <div x-show="modal" x-transition x-on:click="modal = false; confirm = false"
@@ -241,13 +244,13 @@
                     <x-jet-input type="hidden" value="{{ $template->category }}" class="hidden" name="category" />
                     <div>
                         <div class="" x-show="open == false" x-transition:enter.duration.300ms>
-                            <div id="tshirt-front" class="relative">
+                            <div id="tshirt-front" class="relative w-[880px] h-[900px] -p-[0.5px]">
                                 <img id="tshirt-front-background"
-                                    class="lg:w-[1000px] lg:h-[1000px] xl:w-[880px] xl:h-[900px] mx-auto bg-white"
+                                    class="w-[880px] h-[900px] mx-auto bg-white"
                                     src="{{ asset('storage/mockup-image/' . $template->mockup_image) }}"
                                     alt="" />
                                 <div id="drawingArea"
-                                    class="absolute xl:top-52 lg:top-60 lg:left-[390px] xl:left-60 z-0 w-[405px] lg:h-[580px] xl:h-[525px]">
+                                    class="absolute top-52 left-60 z-0 w-[405px] h-[525px]">
                                     <div class="w-[405px] h-[525px] relative select-none">
                                         <canvas id="tshirt-front-canvas" width="405" height="525" />
                                     </div>
@@ -257,13 +260,13 @@
                     </div>
                     <div>
                         <div class="" x-show="open == true" x-transition:enter.duration.300ms>
-                            <div id="tshirt-back" class="relative">
+                            <div id="tshirt-back" class="relative -p-[0.5px] w-[880px] h-[900px]">
                                 <img id="tshirt-back-background"
-                                    class="lg:w-[1000px] lg:h-[1000px] xl:w-[880px] xl:h-[900px] mx-auto bg-white"
+                                    class="w-[880px] h-[900px] mx-auto bg-white"
                                     src="{{ asset('storage/mockup-image/' . $template->mockup_image_2) }}"
                                     alt="" />
                                 <div id="drawingArea"
-                                    class="absolute xl:top-52 lg:top-60 lg:left-[390px] xl:left-60 z-0 w-[405px] lg:h-[580px] xl:h-[525px]">
+                                    class="absolute top-52 left-60 z-0 w-[405px] h-[525px]">
                                     <div class="w-[405px] h-[525px] relative select-none">
                                         <canvas id="tshirt-back-canvas" width="405" height="525" />
                                     </div>

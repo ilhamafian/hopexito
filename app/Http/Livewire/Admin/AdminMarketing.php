@@ -18,7 +18,79 @@ use Livewire\Component;
 
 class AdminMarketing extends Component
 {
-    public $order_id, $artist_id, $name, $newName;
+    public $order_id, $collection_id, $email, $order_name, $description, $delivery, $status, $amount, $tracking_number, $paid, $paid_at, $address, $postcode, $state;  
+    public $product_order_id, $billplz_id, $product_id, $title, $price, $quantity, $size, $color;
+    public $wallet_user_id, $commission, $balance, $transaction_id, $user_id, $wallet_id, $transaction_balance, $income, $new_balance, $transaction_status;
+    public $artist_id, $name, $newName;
+
+    public function submitOrder(){
+        Order::create([
+            'id' => $this->order_id,
+            'collection_id' => $this->collection_id,
+            'email' => $this->email,
+            'name' => $this->order_name,
+            'description' => $this->description,
+            'delivery' => $this->delivery,
+            'status' => $this->status,
+            'amount' => $this->amount,
+            'tracking_number' => $this->tracking_number,
+            'paid' => $this->paid,
+            'paid_at' => $this->paid_at,
+            'address' => $this->address,
+            'postcode' => $this->postcode,
+            'state' => $this->state,
+        ]);
+
+        session()->flash('message', 'Order Added');
+        return redirect()->route('admin.marketing');
+    }
+
+    public function submitProductOrder(){
+        ProductOrder::create([
+            'id' => $this->product_order_id,
+            'billplz_id' => $this->billplz_id,
+            'product_id' => $this->product_id,
+            'title' => $this->title,
+            'price' => $this->price,
+            'quantity' => $this->quantity,
+            'size' => $this->size,
+            'color' => $this->color,
+        ]);
+
+        session()->flash('message', 'Product Order Added');
+        return redirect()->route('admin.marketing');
+    }
+
+    public function submitTransaction(){
+        WalletTransaction::create([
+            'user_id' => $this->user_id,
+            'wallet_id' => $this->wallet_id,
+            'balance' => $this->transaction_balance,
+            'income' => $this->income,
+            'new_balance' => $this->new_balance, 
+            'status' => $this->transaction_status
+        ]);
+
+        session()->flash('message', 'Transaction Added');
+        return redirect()->route('admin.marketing');
+    }
+
+    public function updateWallet(){
+        $wallet = Wallet::where('user_id', $this->wallet_user_id);
+    
+        if ($wallet) {
+            $wallet->update([
+                'commission' => $this->commission,
+                'balance' => $this->balance
+            ]);
+    
+            session()->flash('message', 'Wallet Updated');
+        } else {
+            session()->flash('message', 'Wallet not found');
+        }
+        
+        return redirect()->route('admin.marketing');
+    }
 
     public function deleteOrder(){
         $order = Order::find($this->order_id);
