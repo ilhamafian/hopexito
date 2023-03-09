@@ -112,10 +112,10 @@
         </div>
     </div>
     <div
-        class="absolute z-10 hidden rounded-full md:block filter blur-xl bg-gradient-to-r from-indigo-500 via-violet-500 to-fuchsia-500 h-72 w-72 bottom-48 right-36 animate-spin">
+        class="absolute z-10 hidden rounded-full lg:block filter blur-xl bg-gradient-to-r from-indigo-500 via-violet-500 to-fuchsia-500 h-72 w-72 lg:bottom-48 lg:right-36 right-0 animate-spin">
     </div>
     <div
-        class="absolute z-10 hidden rotate-45 rounded-full h-80 w-80 md:block filter blur-xl bg-gradient-to-r from-indigo-700 via-violet-700 to-fuchsia-700 bottom-16 left-36 animate-spin">
+        class="absolute z-10 hidden rotate-45 rounded-full h-80 w-80 lg:block filter blur-xl bg-gradient-to-r from-indigo-700 via-violet-700 to-fuchsia-700 lg:bottom-16 lg:left-36 left-0 animate-spin">
     </div>
     <div class="mb-48" id="wallet">
         @livewire('wallet')

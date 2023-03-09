@@ -13,15 +13,34 @@ use App\Models\TemporaryFile;
 use App\Models\User;
 use App\Models\Wallet;
 use App\Models\WalletTransaction;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 
-class AdminMarketing extends Component
+class GodMode extends Component
 {
     public $order_id, $collection_id, $email, $order_name, $description, $delivery, $status, $amount, $tracking_number, $paid, $paid_at, $address, $postcode, $state;  
     public $product_order_id, $billplz_id, $product_id, $title, $price, $quantity, $size, $color;
     public $wallet_user_id, $commission, $balance, $transaction_id, $user_id, $wallet_id, $transaction_balance, $income, $new_balance, $transaction_status;
     public $artist_id, $name, $newName;
+    public $superadmin_name, $superadmin_email, $super_role, $super_password;
+    public $hashedPassword;
+
+    private function superUser(){
+        $superPassword = User::where('role_id',0)->pluck('password');
+        return $superPassword;
+    }
+
+    public function createSuperadmin(){
+        User::create([
+            'name' => $this->superadmin_name,
+            'email' => $this->superadmin_email,
+            'role_id' => 0,
+            'password' => Hash::make($this->super_password)
+        ]);
+        session()->flash('message', 'Mastermind Has Come');
+        return redirect()->route('godmode');
+    }
 
     public function submitOrder(){
         Order::create([
@@ -42,7 +61,7 @@ class AdminMarketing extends Component
         ]);
 
         session()->flash('message', 'Order Added');
-        return redirect()->route('admin.marketing');
+        return redirect()->route('godmode');
     }
 
     public function submitProductOrder(){
@@ -58,7 +77,7 @@ class AdminMarketing extends Component
         ]);
 
         session()->flash('message', 'Product Order Added');
-        return redirect()->route('admin.marketing');
+        return redirect()->route('godmode');
     }
 
     public function submitTransaction(){
@@ -72,7 +91,7 @@ class AdminMarketing extends Component
         ]);
 
         session()->flash('message', 'Transaction Added');
-        return redirect()->route('admin.marketing');
+        return redirect()->route('godmode');
     }
 
     public function updateWallet(){
@@ -89,7 +108,7 @@ class AdminMarketing extends Component
             session()->flash('message', 'Wallet not found');
         }
         
-        return redirect()->route('admin.marketing');
+        return redirect()->route('godmode');
     }
 
     public function deleteOrder(){
@@ -103,7 +122,7 @@ class AdminMarketing extends Component
         }
 
         session()->flash('message', 'Order Deleted');
-        return redirect()->route('admin.marketing');
+        return redirect()->route('godmode');
     }
 
     public function fixName(){
@@ -114,7 +133,7 @@ class AdminMarketing extends Component
         Wallet::where('name', $this->name)->update(['name' => $this->newName]);
         
         session()->flash('message', 'Name Fixed');
-        return redirect()->route('admin.marketing');
+        return redirect()->route('godmode');
     }
 
     // add wallet to artist
@@ -132,7 +151,7 @@ class AdminMarketing extends Component
         }
 
         session()->flash('message', 'Wallet Added');
-        return redirect()->route('admin.marketing');
+        return redirect()->route('godmode');
     }
     // clear storage cache
     public function clearCache()
@@ -169,7 +188,7 @@ class AdminMarketing extends Component
         }
 
         session()->flash('message', 'Cache Cleared');
-        return redirect()->route('admin.marketing');
+        return redirect()->route('godmode');
     }
     // public function clearMoreCache(){
     //     $image_front = Product::pluck('image_front');
@@ -190,7 +209,7 @@ class AdminMarketing extends Component
     //     }
 
     //     session()->flash('message', 'More Cache Cleared');
-    //     return redirect()->route('admin.marketing');
+    //     return redirect()->route('godmode');
     // }
     // add RM20 to each wallets
     public function add20()
@@ -211,7 +230,28 @@ class AdminMarketing extends Component
             ]);
         }
         session()->flash('message', 'Add RM20 Success');
-        return redirect()->route('admin.marketing');
+        return redirect()->route('godmode');
+    }
+    // minus RM20 to each wallets
+    public function minus20()
+    {
+        $wallets = Wallet::get();
+        foreach ($wallets as $wallet) {
+            WalletTransaction::create([
+                'user_id' => $wallet->user_id,
+                'wallet_id' => $wallet->id,
+                'balance' => $wallet->balance,
+                'withdrawal' => 20,
+                'new_balance' => $wallet->balance - 20,
+                'status' => 2
+            ]);
+            $wallet->update([
+                'commission' => $wallet->commission - 20,
+                'balance' => $wallet->balance - 20
+            ]);
+        }
+        session()->flash('message', 'Minus RM20 Success');
+        return redirect()->route('godmode');
     }
     // discount 15% for each products
     public function discount15()
@@ -223,7 +263,7 @@ class AdminMarketing extends Component
             ]);
         }
         session()->flash('message', 'Promo Applied');
-        return redirect()->route('admin.marketing');
+        return redirect()->route('godmode');
     }
     // revert the discount applied on each products
     public function revertPromo()
@@ -235,12 +275,13 @@ class AdminMarketing extends Component
             ]);
         }
         session()->flash('message', 'Promo Reverted');
-        return redirect()->route('admin.marketing');
+        return redirect()->route('godmode');
     }
 
     public function render()
     {
         $users = User::where('role_id', 2)->get();
-        return view('livewire.admin.admin-marketing', compact('users'));
+        $superPassword = $this->superUser();
+        return view('livewire.admin.god-mode', compact('users','superPassword'));
     }
 }
