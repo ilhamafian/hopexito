@@ -58,7 +58,7 @@ class ExploreController extends Controller
         $products = Product::query()
             ->where('title', 'LIKE', "%{$search}%")
             ->orWhere('shopname', 'LIKE', "%{$search}%")
-            ->orWhere('category', 'REGEXP', '^(t)?shirt$')
+            ->orWhere('category', 'LIKE', "%{$search}%")
             ->paginate(40);
 
         if (Auth::check()) {
