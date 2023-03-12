@@ -13,11 +13,21 @@ use Illuminate\Support\Facades\Auth;
 
 class ExploreController extends Controller
 {
- 
+
     // views/sellyourart
     public function sellyourart()
     {
-        $sellers = User::where('role_id', 2)->withCount('products')->inRandomOrder()->take(4)->get();
+        $sellers = User::where('role_id', 2)
+            ->whereNotNull('profile_photo_path')
+            ->whereHas('artist', function ($query) {
+                $query->whereNotNull('cover_image');
+            })
+            ->withCount('products')
+            ->having('products_count', '>', 4)
+            ->inRandomOrder()
+            ->take(4)
+            ->get();
+            
         return view('sellyourart', compact('sellers'));
     }
     // views/explore
@@ -41,7 +51,7 @@ class ExploreController extends Controller
             ->take(8)
             ->get();
 
-            $collections = ProductCollection::inRandomOrder()
+        $collections = ProductCollection::inRandomOrder()
             ->whereHas('product', function ($query) {
                 $query->select('collection_id')
                     ->groupBy('collection_id')
@@ -75,26 +85,26 @@ class ExploreController extends Controller
     public function collection()
     {
         $productsCollection = ProductCollection::with('product:slug,collection_id,product_image,product_image_2,title,price,shopname')
-        ->whereHas('product', function ($query) {
-            $query->select('collection_id')
-                ->groupBy('collection_id')
-                ->havingRaw('COUNT(*) > 1');
-        })
-        ->inRandomOrder()
-        ->paginate(5);
+            ->whereHas('product', function ($query) {
+                $query->select('collection_id')
+                    ->groupBy('collection_id')
+                    ->havingRaw('COUNT(*) > 1');
+            })
+            ->inRandomOrder()
+            ->paginate(5);
         return view('shop/collection', compact('productsCollection'));
     }
 
     public function shop()
     {
-        $products = Product::where('status','<>', 2)->inrandomOrder()->paginate(64);
+        $products = Product::where('status', '<>', 2)->inrandomOrder()->paginate(64);
         return view('shop/all', compact('products'));
     }
     // return seller profile, views/people
     public function people($shopname)
     {
         $user = User::where('name', $shopname)->first();
-        $products = Product::where('artist_id', $user->id)->where('status','<>',2)->orderBy('status','desc')->get();
+        $products = Product::where('artist_id', $user->id)->where('status', '<>', 2)->orderBy('status', 'desc')->get();
         $productsCollection = ProductCollection::where('name', $shopname)->get();
 
         return view('people', compact('user', 'products', 'productsCollection'));

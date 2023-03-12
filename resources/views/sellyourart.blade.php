@@ -223,7 +223,7 @@
             </div>
         </div>
     </div>
-    <div class="h-[500px] bg-black/50 text-white">
+    <div class=" bg-black/50 text-white">
         <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
             <div class="mx-auto max-w-lg text-center">
                 <x-jet-title>Kickstart your journey</x-jet-title>
@@ -329,7 +329,7 @@
         <img src="image/abstract-shape-2.png" class="absolute right-8 bottom-14 hidden lg:block w-72 h-72" />
         <div class="max-w-2xl mx-auto text-center">
             <h1
-                class="mb-6 text-3xl font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-fuchsia-500 to-fuchsia-500">
+                class="mb-6 text-xl lg:text-3xl font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-fuchsia-500 to-fuchsia-500">
                 Are you ready to start?</h1>
             <a href="{{ route('register') }}">
                 <x-jet-button-custom>Get Started</x-jet-button-custom>
