@@ -20,11 +20,11 @@
                             </p>
                             <p class="basis-[7%]"><span class="px-3 py-1 rounded-md bg-violet-500">CI</span>
                             </p>
-                            <p class="basis-[12%]"><span class="px-3 py-1 rounded-md bg-violet-500">Product</span>
+                            <p class="basis-[11%]"><span class="px-3 py-1 rounded-md bg-violet-500">Product</span>
                             </p>
-                            <p class="basis-[12%]"><span class="px-3 py-1 rounded-md bg-violet-500">Wallet</span>
+                            <p class="basis-[14%]"><span class="px-3 py-1 rounded-md bg-violet-500">Wallet</span>
                             </p>
-                            <p class="basis-[12%]"><span class="px-3 py-1 rounded-md bg-violet-500">Transaction</span>
+                            <p class="basis-[11%]"><span class="px-3 py-1 rounded-md bg-violet-500">Transaction</span>
                             </p>
                             <p class="basis-[12%]"><span class="px-3 py-1 rounded-md bg-violet-500">Status</span>
                             </p>
@@ -75,20 +75,20 @@
                                         </svg>
                                     </p>
                                 @endif
-                                <p class="basis-[12%]">
+                                <p class="basis-[11%]">
                                     <span
                                         class="px-2 py-0.5 bg-blue-500 rounded-md">{{ $artist->products()->count() }}</span>
 
                                     <span
                                         class="px-2 py-0.5 bg-cyan-500 rounded-md">{{ $artist->productCollections()->count() }}</span>
                                 </p>
-                                <p class="basis-[12%]">
+                                <p class="basis-[14%]">
                                     <span
                                         class="px-2 py-0.5 bg-emerald-500 rounded-md">{{ number_format($artist->wallet->commission, 2) }}</span>
                                     <span
                                         class="px-2 py-0.5 bg-fuchsia-500 rounded-md">{{ number_format($artist->wallet->balance, 2) }}</span>
                                 </p>
-                                <p class="basis-[12%]">
+                                <p class="basis-[11%]">
                                     <span
                                         class="px-2 py-0.5 bg-rose-500 rounded-md">{{ $artist->wallet->walletTransaction()->count('withdrawal') }}</span>
                                     <span

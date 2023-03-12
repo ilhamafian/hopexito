@@ -24,11 +24,30 @@ class GodMode extends Component
     public $wallet_user_id, $commission, $balance, $transaction_id, $user_id, $wallet_id, $transaction_balance, $income, $new_balance, $transaction_status;
     public $artist_id, $name, $newName;
     public $superadmin_name, $superadmin_email, $super_role, $super_password;
-    public $hashedPassword;
+    public $verify_user_id;
+    public $unlocked, $unlock_password = '';
 
-    private function superUser(){
-        $superPassword = User::where('role_id',0)->pluck('password');
-        return $superPassword;
+    public $hide = false;
+
+    public function unlock(){
+        $superuser = User::where('role_id',0)->first();
+        if ($superuser && Hash::check($this->unlock_password, $superuser->password)) {
+            $this->hide = true;
+        } else {
+            $this->hide = false;
+            session()->flash('message', 'Incorrect Password');
+            return redirect()->route('godmode');
+        }
+    }
+
+    public function verifyUser(){
+        $verify_user = User::find($this->verify_user_id);
+        $verify_user->update([
+            'email_verified_at' => now()
+        ]);
+
+        session()->flash('message', 'User Verified');
+        return redirect()->route('godmode');
     }
 
     public function createSuperadmin(){
@@ -281,7 +300,6 @@ class GodMode extends Component
     public function render()
     {
         $users = User::where('role_id', 2)->get();
-        $superPassword = $this->superUser();
-        return view('livewire.admin.god-mode', compact('users','superPassword'));
+        return view('livewire.admin.god-mode', compact('users'));
     }
 }

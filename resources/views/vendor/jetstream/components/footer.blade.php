@@ -49,7 +49,7 @@
                         </li>
 
                         <li>
-                            <a class="transition hover:text-indigo-400" href="#">
+                            <a class="transition hover:text-indigo-400" href="{{ route('shop.collection') }}">
                                 Collection
                             </a>
                         </li>
@@ -76,18 +76,8 @@
                                 </a>
                             </li>
                             <li>
-                                <a class="transition hover:text-indigo-400" href="/">
+                                <a class="transition hover:text-indigo-400" href="{{ route('sellyourart') }}">
                                     Sell Your Art
-                                </a>
-                            </li>
-                            <li>
-                                <a class="transition hover:text-indigo-400" href="/">
-                                    Marketing
-                                </a>
-                            </li>
-                            <li>
-                                <a class="transition hover:text-indigo-400" href="/">
-                                    Google Ads
                                 </a>
                             </li>
                         </ul>

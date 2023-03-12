@@ -25,4 +25,7 @@ class Wallet extends Model
     public function walletTransaction(){
         return $this->hasMany(WalletTransaction::class, 'wallet_id', 'id');
     }
+    public function user(){
+        return $this->hasOne(User::class, 'id','user_id');
+    }
 }

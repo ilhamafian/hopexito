@@ -32,10 +32,11 @@
         }
     }
 </style>
-<div class="relative w-full">
+<div class="relative w-full" x-data="{ open: false }">
     <div class="relative z-0 p-0.5 overflow-hidden rounded-lg gradient-border">
         <form action="{{ route('search') }}" class="relative z-50 flex rounded-md" method="GET">
-            <x-jet-input type="text" class="block w-full" autocomplete="off" name="search" />
+            <x-jet-input type="text" class="block w-full" autocomplete="off" name="search" x-on:click="open = true"
+                x-ref="searchInput" />
             <button type="submit">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
                     stroke="currentColor"
@@ -45,5 +46,15 @@
                 </svg>
             </button>
         </form>
+    </div>
+   
+    <div x-cloak class="absolute -inset-x-16 inset-y-16 z-40 flex justify-center" x-show="open" x-transition.duration.350ms
+        x-on:click.away="open = false">
+        <div class="absolute inset-0 z-0 p-1 overflow-hidden rounded-2xl gradient-border w-full h-[600px]">
+           <div class="bg-black h-full w-full rounded-xl p-4">
+            @livewire('searchbar')
+           </div>
+        </div>
+
     </div>
 </div>
