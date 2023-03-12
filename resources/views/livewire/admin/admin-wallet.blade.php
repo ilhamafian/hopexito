@@ -5,33 +5,36 @@
         <div class="" x-data="{ modal: false, id: '', tab: 1 }">
             <div class="grid grid-cols-4 gap-6 text-center text-white">
                 <x-jet-admin-card>
-                    <span class="px-4 py-2 rounded-lg bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500">
+                    <x-jet-admin-header>
                         Total Commission (RM)
-                    </span>
+                    </x-jet-admin-header>
                     <div class="block p-2 mt-4 text-4xl">
                         {{ number_format($wallet_data->sum('commission'), 2) }}
                     </div>
                 </x-jet-admin-card>
                 <x-jet-admin-card>
-                    <p class="px-4 py-2 rounded-lg bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500">
+                    <x-jet-admin-header>
                         Total Available Balance (RM)
-                    </p>
+                    </x-jet-admin-header>
+                    </span>
                     <div class="block p-2 mt-4 text-4xl">
                         {{ number_format($wallet_data->sum('balance'), 2) }}
                     </div>
                 </x-jet-admin-card>
                 <x-jet-admin-card>
-                    <span class="px-4 py-2 rounded-lg bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500">
-                        Total Withdrawal (RM)
-                    </span>
+                   <x-jet-admin-header>
+                    Total Withdrawal (RM)
+
+                   </x-jet-admin-header>
                     <div class="block p-2 mt-4 text-4xl">
                         {{ number_format($walletTransaction_data->sum('withdrawal'), 2) }}
                     </div>
                 </x-jet-admin-card>
                 <x-jet-admin-card>
-                    <span class="px-4 py-2 rounded-lg bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500">
+                    <x-jet-admin-header>
                         Total Wallets
-                    </span>
+
+                    </x-jet-admin-header>
                     <div class="block p-2 mt-4 text-4xl">
                         {{ $wallet_data->count() }}
                     </div>
@@ -73,7 +76,8 @@
                                             <p
                                                 class="basis-[7%] text-center text-rose-500 ring-2 ring-rose-500 rounded-md p-0.5 font-bold">
                                                 {{ number_format($item->withdrawal, 2) }}</p>
-                                            <p class="basis-[7%] text-center">{{ number_format($item->new_balance, 2) }}
+                                            <p class="basis-[7%] text-center">
+                                                {{ number_format($item->new_balance, 2) }}
                                             </p>
 
                                             <div class="relative basis-[10%]">

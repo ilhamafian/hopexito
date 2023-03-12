@@ -58,8 +58,8 @@
                         <div class="absolute bottom-0 hidden mb-4 group-hover:flex">
                             <span
                                 class="relative z-10 p-2 leading-none text-white whitespace-no-wrap bg-black shadow-lg text-xs w-[480px]">Tags
-                                are how your audience finds your work. Use 5 relevant tags per upload. Make sure to
-                                separate tags with commas. Example: panda, bear, snake</span>
+                                are another way for your audience to discover your work. Use a maximum of 5 relevant
+                                tags per upload, separated by commas. Example: panda, bear, snake</span>
                         </div>
                     </div>
                     <x-jet-input id="tags" class="block w-full mt-1" type="text" name="tags"
@@ -190,8 +190,8 @@
                 </div>
                 {{-- Save Product Modal --}}
                 <div class="py-2">
-                    @if($errors->any())
-                    <p class="my-2 text-rose-500">Error occured, please double check.</p>
+                    @if ($errors->any())
+                        <p class="my-2 text-rose-500">Error occured, please double check.</p>
                     @endif
                     <x-jet-button type="button" x-bind:disabled="!checkbox"
                         x-on:click="open = false; modal = true; takeshot(); open != open; setTimeout(() => { open = !open; }, 300); confirm == true; setTimeout(() => { confirm = true; }, 1500);"
@@ -245,12 +245,10 @@
                     <div>
                         <div class="" x-show="open == false" x-transition:enter.duration.300ms>
                             <div id="tshirt-front" class="relative w-[880px] h-[900px] -p-[0.5px]">
-                                <img id="tshirt-front-background"
-                                    class="w-[880px] h-[900px] mx-auto bg-white"
+                                <img id="tshirt-front-background" class="w-[880px] h-[900px] mx-auto bg-white"
                                     src="{{ asset('storage/mockup-image/' . $template->mockup_image) }}"
                                     alt="" />
-                                <div id="drawingArea"
-                                    class="absolute top-52 left-60 z-0 w-[405px] h-[525px]">
+                                <div id="drawingArea" class="absolute top-52 left-60 z-0 w-[405px] h-[525px]">
                                     <div class="w-[405px] h-[525px] relative select-none">
                                         <canvas id="tshirt-front-canvas" width="405" height="525" />
                                     </div>
@@ -261,12 +259,10 @@
                     <div>
                         <div class="" x-show="open == true" x-transition:enter.duration.300ms>
                             <div id="tshirt-back" class="relative -p-[0.5px] w-[880px] h-[900px]">
-                                <img id="tshirt-back-background"
-                                    class="w-[880px] h-[900px] mx-auto bg-white"
+                                <img id="tshirt-back-background" class="w-[880px] h-[900px] mx-auto bg-white"
                                     src="{{ asset('storage/mockup-image/' . $template->mockup_image_2) }}"
                                     alt="" />
-                                <div id="drawingArea"
-                                    class="absolute top-52 left-60 z-0 w-[405px] h-[525px]">
+                                <div id="drawingArea" class="absolute top-52 left-60 z-0 w-[405px] h-[525px]">
                                     <div class="w-[405px] h-[525px] relative select-none">
                                         <canvas id="tshirt-back-canvas" width="405" height="525" />
                                     </div>

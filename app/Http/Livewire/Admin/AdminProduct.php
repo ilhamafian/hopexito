@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin;
 
 use App\Models\Product;
+use App\Models\ProductCollection;
 use App\Models\ProductTemplate;
 use Livewire\Component;
 
@@ -17,11 +18,6 @@ class AdminProduct extends Component
         session()->flash('message', 'Product Deleted');
         return redirect()->route('admin.products');
     }
-    public function deleteTemplate(){
-        ProductTemplate::truncate();
-        session()->flash('message', 'Product Templates Deleted');
-        return redirect()->route('admin.products');
-    }
 
     public function render()
     {
@@ -31,6 +27,7 @@ class AdminProduct extends Component
         $totalSold = Product::sum('sold');
         $averagePrice = Product::average('price');
         $totalTemplates = ProductTemplate::count();
-        return view('livewire.admin.admin-product', compact('products','totalProducts','totalSold','averagePrice','totalTemplates'));
+        $totalCollection = ProductCollection::count();
+        return view('livewire.admin.admin-product', compact('products','totalProducts','totalSold','averagePrice','totalTemplates','totalCollection'));
     }
 }

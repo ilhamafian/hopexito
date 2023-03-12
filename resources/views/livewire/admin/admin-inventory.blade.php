@@ -4,8 +4,8 @@
         <div class="grid grid-cols-1">
             <x-jet-admin-card>
                 <x-jet-button type="button" wire:click="deleteInventory()">Delete Inventory</x-jet-button>
-                <x-jet-button type="button" wire:click="createInventory()">Create Inventory</x-jet-button>
-                <div class="grid grid-cols-4">
+                <x-jet-button-utility type="button" wire:click="createInventory()">Create Inventory</x-jet-button-utility>
+                <div class="grid grid-cols-4 mt-12">
                     @foreach ($inventories as $item)
                         <div class="flex flex-col gap-4 m-4">
                             <p>{{ $item->color }} | {{ $item->size }} | {{ $item->category }}</p>

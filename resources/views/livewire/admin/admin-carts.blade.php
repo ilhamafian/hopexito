@@ -4,26 +4,28 @@
     <x-jet-admin-layout>
         <div class="grid grid-cols-3 gap-12 text-center text-white">
             <x-jet-admin-card>
-                <span class="px-4 py-2 rounded-md bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500">
+                <x-jet-admin-header>
                     Total Cart
-                </span>
+
+                </x-jet-admin-header>
                 <div class="block p-2 mt-4 text-3xl">
                     {{ $totalCart }}
                 </div>
             </x-jet-admin-card>
             <x-jet-admin-card>
-                <span class="px-4 py-2 rounded-md bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500">
+                <x-jet-admin-header>
                     Total Subtotal(RM)
-                </span>
+
+                </x-jet-admin-header>
                 <div class="block p-2 mt-4 text-3xl">
                     {{ number_format($subtotal, 2) }}
 
                 </div>
             </x-jet-admin-card>
             <x-jet-admin-card>
-                <span class="px-4 py-2 rounded-md bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500">
+                <x-jet-admin-header>
                     Average Subtotal(RM)
-                </span>
+                </x-jet-admin-header>
                 <div class="block p-2 mt-4 text-3xl">
                     {{ number_format($avgSubtotal, 2) }}
                 </div>
@@ -31,9 +33,9 @@
         </div>
         <div class="grid grid-cols-2 gap-12 mt-8 text-center text-white">
             <x-jet-admin-card>
-                <span class="px-4 py-2 rounded-md bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500">
+                <x-jet-admin-header>
                     Color Distribution
-                </span>
+                </x-jet-admin-header>
                 <div class="flex items-center gap-4 p-2 mt-4">
                     @foreach ($colorDistribution as $item)
                         <p class="px-2 py-1 rounded-md bg-emerald-500">{{ $item->color }}</p>
@@ -42,9 +44,9 @@
                 </div>
             </x-jet-admin-card>
             <x-jet-admin-card>
-                <span class="px-4 py-2 rounded-md bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500">
+                <x-jet-admin-header>
                     Size Distribution
-                </span>
+                </x-jet-admin-header>
                 <div class="flex items-center gap-4 p-2 mt-4">
                     @foreach ($sizeDistribution as $item)
                         <p class="px-2 py-1 rounded-md bg-emerald-500">{{ $item->size }}</p>

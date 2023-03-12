@@ -33,6 +33,7 @@ class JetstreamServiceProvider extends ServiceProvider
         $this->registerComponent('lightning');
         $this->registerComponent('gradient-card');
         $this->registerComponent('title');
+        $this->registerComponent('admin-header');
     }
     protected function registerComponent(string $component)
     {

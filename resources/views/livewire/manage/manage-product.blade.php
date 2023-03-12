@@ -3,7 +3,7 @@
     <x-jet-session-message />
     <h1
         class="px-2 text-2xl font-bold text-transparent md:px-0 bg-clip-text bg-gradient-to-r from-red-400 to-indigo-800">
-        Product Stats</h1>
+        Product Management</h1>
     <p class="px-2 my-2 mb-8 md:px-0">Overview of product performance, including sales data and commissions
         earned. </p>
     <div class="mb-12">

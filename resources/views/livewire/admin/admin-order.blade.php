@@ -4,24 +4,26 @@
     <x-jet-admin-layout>
         <div class="grid grid-cols-3 gap-12 text-center text-white">
             <x-jet-admin-card>
-                <span class="px-4 py-2 rounded-lg bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500">
+                <x-jet-admin-header>
                     Total Order
+                </x-jet-admin-header>
                 </span>
                 <div class="block p-2 mt-4 text-5xl">
                     {{ $totalOrder }}
                 </div>
             </x-jet-admin-card>
             <x-jet-admin-card>
-                <span class="px-4 py-2 rounded-lg bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500">
+                <x-jet-admin-header>
                     Total Amount(RM)
-                </span>
+                </x-jet-admin-header>
                 <div class="block p-2 mt-4 text-4xl">
                     {{ number_format($totalAmount, 2) }}
                 </div>
             </x-jet-admin-card>
             <x-jet-admin-card>
-                <span class="px-4 py-2 rounded-lg bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500">
+                <x-jet-admin-header>
                     Total Delivery(RM)
+                </x-jet-admin-header>
                 </span>
                 <div class="block p-2 mt-4 text-5xl">
                     {{ $totalDelivery }}
@@ -30,34 +32,33 @@
         </div>
         <div class="grid grid-cols-4 gap-12 mt-8 text-center text-white">
             <x-jet-admin-card>
-                <span class="px-4 py-2 rounded-lg bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500">
+                <x-jet-admin-header>
                     Total Order Placed
-                </span>
+                </x-jet-admin-header>
                 <div class="block p-2 mt-4 text-5xl">
-
                     {{ $totalOrderPlaced }}
                 </div>
             </x-jet-admin-card>
             <x-jet-admin-card>
-                <span class="px-4 py-2 rounded-lg bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500">
+                <x-jet-admin-header>
                     Total Order Processing
-                </span>
+                </x-jet-admin-header>
                 <div class="block p-2 mt-4 text-5xl">
                     {{ $totalOrderProcessing }}
                 </div>
             </x-jet-admin-card>
             <x-jet-admin-card>
-                <span class="px-4 py-2 rounded-lg bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500">
+                <x-jet-admin-header>
                     Total Order Shipped
-                </span>
+                </x-jet-admin-header>
                 <div class="block p-2 mt-4 text-5xl">
                     {{ $totalOrderShipped }}
                 </div>
             </x-jet-admin-card>
             <x-jet-admin-card>
-                <span class="px-4 py-2 rounded-lg bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500">
+                <x-jet-admin-header>
                     Total Order Delivered
-                </span>
+                </x-jet-admin-header>
                 <div class="block p-2 mt-4 text-5xl">
                     {{ $totalOrderDelivered }}
                 </div>

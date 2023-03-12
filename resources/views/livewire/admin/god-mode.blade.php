@@ -37,18 +37,18 @@
                     </div>
                 </x-jet-gradient-card>
                 <x-jet-gradient-card>
-                    <div class="flex flex-col h-full p-6 bg-black rounded-xl">
-                        <x-jet-header>Nuclear Bomb</x-jet-header>
-                        <div class="p-2 overflow-y-scroll rounded-lg ring-2 ring-violet-500 max-h-96">
-                            <x-jet-button-utility wire:click="clearCache">
-                                Clear Image Cache
+                    <div class="flex flex-col p-6 bg-black rounded-xl">
+                        <x-jet-header>The Annihilator</x-jet-header>
+                        <div class="gap-2 p-2 overflow-y-scroll rounded-lg ring-2 ring-violet-500 max-h-96">
+                            <x-jet-input type="text" name="order_id" class="block w-full mb-2"
+                                wire:model="order_id" />
+                            <x-jet-button-utility wire:click="deleteOrder()">
+                                Obliterator
                             </x-jet-button-utility>
-                            {{-- <x-jet-button-utility wire:click="clearMoreCache">
-                                Deep Cleaning
-                            </x-jet-button-utility> --}}
                         </div>
                     </div>
                 </x-jet-gradient-card>
+              
                 <x-jet-gradient-card>
                     <div class="flex flex-col p-6 bg-black rounded-xl">
                         <x-jet-header>Chief Finance Sorcerer</x-jet-header>
@@ -56,7 +56,7 @@
                             <x-jet-input type="text" name="artist_id" class="block w-full mb-2"
                                 wire:model="artist_id" />
                             <x-jet-button-utility wire:click="addWallet()">
-                                Add Wallet To User
+                                Mystic Ledger 
                             </x-jet-button-utility>
                         </div>
                     </div>
@@ -68,25 +68,26 @@
                             <x-jet-input type="text" name="name" class="mb-2" wire:model="name" />
                             <x-jet-input type="text" name="newName" class="mb-2" wire:model="newName" />
                             <x-jet-button-utility wire:click="fixName()">
-                                Fix Artist Name
+                                Juxtapose
                             </x-jet-button-utility>
                         </div>
                     </div>
                 </x-jet-gradient-card>
                 <x-jet-gradient-card>
-                    <div class="flex flex-col p-6 bg-black rounded-xl">
-                        <x-jet-header>The Annihilator</x-jet-header>
-                        <div class="gap-2 p-2 overflow-y-scroll rounded-lg ring-2 ring-violet-500 max-h-96">
-                            <x-jet-input type="text" name="order_id" class="block w-full mb-2"
-                                wire:model="order_id" />
-                            <x-jet-button-utility wire:click="deleteOrder()">
-                                Delete Order
+                    <div class="flex flex-col h-full p-6 bg-black rounded-xl">
+                        <x-jet-header>Nuclear Bomb</x-jet-header>
+                        <div class="p-2 overflow-y-scroll rounded-lg ring-2 ring-violet-500 max-h-96">
+                            <x-jet-button-utility wire:click="clearCache">
+                                Tsar Bomba
                             </x-jet-button-utility>
+                            {{-- <x-jet-button-utility wire:click="clearMoreCache">
+                                Deep Cleaning
+                            </x-jet-button-utility> --}}
                         </div>
                     </div>
                 </x-jet-gradient-card>
                 <x-jet-gradient-card>
-                    <div class="flex flex-col p-6 bg-black rounded-xl">
+                    <div class="flex flex-col p-6 row-span-2 bg-black rounded-xl">
                         <x-jet-header>Cosmic Controller</x-jet-header>
                         <div class="gap-2 p-2 overflow-y-scroll rounded-lg ring-2 ring-violet-500">
                             <x-jet-input type="text" name="order_id" class="block w-full mb-2" wire:model="order_id"
@@ -117,7 +118,7 @@
                             <x-jet-input type="text" name="state" class="block w-full mb-2" wire:model="state"
                                 placeholder="state" />
                             <x-jet-button-utility wire:click="submitOrder()">
-                                Submit Order
+                                Astral Command
                             </x-jet-button-utility>
                         </div>
                     </div>
@@ -143,14 +144,14 @@
                             <x-jet-input type="text" name="color" class="block w-full mb-2" wire:model="color"
                                 placeholder="color" />
                             <x-jet-button-utility wire:click="submitProductOrder()">
-                                Submit Product
+                                Capital Connoisseur
                             </x-jet-button-utility>
                         </div>
                     </div>
                 </x-jet-gradient-card>
                 <x-jet-gradient-card>
                     <div class="flex flex-col p-6 bg-black h-full rounded-xl">
-                        <x-jet-header>Transaction Titan</x-jet-header>
+                        <x-jet-header>Transaction Grimoire</x-jet-header>
                         <div class="gap-2 p-2 overflow-y-scroll rounded-lg ring-2 ring-violet-500">
                             <x-jet-input type="text" name="user_id" class="block w-full mb-2"
                                 wire:model="user_id" placeholder="id" />
@@ -165,7 +166,7 @@
                             <x-jet-input type="text" name="transaction_status" class="block w-full mb-2"
                                 wire:model="transaction_status" placeholder="status" />
                             <x-jet-button-utility wire:click="submitTransaction()">
-                                Add Transaction
+                                Digital Infusion
                             </x-jet-button-utility>
                         </div>
                     </div>
@@ -205,12 +206,17 @@
                 </x-jet-gradient-card>
                 <x-jet-gradient-card>
                     <div class="flex flex-col p-6 bg-black rounded-xl h-full">
-                        <x-jet-header>The Killing Curse</x-jet-header>
+                        <x-jet-header>Unforgivable Curses</x-jet-header>
                         <div class="gap-2 p-2 overflow-y-scroll rounded-lg ring-2 ring-violet-500 max-h-96">
                             <x-jet-input type="text" name="verify_user_id" class="block w-full mb-2"
                                 wire:model="verify_user_id" />
                             <x-jet-button-utility wire:click="verifyUser()">
-                                Avada Kedavra
+                                The Killing Curse
+                            </x-jet-button-utility>
+                        </div>
+                        <div class="gap-2 p-2 overflow-y-scroll rounded-lg ring-2 ring-violet-500 max-h-96 mt-6">
+                            <x-jet-button-utility wire:click="deleteTemplate()">
+                                The Imperius Curse
                             </x-jet-button-utility>
                         </div>
                     </div>

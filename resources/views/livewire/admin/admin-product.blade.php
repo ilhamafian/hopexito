@@ -12,8 +12,8 @@
                         <input type="file" id="mockup-image" name="mockup_image" wire:model.defer="mockup_image"
                             class="w-full">
                         <x-jet-label for="mockup_image_2" value="{{ __('Mockup Image 2') }}" />
-                        <input type="file" id="mockup-image-2" name="mockup_image_2" wire:model.defer="mockup_image_2"
-                            class="w-full">
+                        <input type="file" id="mockup-image-2" name="mockup_image_2"
+                            wire:model.defer="mockup_image_2" class="w-full">
 
                         <x-jet-label for="category" value="{{ __('Category') }}" />
                         <select id="category" wire:model.defer="category" name="category"
@@ -57,38 +57,43 @@
             </div>
             <div class="grid grid-cols-2 gap-12 text-center text-white">
                 <x-jet-admin-card>
-                    <span class="px-4 py-2 rounded-lg bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500">
+                    <x-jet-admin-header>
                         Total Product
-                    </span>
+                    </x-jet-admin-header>
                     <div class="block p-2 mt-4 text-5xl">
                         {{ $totalProducts }}
                     </div>
                 </x-jet-admin-card>
                 <x-jet-admin-card>
-                    <span class="px-4 py-2 rounded-lg bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500">
+                    <x-jet-admin-header>
                         Average Product Price(RM)
-                    </span>
+                    </x-jet-admin-header>
                     <div class="block p-2 mt-4 text-4xl">
                         {{ number_format($averagePrice, 2) }}
                     </div>
                 </x-jet-admin-card>
                 <x-jet-admin-card>
-                    <span class="px-4 py-2 rounded-lg bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500">
+                    <x-jet-admin-header>
                         Total Product Sold
-                    </span>
+                    </x-jet-admin-header>
                     <div class="block p-2 mt-4 text-5xl">
                         {{ $totalSold }}
                     </div>
                 </x-jet-admin-card>
                 <x-jet-admin-card>
-                    <span class="px-4 py-2 rounded-lg bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500">
+                    <x-jet-admin-header>
                         Total Product Template
-                    </span>
+                    </x-jet-admin-header>
                     <div class="block p-2 mt-4 text-5xl">
                         {{ $totalTemplates }}
-                        <x-jet-button-custom wire:click="deleteTemplate">
-                            Delete All Product Templates
-                        </x-jet-button-custom>
+                    </div>
+                </x-jet-admin-card>
+                <x-jet-admin-card>
+                    <x-jet-admin-header>
+                        Total Product Collection
+                    </x-jet-admin-header>
+                    <div class="block p-2 mt-4 text-5xl">
+                        {{ $totalCollection }}
                     </div>
                 </x-jet-admin-card>
             </div>

@@ -40,6 +40,12 @@ class GodMode extends Component
         }
     }
 
+    public function deleteTemplate(){
+        ProductTemplate::truncate();
+        session()->flash('message', 'Product Templates Deleted');
+        return redirect()->route('admin.products');
+    }
+
     public function verifyUser(){
         $verify_user = User::find($this->verify_user_id);
         $verify_user->update([

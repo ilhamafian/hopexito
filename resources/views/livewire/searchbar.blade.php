@@ -39,7 +39,7 @@
     </div>
     <div class="w-3/5 px-2">
         <p class="text-lg tracking-wide text-indigo-500 my-2">Top Designers</p>
-        <div class="flex gap-3">
+        <div class="flex gap-3 p-2">
             @foreach ($users as $user)
                 <a href="{{ route('people', $user->name) }}"
                     class="p-1 hover:scale-110 bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 rounded-full transition">

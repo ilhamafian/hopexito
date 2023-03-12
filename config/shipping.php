@@ -14,8 +14,8 @@ return [
         'Terengganu' => 7.00,
         'Kuala Lumpur' => 7.00,
         'Putrajaya' => 7.00,
-        'Sarawak' => 13.00,
-        'Sabah' => 13.00,
-        'Labuan' => 13.00,
+        'Sarawak' => 16.00,
+        'Sabah' => 16.00,
+        'Labuan' => 16.00,
     ]
 ];
