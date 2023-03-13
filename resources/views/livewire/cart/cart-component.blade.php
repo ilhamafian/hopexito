@@ -47,7 +47,7 @@
                     {{-- Iterate through the items in cart --}}
                     @foreach ($cart as $cart)
                         <div class="flex flex-col items-center gap-8 py-8 border-b border-indigo-500 md:px-6 md:flex-row">
-                            <a>
+                            <a href="{{ route('product.show', $cart->cartProduct->slug) }}">
                                 <img class="w-56 transition shadow-lg md:w-40 rounded-xl hover:shadow-violet-500/30 hover:scale-105"
                                     src="{{ $cart->cartProduct->product_image }}" alt="" />
                             </a>

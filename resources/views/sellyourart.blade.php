@@ -1,7 +1,7 @@
 @section('title', 'Sell Your Art | HopeXito')
 <x-app-layout>
     {{-- hero section --}}
-    <div class="relative z-20 w-full sm:min-h-screen min-h-[500px]">
+    <div class="relative z-20 w-full lg:min-h-screen min-h-[500px]">
         <div
             class="grid grid-cols-1 max-w-6xl h-[380px] sm:h-[500px] mx-auto bg-black/30 mt-16 shadow-md backdrop-filter backdrop-blur-3xl rounded-2xl shadow-rose-500">
             <div class="max-w-4xl py-24 sm:py-40 mx-auto text-center text-white ">
@@ -95,14 +95,14 @@
                 class="absolute inset-0 w-full h-full opacity-80 bg-gradient-to-r from-rose-900 via-fuchsia-900 to-indigo-900">
             </div>
         </div>
-        <div class="relative flex flex-col lg:flex-row items-center mx-auto max-w-7xl bg-black/60 py-20 rounded-xl">
-            <div class="w-1/2 md:px-20 px-2 text-white">
+        <div class="relative flex flex-col lg:flex-row items-center mx-auto lg:max-w-7xl md:max-w-3xl max-w-sm bg-black/60 py-20 px-4 lg:rounded-xl">
+            <div class="w-full lg:w-1/2 md:px-20 text-white">
                 <x-jet-title>Your designs on variety of apparels</x-jet-title>
                 <p class="pt-4">
                     Your artistic creations can be showcased on an extensive collection of products, including stylish
                     t-shirts, cozy hoodies, and trendy oversized t-shirts.
                 </p>
-                <div class="pt-8 flex lg:mt-0 float-right">
+                <div class="pt-8 flex lg:mt-0 lg:float-right">
                     <button
                         class="prev-button-2 rounded-full border-2 border-violet-500 p-3 text-indigo-500 hover:bg-violet-500 hover:text-white transition"">
                         <span class="sr-only">Previous Slide</span>
@@ -121,22 +121,22 @@
                     </button>
                 </div>
             </div>
-            <div class="w-1/2 py-6">
-                <div class="-mx-6 mt-8 lg:col-span-2 lg:mx-0">
+            <div class="w-full lg:w-1/2 py-6">
+                <div class="-mx-6 mt-8 md:col-span-2 md:mx-0">
                     <div class="swiper-container-2 !overflow-hidden">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide w-96 h-96 rounded-lg">
+                            <div class="swiper-slide md:w-80 md:h-96 rounded-lg">
                                 <img src="image/sellyourart/shirt.png" class="h-full w-full" />
                             </div>
-                            <div class="swiper-slide w-96 h-96 rounded-lg">
+                            <div class="swiper-slide md:w-80 md:h-96 rounded-lg">
                                 <img src="image/sellyourart/hoodie.png" class="h-full w-full" />
                             </div>
 
-                            <div class="swiper-slide w-96 h-96 rounded-lg">
+                            <div class="swiper-slide md:w-80 md:h-96 rounded-lg">
                                 <img src="image/sellyourart/long-sleeve.png" class="h-full w-full" />
                             </div>
 
-                            <div class="swiper-slide w-96 h-96 rounded-lg">
+                            <div class="swiper-slide md:w-80 md:h-96 rounded-lg">
                                 <img src="image/sellyourart/oversized.png" class="h-full w-full" />
                             </div>
                         </div>
@@ -150,8 +150,8 @@
         <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:mr-0 lg:pl-8 lg:pr-0">
             <div class="grid grid-cols-1 gap-y-8 lg:grid-cols-3 lg:items-center lg:gap-x-16">
                 <div class="relative max-w-xl text-center sm:text-left">
-                    <img src="image/flash.png" class="absolute -translate-x-64 -translate-y-24 rotate-6 w-56 h-56" />
-                    <x-jet-title class="text-2xl">Join a community of successful designers</x-jet-title>
+                    <img src="image/flash.png" class="absolute -translate-x-64 -translate-y-24 rotate-6 w-56 h-56 hidden lg:block" />
+                    <x-jet-title>Join a community of successful designers</x-jet-title>
                     <p class="mt-4 text-white">
                         The HopeXito marketplace is powered by its talented designers, ranging from professionals to
                         hobbyists and even fans with creative ideas. Join these designers as they generate income daily

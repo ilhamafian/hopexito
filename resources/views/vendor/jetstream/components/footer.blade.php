@@ -44,27 +44,38 @@
                     <ul class="mt-8 space-y-4 text-sm">
                         <li>
                             <a class="transition hover:text-indigo-400" href="{{ route('shop.all') }}">
-                                All Product
+                                Shop All
                             </a>
                         </li>
-
                         <li>
                             <a class="transition hover:text-indigo-400" href="{{ route('shop.collection') }}">
-                                Collection
+                                Artist Collection
                             </a>
                         </li>
-
                         <li>
                             <a class="transition hover:text-indigo-400" href="#">
-                                Category
+                                Product Category
                             </a>
                         </li>
-
                         <li>
                             <a class="transition hover:text-indigo-400" href="#">
                                 Artist
                             </a>
                         </li>
+                        @if(Auth::check() && Auth::user()->role_id == 2)
+                        <li>
+                            <a class="transition hover:text-indigo-400" href="{{ route('product.create') }}">
+                                Add New Product
+                            </a>
+                        </li>
+                        @endif
+                        @if(Auth::check())
+                        <li>
+                            <a class="transition hover:text-indigo-400" href="{{ route('product.create') }}">
+                                Logout
+                            </a>
+                        </li>
+                        @endif
                     </ul>
                 </div>
                 <div class="text-center sm:text-left">

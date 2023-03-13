@@ -7,17 +7,18 @@
                 <div class="flex gap-3 items-center text-white">
                     <a href="{{ route('explore') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="w-8 h-8 rounded-md hover:bg-indigo-500/50 transition p-1">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-                    </svg>
+                            stroke="currentColor" class="w-8 h-8 rounded-md hover:bg-indigo-500/50 transition p-1">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                        </svg>
                     </a>
-                  
+
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-5 h-5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                     </svg>
-                    <a href="{{ route('people', $product->shopname) }}" class="p-1 px-2 hover:bg-indigo-500/50 transition rounded-md">{{ $product->shopname }}</a>
+                    <a href="{{ route('people', $product->shopname) }}"
+                        class="p-1 px-2 hover:bg-indigo-500/50 transition rounded-md">{{ $product->shopname }}</a>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-5 h-5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
@@ -47,67 +48,69 @@
                                         class="lg:h-36 w-28 h-28 lg:w-36 rounded-md object-cover"
                                         x-bind:class="preview == 2 ? 'ring ring-indigo-500' : ''" />
                                 @endif
-                                @if($product->category == "Shirt")
-                                <div class="ml-auto flex flex-col text-white gap-2" x-data="{ modal:false}">
-                                    <p class="px-3 py-1 bg-violet-500 rounded-md">100% Cotton</p>
-                                    <p class="px-3 py-1 bg-blue-500 rounded-md">180 gsm</p>
-                                    <x-jet-button-custom type="button" x-on:click="modal = true">
-                                        Size Chart
-                                    </x-jet-button-custom>
-                                    <x-jet-modal-custom x-show="modal == true">
-                                        <div class="flex flex-col gap-2 w-full">
-                                            <div class="flex bg-black/50 text-center p-2 rounded-xl gap-2">
-                                                <p class="px-2 py-1 bg-indigo-500 rounded-md basis-1/5">Size</p>
-                                                <p class="px-2 py-1 bg-indigo-500 rounded-md basis-1/5">Shoulder</p>
-                                                <p class="px-2 py-1 bg-indigo-500 rounded-md basis-1/5">Chest</p>
-                                                <p class="px-2 py-1 bg-indigo-500 rounded-md basis-1/5">Sleeve</p>
-                                                <p class="px-2 py-1 bg-indigo-500 rounded-md basis-1/5">Length</p>
+                                @if ($product->category == 'Shirt')
+                                    <div class="ml-auto flex flex-col text-white gap-2" x-data="{ modal: false }">
+                                        <p class="px-3 py-1 bg-violet-500 rounded-md">100% Cotton</p>
+                                        <p class="px-3 py-1 bg-blue-500 rounded-md">180 gsm</p>
+                                        <x-jet-button-custom type="button" x-on:click="modal = true">
+                                            Size Chart
+                                        </x-jet-button-custom>
+                                        <x-jet-modal-custom x-show="modal == true">
+                                            <div class="flex flex-col gap-2 w-full">
+                                                <div class="flex bg-black/50 text-center p-2 rounded-xl gap-2">
+                                                    <p class="px-2 py-1 bg-indigo-500 rounded-md basis-1/5">Size</p>
+                                                    <p class="px-2 py-1 bg-indigo-500 rounded-md basis-1/5">Shoulder</p>
+                                                    <p class="px-2 py-1 bg-indigo-500 rounded-md basis-1/5">Chest</p>
+                                                    <p class="px-2 py-1 bg-indigo-500 rounded-md basis-1/5">Sleeve</p>
+                                                    <p class="px-2 py-1 bg-indigo-500 rounded-md basis-1/5">Length</p>
+                                                </div>
+                                                <div
+                                                    class="flex bg-black/50 text-center p-2 rounded-xl px-2 items-center">
+                                                    <p class="basis-1/5 px-2 py-0.5 bg-rose-500 rounded-md">XS</p>
+                                                    <p class="basis-1/5">15"</p>
+                                                    <p class="basis-1/5">36"</p>
+                                                    <p class="basis-1/5">7.5"</p>
+                                                    <p class="basis-1/5">26"</p>
+                                                </div>
+                                                <div class="flex bg-black/50 text-center p-2 rounded-xl items-center ">
+                                                    <p class="basis-1/5 px-2 py-0.5 bg-rose-500 rounded-md">S</p>
+                                                    <p class="basis-1/5">16"</p>
+                                                    <p class="basis-1/5">38"</p>
+                                                    <p class="basis-1/5">8"</p>
+                                                    <p class="basis-1/5">27"</p>
+                                                </div>
+                                                <div class="flex bg-black/50 text-center p-2 rounded-xl items-center ">
+                                                    <p class="basis-1/5 px-2 py-0.5 bg-rose-500 rounded-md">M</p>
+                                                    <p class="basis-1/5">17"</p>
+                                                    <p class="basis-1/5">40"</p>
+                                                    <p class="basis-1/5">8.5"</p>
+                                                    <p class="basis-1/5">28"</p>
+                                                </div>
+                                                <div class="flex bg-black/50 text-center p-2 rounded-xl items-center ">
+                                                    <p class="basis-1/5 px-2 py-0.5 bg-rose-500 rounded-md">L</p>
+                                                    <p class="basis-1/5">18"</p>
+                                                    <p class="basis-1/5">42"</p>
+                                                    <p class="basis-1/5">9"</p>
+                                                    <p class="basis-1/5">29"</p>
+                                                </div>
+                                                <div class="flex bg-black/50 text-center p-2 rounded-xl items-center ">
+                                                    <p class="basis-1/5 px-2 py-0.5 bg-rose-500 rounded-md">XL</p>
+                                                    <p class="basis-1/5">19"</p>
+                                                    <p class="basis-1/5">44"</p>
+                                                    <p class="basis-1/5">9.5"</p>
+                                                    <p class="basis-1/5">30"</p>
+                                                </div>
+                                                <div
+                                                    class="flex bg-black/50 text-center p-2 rounded-xl items-center">
+                                                    <p class="basis-1/5 px-2 py-0.5 bg-rose-500 rounded-md">2XL</p>
+                                                    <p class="basis-1/5">20"</p>
+                                                    <p class="basis-1/5">46"</p>
+                                                    <p class="basis-1/5">10"</p>
+                                                    <p class="basis-1/5">31"</p>
+                                                </div>
                                             </div>
-                                            <div class="flex bg-black/50 text-center p-2 rounded-xl px-2">
-                                                <p class="basis-1/5">XS</p>
-                                                <p class="basis-1/5">15"</p>
-                                                <p class="basis-1/5">36"</p>
-                                                <p class="basis-1/5">7.5"</p>
-                                                <p class="basis-1/5">26"</p>
-                                            </div>
-                                            <div class="flex bg-black/50 text-center p-2 rounded-xl px-2">
-                                                <p class="basis-1/5">S</p>
-                                                <p class="basis-1/5">16"</p>
-                                                <p class="basis-1/5">38"</p>
-                                                <p class="basis-1/5">8"</p>
-                                                <p class="basis-1/5">27"</p>
-                                            </div>
-                                            <div class="flex bg-black/50 text-center p-2 rounded-xl px-2">
-                                                <p class="basis-1/5">M</p>
-                                                <p class="basis-1/5">17"</p>
-                                                <p class="basis-1/5">40"</p>
-                                                <p class="basis-1/5">8.5"</p>
-                                                <p class="basis-1/5">28"</p>
-                                            </div>
-                                            <div class="flex bg-black/50 text-center p-2 rounded-xl px-2">
-                                                <p class="basis-1/5">L</p>
-                                                <p class="basis-1/5">18"</p>
-                                                <p class="basis-1/5">42"</p>
-                                                <p class="basis-1/5">9"</p>
-                                                <p class="basis-1/5">29"</p>
-                                            </div>
-                                            <div class="flex bg-black/50 text-center p-2 rounded-xl px-2">
-                                                <p class="basis-1/5">XL</p>
-                                                <p class="basis-1/5">19"</p>
-                                                <p class="basis-1/5">44"</p>
-                                                <p class="basis-1/5">9.5"</p>
-                                                <p class="basis-1/5">30"</p>
-                                            </div>
-                                            <div class="flex bg-black/50 text-center p-2 rounded-xl">
-                                                <p class="basis-1/5">2XL</p>
-                                                <p class="basis-1/5">20"</p>
-                                                <p class="basis-1/5">46"</p>
-                                                <p class="basis-1/5">10"</p>
-                                                <p class="basis-1/5">31"</p>
-                                            </div>
-                                        </div>
-                                    </x-jet-modal-custom>
-                                </div>
+                                        </x-jet-modal-custom>
+                                    </div>
                                 @endif
                             </div>
                         </div>

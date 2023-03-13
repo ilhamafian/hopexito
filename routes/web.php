@@ -20,11 +20,9 @@ use App\Http\Livewire\Admin\AdminProduct;
 use App\Http\Livewire\Admin\GodMode;
 
 Route::redirect('/', 'explore');
-
 // google auth
 Route::get('auth/google', [GoogleAuthController::class, 'redirect'])->name('google-auth');
 Route::get('auth/google/call-back', [GoogleAuthController::class, 'callbackGoogle']);
-
 // admin controller
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'admin'])->group(function () {
     Route::get('admin/dashboard', AdminDashboard::class)->name('admin.dashboard');
@@ -36,7 +34,6 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::get('admin/inventory', AdminInventory::class)->name('admin.inventory');
     Route::get('godmode', GodMode::class)->name('godmode');
 });
-
 // protected route
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
     Route::get('dashboard', [Controller::class, 'redirectUser'])->name('dashboard');
@@ -57,10 +54,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('order/index', ManageOrder::class)->name('order.index');
     Route::get('product/manage', ManageProduct::class)->name('product.manage');
 });
-
 // route resource product
 Route::resource('product', ProductsController::class);
-
 // explore controller
 Route::get('sellyourart', [ExploreController::class, 'sellyourart'])->name('sellyourart');
 Route::get('explore', [ExploreController::class, 'explore'])->name('explore');
