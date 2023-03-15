@@ -14,7 +14,8 @@ use Livewire\Component;
 class AdminStorage extends Component
 {
 
-    private function formatBytes($bytes, $precision = 2){
+    private function formatBytes($bytes, $precision = 2)
+    {
         $units = ['B', 'KB', 'MB', 'GB', 'TB'];
 
         $bytes = max($bytes, 0);
@@ -24,14 +25,42 @@ class AdminStorage extends Component
 
         return round($bytes, $precision) . ' ' . $units[$pow];
     }
-
-    public function render()
+    private function getFormattedDiskSize()
     {
         $diskSize = collect(Storage::disk('public')->allFiles())->map(function ($path) {
             return Storage::disk('public')->size($path);
         })->sum();
-        $formattedDisk = $this->formatBytes($diskSize);
 
+        return $this->formatBytes($diskSize);
+    }
+    private function getFiles($directory)
+    {
+        $files = Storage::files($directory);
+        return array_map('basename', $files);
+    }
+    public function unlink($file){
+        $cover_image = storage_path("app/public/cover-image/$file");
+        $image_back = storage_path("app/public/image-back/$file");
+        $image_front = storage_path("app/public/image-front/$file");
+        $mockup_image = storage_path("app/public/mockup-image/$file");
+        
+        if(file_exists($cover_image)){
+            unlink($cover_image);
+        }
+        if(file_exists($image_back)){
+            unlink($image_back);
+        }
+        if(file_exists($image_front)){
+            unlink($image_front);
+        }
+        if(file_exists($mockup_image)){
+            unlink($mockup_image);
+        }
+    }
+
+    public function render()
+    {
+        $formattedDisk = $this->getFormattedDiskSize();
         $collection_image_path = ProductCollection::pluck('collection_image');
         $cover_image_path = Artist::whereNotNull('cover_image')->pluck('cover_image');
         $image_back_path = Product::whereNotNull('image_back')->pluck('image_back');
@@ -39,19 +68,13 @@ class AdminStorage extends Component
         $mockup_image_path = ProductTemplate::whereNotNull('mockup_image')->pluck('mockup_image');
         $profile_photos_path = User::whereNotNull('profile_photo_path')->pluck('profile_photo_path');
         $temp = TemporaryFile::get();
-        $collection_image = Storage::files('public/collection-image');
-        $collection_image_files = array_map('basename', $collection_image);
-        $cover_image = Storage::files('public/cover-image');
-        $cover_image_files = array_map('basename', $cover_image);
-        $image_back = Storage::files('public/image-back');
-        $image_back_files = array_map('basename', $image_back);
-        $image_front = Storage::files('public/image-front');
-        $image_front_files = array_map('basename', $image_front);
-        $mockup_image = Storage::files('public/mockup-image');
-        $mockup_image_files = array_map('basename', $mockup_image);
-        $profile_photos = Storage::files('public/profile-photos');
-        $profile_photos_files = array_map('basename', $profile_photos);
+        $collection_image_files = $this->getFiles('public/collection-image');
+        $cover_image_files = $this->getFiles('public/cover-image');
+        $image_back_files = $this->getFiles('public/image-back');
+        $image_front_files = $this->getFiles('public/image-front');
+        $mockup_image_files = $this->getFiles('public/mockup-image');
+        $profile_photos_files = $this->getFiles('public/profile-photos');
 
-        return view('livewire.admin.admin-storage', compact('formattedDisk','collection_image_path', 'cover_image_path', 'image_back_path', 'image_front_path', 'mockup_image_path', 'profile_photos_path', 'temp', 'collection_image_files', 'cover_image_files', 'image_back_files', 'image_front_files', 'mockup_image_files', 'profile_photos_files'));
+        return view('livewire.admin.admin-storage', compact('formattedDisk', 'collection_image_path', 'cover_image_path', 'image_back_path', 'image_front_path', 'mockup_image_path', 'profile_photos_path', 'temp', 'collection_image_files', 'cover_image_files', 'image_back_files', 'image_front_files', 'mockup_image_files', 'profile_photos_files'));
     }
 }
