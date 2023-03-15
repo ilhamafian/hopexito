@@ -107,6 +107,7 @@
                             <a href="{{ route('product.show', $product->slug) }}" class="relative h-14"
                                 x-data="{ open: false }" x-on:mouseenter="open = true" x-on:mouseleave="open = false">
                                 <p class="px-3 py-2 transition rounded-md bg-emerald-500 hover:bg-indigo-500">
+                                    {{ $product->id }}
                                     {{ $product->title }}</p>
                                 <svg class="absolute p-1 transition rounded-md cursor-pointer top-0.5 right-0.5 hover:bg-indigo-500 w-7 h-7"
                                     x-show="open" wire:click="deleteProduct('{{ $product->id }}')"
