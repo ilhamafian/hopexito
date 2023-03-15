@@ -51,10 +51,27 @@
                     class="bg-green-500 rounded-md px-2 py-0.5 ml-2">{{ count($collection_image_files) }}</span>
             </x-jet-admin-header>
             <div class="grid grid-cols-3 my-4">
-                @foreach ($collection_image_files as $item)
-                    <div class="flex gap-2 p-2">
-                        <p>{{ $item }}</p>
-                    </div>
+                @foreach ($collection_image_files as $file)
+                    @php
+                        $match = false;
+                    @endphp
+                    @foreach ($collection_image_path as $path)
+                        @if ($file === basename($path))
+                            <div class="flex gap-2 p-2">
+                                <p class="text-lime-400">{{ $file }}</p>
+                            </div>
+                            @php
+                                $match = true;
+                                break;
+                            @endphp
+                        @endif
+                    @endforeach
+                    @if (!$match)
+                        <button type="button" wire:click="unlink('{{ $file }}')"
+                            class="flex gap-2 p-2 hover:bg-white/10 transition rounded-md">
+                            <p class="text-rose-400">{{ $file }}</p>
+                        </button>
+                    @endif
                 @endforeach
             </div>
             <x-jet-admin-header>Collection Image Path in Database <span
