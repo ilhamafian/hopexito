@@ -3,12 +3,15 @@
     <x-jet-admin-layout>
         <div class="grid grid-cols-1">
             <x-jet-admin-card>
-                <x-jet-button type="button" wire:click="deleteInventory()">Delete Inventory</x-jet-button>
-                <x-jet-button-utility type="button" wire:click="createInventory()">Create Inventory</x-jet-button-utility>
+                <div class="w-full flex justify-center gap-2">
+                    <x-jet-button type="button" wire:click="deleteInventory()">Delete Inventory</x-jet-button>
+                    <x-jet-button-utility type="button" wire:click="createInventory()">Create Inventory</x-jet-button-utility>
+                </div>
                 <div class="grid grid-cols-4 mt-12">
                     @foreach ($inventories as $item)
-                        <div class="flex flex-col gap-4 m-4">
-                            <p>{{ $item->color }} | {{ $item->size }} | {{ $item->category }}</p>
+                        <div class="flex flex-col gap-2 m-4">
+                            <p class="bg-indigo-700 px-3 py-1 rounded-lg">{{ $item->color }} | {{ $item->size }} | {{ $item->category }}</p>
+                            <p class="bg-fuchsia-700 px-3 py-1 rounded-lg">{{ $item->updated_at }}</p>
                             <div
                                 class="flex items-center justify-between px-4 rounded-md md:px-0 ring-4 ring-indigo-500">
                                 <svg wire:click="decreaseInventory({{ $item->id }})" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"

@@ -51,7 +51,7 @@ class PaymentController extends Controller
     {
         $subtotal = 0;
         foreach (Cart::where('email', Auth::user()->email)->get() as $cart) {
-            $subtotal += $cart->subtotal;
+            $subtotal += $cart->subtotal * $cart->discount;
         }
         return $subtotal;
     }

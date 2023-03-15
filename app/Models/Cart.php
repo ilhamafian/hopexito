@@ -22,6 +22,7 @@ class Cart extends Model
         'weight',
         'size',
         'color',
+        'discount'
     ];
 
     public function cartProduct(){

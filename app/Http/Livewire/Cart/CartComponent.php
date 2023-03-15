@@ -40,15 +40,34 @@ class CartComponent extends Component
     {
         $total = 0;
         foreach (Cart::where('email', Auth::user()->email)->get() as $cart) {
-            $total += $cart->subtotal;
+            $total += $cart->subtotal * $cart->discount;
         }
         return $total;
+    }
+
+    public function discount($x){
+        $carts = Cart::where('email', Auth::user()->email)->get();
+        foreach($carts as $cart){
+            $cart->update([
+                'discount' => $x
+            ]);
+        }
+    }
+
+    public function removeDiscount($x){
+        $carts = Cart::where('email', Auth::user()->email)->get();
+        foreach($carts as $cart){
+            $cart->update([
+                'discount' => $x
+            ]);
+        }
     }
 
     public function render()
     {
         $cart = Cart::where('email', Auth::user()->email)->orderBy('created_at')->get();
+        $discount = Cart::where('email', Auth::user()->email)->value('discount');
         $total = $this->total();
-        return view('livewire.cart.cart-component', compact('cart', 'total'));
+        return view('livewire.cart.cart-component', compact('cart', 'total','discount'));
     }
 }

@@ -3,7 +3,7 @@
     <x-jet-session-message />
     <div class="relative z-20 min-h-screen pt-8">
         <img src="../image/product-selection/product-selection.jpg"
-            class="absolute inset-0  w-full h-full g-cover object-cover" />
+            class="absolute inset-0  w-full h-full bg-cover object-cover" />
         <div
             class="max-w-6xl mx-auto shadow-md backdrop-filter backdrop-blur-[6px] rounded-3xl bg-black/40 shadow-fuchsia-500">
             <div class="max-w-5xl pt-8 mx-auto sm:flex-row">
@@ -47,7 +47,7 @@
                             <img src="../image/product-selection/oversized.png"
                                 class="w-16 h-16 p-2 bg-indigo-500 rounded-full" />
                             <p class="absolute px-2 uppercase rounded-md bg-rose-500/90 bottom-14">Coming Soon</p>
-                        </div>
+                    </div>
                     </div>
                     <div class="block h-48 mx-2 group sm:mx-0">
                         <div

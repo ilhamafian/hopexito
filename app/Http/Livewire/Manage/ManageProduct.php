@@ -19,18 +19,14 @@ class ManageProduct extends Component
     // add product to collection
     public function addToCollection($product_id, $collection_id)
     {
-        $product = Product::findOrFail($product_id);
-        $product->update([
-            'collection_id' => $collection_id
-        ]);
+        $product = Product::where('id', $product_id)
+        ->update(['collection_id' => $collection_id]);
     }
     // remove product from collection
     public function removeFromCollection($product_id, $collection_id)
     {
-        $product = Product::findOrFail($product_id);
-        $product->update([
-            'collection_id' => ''
-        ]);
+        $product =Product::where('id', $product_id)
+        ->update(['collection_id' => '']);
     }
     // delete entire collection
     public function deleteCollection($id)

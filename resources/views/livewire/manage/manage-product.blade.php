@@ -15,18 +15,32 @@
             </p>
         </div>
     </div>
-    <div class="flex justify-between gap-1 md:justify-start">
-        <x-jet-button-utility x-cloak x-on:click="nav = 1" x-bind:class="nav == 1 ? 'bg-indigo-500' : 'bg-zinc-900'">
-            Products
-        </x-jet-button-utility>
-        <x-jet-button-utility x-cloak x-on:click="nav = 2" x-bind:class="nav == 2 ? 'bg-indigo-500' : 'bg-zinc-900'">
-            Collection
-        </x-jet-button-utility>
-        <x-jet-button-utility x-cloak x-on:click="nav = 3" x-bind:class="nav == 3 ? 'bg-indigo-500' : 'bg-zinc-900'">
-            Archives
-        </x-jet-button-utility>
-    </div>
-    <x-jet-section-border />
+        <ul class="flex border-b border-gray-100 mb-10">
+            <li class="flex-1 hover:bg-white/10 transition">
+                <a class="relative block p-4 cursor-pointer" x-on:click="nav = 1">
+                    <span x-bind:class="nav == 1 ? 'bg-fuchsia-600' : 'bg-tranparent'" class="absolute inset-x-0 -bottom-px h-px w-full"></span>
+                    <div class="flex items-center justify-center gap-4">
+                        <span x-bind:class="nav == 1 ? 'text-fuchsia-500':'text-white'" class="text-sm font-medium">Products</span>
+                    </div>
+                </a>
+            </li>
+            <li class="flex-1 hover:bg-white/10 transition">
+                <a class="relative block p-4 cursor-pointer" x-on:click="nav = 2">
+                    <span x-bind:class="nav == 2 ? 'bg-fuchsia-600' : 'bg-tranparent'" class="absolute inset-x-0 -bottom-px h-px w-full"></span>
+                    <div class="flex items-center justify-center gap-4">
+                        <span x-bind:class="nav == 2 ? 'text-fuchsia-500':'text-white'" class="text-sm font-medium">Collection</span>
+                    </div>
+                </a>
+            </li>
+            <li class="flex-1 hover:bg-white/10 transition">
+                <a class="relative block p-4 cursor-pointer" x-on:click="nav = 3">
+                    <span x-bind:class="nav == 3 ? 'bg-fuchsia-600' : 'bg-tranparent'" class="absolute inset-x-0 -bottom-px h-px w-full"></span>
+                    <div class="flex items-center justify-center gap-4">
+                        <span x-bind:class="nav == 3 ? 'text-fuchsia-500':'text-white'" class="text-sm font-medium">Archives</span>
+                    </div>
+                </a>
+            </li>
+        </ul>
     <div x-cloak x-show="nav == 1" x-transition.opacity x-transition:enter.duration.500ms
         x-transition:leave.duration.100ms>
         <x-jet-input class="mx-3 mb-4 md:mx-0" type="text" wire:model.lazy="search"

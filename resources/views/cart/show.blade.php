@@ -283,6 +283,7 @@
                             class="w-full">
                             Change delivery address
                         </x-jet-button-custom>
+           
                         <p class="flex justify-between text-white"><span>Shipping (JNT
                                 Express)</span>
                             <span>RM {{ number_format($delivery, 2) }}</span>

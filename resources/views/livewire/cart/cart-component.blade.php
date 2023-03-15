@@ -72,21 +72,42 @@
                                             Quantity
                                         </h2>
                                         <div class="flex items-center">
-                                            <button wire:click="decreaseQuantity('{{ $cart->id }}')"><svg
-                                                    xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                    class="mx-2 cursor-pointer w-7 h-7 text-lime-400 active:scale-105">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        d="M19.5 12h-15" />
-                                                </svg></button>
+                                            @if ($discount == 1)
+                                                <button wire:click="decreaseQuantity('{{ $cart->id }}')"><svg
+                                                        xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                        class="mx-2 cursor-pointer w-7 h-7 text-lime-400 active:scale-105">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="M19.5 12h-15" />
+                                                    </svg></button>
+                                            @else
+                                                <button type="button" disabled><svg xmlns="http://www.w3.org/2000/svg"
+                                                        fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                                        stroke="currentColor"
+                                                        class="mx-2 w-7 h-7 text-lime-400 active:scale-105">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="M19.5 12h-15" />
+                                                    </svg></button>
+                                            @endif
                                             <h1>{{ $cart->quantity }}</h1>
-                                            <button wire:click="increaseQuantity('{{ $cart->id }}')"> <svg
-                                                    xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                    class="mx-2 cursor-pointer w-7 h-7 text-lime-400 active:scale-105">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        d="M12 4.5v15m7.5-7.5h-15" />
-                                                </svg></button>
+                                            @if ($discount == 1)
+                                                <button wire:click="increaseQuantity('{{ $cart->id }}')"> <svg
+                                                        xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                        class="mx-2 cursor-pointer w-7 h-7 text-lime-400 active:scale-105">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="M12 4.5v15m7.5-7.5h-15" />
+                                                    </svg></button>
+                                            @else
+                                                <button type="button" disabled><svg xmlns="http://www.w3.org/2000/svg"
+                                                        fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                                        stroke="currentColor"
+                                                        class="mx-2 w-7 h-7 text-lime-400 active:scale-105">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="M12 4.5v15m7.5-7.5h-15" />
+                                                    </svg></button>
+                                            @endif
+
                                         </div>
                                     </div>
                                     {{-- Item Price --}}
@@ -130,9 +151,22 @@
                     </div>
                     <div class="grid grid-cols-4 gap-4 mt-4">
                         <div class="relative">
-                            <div class="flex items-center justify-center h-16 rounded-md bg-violet-500">
-                                10% Off
-                            </div>
+                            @if ($discount != 0.9 && $total >= 60)
+                                <button type="button" wire:click="discount('0.9')"
+                                    class="w-full flex items-center justify-center h-16 rounded-md bg-violet-500">
+                                    10% Off
+                                </button>
+                            @elseif($discount == 0.9)
+                                <button type="button" wire:click="removeDiscount('1')"
+                                    class="w-full flex items-center justify-center h-16 rounded-md bg-transparent border-2 border-violet-500">
+                                    Applied
+                                </button>
+                            @else
+                                <button type="button" disabled
+                                    class="w-full flex items-center justify-center h-16 rounded-md bg-gray-500 cursor-not-allowed">
+                                    10% Off
+                                </button>
+                            @endif
                             @if ($total >= 60)
                                 <p class="absolute -bottom-7 left-0 right-0 p-2 text-center text-xs text-lime-500">
                                     Minimum spend: RM60
@@ -142,12 +176,24 @@
                                     Minimum spend: RM60
                                 </p>
                             @endif
-
                         </div>
                         <div class="relative">
-                            <div class="flex items-center justify-center h-16 rounded-md bg-violet-500">
-                                15% Off
-                            </div>
+                            @if ($discount != 0.85 && $total >= 90)
+                                <button type="button" wire:click="discount('0.85')"
+                                    class="w-full flex items-center justify-center h-16 rounded-md bg-violet-500">
+                                    15% Off
+                                </button>
+                            @elseif($discount == 0.85)
+                                <button type="button" wire:click="removeDiscount('1')"
+                                    class="w-full flex items-center justify-center h-16 rounded-md bg-transparent border-2 border-violet-500">
+                                    Applied
+                                </button>
+                            @else
+                                <button type="button" disabled
+                                    class="w-full flex items-center justify-center h-16 rounded-md bg-gray-500 cursor-not-allowed">
+                                    15% Off
+                                </button>
+                            @endif
                             @if ($total >= 90)
                                 <p class="absolute -bottom-7 left-0 right-0 p-2 text-center text-xs text-lime-500">
                                     Minimum spend: RM90
@@ -159,9 +205,22 @@
                             @endif
                         </div>
                         <div class="relative">
-                            <div class="flex items-center justify-center h-16 rounded-md bg-violet-500">
-                                20% Off
-                            </div>
+                            @if ($discount != 0.8 && $total >= 120)
+                                <button type="button" wire:click="discount('0.80')"
+                                    class="w-full flex items-center justify-center h-16 rounded-md bg-violet-500">
+                                    20% Off
+                                </button>
+                            @elseif($discount == 0.8)
+                                <button type="button" wire:click="removeDiscount('1')"
+                                    class="w-full flex items-center justify-center h-16 rounded-md bg-transparent border-2 border-violet-500">
+                                    Applied
+                                </button>
+                            @else
+                                <button type="button" disabled
+                                    class="w-full flex items-center justify-center h-16 rounded-md bg-gray-500 cursor-not-allowed">
+                                    20% Off
+                                </button>
+                            @endif
                             @if ($total >= 120)
                                 <p class="absolute -bottom-7 left-0 right-0 p-2 text-center text-xs text-lime-500">
                                     Minimum spend: RM120
@@ -173,24 +232,37 @@
                             @endif
                         </div>
                         <div class="relative">
-                            <div class="flex items-center justify-center h-16 rounded-md bg-violet-500">
-                                25% Off
-                            </div>
-                            @if ($total >= 150)
+                            @if ($discount != 0.7 && $total >= 200)
+                                <button type="button" wire:click="discount('0.7')"
+                                    class="w-full flex items-center justify-center h-16 rounded-md bg-violet-500">
+                                    30% Off
+                                </button>
+                            @elseif($discount == 0.7)
+                                <button type="button" wire:click="removeDiscount('1')"
+                                    class="w-full flex items-center justify-center h-16 rounded-md bg-transparent border-2 border-violet-500">
+                                    Applied
+                                </button>
+                            @else
+                                <button type="button" disabled
+                                    class="w-full flex items-center justify-center h-16 rounded-md bg-gray-500 cursor-not-allowed">
+                                    30% Off
+                                </button>
+                            @endif
+                            @if ($total >= 200)
                                 <p class="absolute -bottom-7 left-0 right-0 p-2 text-center text-xs text-lime-500">
-                                    Minimum spend: RM150
+                                    Minimum spend: RM200
                                 </p>
                             @else
                                 <p class="absolute -bottom-7 left-0 right-0 p-2 text-center text-xs text-rose-500">
-                                    Minimum spend: RM150
+                                    Minimum spend: RM200
                                 </p>
                             @endif
                         </div>
                     </div>
         </x-jet-admin-card>
-    </div> --}}
-</div>
-<script>
+    </div>
+</div> --}}
+{{-- <script>
     // Set the date we're counting down to
     var countDownDate = new Date("Apr 21, 2023 23:59:59").getTime();
 
@@ -219,6 +291,6 @@
             document.getElementById("demo").innerHTML = "EXPIRED";
         }
     }, 1000);
-</script>
+</script> --}}
 </div>
 </div>

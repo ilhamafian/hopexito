@@ -17,6 +17,7 @@ use App\Http\Livewire\Admin\AdminDashboard;
 use App\Http\Livewire\Admin\AdminInventory;
 use App\Http\Livewire\Admin\AdminWallet;
 use App\Http\Livewire\Admin\AdminProduct;
+use App\Http\Livewire\Admin\AdminStorage;
 use App\Http\Livewire\Admin\GodMode;
 
 Route::redirect('/', 'explore');
@@ -32,6 +33,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::get('admin/wallets', AdminWallet::class)->name('admin.wallets');
     Route::get('admin/products', AdminProduct::class)->name('admin.products');
     Route::get('admin/inventory', AdminInventory::class)->name('admin.inventory');
+    Route::get('admin/storage', AdminStorage::class)->name('admin.storage');
     Route::get('godmode', GodMode::class)->name('godmode');
 });
 // protected route

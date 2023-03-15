@@ -294,11 +294,11 @@
                         <div class="" x-show="open == false" x-transition:enter.duration.300ms>
                             <div id="tshirt-front" class="relative w-[880px] h-[900px] -p-[0.5px]">
                                 <img id="tshirt-front-background" class="w-[880px] h-[900px] mx-auto bg-white"
-                                    src="{{ asset('storage/mockup-image/' . $template->mockup_image) }}"
+                                    src="{{ asset('storage/mockup-image/' . $template->mockup_image)  }}"
                                     alt="" />
-                                <div id="drawingArea" class="absolute top-52 left-60 z-0 w-[405px] h-[525px] border-2">
-                                    <div class="w-[405px] h-[525px] relative select-none">
-                                        <canvas id="tshirt-front-canvas" width="405" height="525" />
+                                <div id="drawingArea" class="absolute top-52 left-[270px] z-0 w-[360px] h-[525px]">
+                                    <div class="w-[360px] h-[525px] relative select-none">
+                                        <canvas id="tshirt-front-canvas" width="360" height="525" />
                                     </div>
                                 </div>
                             </div>
@@ -310,9 +310,9 @@
                                 <img id="tshirt-back-background" class="w-[880px] h-[900px] mx-auto bg-white"
                                     src="{{ asset('storage/mockup-image/' . $template->mockup_image_2) }}"
                                     alt="" />
-                                <div id="drawingArea" class="absolute top-52 left-60 z-0 w-[405px] h-[525px] border-2">
-                                    <div class="w-[405px] h-[525px] relative select-none">
-                                        <canvas id="tshirt-back-canvas" width="405" height="525" />
+                                <div id="drawingArea" class="absolute top-44 left-[270px] z-0 w-[360px] h-[525px]">
+                                    <div class="w-[360px] h-[525px] relative select-none">
+                                        <canvas id="tshirt-back-canvas" width="360" height="525" />
                                     </div>
                                 </div>
                             </div>
