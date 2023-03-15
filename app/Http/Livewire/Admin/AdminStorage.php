@@ -86,6 +86,8 @@ class AdminStorage extends Component
         $image_back = storage_path("app/public/image-back/$file");
         $image_front = storage_path("app/public/image-front/$file");
         $mockup_image = storage_path("app/public/mockup-image/$file");
+        $collection_image = storage_path("app/public/collection-image/$file");
+        $profile_photo = storage_path("app/public/profile-photos/$file");
 
         if(file_exists($cover_image)){
             unlink($cover_image);
@@ -98,6 +100,12 @@ class AdminStorage extends Component
         }
         if(file_exists($mockup_image)){
             unlink($mockup_image);
+        }
+        if(file_exists($collection_image)){
+            unlink($collection_image);
+        }
+        if(file_exists($profile_photo)){
+            unlink($profile_photo);
         }
     }
 
