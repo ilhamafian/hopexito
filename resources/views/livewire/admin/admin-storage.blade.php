@@ -1,36 +1,52 @@
 <div class="flex">
     <x-jet-admin-sidebar />
     <x-jet-admin-layout>
-        <x-jet-admin-card>
-            <x-jet-admin-header>Storage Disk
-            </x-jet-admin-header>
-            <div class="grid grid-cols-6 mt-6">
-                <div class="flex flex-col">
-                    <p>Total Disk Size</p>
+        <div class="grid grid-cols-3 gap-8">
+            <x-jet-admin-card>
+                <div class="flex flex-col gap-2 items-center">
+                    <x-jet-admin-header>Disk Size
+                    </x-jet-admin-header>
                     {{ $diskSize }}
                 </div>
-               <div class="flex flex-col">
-                <p>Collection Image Disk Size</p>
-                {{ $diskCollectionSize }}
-               </div>
-               <div class="flex flex-col">
-                <p>Cover Image Disk Size</p>
-                {{ $diskCoverSize }}
-               </div>
-               <div class="flex flex-col">
-                <p>Image Back Disk Size</p>
-                {{ $diskImageBackSize }}
-               </div>
-               <div class="flex flex-col">
-                <p>Image Front Disk Size</p>
-                {{ $diskImageFrontSize }}
-               </div>
-               <div class="flex flex-col">
-                <p>Profile Photos Disk Size</p>
-                {{ $diskProfilePhotoSize }}
-               </div>
-            </div>
-        </x-jet-admin-card>
+            </x-jet-admin-card>
+            <x-jet-admin-card>
+                <div class="flex flex-col gap-2 items-center">
+                    <x-jet-admin-header>Collection Image Disk Size
+                    </x-jet-admin-header>
+                    {{ $diskCollectionSize }}
+                </div>
+            </x-jet-admin-card>
+            <x-jet-admin-card>
+                <div class="flex flex-col gap-2 items-center">
+                    <x-jet-admin-header>Cover Image Disk Size
+                    </x-jet-admin-header>
+                    {{ $diskCoverSize }}
+                </div>
+            </x-jet-admin-card>
+            <x-jet-admin-card>
+                <div class="flex flex-col gap-2 items-center">
+                    <x-jet-admin-header>Image Back Disk Size
+                    </x-jet-admin-header>
+                    {{ $diskImageBackSize }}
+                </div>
+            </x-jet-admin-card>
+            <x-jet-admin-card>
+                <div class="flex flex-col gap-2 items-center">
+                    <x-jet-admin-header>Image Front Disk Size
+                    </x-jet-admin-header>
+                    {{ $diskImageFrontSize }}
+                </div>
+              
+            </x-jet-admin-card>
+            <x-jet-admin-card>
+                <div class="flex flex-col gap-2 items-center">
+                    <x-jet-admin-header>Profile Photos Disk Size
+                    </x-jet-admin-header>
+                    {{ $diskProfilePhotoSize }}
+                </div>
+            </x-jet-admin-card>
+        </div>
+
         <x-jet-section-border />
         <x-jet-admin-card>
             <x-jet-admin-header>Temporary Files <span

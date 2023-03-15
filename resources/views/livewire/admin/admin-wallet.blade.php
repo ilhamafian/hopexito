@@ -288,6 +288,9 @@
                         </div>
                     @endforeach
                 </div>
+                <div class="mt-4">
+                    {{ $wallet_all->links('/vendor/pagination/tailwind') }}
+                </div>
             </x-jet-admin-card>
         </div>
     </x-jet-admin-layout>

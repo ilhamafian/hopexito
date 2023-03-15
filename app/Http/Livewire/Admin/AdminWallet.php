@@ -25,7 +25,7 @@ class AdminWallet extends Component
         $search = '%' . $this->search . '%';
         $wallets = Wallet::where('status', 2)->orderBy('updated_at', 'DESC')->get();
         $wallet_requests = WalletTransaction::where('status', 1)->orderBy('updated_at','DESC')->get();
-        $wallet_all = Wallet::where('name','like', $search)->get();
+        $wallet_all = Wallet::where('name','like', $search)->paginate(12);
         $wallet_data = Wallet::get();
         $walletTransaction_data = WalletTransaction::get();
     
