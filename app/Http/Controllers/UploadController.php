@@ -104,7 +104,6 @@ class UploadController extends Controller
 
         Artist::updateOrCreate(['id' => Auth::user()->id], [
             'cover_image' => $request->cover_image,
-            'bio' => $request->bio
         ])->save();
 
         session()->flash('message', 'Profile Updated');

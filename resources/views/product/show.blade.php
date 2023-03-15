@@ -50,8 +50,14 @@
                                 @endif
                                 @if ($product->category == 'Shirt')
                                     <div class="ml-auto flex flex-col text-white gap-2" x-data="{ modal: false }">
-                                        <p class="px-3 py-1 bg-violet-500 rounded-md">100% Cotton</p>
-                                        <p class="px-3 py-1 bg-blue-500 rounded-md">180 gsm</p>
+                                        <p class="flex items-center gap-2">
+                                            <span class="w-2 h-2 bg-cyan-500 rounded-full"></span>
+                                            100% Cotton
+                                        </p>
+                                        <p class="flex items-center gap-2">
+                                            <span class="w-2 h-2 bg-fuchsia-500 rounded-full"></span>
+                                            180 gsm
+                                        </p>
                                         <x-jet-button-custom type="button" x-on:click="modal = true">
                                             Size Chart
                                         </x-jet-button-custom>
@@ -100,8 +106,7 @@
                                                     <p class="basis-1/5">9.5"</p>
                                                     <p class="basis-1/5">30"</p>
                                                 </div>
-                                                <div
-                                                    class="flex bg-black/50 text-center p-2 rounded-xl items-center">
+                                                <div class="flex bg-black/50 text-center p-2 rounded-xl items-center">
                                                     <p class="basis-1/5 px-2 py-0.5 bg-rose-500 rounded-md">2XL</p>
                                                     <p class="basis-1/5">20"</p>
                                                     <p class="basis-1/5">46"</p>

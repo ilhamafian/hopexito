@@ -43,7 +43,7 @@
             @foreach ($users as $user)
                 <a href="{{ route('people', $user->name) }}"
                     class="p-1 hover:scale-110 bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 rounded-full transition">
-                    <img class="object-cover w-16 h-16 rounded-full" src="{{ $user->profile_photo_url }}"
+                    <img class=" object-cover w-16 h-16 rounded-full" src="{{ $user->profile_photo_url }}"
                         alt="{{ $user->name }}" />
                 </a>
             @endforeach

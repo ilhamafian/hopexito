@@ -10,6 +10,16 @@ class CoverImageBio extends Component
 {
     public $cover_image, $bio;
 
+    public function updateBio(){
+        $artist = Artist::find(Auth::user()->id);
+        $artist->update([
+            'bio' => $this->bio
+        ]);
+
+        session()->flash('message','Bio Updated');
+        return redirect()->route('profile.show');
+    }
+
     private function forceFill()
     {
         if (Artist::find(Auth::user()->id)) {

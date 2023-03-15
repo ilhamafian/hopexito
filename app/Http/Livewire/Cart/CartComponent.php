@@ -9,7 +9,7 @@ use App\Models\Cart;
 class CartComponent extends Component
 {
     public $coupon;
-
+  
     // increase cart quantity by 1
     public function increaseQuantity($rowId)
     {

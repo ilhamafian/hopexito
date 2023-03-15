@@ -2,44 +2,35 @@
 <x-app-layout>
     <x-jet-session-message />
     <div x-data="{ nav: 1 }" class="flex flex-col mx-auto mb-20 lg:flex-row max-w-7xl">
-        @if (Auth::user()->role_id == 2)
-        <div class="mx-auto lg:min-h-screen h-72">
+        <div class="xl:fixed mx-auto lg:min-h-screen h-72">
             <x-jet-gradient-card>
-                <ul class="relative flex flex-col gap-2 px-12 py-12 space-y-2 text-white bg-black rounded-xl ">
-                    <button x-on:click="nav = 1" class="flex items-center gap-2 hover:text-indigo-500"
-                        :class="nav == 1 ? 'text-indigo-400' : ''">
-                        <svg x-cloak x-show="nav == 1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            x-transition.duration.500 stroke-width="1.5" stroke="currentColor" class="absolute w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
-                        </svg>
-                        <p class="pl-8">
+                <ul class="relative flex flex-col px-12 py-12 text-white bg-black rounded-xl ">
+                    <a href="#updateInformation">
+                        <p class="p-2 hover:bg-indigo-500/50 rounded-md">
                             Account Information
                         </p>
-                    </button>
+                    </a>
+                    <a href="#updatePassword">
+                        <p class="p-2 hover:bg-indigo-500/50 rounded-md">
+                            Update Password
+                        </p>
+                    </a>
                     @if (Auth::user()->role_id == 2)
-                        <button x-on:click="nav = 3" class="flex items-center gap-2 hover:text-indigo-500"
-                            :class="nav == 3 ? 'text-indigo-400' : ''">
-                            <svg x-cloak x-show="nav == 3" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="absolute w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
-                            </svg>
-                            <p class="pl-8">
-                                Personalization
+                        <a href="#personalization">
+                            <p class="p-2 hover:bg-indigo-500/50 rounded-md">
+                                Profile Personalization
                             </p>
-                        </button>
-                        <button x-on:click="nav = 4" class="flex items-center gap-2 hover:text-indigo-500"
-                            :class="nav == 4 ? 'text-indigo-400' : ''">
-                            <svg x-show="nav == 4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke-width="1.5" stroke="currentColor" class="absolute w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <p class="pl-8">
+                        </a>
+                        <a href="#social-links">
+                            <p class="p-2 hover:bg-indigo-500/50 rounded-md">
+                                Link to other sites
+                            </p>
+                        </a>
+                        <a href="#wallet">
+                            <p class="p-2 hover:bg-indigo-500/50 rounded-md">
                                 Payment Details
                             </p>
-                        </button>
+                        </a>
                     @endif
                     {{-- <button x-on:click="nav = 2" class="flex items-center gap-2 hover:text-indigo-500"
                         :class="nav == 2 ? 'text-indigo-400' : ''">
@@ -56,15 +47,16 @@
                 </ul>
             </x-jet-gradient-card>
         </div>
-        @endif
-        <div>
-            <div x-cloak x-show="nav == 1" x-transition.opacity x-transition:enter.duration.500ms
-                x-transition:leave.duration.100ms>
+        <div class="ml-auto">
+            <div id="updateInformation"x-transition.opacity x-transition:enter.duration.500ms x-transition:leave.duration.100ms>
                 @if (Laravel\Fortify\Features::canUpdateProfileInformation() &&
                         Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()))
                     @livewire('profile.update-profile-information-form')
                     <x-jet-section-border />
-                    @livewire('profile.update-password-form')
+                    <span id="updatePassword">
+                        @livewire('profile.update-password-form')
+                    </span>
+                    <x-jet-section-border />
                 @endif
             </div>
             @if (Laravel\Fortify\Features::canManageTwoFactorAuthentication() &&
@@ -78,14 +70,18 @@
                 </div>
             @endif
             @if (Auth::user()->role_id == 2)
-                <div x-cloak x-show="nav == 3" x-transition.opacity x-transition:enter.duration.500ms
-                    x-transition:leave.duration.100ms>
-                    @livewire('cover-image-bio')
+                <div x-transition.opacity x-transition:enter.duration.500ms x-transition:leave.duration.100ms>
+                    <span id="personalization">
+                        @livewire('cover-image-bio')
+                    </span>
                     <x-jet-section-border />
-                    @livewire('social-links')
+                    <span id="social-links">
+                        @livewire('social-links')
+                    </span>
+                    <x-jet-section-border />
                 </div>
-                <div class="lg:w-[900px] w-full" x-cloak x-show="nav == 4" x-transition.opacity
-                    x-transition:enter.duration.500ms x-transition:leave.duration.100ms>
+                <div id="wallet" class="lg:w-[900px] w-full" x-transition.opacity x-transition:enter.duration.500ms
+                    x-transition:leave.duration.100ms>
                     @livewire('wallet')
                     <x-jet-section-border />
                     <x-jet-wallet-card>

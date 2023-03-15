@@ -34,6 +34,8 @@ class JetstreamServiceProvider extends ServiceProvider
         $this->registerComponent('gradient-card');
         $this->registerComponent('title');
         $this->registerComponent('admin-header');
+        $this->registerComponent('glitch-text');
+        $this->registerComponent('title-small');
     }
     protected function registerComponent(string $component)
     {

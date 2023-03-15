@@ -1,6 +1,6 @@
 # Terms of Service
 
-Terms and Conditions
+User Agreement
 Welcome to hopexito.com!
 These terms and conditions outline the rules and regulations for the use of ILHAM IZANY RESOURCES’s Website, located at https://www.hopexito.com/.
 By accessing this website we assume you accept these terms and conditions. Do not continue to use hopexito.com if you do not agree to take all of the terms and conditions stated on this page.

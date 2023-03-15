@@ -21,8 +21,8 @@
                             <option selected class="">Choose a category</option>
                             <option value="Shirt">Shirt</option>
                             <option value="Totebag">Totebag</option>
-                            <option value="Hoodie">Oversized Tee</option>
-                            <option value="Oversized">Hoodie</option>
+                            <option value="Oversized">Oversized Tee</option>
+                            <option value="Hoodie">Hoodie</option>
                             <option value="Sweatshirt">Sweater</option>
                             <option value="Sweatshirt">Sublimation</option>
                         </select>

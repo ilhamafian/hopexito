@@ -288,6 +288,37 @@
                         </div>
                     </div>
                 @endunless
+                @unless($template->category != 'Oversized')
+                <x-jet-input type="hidden" value="{{ $template->category }}" class="hidden" name="category" />
+                    <div>
+                        <div class="" x-show="open == false" x-transition:enter.duration.300ms>
+                            <div id="tshirt-front" class="relative w-[880px] h-[900px] -p-[0.5px]">
+                                <img id="tshirt-front-background" class="w-[880px] h-[900px] mx-auto bg-white"
+                                    src="{{ asset('storage/mockup-image/' . $template->mockup_image) }}"
+                                    alt="" />
+                                <div id="drawingArea" class="absolute top-52 left-60 z-0 w-[405px] h-[525px] border-2">
+                                    <div class="w-[405px] h-[525px] relative select-none">
+                                        <canvas id="tshirt-front-canvas" width="405" height="525" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="" x-show="open == true" x-transition:enter.duration.300ms>
+                            <div id="tshirt-back" class="relative -p-[0.5px] w-[880px] h-[900px]">
+                                <img id="tshirt-back-background" class="w-[880px] h-[900px] mx-auto bg-white"
+                                    src="{{ asset('storage/mockup-image/' . $template->mockup_image_2) }}"
+                                    alt="" />
+                                <div id="drawingArea" class="absolute top-52 left-60 z-0 w-[405px] h-[525px] border-2">
+                                    <div class="w-[405px] h-[525px] relative select-none">
+                                        <canvas id="tshirt-back-canvas" width="405" height="525" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endunless
             </div>
         </form>
     </div>

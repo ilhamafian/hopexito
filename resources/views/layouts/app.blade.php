@@ -71,7 +71,7 @@
     @livewire('navigation-menu')
 </head>
 
-<body class="text-xs antialiased leading-6 text-gray-200 select-none sm:text-sm font-poppins bg-zinc-900 border-box overflow-x-hidden">
+<body class="text-xs antialiased leading-6 text-gray-200 select-none sm:text-sm font-poppins bg-zinc-900 border-box">
     {{ $slot }}
     @stack('modals')
     @livewireScripts

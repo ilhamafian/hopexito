@@ -67,7 +67,7 @@
                                 </svg>
                             @endif
                         </a>
-                        <a href="{{ route('profile.show') }}"
+                        <a href="{{ route('profile.show') }}#personalization"
                             class="flex items-center text-sm text-indigo-300 transition hover:text-pink-400">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor" stroke-width="1">
@@ -82,13 +82,13 @@
                                 </svg>
                             @endif
                         </a>
-                        <a href="{{ route('profile.show') }}"
+                        <a href="{{ route('profile.show') }}#social-links"
                             class="flex items-center text-sm text-indigo-300 transition hover:text-pink-400">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor" stroke-width="1">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
                             </svg>
-                            Add a social link
+                            Add link to other sites
                             @if (Auth::user()->artist()->whereNotNull('facebook')->orWhereNotNull('twitter')->orWhereNotNull('instagram')->orWhereNotNull('dribble')->orWhereNotNull('behance')->orWhereNotNull('pinterest')->orWhereNotNull('deviantart')->orWhereNotNull('tiktok')->orWhereNotNull('website')->count() > 0)
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="ml-2 text-lime-500 w-6 h-6">
