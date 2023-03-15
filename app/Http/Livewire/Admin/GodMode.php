@@ -215,27 +215,6 @@ class GodMode extends Component
         session()->flash('message', 'Cache Cleared');
         return redirect()->route('godmode');
     }
-    // public function clearMoreCache(){
-    //     $image_front = Product::pluck('image_front');
-    //     $image_back = Product::pluck('image_back');
-
-    //     foreach ($image_front as $item) {
-    //         $file_image_front = "public/image-front/$item";
-    //         if (Storage::exists($file_image_front)) {
-    //             Storage::delete($file_image_front);
-    //         }
-    //     }
-        
-    //     foreach ($image_back as $item) {
-    //         $file_image_back = "public/image-back/$item";
-    //         if (Storage::exists($file_image_back)) {
-    //             Storage::delete($file_image_back);
-    //         }
-    //     }
-
-    //     session()->flash('message', 'More Cache Cleared');
-    //     return redirect()->route('godmode');
-    // }
     // add RM20 to each wallets
     public function add20()
     {

@@ -25,7 +25,7 @@ class AdminStorage extends Component
 
         return round($bytes, $precision) . ' ' . $units[$pow];
     }
-    private function getFormattedDiskSize()
+    private function diskSize()
     {
         $diskSize = collect(Storage::disk('public')->allFiles())->map(function ($path) {
             return Storage::disk('public')->size($path);
@@ -33,17 +33,60 @@ class AdminStorage extends Component
 
         return $this->formatBytes($diskSize);
     }
+    private function diskCollectionSize()
+    {
+        $diskSize = collect(Storage::disk('public')->allFiles('collection-image'))->map(function ($path) {
+            return Storage::disk('public')->size($path);
+        })->sum();
+
+        return $this->formatBytes($diskSize);
+    }
+    private function diskCoverSize()
+    {
+        $diskSize = collect(Storage::disk('public')->allFiles('cover-image'))->map(function ($path) {
+            return Storage::disk('public')->size($path);
+        })->sum();
+
+        return $this->formatBytes($diskSize);
+    }
+    private function diskImageBackSize()
+    {
+        $diskSize = collect(Storage::disk('public')->allFiles('image-back'))->map(function ($path) {
+            return Storage::disk('public')->size($path);
+        })->sum();
+
+        return $this->formatBytes($diskSize);
+    }
+    private function diskImageFrontSize()
+    {
+        $diskSize = collect(Storage::disk('public')->allFiles('image-front'))->map(function ($path) {
+            return Storage::disk('public')->size($path);
+        })->sum();
+
+        return $this->formatBytes($diskSize);
+    }
+    private function diskProfilePhotoSize()
+    {
+        $diskSize = collect(Storage::disk('public')->allFiles('profile-photos'))->map(function ($path) {
+            return Storage::disk('public')->size($path);
+        })->sum();
+
+        return $this->formatBytes($diskSize);
+    }
+
     private function getFiles($directory)
     {
         $files = Storage::files($directory);
         return array_map('basename', $files);
     }
+
     public function unlink($file){
+
         $cover_image = storage_path("app/public/cover-image/$file");
         $image_back = storage_path("app/public/image-back/$file");
         $image_front = storage_path("app/public/image-front/$file");
         $mockup_image = storage_path("app/public/mockup-image/$file");
-        
+
         if(file_exists($cover_image)){
             unlink($cover_image);
         }
@@ -60,7 +103,12 @@ class AdminStorage extends Component
 
     public function render()
     {
-        $formattedDisk = $this->getFormattedDiskSize();
+        $diskSize = $this->diskSize();
+        $diskCollectionSize = $this->diskCollectionSize();
+        $diskCoverSize = $this->diskCoverSize();
+        $diskImageBackSize = $this->diskImageBackSize();
+        $diskImageFrontSize = $this->diskImageFrontSize();
+        $diskProfilePhotoSize = $this->diskProfilePhotoSize();
         $collection_image_path = ProductCollection::pluck('collection_image');
         $cover_image_path = Artist::whereNotNull('cover_image')->pluck('cover_image');
         $image_back_path = Product::whereNotNull('image_back')->pluck('image_back');
@@ -75,6 +123,6 @@ class AdminStorage extends Component
         $mockup_image_files = $this->getFiles('public/mockup-image');
         $profile_photos_files = $this->getFiles('public/profile-photos');
 
-        return view('livewire.admin.admin-storage', compact('formattedDisk', 'collection_image_path', 'cover_image_path', 'image_back_path', 'image_front_path', 'mockup_image_path', 'profile_photos_path', 'temp', 'collection_image_files', 'cover_image_files', 'image_back_files', 'image_front_files', 'mockup_image_files', 'profile_photos_files'));
+        return view('livewire.admin.admin-storage', compact('diskSize','diskCollectionSize','diskCoverSize','diskImageBackSize','diskImageFrontSize','diskProfilePhotoSize','collection_image_path', 'cover_image_path', 'image_back_path', 'image_front_path', 'mockup_image_path', 'profile_photos_path', 'temp', 'collection_image_files', 'cover_image_files', 'image_back_files', 'image_front_files', 'mockup_image_files', 'profile_photos_files'));
     }
 }

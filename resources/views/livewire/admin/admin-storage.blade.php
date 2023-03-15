@@ -4,8 +4,31 @@
         <x-jet-admin-card>
             <x-jet-admin-header>Storage Disk
             </x-jet-admin-header>
-            <div class="grid grid-cols-3 mt-6">
-                {{ $formattedDisk }}
+            <div class="grid grid-cols-6 mt-6">
+                <div class="flex flex-col">
+                    <p>Total Disk Size</p>
+                    {{ $diskSize }}
+                </div>
+               <div class="flex flex-col">
+                <p>Collection Image Disk Size</p>
+                {{ $diskCollectionSize }}
+               </div>
+               <div class="flex flex-col">
+                <p>Cover Image Disk Size</p>
+                {{ $diskCoverSize }}
+               </div>
+               <div class="flex flex-col">
+                <p>Image Back Disk Size</p>
+                {{ $diskImageBackSize }}
+               </div>
+               <div class="flex flex-col">
+                <p>Image Front Disk Size</p>
+                {{ $diskImageFrontSize }}
+               </div>
+               <div class="flex flex-col">
+                <p>Profile Photos Disk Size</p>
+                {{ $diskProfilePhotoSize }}
+               </div>
             </div>
         </x-jet-admin-card>
         <x-jet-section-border />
@@ -52,17 +75,26 @@
             </x-jet-admin-header>
             <div class="grid grid-cols-3 my-4">
                 @foreach ($cover_image_files as $file)
+                    @php
+                        $match = false;
+                    @endphp
                     @foreach ($cover_image_path as $path)
                         @if ($file === basename($path))
                             <div class="flex gap-2 p-2">
-                                <p class="text-lime-400">{{ $path }}</p>
+                                <p class="text-lime-400">{{ $file }}</p>
                             </div>
-                        @else
-                            <button type="button" wire:click="unlink('{{ $file }}')" class="flex gap-2 p-2 hover:bg-white/10 transition rounded-md">
-                                <p class="text-rose-400">{{ $file }}</p>
-                            </button>
+                            @php
+                                $match = true;
+                                break;
+                            @endphp
                         @endif
                     @endforeach
+                    @if (!$match)
+                        <button type="button" wire:click="unlink('{{ $file }}')"
+                            class="flex gap-2 p-2 hover:bg-white/10 transition rounded-md">
+                            <p class="text-rose-400">{{ $file }}</p>
+                        </button>
+                    @endif
                 @endforeach
             </div>
             <x-jet-admin-header>Cover Image Path in Database <span
@@ -98,9 +130,10 @@
                         @endif
                     @endforeach
                     @if (!$match)
-                    <button type="button" wire:click="unlink('{{ $file }}')" class="flex gap-2 p-2 hover:bg-white/10 transition rounded-md">
-                        <p class="text-rose-400">{{ $file }}</p>
-                    </button>
+                        <button type="button" wire:click="unlink('{{ $file }}')"
+                            class="flex gap-2 p-2 hover:bg-white/10 transition rounded-md">
+                            <p class="text-rose-400">{{ $file }}</p>
+                        </button>
                     @endif
                 @endforeach
             </div>
@@ -122,26 +155,27 @@
             </x-jet-admin-header>
             <div class="grid grid-cols-3 my-4">
                 @foreach ($image_front_files as $file)
-                @php
-                    $match = false;
-                @endphp
-                @foreach ($image_front_path as $path)
-                    @if ($file === basename($path))
-                        <div class="flex gap-2 p-2">
-                            <p class="text-lime-400">{{ $file }}</p>
-                        </div>
-                        @php
-                            $match = true;
-                            break;
-                        @endphp
+                    @php
+                        $match = false;
+                    @endphp
+                    @foreach ($image_front_path as $path)
+                        @if ($file === basename($path))
+                            <div class="flex gap-2 p-2">
+                                <p class="text-lime-400">{{ $file }}</p>
+                            </div>
+                            @php
+                                $match = true;
+                                break;
+                            @endphp
+                        @endif
+                    @endforeach
+                    @if (!$match)
+                        <button type="button" wire:click="unlink('{{ $file }}')"
+                            class="flex gap-2 p-2 hover:bg-white/10 transition rounded-md">
+                            <p class="text-rose-400">{{ $file }}</p>
+                        </button>
                     @endif
                 @endforeach
-                @if (!$match)
-                <button type="button" wire:click="unlink('{{ $file }}')" class="flex gap-2 p-2 hover:bg-white/10 transition rounded-md">
-                    <p class="text-rose-400">{{ $file }}</p>
-                </button>
-                @endif
-            @endforeach
             </div>
             <x-jet-admin-header>Image Front Path in Database <span
                     class="bg-green-500 rounded-md px-2 py-0.5 ml-2">{{ count($image_front_path) }}</span>
@@ -176,9 +210,10 @@
                         @endif
                     @endforeach
                     @if (!$match)
-                    <button type="button" wire:click="unlink('{{ $file }}')" class="flex gap-2 p-2 hover:bg-white/10 transition rounded-md">
-                        <p class="text-rose-400">{{ $file }}</p>
-                    </button>
+                        <button type="button" wire:click="unlink('{{ $file }}')"
+                            class="flex gap-2 p-2 hover:bg-white/10 transition rounded-md">
+                            <p class="text-rose-400">{{ $file }}</p>
+                        </button>
                     @endif
                 @endforeach
             </div>
@@ -200,26 +235,27 @@
             </x-jet-admin-header>
             <div class="grid grid-cols-2 my-4">
                 @foreach ($profile_photos_files as $file)
-                @php
-                    $match = false;
-                @endphp
-                @foreach ($profile_photos_path as $path)
-                    @if ($file === basename($path))
-                        <div class="flex gap-2 p-2">
-                            <p class="text-lime-400">{{ $file }}</p>
-                        </div>
-                        @php
-                            $match = true;
-                            break;
-                        @endphp
+                    @php
+                        $match = false;
+                    @endphp
+                    @foreach ($profile_photos_path as $path)
+                        @if ($file === basename($path))
+                            <div class="flex gap-2 p-2">
+                                <p class="text-lime-400">{{ $file }}</p>
+                            </div>
+                            @php
+                                $match = true;
+                                break;
+                            @endphp
+                        @endif
+                    @endforeach
+                    @if (!$match)
+                        <button type="button" wire:click="unlink('{{ $file }}')"
+                            class="flex gap-2 p-2 hover:bg-white/10 transition rounded-md">
+                            <p class="text-rose-400">{{ $file }}</p>
+                        </button>
                     @endif
                 @endforeach
-                @if (!$match)
-                <button type="button" wire:click="unlink('{{ $file }}')" class="flex gap-2 p-2 hover:bg-white/10 transition rounded-md">
-                    <p class="text-rose-400">{{ $file }}</p>
-                </button>
-                @endif
-            @endforeach
             </div>
             <x-jet-admin-header>Profile Photos Path in Database <span
                     class="bg-green-500 rounded-md px-2 py-0.5 ml-2">{{ count($profile_photos_path) }}</span>
