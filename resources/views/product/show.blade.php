@@ -4,7 +4,7 @@
         <x-jet-session-message />
         <div class="py-4 mx-auto">
             <div class="flex flex-wrap gap-3 mx-auto lg:w-4/5">
-                <div class="flex gap-3 items-center text-white">
+                <div class="flex gap-3 items-center text-white mx-2">
                     <a href="{{ route('explore') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-8 h-8 rounded-md hover:bg-indigo-500/50 transition p-1">
@@ -26,15 +26,15 @@
                 </div>
                 <div class="relative mx-auto max-w-screen-xl md:px-4">
                     <div class="grid gap-8 md:grid-cols-4 lg:items-start">
-                        <div class="md:col-span-2 col-span-3">
+                        <div class="col-span-2">
                             <div class="relative" x-show="preview == 1" x-transition:enter.duration.500ms>
                                 <div class="w-full overflow-hidden rounded-lg" id="product-image">
-                                    <img class="w-full h-full" src="{{ $product->product_image }}">
+                                    <img class="sm:w-full w-96 h-full" src="{{ $product->product_image }}">
                                 </div>
                             </div>
                             <div x-cloak class="relative" x-show="preview == 2" x-transition:enter.duration.500ms>
                                 <div class="w-full overflow-hidden rounded-lg">
-                                    <img class="w-full h-full" src="{{ $product->product_image_2 }}">
+                                    <img class="sm:w-full w-96 h-full" src="{{ $product->product_image_2 }}">
                                 </div>
                             </div>
                             <div class="mt-3 flex gap-3 cursor-pointer px-2">
@@ -47,7 +47,8 @@
                                         x-bind:class="preview == 2 ? 'ring ring-indigo-500' : ''" />
                                 @endif
                                 @if ($product->category == 'Shirt')
-                                    <div class="ml-auto flex flex-col text-white gap-2" x-data="{ modal: false }">
+                                    <div class="md:ml-auto ml-4 flex flex-col flex-no-wrap text-white gap-2"
+                                        x-data="{ modal: false }">
                                         <p class="flex items-center gap-2">
                                             <span class="w-2 h-2 bg-cyan-500 rounded-full"></span>
                                             100% Cotton
@@ -131,54 +132,29 @@
                                             <div class="flex flex-col gap-2 w-full">
                                                 <div class="flex bg-black/50 text-center p-2 rounded-xl gap-2">
                                                     <p class="px-2 py-1 bg-indigo-500 rounded-md basis-1/5">Size</p>
-                                                    <p class="px-2 py-1 bg-indigo-500 rounded-md basis-1/5">Shoulder
+                                                    <p class="px-2 py-1 bg-indigo-500 rounded-md basis-1/5">S
                                                     </p>
-                                                    <p class="px-2 py-1 bg-indigo-500 rounded-md basis-1/5">Chest</p>
-                                                    <p class="px-2 py-1 bg-indigo-500 rounded-md basis-1/5">Sleeve</p>
-                                                    <p class="px-2 py-1 bg-indigo-500 rounded-md basis-1/5">Length</p>
-                                                </div>
-                                                <div
-                                                    class="flex bg-black/50 text-center p-2 rounded-xl px-2 items-center">
-                                                    <p class="basis-1/5 px-2 py-0.5 bg-rose-500 rounded-md">XS</p>
-                                                    <p class="basis-1/5">15"</p>
-                                                    <p class="basis-1/5">36"</p>
-                                                    <p class="basis-1/5">7.5"</p>
-                                                    <p class="basis-1/5">26"</p>
+                                                    <p class="px-2 py-1 bg-indigo-500 rounded-md basis-1/5">M</p>
+                                                    <p class="px-2 py-1 bg-indigo-500 rounded-md basis-1/5">L
+                                                    </p>
+                                                    <p class="px-2 py-1 bg-indigo-500 rounded-md basis-1/5">XL</p>
+                                                    <p class="px-2 py-1 bg-indigo-500 rounded-md basis-1/5">2XL</p>
                                                 </div>
                                                 <div class="flex bg-black/50 text-center p-2 rounded-xl items-center ">
-                                                    <p class="basis-1/5 px-2 py-0.5 bg-rose-500 rounded-md">S</p>
-                                                    <p class="basis-1/5">16"</p>
-                                                    <p class="basis-1/5">38"</p>
-                                                    <p class="basis-1/5">8"</p>
-                                                    <p class="basis-1/5">27"</p>
+                                                    <p class="basis-1/5 px-2 py-0.5 bg-rose-500 rounded-md">Width</p>
+                                                    <p class="basis-1/5">54cm</p>
+                                                    <p class="basis-1/5">57cm</p>
+                                                    <p class="basis-1/5">60cm</p>
+                                                    <p class="basis-1/5">64cm</p>
+                                                    <p class="basis-1/5">68cm</p>
                                                 </div>
                                                 <div class="flex bg-black/50 text-center p-2 rounded-xl items-center ">
-                                                    <p class="basis-1/5 px-2 py-0.5 bg-rose-500 rounded-md">M</p>
-                                                    <p class="basis-1/5">17"</p>
-                                                    <p class="basis-1/5">40"</p>
-                                                    <p class="basis-1/5">8.5"</p>
-                                                    <p class="basis-1/5">28"</p>
-                                                </div>
-                                                <div class="flex bg-black/50 text-center p-2 rounded-xl items-center ">
-                                                    <p class="basis-1/5 px-2 py-0.5 bg-rose-500 rounded-md">L</p>
-                                                    <p class="basis-1/5">18"</p>
-                                                    <p class="basis-1/5">42"</p>
-                                                    <p class="basis-1/5">9"</p>
-                                                    <p class="basis-1/5">29"</p>
-                                                </div>
-                                                <div class="flex bg-black/50 text-center p-2 rounded-xl items-center ">
-                                                    <p class="basis-1/5 px-2 py-0.5 bg-rose-500 rounded-md">XL</p>
-                                                    <p class="basis-1/5">19"</p>
-                                                    <p class="basis-1/5">44"</p>
-                                                    <p class="basis-1/5">9.5"</p>
-                                                    <p class="basis-1/5">30"</p>
-                                                </div>
-                                                <div class="flex bg-black/50 text-center p-2 rounded-xl items-center">
-                                                    <p class="basis-1/5 px-2 py-0.5 bg-rose-500 rounded-md">2XL</p>
-                                                    <p class="basis-1/5">20"</p>
-                                                    <p class="basis-1/5">46"</p>
-                                                    <p class="basis-1/5">10"</p>
-                                                    <p class="basis-1/5">31"</p>
+                                                    <p class="basis-1/5 px-2 py-0.5 bg-rose-500 rounded-md">Length</p>
+                                                    <p class="basis-1/5">66cm</p>
+                                                    <p class="basis-1/5">69cm</p>
+                                                    <p class="basis-1/5">75cm</p>
+                                                    <p class="basis-1/5">76cm</p>
+                                                    <p class="basis-1/5">78cm</p>
                                                 </div>
                                             </div>
                                         </x-jet-modal-custom>
@@ -277,7 +253,7 @@
                                         @endforeach
                                     </div>
                                     <div class="flex flex-col gap-4 my-8 md:flex-row">
-                                        <div class="flex items-center justify-between px-4 rounded-md md:px-0 ring-4 ring-indigo-500"
+                                        <div class="flex items-center justify-between px-4 w-80 sm:w-auto rounded-md md:px-0 ring-4 ring-indigo-500"
                                             x-data="{
                                                 quantity: 1,
                                                 minus(value) {
@@ -307,7 +283,7 @@
                                             </svg>
                                         </div>
                                         @if (Auth::check())
-                                            <x-jet-button class="py-4 mt-4 md:mt-0">
+                                            <x-jet-button class="w-80 sm:w-auto py-4 mt-4 md:mt-0 md:w-auto">
                                                 <span class="mx-auto">Add to Cart</span>
                                             </x-jet-button>
                                         @else
@@ -315,7 +291,7 @@
                                                 <x-jet-button type="button"
                                                     class="w-full py-4 mt-4 md:mt-0 md:w-auto"
                                                     x-on:click="modal = true">
-                                                    Add to Cart
+                                                    <span class="mx-auto">Add to Cart</span>
                                                 </x-jet-button>
                                                 <x-jet-modal-custom>
                                                     <div class="flex flex-col">
@@ -375,7 +351,16 @@
                                     @endif
                                 </div>
                                 <div class="flex flex-col justify-between px-2 py-1 tracking-wider md:px-4 md:py-2">
-                                    <div class="text-sm text-white truncate md:font-medium">
+                                    @if ($product->category == 'Shirt')
+                                        <p class="px-3 py-0.5 bg-fuchsia-700/80 rounded-md w-fit text-xs">Standard Tee
+                                        </p>
+                                    @elseif($product->category == 'Oversized')
+                                        <p class="px-3 py-0.5 rounded-md bg-indigo-700/80 w-fit text-xs">Oversized Tee
+                                        </p>
+                                    @else
+                                        <p></p>
+                                    @endif
+                                    <div class="text-sm text-white truncate md:font-medium mt-1">
                                         {{ $product->title }}
                                     </div>
                                     <h2 class="hover:text-fuchsia-500">By {{ $product->shopname }}
@@ -391,7 +376,7 @@
         </div>
     </x-jet-gradient-card>
     <x-jet-gradient-card>
-        <div class="py-8 bg-black/90 md:rounded-xl">
+        <div class="py-8 bg-black/90 rounded-xl">
             <div class="relative w-full px-2 py-6 mx-auto lg:max-w-7xl">
                 <x-jet-title>Discover other products</x-jet-title>
                 <div class="grid grid-cols-2 gap-2 mx-auto mt-6 md:gap-6 sm:grid-cols-3 lg:grid-cols-4">
@@ -415,7 +400,14 @@
                                     @endif
                                 </div>
                                 <div class="flex flex-col justify-between px-2 py-1 tracking-wider md:px-4 md:py-2">
-                                    <div class="text-sm text-white truncate md:font-medium">
+                                    @if($product->category == 'Shirt')
+                                    <p class="px-3 py-0.5 bg-fuchsia-700/80 rounded-md w-fit text-xs">Standard Tee</p>
+                                    @elseif($product->category == 'Oversized')
+                                    <p class="px-3 py-0.5 rounded-md bg-indigo-700/80 w-fit text-xs">Oversized Tee</p>
+                                    @else
+                                    <p></p>
+                                    @endif
+                                    <div class="text-sm text-white truncate md:font-medium mt-1">
                                         {{ $item->title }}
                                     </div>
                                     <h2 class="hover:text-fuchsia-500">By {{ $item->shopname }}

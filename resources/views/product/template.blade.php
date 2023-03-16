@@ -159,7 +159,7 @@
                     <div class="relative basis-1/3">
                         <x-jet-label for="price" value="{{ __('Set the price') }}" />
                         <x-jet-input type="text" id="price" name="price" class="block w-full mt-1"
-                            x-model="price" />
+                            x-model="price" placeholder="Min: {{ $template->min }}" />
                         @error('price')
                             <p class="absolute w-2 h-2 rounded-full bottom-10 right-3 bg-rose-500"></p>
                         @enderror
@@ -168,6 +168,7 @@
                         @enderror
                         <input type="hidden" name="commission"
                             x-bind:value="(price * {{ $template->commission / 100 }}).toFixed(2)" />
+                        <input type="hidden" name="min" value="{{ $template->min }}" />
                     </div>
                     <div class="basis-1/3">
                         <x-jet-label for="commission" value="{{ __('Commission') }}" /><br>
@@ -289,12 +290,12 @@
                     </div>
                 @endunless
                 @unless($template->category != 'Oversized')
-                <x-jet-input type="hidden" value="{{ $template->category }}" class="hidden" name="category" />
+                    <x-jet-input type="hidden" value="{{ $template->category }}" class="hidden" name="category" />
                     <div>
                         <div class="" x-show="open == false" x-transition:enter.duration.300ms>
                             <div id="tshirt-front" class="relative w-[880px] h-[900px] -p-[0.5px]">
                                 <img id="tshirt-front-background" class="w-[880px] h-[900px] mx-auto bg-white"
-                                    src="{{ asset('storage/mockup-image/' . $template->mockup_image)  }}"
+                                    src="{{ asset('storage/mockup-image/' . $template->mockup_image) }}"
                                     alt="" />
                                 <div id="drawingArea" class="absolute top-52 left-[270px] z-0 w-[360px] h-[525px]">
                                     <div class="w-[360px] h-[525px] relative select-none">

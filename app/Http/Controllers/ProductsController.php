@@ -33,10 +33,11 @@ class ProductsController extends Controller
     // store products into database
     public function store(Request $request)
     {
+        $minimum_price = $request->input('min');
         $request->validate([
             'title' => 'required|max:255',
             'tags' => 'required|max:255',
-            'price' => 'required|numeric|min:45',
+            'price' => 'required|numeric|min:' . $minimum_price,
             'commission' => 'required|numeric',
             'color' => 'required',
         ]);
@@ -48,7 +49,7 @@ class ProductsController extends Controller
         if ($temporaryFile_2) {
             $temporaryFile_2->delete();
         }
-        
+
         $input = $request->all();
         $input['color'] = implode(',', $request->input('color'));
         $input['artist_id'] = Auth::user()->id;
@@ -63,10 +64,10 @@ class ProductsController extends Controller
     {
         $user = User::where('name', $product->shopname)->first();
         $products = Product::where('shopname', $product->shopname)->inRandomOrder()->take(8)->get();
-        $discover = Product::where('shopname', '!=' , $product->shopname)->inRandomOrder()->take(8)->get();
+        $discover = Product::where('shopname', '!=', $product->shopname)->inRandomOrder()->take(8)->get();
         $totalDesigns = Product::where('shopname', $product->shopname)->count();
         $colors = explode(',', $product->color);
-        return view('product.show', compact('product','products','user','colors','totalDesigns','discover'));
+        return view('product.show', compact('product', 'products', 'user', 'colors', 'totalDesigns', 'discover'));
     }
 
     public function edit(Product $product)
