@@ -18,11 +18,7 @@
         <div class="mt-10 space-y-3 text-center text-black">
             <p class="text-xl font-bold">{{ $user->name }}</p>
             <p class="flex items-center justify-center gap-2">Joined {{ $user->created_at->format('M Y') }}
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
-                </svg>
+                <span class="text-2xl">&middot;</span>
                 {{ $products->count() }} Designs
             </p>
             <div class="p-1 mx-auto rounded-full bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 w-fit">
@@ -210,7 +206,40 @@
         </div>
     </div>
     <div class="w-full min-h-screen px-2 py-12 mx-auto mb-32 md:px-6 lg:max-w-7xl lg:px-8" x-data="{ nav: 1 }">
-        <div class="flex justify-start gap-1">
+        <ul class="flex border-b border-gray-100">
+            <li class="flex-1 hover:bg-white/10 transition">
+                <a class="relative block p-4 cursor-pointer" x-on:click="nav = 1">
+                    <span x-bind:class="nav == 1 ? 'bg-indigo-500' : 'bg-tranparent'"
+                        class="absolute inset-x-0 -bottom-px h-px w-full"></span>
+                    <div class="flex items-center justify-center gap-2">
+                        <span x-bind:class="nav == 1 ? 'text-indigo-400' : 'text-white'"
+                            class="text-sm gap-2 flex items-center font-medium"><svg
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                            </svg>
+                            Shop</span>
+                    </div>
+                </a>
+            </li>
+            <li class="flex-1 hover:bg-white/10 transition">
+                <a class="relative block p-4 cursor-pointer" x-on:click="nav = 2">
+                    <span x-bind:class="nav == 2 ? 'bg-indigo-500' : 'bg-tranparent'"
+                        class="absolute inset-x-0 -bottom-px h-px w-full"></span>
+                    <div class="flex items-center justify-center gap-4">
+                        <span x-bind:class="nav == 2 ? 'text-indigo-400' : 'text-white'" class="text-sm flex gap-2 items-center font-medium"><svg
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM3.75 12h.007v.008H3.75V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm-.375 5.25h.007v.008H3.75v-.008zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                            </svg>
+                            Collection</span>
+                    </div>
+                </a>
+            </li>
+        </ul>
+        {{-- <div class="flex justify-start gap-1">
             <x-jet-button-utility x-on:click="nav = 1" x-bind:class="nav == 1 ? 'bg-indigo-500' : 'bg-zinc-900'">
                 Shop
             </x-jet-button-utility>
@@ -218,11 +247,10 @@
                 x-bind:class="nav == 2 ? 'bg-indigo-500' : 'bg-zinc-900'">
                 Collection
             </x-jet-button-utility>
-        </div>
-        <x-jet-section-border />
+        </div> --}}
         <div x-show="nav == 1" x-transition.opacity x-transition:enter.duration.500ms
             x-transition:leave.duration.100ms>
-            <div class="grid grid-cols-2 gap-2 mx-auto mt-6 md:gap-6 sm:grid-cols-3 lg:grid-cols-4">
+            <div class="grid grid-cols-2 gap-2 mx-auto mt-10 md:gap-6 sm:grid-cols-3 lg:grid-cols-4">
                 @foreach ($products as $product)
                     <a href="{{ route('product.show', $product->slug) }}" x-data="{ open: false }">
                         <div
@@ -251,7 +279,14 @@
                                 @endif
                             </div>
                             <div class="flex flex-col justify-between px-2 py-1 tracking-wider md:px-4 md:py-2">
-                                <div class="text-sm text-white truncate md:font-medium">
+                                @if ($product->category == 'Shirt')
+                                    <p class="px-3 py-0.5 bg-fuchsia-700/80 rounded-md w-fit text-xs">Standard Tee</p>
+                                @elseif($product->category == 'Oversized')
+                                    <p class="px-3 py-0.5 rounded-md bg-indigo-700/80 w-fit text-xs">Oversized Tee</p>
+                                @else
+                                    <p></p>
+                                @endif
+                                <div class="text-sm text-white truncate md:font-medium mt-1">
                                     {{ $product->title }}
                                 </div>
                                 <h2 class="hover:text-fuchsia-500">By {{ $product->shopname }}
@@ -266,7 +301,7 @@
         </div>
         <div x-show="nav == 2" x-transition.opacity x-transition:enter.duration.500ms
             x-transition:leave.duration.100ms>
-            <div class="relative flex flex-col gap-4 my-4">
+            <div class="relative flex flex-col gap-4 my-10">
                 @foreach ($productsCollection as $item)
                     <div style="background-image: url('{{ asset('storage/collection-image/' . $item->collection_image) }}')"
                         class="relative block overflow-hidden bg-center bg-no-repeat bg-cover md:rounded-xl">
