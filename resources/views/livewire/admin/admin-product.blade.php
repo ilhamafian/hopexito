@@ -99,6 +99,20 @@
             </div>
             <div class="col-span-2 p-1 rounded-2xl bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500">
                 <div class="flex flex-col h-full p-6 bg-black rounded-xl">
+                    <x-jet-header>List of Tags</x-jet-header>
+                    <div class="grid max-h-screen grid-cols-6 gap-2 mt-5 overflow-scroll">
+                        @foreach ($tags as $item)
+                            <a class="relative h-14"
+                                x-data="{ open: false }" x-on:mouseenter="open = true" x-on:mouseleave="open = false">
+                                <p class="px-3 py-2 transition rounded-md bg-orange-500 hover:bg-fuchsia-500">
+                                    {{ $item }}</p>
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-2 p-1 rounded-2xl bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500">
+                <div class="flex flex-col h-full p-6 bg-black rounded-xl">
                     <x-jet-header>List of Products</x-jet-header>
                     <x-jet-input class="" type="text" wire:model.lazy="search"
                         placeholder="Search by product name" />

@@ -23,11 +23,14 @@ class AdminProduct extends Component
     {
         $search = '%' . $this->search . '%';
         $products = Product::where('title', 'like', $search)->select('id', 'title','slug')->get();
+        $tags = Product::pluck('tags')->map(function ($item) {
+            return explode(',', $item);
+        })->flatten()->unique()->toArray();
         $totalProducts = Product::count();
         $totalSold = Product::sum('sold');
         $averagePrice = Product::average('price');
         $totalTemplates = ProductTemplate::count();
         $totalCollection = ProductCollection::count();
-        return view('livewire.admin.admin-product', compact('products','totalProducts','totalSold','averagePrice','totalTemplates','totalCollection'));
+        return view('livewire.admin.admin-product', compact('products','tags','totalProducts','totalSold','averagePrice','totalTemplates','totalCollection'));
     }
 }
