@@ -49,7 +49,7 @@ class UploadController extends Controller
 
             return $filename;
         }
-        // request from views/livewire/admin/product
+        // request from views/livewire/admin/template
         if ($request->hasFile('mockup_image')) {
             $file = $request->file('mockup_image');
             $extension = $file->getClientOriginalExtension();
@@ -62,7 +62,7 @@ class UploadController extends Controller
 
             return $filename;
         }
-        // request from views/livewire/admin/product
+        // request from views/livewire/admin/template
         if ($request->hasFile('mockup_image_2')) {
             $file = $request->file('mockup_image_2');
             $extension = $file->getClientOriginalExtension();
@@ -141,7 +141,7 @@ class UploadController extends Controller
         ]);
 
         session()->flash('message', 'Product Template Created');
-        return redirect()->route('admin.products');
+        return redirect()->route('admin.templates');
     }
     // upload collection image
     public function upload_collection(Request $request)

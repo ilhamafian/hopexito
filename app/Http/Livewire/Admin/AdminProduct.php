@@ -9,20 +9,24 @@ use Livewire\Component;
 
 class AdminProduct extends Component
 {
-    public $mockup_image, $mockup_image_2, $commission, $category, $min, $color, $search;
+    public $search;
 
     // remove product from database
     public function deleteProduct($id)
     {
-        Product::where('id', $id)->delete();
-        session()->flash('message', 'Product Deleted');
+        $product = Product::find($id);
+        dd($product);
+        if ($product) {
+            $product->delete();
+        }
+        session()->flash('message','Product Deleted');
         return redirect()->route('admin.products');
     }
 
     public function render()
     {
         $search = '%' . $this->search . '%';
-        $products = Product::where('title', 'like', $search)->select('id', 'title','slug')->get();
+        $products = Product::where('title', 'like', $search)->select('id', 'title','slug','status')->get();
         $tags = Product::pluck('tags')->map(function ($item) {
             return explode(',', $item);
         })->flatten()->unique()->toArray();
