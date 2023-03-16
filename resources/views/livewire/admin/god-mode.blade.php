@@ -2,13 +2,13 @@
     <x-jet-admin-sidebar />
     <x-jet-admin-layout>
         <x-jet-session-message />
-        {{-- @if(!$hide)
+        @if(!$hide)
         <div class="min-h-screen max-w-xl mx-auto">
             <x-jet-input type="password" wire:model.lazy="unlock_password" class=" block mt-32 w-full"/>
             <x-jet-button wire:click="unlock()" class="mt-4 w-full"><span class="mx-auto">Apocalypse Dragon</span></x-jet-button>
         </div>
         @endif
-        @if ($hide) --}}
+        @if ($hide)
             <div class="grid grid-cols-2 text-white">
                 <x-jet-gradient-card>
                     <div class="flex flex-col p-6 bg-black rounded-xl">
@@ -222,6 +222,6 @@
                     </div>
                 </x-jet-gradient-card>
             </div>
-        {{-- @endif --}}
+        @endif
     </x-jet-admin-layout>
 </div>
