@@ -189,14 +189,13 @@
                         <div class="col-span-2 relative flex flex-col w-full p-6">
                             <div class="z-10 md:py-12">
                                 <p class="my-0.5 text-2xl font-medium text-indigo-400 ">{{ $product->title }}</p>
-                      
                                 <div class="flex items-center space-x-8">
                                     <p class="text-xs text-gray-300">Designed by <a
                                             href="{{ route('people', $product->shopname) }}"><span
                                                 class="font-bold tracking-wider text-indigo-400 hover:text-indigo-500 text-sm">{{ $product->shopname }}</span></a>
                                     </p>
                                 </div>
-                                <div class="flex items-center gap-2 my-3">
+                                <div class="flex flex-wrap items-center gap-2 my-3 w-96">
                                     @foreach (explode(',', $product->tags) as $tag)
                                         <p class="px-2 py-0.5 bg-violet-500 rounded-md text-white">{{ $tag }}
                                         </p>
