@@ -41,9 +41,9 @@
                     </div>
                     <div class="flex flex-col gap-1 justify-between px-2 py-1 tracking-wider md:px-4 md:py-2">
                         @if($product->category == 'Shirt')
-                        <p class="px-3 py-0.5 bg-fuchsia-500 rounded-md w-fit text-xs">Standard Tee</p>
+                        <p class="px-3 py-0.5 bg-fuchsia-700/80 rounded-md w-fit text-xs">Standard Tee</p>
                         @elseif($product->category == 'Oversized')
-                        <p class="px-3 py-0.5 rounded-md bg-fuchsia-500 w-fit text-xs">Oversized Tee</p>
+                        <p class="px-3 py-0.5 rounded-md bg-indigo-700/80 w-fit text-xs">Oversized Tee</p>
                         @else
                         <p></p>
                         @endif

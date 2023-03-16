@@ -122,6 +122,7 @@ class AdminStorage extends Component
         $image_back_path = Product::whereNotNull('image_back')->pluck('image_back');
         $image_front_path = Product::whereNotNull('image_front')->pluck('image_front');
         $mockup_image_path = ProductTemplate::whereNotNull('mockup_image')->pluck('mockup_image');
+        $mockup_image_2_path = ProductTemplate::whereNotNull('mockup_image_2')->pluck('mockup_image_2');
         $profile_photos_path = User::whereNotNull('profile_photo_path')->pluck('profile_photo_path');
         $temp = TemporaryFile::get();
         $collection_image_files = $this->getFiles('public/collection-image');
@@ -131,6 +132,6 @@ class AdminStorage extends Component
         $mockup_image_files = $this->getFiles('public/mockup-image');
         $profile_photos_files = $this->getFiles('public/profile-photos');
 
-        return view('livewire.admin.admin-storage', compact('diskSize','diskCollectionSize','diskCoverSize','diskImageBackSize','diskImageFrontSize','diskProfilePhotoSize','collection_image_path', 'cover_image_path', 'image_back_path', 'image_front_path', 'mockup_image_path', 'profile_photos_path', 'temp', 'collection_image_files', 'cover_image_files', 'image_back_files', 'image_front_files', 'mockup_image_files', 'profile_photos_files'));
+        return view('livewire.admin.admin-storage', compact('diskSize','diskCollectionSize','diskCoverSize','diskImageBackSize','diskImageFrontSize','diskProfilePhotoSize','collection_image_path', 'cover_image_path', 'image_back_path', 'image_front_path', 'mockup_image_path', 'mockup_image_2_path', 'profile_photos_path', 'temp', 'collection_image_files', 'cover_image_files', 'image_back_files', 'image_front_files', 'mockup_image_files', 'profile_photos_files'));
     }
 }

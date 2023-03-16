@@ -162,7 +162,14 @@
                             @endif
                         </div>
                         <div class="flex flex-col justify-between px-2 py-1 tracking-wider md:px-4 md:py-2">
-                            <div class="text-sm text-white truncate md:font-medium">
+                            @if($product->category == 'Shirt')
+                            <p class="px-3 py-0.5 bg-fuchsia-700/80 rounded-md w-fit text-xs">Standard Tee</p>
+                            @elseif($product->category == 'Oversized')
+                            <p class="px-3 py-0.5 rounded-md bg-indigo-700/80 w-fit text-xs">Oversized Tee</p>
+                            @else
+                            <p></p>
+                            @endif
+                            <div class="text-sm text-white truncate md:font-medium mt-1">
                                 {{ $product->title }}
                             </div>
                             <h2 class="hover:text-fuchsia-500">By {{ $product->shopname }}

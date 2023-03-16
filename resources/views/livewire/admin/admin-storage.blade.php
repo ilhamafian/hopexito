@@ -36,7 +36,7 @@
                     </x-jet-admin-header>
                     {{ $diskImageFrontSize }}
                 </div>
-              
+
             </x-jet-admin-card>
             <x-jet-admin-card>
                 <div class="flex flex-col gap-2 items-center">
@@ -234,7 +234,7 @@
                     @foreach ($mockup_image_path as $path)
                         @if ($file === basename($path))
                             <div class="flex gap-2 p-2">
-                                <p class="text-lime-400">{{ $file }}</p>
+                                <p class="text-blue-400">{{ $file }}</p>
                             </div>
                             @php
                                 $match = true;
@@ -245,7 +245,7 @@
                     @if (!$match)
                         <button type="button" wire:click="unlink('{{ $file }}')"
                             class="flex gap-2 p-2 hover:bg-white/10 transition rounded-md">
-                            <p class="text-rose-400">{{ $file }}</p>
+                            <p class="text-teal-400">{{ $file }}</p>
                         </button>
                     @endif
                 @endforeach
@@ -255,6 +255,16 @@
             </x-jet-admin-header>
             <div class="grid grid-cols-3 my-4">
                 @foreach ($mockup_image_path as $item)
+                    <div class="flex gap-2 p-2">
+                        <p>{{ $item }}</p>
+                    </div>
+                @endforeach
+            </div>
+            <x-jet-admin-header>Mockup Image 2 Path in Database<span
+                    class="bg-green-500 rounded-md px-2 py-0.5 ml-2">{{ count($mockup_image_2_path) }}</span>
+            </x-jet-admin-header>
+            <div class="grid grid-cols-3 my-4">
+                @foreach ($mockup_image_2_path as $item)
                     <div class="flex gap-2 p-2">
                         <p>{{ $item }}</p>
                     </div>
