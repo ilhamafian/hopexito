@@ -7,13 +7,13 @@
             {{ __('Update your profile\'s cover image and bio for a more personalized look.') }}
         </x-slot>
     </x-jet-section-title>
-    <div class="flex flex-col px-4 py-5 sm:p-6 rounded-2xl">
+    <div class="flex flex-col py-5 rounded-2xl">
         <form method="POST" action="{{ route('upload.cover') }}" enctype="multipart/form-data" class="">
             @csrf
             <x-jet-label for="cover-image" value="{{ __('Cover Image') }}" />
             @if (Auth::user()->artist->cover_image)
                 <img src="{{ asset('storage/cover-image/' . Auth::user()->artist->cover_image) }}"
-                    class="w-full rounded-lg h-96">
+                    class="w-full rounded-lg h-48 md:h-72 lg:h-96">
             @endif
             <input type="file" id="cover-image" name="cover_image" wire:model.defer="cover_image"
                 class="w-full mt-2">

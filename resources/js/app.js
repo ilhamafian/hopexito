@@ -6,3 +6,4 @@ Alpine.plugin(Typewriter);
 Alpine.plugin(Clipboard);
 window.Alpine = Alpine;
 Alpine.start();
+

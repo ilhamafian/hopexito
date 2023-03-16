@@ -12,7 +12,7 @@
     {{-- Swiper --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     {{-- Filepond --}}
-    {{-- <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" /> --}}
+    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
     <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
         rel="stylesheet">
     <!-- Scripts -->
@@ -22,7 +22,6 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @vite(['resources/css/filepond.css', 'resources/js/filepond.js'])
     <!-- Styles -->
     <style>
         html {
@@ -88,5 +87,4 @@
 </body>
 {{-- Global Footer --}}
 <x-jet-footer></x-jet-footer>
-
 </html>
