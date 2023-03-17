@@ -1,6 +1,5 @@
-<div class="flex gap-2">
-    <div class="w-2/5">
-
+<div class="flex flex-col lg:flex-row gap-2">
+    <div class="lg:w-2/5 w-full">
         @if (Auth::check())
             <p class="text-lg tracking-wide text-indigo-500 my-2">Recent Searches</p>
             @foreach ($keywords as $id => $list)
@@ -37,7 +36,7 @@
         @endforeach
 
     </div>
-    <div class="w-3/5 px-2">
+    <div class="lg:w-3/5 w-full px-2">
         <p class="text-lg tracking-wide text-indigo-500 my-2">Top Designers</p>
         <div class="flex gap-3 p-2">
             @foreach ($users as $user)

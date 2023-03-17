@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="">
-            <img class="max-w-2xl shadow-lg shadow-purple-500 rounded-3xl" src="image/surface-pro.png" />
+            <img class="max-w-2xl w-96 sm:w-auto shadow-lg shadow-purple-500 rounded-3xl" src="image/surface-pro.png" />
         </div>
     </div>
     <x-jet-gradient-card>
@@ -67,7 +67,7 @@
                                                 <div class="flex flex-col">
                                                     @if ($user->artist->cover_image)
                                                         <img src="{{ asset('storage/cover-image/' . $user->artist->cover_image) }}"
-                                                            alt="{{ $user->artist->title }}" class="w-[480px] h-64">
+                                                            alt="{{ $user->artist->title }}" class="sm:w-[480px] w-[422px] h-56 sm:h-64">
                                                     @else
                                                         <img src="/image/cover-image.png" alt=""
                                                             class="object-cover w-[480px] h-64 transition duration-1000 ease-in-out hover:scale-125">

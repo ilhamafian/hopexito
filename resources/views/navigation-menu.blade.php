@@ -1,6 +1,6 @@
- <nav x-data="{ open: false }" class="justify-between text-gray-400 bg-zinc-900 body-font">
+ <nav x-data="{ open: false }" class="justify-between text-gray-400 bg-zinc-900">
      <!-- Primary Navigation Menu -->
-     <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+     <div class="block px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
          <div class="flex justify-between h-20">
              <!-- Logo -->
              <div class="flex items-center shrink-0">
@@ -78,6 +78,7 @@
                                                  class="w-56 px-8 py-2.5 mx-3 mb-3 text-white rounded-full bg-rose-500 ">
                                                  <span class="mx-auto">Sell your art</span>
                                              </x-jet-button>
+
                                          @endif
                                          <div class="border-t border-indigo-500 border-1"></div>
                                          <form method="POST" action="{{ route('logout') }}" x-data>
@@ -220,5 +221,8 @@
                  @endif
              </div>
          </div>
+     </div>
+     <div class="max-w-xl md:hidden mx-auto px-4">
+        <x-jet-searchbar></x-jet-searchbar>
      </div>
  </nav>

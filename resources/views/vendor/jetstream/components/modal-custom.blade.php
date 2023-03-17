@@ -6,7 +6,7 @@
     <div x-show="modal" x-transition @click="modal = false"
         class="relative flex items-center justify-center w-full h-full">
         <div @click.stop style="max-height: 80vh"
-            class="z-20 flex w-full p-8 px-12 overflow-y-auto border-2 border-indigo-500 shadow-md md:w-1/2 xl:w-1/3 bg-zinc-900 rounded-2xl shadow-rose-500/50">
+            class="z-20 flex w-96 md:p-8 p-2 overflow-y-auto border-2 border-indigo-500 shadow-md md:w-1/2 xl:w-1/3 bg-zinc-900 rounded-2xl shadow-rose-500/50">
             {{ $slot }}
         </div>
     </div>
