@@ -2,7 +2,7 @@
 <x-app-layout>
     <x-jet-session-message />
     <div x-data="{ nav: 1 }" class="flex flex-col mx-auto mb-20 lg:flex-row max-w-7xl">
-        <div class="lg:fixed mx-auto lg:min-h-screen h-72">
+        <div class="lg:static mx-auto lg:min-h-screen h-72">
             <x-jet-gradient-card>
                 <ul class="relative flex flex-col px-12 py-8 text-white bg-black rounded-xl ">
                     <a href="#updateInformation">

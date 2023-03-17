@@ -45,11 +45,11 @@
         x-transition:leave.duration.100ms>
         <x-jet-input class="mx-3 mb-4 md:mx-0" type="text" wire:model.lazy="search"
             placeholder="Search by product name" />
-        <div class="flex flex-wrap justify-start gap-3 px-3 font-mono md:gap-5 md:px-0">
+        <div class="flex flex-wrap justify-start gap-2 px-2 font-mono md:gap-6 md:px-0">
             @foreach ($products as $product)
                 <div class="" x-data="{ open: false, modal: false, dropdown: false, id: '{{ $product->id }}' }" x-on:mouseenter="open = true"
                     x-on:mouseleave="open = false">
-                    <div class="relative w-44 md:w-60">
+                    <div class="relative w-48 md:w-60">
                         <img class="object-cover object-center transition duration-500 shadow-md shadow-purple-500/30 rounded-xl"
                             src="{{ $product->product_image }}">
                         <svg x-show="open" x-transition.duration.500ms x-cloak xmlns="http://www.w3.org/2000/svg"

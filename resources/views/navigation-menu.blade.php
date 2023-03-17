@@ -132,7 +132,6 @@
                  </button>
              </div>
          </div>
-
          <!-- Responsive Navigation Menu -->
          <div :class="{ 'block': open, 'hidden': !open }" class="hidden">
              <!-- Responsive Settings Options -->
@@ -222,7 +221,7 @@
              </div>
          </div>
      </div>
-     <div class="max-w-xl md:hidden mx-auto px-4">
+     <div class="max-w-xl md:hidden mx-auto px-4 mb-8">
         <x-jet-searchbar></x-jet-searchbar>
      </div>
  </nav>

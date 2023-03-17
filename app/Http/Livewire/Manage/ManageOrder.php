@@ -13,6 +13,8 @@ class ManageOrder extends Component
     {
         $order = Order::findOrFail($id);
         $order->update(['status' => 4]);
+
+        session()->flash('message','Order Completed');
         return redirect()->back();
     }
     public function render()

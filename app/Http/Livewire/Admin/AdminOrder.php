@@ -27,6 +27,7 @@ class AdminOrder extends Component
         $order = Order::findOrFail($id);
         $order->update(['status' => 3, 'tracking_number' => $tracking_number]);
         
+        session()->flash('message','Order Shipped');
         return redirect()->route('admin.orders')->with('success', $id .' status updated.');
     }
 

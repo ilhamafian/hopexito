@@ -9,11 +9,11 @@
                 talent.</p>
             <div class="text-center w-96 mx-auto lg:mx-0">
                 <a href="{{ route('shop.all') }}"
-                    class="w-full relative p-0.5 inline-flex items-center justify-center font-bold overflow-hidden group rounded-md">
+                    class="w-80 sm:w-full relative p-0.5 inline-flex items-center justify-center font-bold overflow-hidden group rounded-md">
                     <span
                         class="w-full h-full bg-gradient-to-br from-[#ff8a05] via-[#ff5478] to-[#ff00c6] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05] absolute"></span>
                     <span
-                        class="relative w-full p-4 transition-all ease-out rounded-md bg-zinc-900 group-hover:bg-opacity-0 duration-400">
+                        class="w-80 relative mx-auto sm:w-full p-4 transition-all ease-out rounded-md bg-zinc-900 group-hover:bg-opacity-0 duration-400">
                         <span class="relative text-lg text-pink-400 group-hover:text-white">Shop Now</span>
                     </span>
                 </a>
@@ -62,17 +62,16 @@
                             <div class=" swiper-wrapper">
                                 @foreach ($users as $user)
                                     <a href="{{ route('people', $user->name) }}" class="swiper-slide">
-                                        <blockquote class=" h-96 w-[480px] group ">
+                                        <blockquote class="h-96 w-full group mx-3">
                                             <div class="absolute z-40 overflow-hidden rounded-lg">
-                                                <div class="flex flex-col">
-                                                    @if ($user->artist->cover_image)
-                                                        <img src="{{ asset('storage/cover-image/' . $user->artist->cover_image) }}"
-                                                            alt="{{ $user->artist->title }}" class="sm:w-[480px] w-[422px] h-56 sm:h-64">
-                                                    @else
-                                                        <img src="/image/cover-image.png" alt=""
-                                                            class="object-cover w-[480px] h-64 transition duration-1000 ease-in-out hover:scale-125">
-                                                    @endif
-                                                </div>
+                                                @if ($user->artist->cover_image)
+                                                    <img src="{{ asset('storage/cover-image/' . $user->artist->cover_image) }}"
+                                                        alt="{{ $user->artist->title }}"
+                                                        class="sm:w-[480px] w-96 h-56 object-cover sm:h-64">
+                                                @else
+                                                    <img src="/image/cover-image.png" alt=""
+                                                        class="sm:w-[480px] w-96 h-56 object-cover sm:h-64">
+                                                @endif
                                                 <img class="absolute left-0 right-0 object-cover w-16 h-16 m-auto rounded-full bottom-20"
                                                     src="{{ $user->profile_photo_url }}" alt="{{ $user->name }}" />
                                                 <div
@@ -111,7 +110,7 @@
             </div>
         </div>
 
-       <script>
+        <script>
             document.addEventListener('DOMContentLoaded', function() {
                 new Swiper('.swiper-container', {
                     loop: true,
@@ -159,14 +158,14 @@
                             @endif
                         </div>
                         <div class="flex flex-col justify-between px-2 py-1 tracking-wider md:px-4 md:py-2">
-                            @if($product->category == 'Shirt')
-                            <p class="px-3 py-0.5 bg-fuchsia-700/80 rounded-md w-fit text-xs">Standard Tee</p>
+                            @if ($product->category == 'Shirt')
+                                <p class="px-3 py-0.5 mt-1 bg-fuchsia-700/80 rounded-md w-fit text-xs">Standard Tee</p>
                             @elseif($product->category == 'Oversized')
-                            <p class="px-3 py-0.5 rounded-md bg-indigo-700/80 w-fit text-xs">Oversized Tee</p>
+                                <p class="px-3 py-0.5 mt-1 rounded-md bg-indigo-700/80 w-fit text-xs">Oversized Tee</p>
                             @else
-                            <p></p>
+                                <p></p>
                             @endif
-                            <div class="text-sm text-white truncate md:font-medium mt-1">
+                            <div class="text-sm text-white truncate md:font-medium mt-2">
                                 {{ $product->title }}
                             </div>
                             <h2 class="hover:text-fuchsia-500">By {{ $product->shopname }}

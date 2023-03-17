@@ -26,11 +26,11 @@
                                 </p>
                                 <p class="tracking-wider text-fuchsia-400">RM{{ number_format($item->price, 2) }} x
                                     {{ $item->quantity }}</p>
-                                {{-- <div class="absolute bottom-2">
-                                    <x-jet-button-custom onclick="window.location.href='{{ route('product.show', $item->product_id) }}'">
+                                <div class="absolute bottom-2">
+                                    <x-jet-button-custom onclick="window.location.href='{{ route('product.show', $item->product->slug) }}'">
                                         Buy Again
                                     </x-jet-button-custom>
-                                </div> --}}
+                                </div>
                             </div>
                         </div>
                     @endforeach
@@ -43,12 +43,12 @@
                         <p>{{ $order->state }}</p>
                     </div>
                     @if ($order->status != 4 && $order->status == 3)
-                        <x-jet-button type="button" class="absolute bottom-6"
+                        <x-jet-button type="button" class=" mt-6"
                             wire:click="received('{{ $order->id }}')">
                             Order Received
                         </x-jet-button>
                         <a href="https://www.jtexpress.my/tracking/{!! $order->tracking_number !!}" target="_blank">
-                            <x-jet-button-utility type="button" class="mt-8">
+                            <x-jet-button-utility type="button" class="mt-2">
                                 Track your order
                             </x-jet-button-utility>
                         </a>
