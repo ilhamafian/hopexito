@@ -155,7 +155,7 @@
                 <p class="text-sm">
                     <a class="inline-block text-indigo-400 underline transition hover:text-indigo-500"
                         href="{{ route('terms.show') }}">
-                        User Agreement
+                        Terms of Service
                     </a>
                     <span>&middot;</span>
                     <a class="inline-block text-indigo-400 underline transition hover:text-indigo-500"

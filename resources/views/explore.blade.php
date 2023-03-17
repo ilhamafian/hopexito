@@ -25,19 +25,15 @@
     </div>
     <x-jet-gradient-card>
         <div class="relative h-[700px] flex items-center bg-black rounded-xl">
-            {{-- <img src="image/doodle.png" class="absolute hidden w-60 h-60 top-8 left-8 lg:block" />
-            <img src="image/doodle-2.png" class="absolute hidden h-48 W-48 bottom-4 left-96 lg:block" /> --}}
             <div class="mx-auto max-w-[1240px] px-4 sm:px-6 sm:py-24 lg:mr-0 lg:pl-8 lg:pr-0">
                 <div class="grid grid-cols-1 gap-y-8 lg:grid-cols-3 lg:items-center lg:gap-x-16">
                     <div class="max-w-xl text-center sm:text-left">
                         <x-jet-title>Featured Artist</x-jet-title>
-
                         <p class="mt-4">
                             Find inspiration and bring personality to your space with pieces from our Featured Artists
                             Shop. Shop the works of some of the most talented artists and make a statement with every
                             purchase.
                         </p>
-
                         <div class="hidden lg:mt-8 lg:flex lg:gap-4">
                             <button
                                 class="p-3 text-indigo-500 transition border-2 rounded-full prev-button border-violet-500 hover:bg-violet-500 hover:text-white">
@@ -114,7 +110,8 @@
                 </div>
             </div>
         </div>
-        <script>
+
+       <script>
             document.addEventListener('DOMContentLoaded', function() {
                 new Swiper('.swiper-container', {
                     loop: true,

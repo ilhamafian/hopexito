@@ -66,10 +66,13 @@ class ExploreController extends Controller
     {
         $search = $request->input('search');
         $products = Product::query()
-        ->where('title', 'LIKE', "%{$search}%")
-        ->orWhere('shopname', 'LIKE', "%{$search}%")
-        ->orWhere('category', 'LIKE', "%{$search}%")
-        ->orWhere('tags','LIKE', "%{$search}%")
+        ->where('status', '<>', '2')
+        ->where(function ($query) use ($search) {
+            $query->where('title', 'LIKE', "%{$search}%")
+                ->orWhere('shopname', 'LIKE', "%{$search}%")
+                ->orWhere('category', 'LIKE', "%{$search}%")
+                ->orWhere('tags', 'LIKE', "%{$search}%");
+        })
         ->paginate(40);
         
         if (Auth::check()) {

@@ -1,8 +1,6 @@
-# Terms of Service
+<h1 class="uppercase text-indigo-400">Terms of service</h1> 
 
-User Agreement
-Welcome to hopexito.com!
-These terms and conditions outline the rules and regulations for the use of ILHAM IZANY RESOURCES’s Website, located at https://www.hopexito.com/.
+These terms and conditions outline the rules and regulations for the use of ILHAM IZANY RESOURCES’s Website, located at <a href="https://www.hopexito.com" class="text-indigo-400">https://www.hopexito.com/</a>.
 By accessing this website we assume you accept these terms and conditions. Do not continue to use hopexito.com if you do not agree to take all of the terms and conditions stated on this page.
 The following terminology applies to these Terms and Conditions, Privacy Statement and Disclaimer Notice and all Agreements: “Client”, “You” and “Your” refers to you, the person log on this website and compliant to the Company’s terms and conditions. “The Company”, “Ourselves”, “We”, “Our” and “Us”, refers to our Company. “Party”, “Parties”, or “Us”, refers to both the Client and ourselves. All terms refer to the offer, acceptance and consideration of payment necessary to undertake the process of our assistance to the Client in the most appropriate manner for the express purpose of meeting the Client’s needs in respect of provision of the Company’s stated services, in accordance with and subject to, prevailing law of Malaysia. Any use of the above terminology or other words in the singular, plural, capitalization and/or he/she or they, are taken as interchangeable and therefore as referring to same.
 Cookies
