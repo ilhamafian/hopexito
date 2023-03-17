@@ -94,7 +94,7 @@
                              @livewire('cart.cart-counter')
                              @else
                              <x-jet-button-custom onclick="window.location.href='{{ route('admin.dashboard') }}'">
-                                Siapa tekan dia anjing
+                                Admin Dashboard
                              </x-jet-button-custom>
                          @endif
                      @else
@@ -221,7 +221,7 @@
              </div>
          </div>
      </div>
-     <div class="max-w-xl md:hidden mx-auto px-4 mb-8">
+     <div class="max-w-xl md:hidden mx-auto px-4 mb-8 mt-2 sm:mt-0">
         <x-jet-searchbar></x-jet-searchbar>
      </div>
  </nav>

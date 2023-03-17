@@ -35,7 +35,7 @@
     </div>
     {{-- gradient blob components --}}
     <div
-        class="absolute z-10 rounded-full md:block filter blur-xl bg-gradient-to-br from-rose-500 to-violet-500 md:h-56 md:w-56 w-24 h-24 top-40 -right-12 xl:right-40 animate-spin">
+        class="absolute z-10 rounded-full md:block filter blur-xl bg-gradient-to-br from-rose-500 to-violet-500 md:h-56 md:w-56 w-24 h-24 top-52 md:top-40 -right-12 xl:right-40 animate-spin">
     </div>
     <div
         class="absolute z-10 md:w-72 md:h-72 w-32 h-32 rounded-full filter blur-xl bg-gradient-to-br from-fuchsia-500 to-indigo-500 md:bottom-32 xl:left-44 top-96 -left-12 animate-spin">
