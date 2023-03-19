@@ -6,35 +6,45 @@
                 <div class="flex flex-col gap-2 items-center">
                     <x-jet-admin-header>Disk Size
                     </x-jet-admin-header>
-                    {{ $diskSize }}
+                    <p class="text-lg text-indigo-400">
+                        {{ $diskSize }}
+                    </p>
                 </div>
             </x-jet-admin-card>
             <x-jet-admin-card>
                 <div class="flex flex-col gap-2 items-center">
                     <x-jet-admin-header>Collection Image Disk Size
                     </x-jet-admin-header>
-                    {{ $diskCollectionSize }}
+                    <p class="text-lg text-indigo-400">
+                        {{ $diskCollectionSize }}
+                    </p>
                 </div>
             </x-jet-admin-card>
             <x-jet-admin-card>
                 <div class="flex flex-col gap-2 items-center">
                     <x-jet-admin-header>Cover Image Disk Size
                     </x-jet-admin-header>
-                    {{ $diskCoverSize }}
+                    <p class="text-lg text-indigo-400">
+                        {{ $diskCoverSize }}
+                    </p>
                 </div>
             </x-jet-admin-card>
             <x-jet-admin-card>
                 <div class="flex flex-col gap-2 items-center">
                     <x-jet-admin-header>Image Back Disk Size
                     </x-jet-admin-header>
-                    {{ $diskImageBackSize }}
+                    <p class="text-lg text-indigo-400">
+                        {{ $diskImageBackSize }}
+                    </p>
                 </div>
             </x-jet-admin-card>
             <x-jet-admin-card>
                 <div class="flex flex-col gap-2 items-center">
                     <x-jet-admin-header>Image Front Disk Size
                     </x-jet-admin-header>
-                    {{ $diskImageFrontSize }}
+                    <p class="text-lg text-indigo-400">
+                        {{ $diskImageFrontSize }}
+                    </p>
                 </div>
 
             </x-jet-admin-card>
@@ -42,7 +52,9 @@
                 <div class="flex flex-col gap-2 items-center">
                     <x-jet-admin-header>Profile Photos Disk Size
                     </x-jet-admin-header>
-                    {{ $diskProfilePhotoSize }}
+                    <p class="text-lg text-indigo-400">
+                        {{ $diskProfilePhotoSize }}
+                    </p>
                 </div>
             </x-jet-admin-card>
         </div>

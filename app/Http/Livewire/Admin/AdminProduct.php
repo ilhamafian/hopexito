@@ -15,7 +15,6 @@ class AdminProduct extends Component
     public function deleteProduct($id)
     {
         $product = Product::find($id);
-        dd($product);
         if ($product) {
             $product->delete();
         }

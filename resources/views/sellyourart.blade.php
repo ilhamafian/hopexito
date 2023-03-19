@@ -157,7 +157,6 @@
                         hobbyists and even fans with creative ideas. Join these designers as they generate income daily
                         on the platform.
                     </p>
-
                     <div class="hidden lg:mt-8 lg:flex lg:gap-4">
                         <button
                             class="prev-button rounded-full border-2 border-violet-500 p-3 text-indigo-500 hover:bg-violet-500 hover:text-white transition">
@@ -168,7 +167,6 @@
                                     stroke-width="2" />
                             </svg>
                         </button>
-
                         <button
                             class="next-button rounded-full border-2 border-violet-500 p-3 text-indigo-500 hover:bg-violet-500 hover:text-white transition">
                             <span class="sr-only">Next Slide</span>
