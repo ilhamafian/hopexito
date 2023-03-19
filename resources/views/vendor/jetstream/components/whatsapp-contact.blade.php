@@ -1,5 +1,5 @@
 <a href="https://wa.me/60102592210" target="_blank"
-    class="fixed z-50 p-3 transition rounded-full bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 xl:bottom-10 xl:right-10 md:bottom-6 md:right-6 bottom-12 right-2 hover:bg-indigo-700/40">
+    class="fixed z-50 p-3 transition rounded-full bg-gradient-to-br from-rose-400/70 via-fuchsia-500/70 to-indigo-500/70 xl:bottom-10 xl:right-10 md:bottom-6 md:right-6 bottom-12 right-2 hover:bg-indigo-700/40">
     <span>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
             class="w-8 h-8 md:w-10 md:h-10">
