@@ -1,26 +1,26 @@
 @section('title', 'Explore | HopeXito')
 <x-app-layout>
-    <div class="flex flex-col items-center min-h-screen gap-12 pb-28 mx-auto lg:flex-row lg:max-w-5xl xl:max-w-7xl">
-        <div class="flex flex-col px-12 lg:px-0 py-16 lg:py-0 space-y-2 text-center lg:text-left">
+    <div class="flex flex-col items-center min-h-screen gap-12 mx-auto pb-28 lg:flex-row lg:max-w-5xl xl:max-w-7xl">
+        <div class="flex flex-col px-12 py-16 space-y-2 text-center lg:px-0 lg:py-0 lg:text-left">
             <x-jet-title>Discover Unique Art from Independent Artists</x-jet-title>
-            <p class="px-2 lg:px-0 pb-6 lg:pb-10 max-w-md mx-auto lg:mx-0">Shop custom designs featuring independent
+            <p class="max-w-md px-2 pb-6 mx-auto lg:px-0 lg:pb-10 lg:mx-0">Shop custom designs featuring independent
                 artists. Find unique art to match your style
                 and support
                 talent.</p>
-            <div class="text-center w-96 mx-auto lg:mx-0">
+            <div class="mx-auto text-center w-96 lg:mx-0">
                 <a href="{{ route('shop.all') }}"
                     class="w-80 sm:w-full relative p-0.5 inline-flex items-center justify-center font-bold overflow-hidden group rounded-md">
                     <span
                         class="w-full h-full bg-gradient-to-br from-[#ff8a05] via-[#ff5478] to-[#ff00c6] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05] absolute"></span>
                     <span
-                        class="w-80 relative mx-auto sm:w-full p-4 transition-all ease-out rounded-md bg-zinc-900 group-hover:bg-opacity-0 duration-400">
+                        class="relative p-4 mx-auto transition-all ease-out rounded-md w-80 sm:w-full bg-zinc-900 group-hover:bg-opacity-0 duration-400">
                         <span class="relative text-lg text-pink-400 group-hover:text-white">Shop Now</span>
                     </span>
                 </a>
             </div>
         </div>
         <div class="">
-            <img class="max-w-2xl w-96 sm:w-auto shadow-lg shadow-purple-500 rounded-3xl" src="image/surface-pro.png" />
+            <img class="max-w-2xl shadow-lg w-96 sm:w-auto shadow-purple-500 rounded-3xl" src="image/surface-pro.png" />
         </div>
     </div>
     <x-jet-gradient-card>
@@ -62,16 +62,11 @@
                             <div class=" swiper-wrapper">
                                 @foreach ($users as $user)
                                     <a href="{{ route('people', $user->name) }}" class="swiper-slide">
-                                        <blockquote class="h-96 w-full group mx-3">
+                                        <blockquote class="w-full mx-3 h-96 group">
                                             <div class="absolute z-40 overflow-hidden rounded-lg">
-                                                @if ($user->artist->cover_image)
-                                                    <img src="{{ asset('storage/cover-image/' . $user->artist->cover_image) }}"
-                                                        alt="{{ $user->artist->title }}"
-                                                        class="sm:w-[480px] w-96 h-56 object-cover sm:h-64">
-                                                @else
-                                                    <img src="/image/cover-image.png" alt=""
-                                                        class="sm:w-[480px] w-96 h-56 object-cover sm:h-64">
-                                                @endif
+                                                <img src="{{ asset('storage/cover-image/' . $user->artist->cover_image) }}"
+                                                    alt="{{ $user->artist->title }}"
+                                                    class="sm:w-[480px] w-[360px] h-56 object-cover sm:h-64">
                                                 <img class="absolute left-0 right-0 object-cover w-16 h-16 m-auto rounded-full bottom-20"
                                                     src="{{ $user->profile_photo_url }}" alt="{{ $user->name }}" />
                                                 <div
@@ -165,7 +160,7 @@
                             @else
                                 <p></p>
                             @endif
-                            <div class="text-sm text-white truncate md:font-medium mt-2">
+                            <div class="mt-2 text-sm text-white truncate md:font-medium">
                                 {{ $product->title }}
                             </div>
                             <h2 class="hover:text-fuchsia-500">By {{ $product->shopname }}
@@ -178,14 +173,14 @@
             @endforeach
         </div>
     </div>
-    <div class=" min-h-screen px-2 bg-gradient-to-b from-indigo-900/70 via-violet-900/40 to-black/50 xl:px-28 pt-28">
+    <div class="min-h-screen px-2 bg-gradient-to-b from-indigo-900/70 via-violet-900/40 to-black/50 xl:px-28 pt-28">
         <x-jet-title>Explore Designers Collection</x-jet-title>
         <div class="grid grid-cols-1 gap-2 mt-6 lg:grid-cols-2 xl:gap-12">
             @foreach ($collections as $item)
                 <div class="relative rounded-xl ">
                     <img src="{{ asset('storage/collection-image/' . $item->collection_image) }}"
-                        class="z-0 absolute lg:inset-y-2 xl:inset-y-6 rounded-xl xl:h-96 lg:h-80 w-full" />
-                    <div class="z-50 relative p-1 lg:m-4 xl:m-10 rounded-lg top-0 bg-white/20">
+                        class="absolute z-0 w-full lg:inset-y-2 xl:inset-y-6 rounded-xl xl:h-96 lg:h-80" />
+                    <div class="relative top-0 z-20 p-1 rounded-lg lg:m-4 xl:m-10 bg-white/20">
                         <div class="flex gap-2 md:gap-8">
                             @foreach ($item->product->slice(0, 2) as $product)
                                 <a href="{{ route('product.show', $product->slug) }}" class="group"
@@ -193,13 +188,13 @@
                                     x-on:mouseleave="open = false">
                                     @if ($product->product_image_2)
                                         <img src="{{ $product->product_image }}" alt="{{ $product->title }}"
-                                            x-show="open == false" class="w-64 lg:h-56 xl:h-64 rounded-lg ">
+                                            x-show="open == false" class="w-64 rounded-lg lg:h-56 xl:h-64 ">
                                         <img x-cloak src="{{ $product->product_image_2 }}"
                                             alt="{{ $product->title }}" x-show="open == true"
-                                            class="w-64 lg:h-56 xl:h-64 rounded-lg ">
+                                            class="w-64 rounded-lg lg:h-56 xl:h-64 ">
                                     @else
                                         <img src="{{ $product->product_image }}" alt="{{ $product->title }}"
-                                            class="w-64 lg:h-56 xl:h-64 rounded-lg ">
+                                            class="w-64 rounded-lg lg:h-56 xl:h-64 ">
                                     @endif
                                 </a>
                             @endforeach
@@ -213,7 +208,7 @@
                                     View Shop
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor"
-                                        class="w-6 h-6 group-hover:translate-x-3 transition">
+                                        class="w-6 h-6 transition group-hover:translate-x-3">
                                         <path stroke-linecap="round" stroke-linejoin="round"
                                             d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
                                     </svg>

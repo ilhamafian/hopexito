@@ -1,5 +1,6 @@
 @section('title', $search . ' | HopeXito')
 <x-app-layout>
+    <x-jet-whatsapp-contact/>
     <div class="relative z-20 min-h-screen px-1 mx-auto mt-6 pb-28 max-w-7xl">
         <div class="flex gap-2">
             <p class="tracking-widest text-indigo-400">"{{ $search }}"</p>
@@ -31,7 +32,7 @@
                         @else
                         <p></p>
                         @endif
-                        <div class="text-sm text-white truncate md:font-medium mt-1">
+                        <div class="mt-1 text-sm text-white truncate md:font-medium">
                             {{ $product->title }}
                         </div>
                         <h2 class="hover:text-fuchsia-500">By {{ $product->shopname }}

@@ -3,7 +3,7 @@
     <x-jet-whatsapp-contact/>
     <div class="mx-auto mt-8 max-w-7xl">
         <x-jet-title>All Products</x-jet-title>
-        <div class="flex items-center gap-3 text-white">
+        <div class="flex items-center gap-2 ml-2 text-white">
             <a href="{{ route('explore') }}">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-8 h-8 p-1 transition rounded-md hover:bg-indigo-500/50">

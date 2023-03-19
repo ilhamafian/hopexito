@@ -1,11 +1,12 @@
 @section('title', 'Designers Collection | HopeXito')
 <x-app-layout>
-    <div class="w-full min-h-screen px-0 mx-auto mb-32 lg:max-w-7xl mt-8">
+    <x-jet-whatsapp-contact/>
+    <div class="w-full min-h-screen px-0 mx-auto mt-8 mb-32 lg:max-w-7xl">
         <x-jet-title>Designers Collection</x-jet-title>
-        <div class="flex gap-3 items-center text-white">
+        <div class="flex items-center gap-2 ml-2 text-white">
             <a href="{{ route('explore') }}">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="w-8 h-8 rounded-md hover:bg-indigo-500/50 transition p-1">
+                    stroke="currentColor" class="w-8 h-8 p-1 transition rounded-md hover:bg-indigo-500/50">
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                 </svg>
@@ -14,7 +15,7 @@
                 stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25v13.5m-7.5-13.5v13.5" />
             </svg>
-            <a href="{{ route('shop.all') }}" class="p-1 px-2 hover:bg-indigo-500/50 transition rounded-md">Shop All</a>
+            <a href="{{ route('shop.all') }}" class="p-1 px-2 transition rounded-md hover:bg-indigo-500/50">Shop All</a>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25v13.5m-7.5-13.5v13.5" />
