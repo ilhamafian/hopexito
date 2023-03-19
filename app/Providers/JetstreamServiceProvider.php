@@ -36,6 +36,7 @@ class JetstreamServiceProvider extends ServiceProvider
         $this->registerComponent('admin-header');
         $this->registerComponent('glitch-text');
         $this->registerComponent('title-small');
+        $this->registerComponent('whatsapp-contact');
     }
     protected function registerComponent(string $component)
     {
