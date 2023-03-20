@@ -138,32 +138,13 @@ class PaymentController extends Controller
 
         //Live Production Key 
 
-        // $ch = curl_init();
-        // curl_setopt($ch, CURLOPT_URL, 'https://www.billplz.com/api/v3/bills');
-        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        // curl_setopt($ch, CURLOPT_POST, 1);
-        // curl_setopt($ch, CURLOPT_POSTFIELDS, $billplz);
-        // curl_setopt($ch, CURLOPT_USERPWD, config('billplz.key') . ':' . 'S-MvzEa0nP4xJycUE84VVwqw');
-        // curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-
-        // $result = curl_exec($ch);
-        // $info = curl_getinfo($ch);
-        // curl_close($ch);
-        // $obj = json_decode($result);
-        // $billId = $obj->id;
-
-        // return redirect('https://www.billplz.com/bills/' . $billId . '?auto_submit=true');
-
-        //Testing Production Key (Sandbox)
-
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'https://www.billplz-sandbox.com/api/v3/bills');
+        curl_setopt($ch, CURLOPT_URL, 'https://www.billplz.com/api/v3/bills');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $billplz);
-        curl_setopt($ch, CURLOPT_USERPWD, config('billplz.key') . ':' . 'S-F-eaovMEuHHoCv8nl8nJVA');
+        curl_setopt($ch, CURLOPT_USERPWD, config('billplz.key') . ':' . 'S-MvzEa0nP4xJycUE84VVwqw');
         curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 
         $result = curl_exec($ch);
@@ -172,7 +153,26 @@ class PaymentController extends Controller
         $obj = json_decode($result);
         $billId = $obj->id;
 
-        return redirect('https://www.billplz-sandbox.com/bills/' . $billId . '?auto_submit=true');
+        return redirect('https://www.billplz.com/bills/' . $billId . '?auto_submit=true');
+
+        //Testing Production Key (Sandbox)
+
+        // $ch = curl_init();
+        // curl_setopt($ch, CURLOPT_URL, 'https://www.billplz-sandbox.com/api/v3/bills');
+        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        // curl_setopt($ch, CURLOPT_POST, 1);
+        // curl_setopt($ch, CURLOPT_POSTFIELDS, $billplz);
+        // curl_setopt($ch, CURLOPT_USERPWD, config('billplz.key') . ':' . 'S-F-eaovMEuHHoCv8nl8nJVA');
+        // curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+
+        // $result = curl_exec($ch);
+        // $info = curl_getinfo($ch);
+        // curl_close($ch);
+        // $obj = json_decode($result);
+        // $billId = $obj->id;
+
+        // return redirect('https://www.billplz-sandbox.com/bills/' . $billId . '?auto_submit=true');
     }
       // Update Wallet
       private function updateCommissionGuest($cart)
