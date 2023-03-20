@@ -154,10 +154,10 @@
                             {{-- Copy delivery address based on order --}}
                             <div class="relative basis-[15%]">
                                 <x-jet-button-utility type="button" class="w-36 group"
-                                    x-on:click="$clipboard('{{ $order->user->name }}, {{ $order->user->phone }}, {{ $order->user->address }}, {{ $order->user->postcode }}, {{ $order->user->state }}'); 
-                                        copied['{{ $order->id }}'] = true; tooltip = true; 
-                                        setTimeout(() => tooltip = false, 1000);
-                                        setTimeout(() => copied['{{ $order->id }}'] = false, 1000)">
+                                    x-on:click="$clipboard('{{ $order->name }}, {{ $order->phone }}, {{ $order->address }}, {{ $order->postcode }}, {{ $order->state }}'); 
+                                    copied['{{ $order->id }}'] = true; tooltip = true; 
+                                    setTimeout(() => tooltip = false, 1000);
+                                    setTimeout(() => copied['{{ $order->id }}'] = false, 1000)">
                                     <span class="mx-auto" x-transition:enter.duration.400ms
                                         x-transition:exit.duration.200ms
                                         x-show="tooltip == false || id != '{{ $order->id }}'">Copy
@@ -189,27 +189,27 @@
                                         RM{{ number_format($item->price, 2) }} x
                                         {{ $item->quantity }}</p>
                                     {{-- Export product image based on id --}}
-                                    @if($item->product->image_front)
-                                    <button wire:click="exportFront('{{ $item->product_id }}')">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            x-show="download" x-transition.duration.500ms stroke-width="1.5"
-                                            stroke="currentColor"
-                                            class="w-10 h-10 p-1 mt-8 transition-all rounded-lg cursor-pointer text-black/80 hover:bg-indigo-500/50">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M9 13.5l3 3m0 0l3-3m-3 3v-6m1.06-4.19l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
-                                        </svg>
-                                    </button>
+                                    @if ($item->product->image_front)
+                                        <button wire:click="exportFront('{{ $item->product_id }}')">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                x-show="download" x-transition.duration.500ms stroke-width="1.5"
+                                                stroke="currentColor"
+                                                class="w-10 h-10 p-1 mt-8 transition-all rounded-lg cursor-pointer text-black/80 hover:bg-indigo-500/50">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M9 13.5l3 3m0 0l3-3m-3 3v-6m1.06-4.19l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
+                                            </svg>
+                                        </button>
                                     @endif
-                                    @if($item->product->image_back)
-                                    <button wire:click="exportBack('{{ $item->product_id }}')">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            x-show="download" x-transition.duration.500ms stroke-width="1.5"
-                                            stroke="currentColor"
-                                            class="w-10 h-10 p-1 mt-8 transition-all rounded-lg cursor-pointer text-black/80 hover:bg-indigo-500/50">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M9 13.5l3 3m0 0l3-3m-3 3v-6m1.06-4.19l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
-                                        </svg>
-                                    </button>
+                                    @if ($item->product->image_back)
+                                        <button wire:click="exportBack('{{ $item->product_id }}')">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" x-show="download" x-transition.duration.500ms
+                                                stroke-width="1.5" stroke="currentColor"
+                                                class="w-10 h-10 p-1 mt-8 transition-all rounded-lg cursor-pointer text-black/80 hover:bg-indigo-500/50">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M9 13.5l3 3m0 0l3-3m-3 3v-6m1.06-4.19l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
+                                            </svg>
+                                        </button>
                                     @endif
                                 </div>
                             </div>

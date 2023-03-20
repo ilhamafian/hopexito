@@ -25,7 +25,8 @@ class Order extends Model
         'paid_at',
         'address',
         'postcode',
-        'state'
+        'state',
+        'phone'
     ];
     
     public function user(){

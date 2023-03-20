@@ -48,10 +48,10 @@
         </form>
     </div>
    
-    <div x-cloak class="absolute -inset-x-16 inset-y-16 z-40 flex justify-center" x-show="open" x-transition.duration.350ms
+    <div x-cloak class="absolute z-40 flex justify-center -inset-x-16 inset-y-16" x-show="open" x-transition.duration.350ms
         x-on:click.away="open = false">
         <div class="absolute inset-0 z-0 p-1 overflow-hidden rounded-2xl gradient-border w-96 md:w-full h-fit lg:h-[500px]">
-           <div class="bg-black h-full w-full rounded-xl p-4">
+           <div class="w-full h-full p-4 bg-black rounded-xl">
             @livewire('searchbar')
            </div>
         </div>

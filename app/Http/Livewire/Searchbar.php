@@ -29,7 +29,7 @@ class Searchbar extends Component
         if (Auth::check()) {
             $keywords = Search::where('user_id', Auth::user()->id)
                 ->orderByDesc('created_at')
-                ->limit(6)
+                ->limit(4)
                 ->pluck('keyword', 'id');
         } else {
             $keywords = "Trending Search";

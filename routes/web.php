@@ -20,11 +20,14 @@ use App\Http\Livewire\Admin\AdminProduct;
 use App\Http\Livewire\Admin\AdminTemplate;
 use App\Http\Livewire\Admin\AdminStorage;
 use App\Http\Livewire\Admin\GodMode;
+use App\Http\Livewire\DeliveryInformation;
 
 Route::redirect('/', 'explore');
-// google auth
-Route::get('auth/google', [GoogleAuthController::class, 'redirect'])->name('google-auth');
-Route::get('auth/google/call-back', [GoogleAuthController::class, 'callbackGoogle']);
+// billplz controller
+Route::get('billplz', [PaymentController::class, 'createBill'])->name('billplz-create');
+Route::post('billplz', [PaymentController::class, 'storeBill'])->name('billplz-store');
+Route::get('billplz-callback', [PaymentController::class, 'callback'])->name('billplz-callback');
+Route::get('billplz-redirect', [PaymentController::class, 'redirect'])->name('billplz-redirect');
 // admin controller
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'admin'])->group(function () {
     Route::get('admin/dashboard', AdminDashboard::class)->name('admin.dashboard');
@@ -47,19 +50,15 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::post('upload/cover_image', [UploadController::class, 'upload_cover'])->name('upload.cover');
     Route::post('upload/product_template', [UploadController::class, 'upload_template'])->name('upload.template');
     Route::post('upload/product_collection', [UploadController::class, 'upload_collection'])->name('upload.collection');
-    // cart controller
-    Route::resource('cart', CartController::class);
-    // billplz controller
-    Route::get('billplz', [PaymentController::class, 'createBill'])->name('billplz-create');
-    Route::post('billplz', [PaymentController::class, 'storeBill'])->name('billplz-store');
-    Route::get('billplz-callback', [PaymentController::class, 'callback'])->name('billplz-callback');
-    Route::get('billplz-redirect', [PaymentController::class, 'redirect'])->name('billplz-redirect');
     // order controller
     Route::get('order/index', ManageOrder::class)->name('order.index');
     Route::get('product/manage', ManageProduct::class)->name('product.manage');
 });
 // route resource product
 Route::resource('product', ProductsController::class);
+// cart controller
+Route::resource('cart', CartController::class);
+Route::get('checkout', DeliveryInformation::class)->name('guest.checkout');
 // explore controller
 Route::get('sellyourart', [ExploreController::class, 'sellyourart'])->name('sellyourart');
 Route::get('explore', [ExploreController::class, 'explore'])->name('explore');
@@ -68,4 +67,6 @@ Route::get('shop/all', [ExploreController::class, 'shop'])->name('shop.all');
 Route::get('collection', [ExploreController::class, 'collection'])->name('shop.collection');
 Route::get('{shopname}', [ExploreController::class, 'people'])->name('people');
 Route::post('sellyourart/{id}', [ExploreController::class, 'upgrade'])->name('upgrade');
-
+// google auth
+Route::get('auth/google', [GoogleAuthController::class, 'redirect'])->name('google-auth');
+Route::get('auth/google/call-back', [GoogleAuthController::class, 'callbackGoogle']);

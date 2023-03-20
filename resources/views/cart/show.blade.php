@@ -32,38 +32,73 @@
                                 <h2 class="font-medium text-indigo-400">Delivery Address</h2>
                             </div>
                         </div>
-                        <div class="col-span-6 sm:col-span-4">
-                            <x-jet-label for="email" value="{{ __('Email') }}" />
-                            <x-jet-input id="email" type="email" name="email" class="block w-full mt-1"
-                                value="{{ Auth::user()->email }}" disabled />
-                        </div>
-                        <div class="col-span-6 sm:col-span-4">
-                            <x-jet-label for="name" value="{{ __('Name') }}" />
-                            <x-jet-input id="name" type="text" name="name" class="block w-full mt-1"
-                                value="{{ Auth::user()->name }}" disabled />
-                        </div>
-                        <div class="col-span-6 sm:col-span-4">
-                            <x-jet-label for="phone" value="{{ __('Phone Number') }}" />
-                            <x-jet-input id="phone" type="text" name="phone" class="block w-full mt-1"
-                                value="{{ Auth::user()->phone }}" disabled />
-                        </div>
-                        <div class="col-span-6 sm:col-span-4">
-                            <x-jet-label for="address" value="{{ __('Address') }}" />
-                            <x-jet-input id="address" type="text" name="address" class="block w-full mt-1"
-                                value="{{ Auth::user()->address }}" disabled />
-                        </div>
-                        <div class="col-span-6 sm:col-span-4">
-                            <x-jet-label for="postcode" value="{{ __('Postcode') }}" />
-                            <x-jet-input id="postcode" type="text" name="postcode" class="block w-full mt-1"
-                                value="{{ Auth::user()->postcode }}" disabled />
-                        </div>
-                        <div class="col-span-6 sm:col-span-4">
-                            <x-jet-label for="state" value="{{ __('State') }}" />
-                            <select name="state" disabled
-                                class="block w-full p-2.5 bg-neutral-800 border border-neutral-500 rounded-md focus:ring-indigo-500">
-                                <option>{{ $state }}</option>
-                            </select>
-                        </div>
+                        @if (Auth::check())
+                            <div class="col-span-6 sm:col-span-4">
+                                <x-jet-label for="email" value="{{ __('Email') }}" />
+                                <x-jet-input id="email" type="email" name="email" class="block w-full mt-1"
+                                    value="{{ Auth::user()->email }}" disabled />
+                            </div>
+                            <div class="col-span-6 sm:col-span-4">
+                                <x-jet-label for="name" value="{{ __('Name') }}" />
+                                <x-jet-input id="name" type="text" name="name" class="block w-full mt-1"
+                                    value="{{ Auth::user()->name }}" disabled />
+                            </div>
+                            <div class="col-span-6 sm:col-span-4">
+                                <x-jet-label for="phone" value="{{ __('Phone Number') }}" />
+                                <x-jet-input id="phone" type="text" name="phone" class="block w-full mt-1"
+                                    value="{{ Auth::user()->phone }}" disabled />
+                            </div>
+                            <div class="col-span-6 sm:col-span-4">
+                                <x-jet-label for="address" value="{{ __('Address') }}" />
+                                <x-jet-input id="address" type="text" name="address" class="block w-full mt-1"
+                                    value="{{ Auth::user()->address }}" disabled />
+                            </div>
+                            <div class="col-span-6 sm:col-span-4">
+                                <x-jet-label for="postcode" value="{{ __('Postcode') }}" />
+                                <x-jet-input id="postcode" type="text" name="postcode" class="block w-full mt-1"
+                                    value="{{ Auth::user()->postcode }}" disabled />
+                            </div>
+                            <div class="col-span-6 sm:col-span-4">
+                                <x-jet-label for="state" value="{{ __('State') }}" />
+                                <select name="state" disabled
+                                    class="block w-full p-2.5 bg-neutral-800 border border-neutral-500 rounded-md focus:ring-indigo-500">
+                                    <option>{{ $state }}</option>
+                                </select>
+                            </div>
+                        @else
+                            <div class="col-span-6 sm:col-span-4">
+                                <x-jet-label for="email" value="{{ __('Email') }}" />
+                                <x-jet-input id="email" type="email" name="email" class="block w-full mt-1"
+                                    value="{{ $details['email'] }}" disabled />
+                            </div>
+                            <div class="col-span-6 sm:col-span-4">
+                                <x-jet-label for="name" value="{{ __('Name') }}" />
+                                <x-jet-input id="name" type="text" name="name" class="block w-full mt-1"
+                                    value="{{ $details['name'] }}" disabled />
+                            </div>
+                            <div class="col-span-6 sm:col-span-4">
+                                <x-jet-label for="phone" value="{{ __('Phone Number') }}" />
+                                <x-jet-input id="phone" type="text" name="phone" class="block w-full mt-1"
+                                    value="+60 {{ $details['phone'] }}" disabled />
+                            </div>
+                            <div class="col-span-6 sm:col-span-4">
+                                <x-jet-label for="address" value="{{ __('Address') }}" />
+                                <x-jet-input id="address" type="text" name="address" class="block w-full mt-1"
+                                    value="{{ $details['address'] }}" disabled />
+                            </div>
+                            <div class="col-span-6 sm:col-span-4">
+                                <x-jet-label for="postcode" value="{{ __('Postcode') }}" />
+                                <x-jet-input id="postcode" type="text" name="postcode" class="block w-full mt-1"
+                                    value="{{ $details['postcode'] }}" disabled />
+                            </div>
+                            <div class="col-span-6 sm:col-span-4">
+                                <x-jet-label for="state" value="{{ __('State') }}" />
+                                <select name="state" disabled
+                                    class="block w-full p-2.5 bg-neutral-800 border border-neutral-500 rounded-md focus:ring-indigo-500">
+                                    <option>{{ $state }}</option>
+                                </select>
+                            </div>
+                        @endif
                         <div class="flex flex-row items-center space-x-3 text-indigo-400">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -76,7 +111,7 @@
                             <p class="mt-1 text-rose-500">Please choose a bank</p>
                         @enderror
                         <div class="grid w-full max-w-screen-sm grid-cols-3 gap-3">
-                            {{-- <div>
+                            <div>
                                 <input class="hidden" id="maybank" type="radio" name="radio" value="BP-FKR01"
                                     x-on:click="radio = BP-FKR01" x-model="radio">
                                 <label class="flex flex-col p-4 border-2 rounded-md cursor-pointer bg-neutral-900"
@@ -85,11 +120,11 @@
                                     for="maybank">
                                     <img src="image\fpx-logo\maybank.png" class="h-4 md:h-8" />
                                 </label>
-                            </div> --}}
+                            </div>
                             <div>
                                 <input class="hidden" id="maybank" type="radio" name="radio" value="MB2U0227"
                                     x-on:click="radio = MB2U0227" x-model="radio">
-                                <label class="flex flex-col p-4 border-2 rounded-md cursor-pointer bg-transparent"
+                                <label class="flex flex-col p-4 bg-transparent border-2 rounded-md cursor-pointer"
                                     :class="radio == 'MB2U0227' ? 'ring ring-indigo-500 border-indigo-500' :
                                         'border-neutral-700'"
                                     for="maybank">
@@ -99,7 +134,7 @@
                             <div>
                                 <input class="hidden" id="demo" type="radio" name="radio" value="BIMB0340"
                                     x-on:click="radio = BIMB0340" x-model="radio">
-                                <label class="flex flex-col p-4 border-2 rounded-md cursor-pointer bg-transparent"
+                                <label class="flex flex-col p-4 bg-transparent border-2 rounded-md cursor-pointer"
                                     :class="radio == 'BIMB0340' ? 'ring ring-indigo-500 border-indigo-500' :
                                         'border-neutral-700'"
                                     for="demo">
@@ -109,7 +144,7 @@
                             <div>
                                 <input class="hidden" id="cimb" type="radio" name="radio" value="BCBB0235"
                                     x-on:click="radio = BCBB0235" x-model="radio">
-                                <label class="flex flex-col p-4 border-2 rounded-md cursor-pointer bg-transparent"
+                                <label class="flex flex-col p-4 bg-transparent border-2 rounded-md cursor-pointer"
                                     :class="radio == 'BCBB0235' ? 'ring ring-indigo-500 border-indigo-500' :
                                         'border-neutral-700'"
                                     for="cimb">
@@ -119,7 +154,7 @@
                             <div>
                                 <input class="hidden" id="rhb" type="radio" name="radio" value="RHB0218"
                                     x-on:click="radio = RHB0218" x-model="radio">
-                                <label class="flex flex-col p-4 border-2 rounded-md cursor-pointer bg-transparent"
+                                <label class="flex flex-col p-4 bg-transparent border-2 rounded-md cursor-pointer"
                                     :class="radio == 'RHB0218' ? 'ring ring-indigo-500 border-indigo-500' :
                                         'border-neutral-700'"
                                     for="rhb">
@@ -129,7 +164,7 @@
                             <div>
                                 <input class="hidden" id="ambank" type="radio" name="radio" value="AMBB0209"
                                     x-on:click="radio = AMBB0209" x-model="radio">
-                                <label class="flex flex-col p-4 border-2 rounded-md cursor-pointer bg-transparent"
+                                <label class="flex flex-col p-4 bg-transparent border-2 rounded-md cursor-pointer"
                                     :class="radio == 'AMBB0209' ? 'ring ring-indigo-500 border-indigo-500' :
                                         'border-neutral-700'"
                                     for="ambank">
@@ -139,7 +174,7 @@
                             <div>
                                 <input class="hidden" id="affin" type="radio" name="radio" value="ABB0233"
                                     x-on:click="radio = ABB0233" x-model="radio">
-                                <label class="flex flex-col p-4 border-2 rounded-md cursor-pointer bg-transparent"
+                                <label class="flex flex-col p-4 bg-transparent border-2 rounded-md cursor-pointer"
                                     :class="radio == 'ABB0233' ? 'ring ring-indigo-500 border-indigo-500' :
                                         'border-neutral-700'"
                                     for="affin">
@@ -149,7 +184,7 @@
                             <div>
                                 <input class="hidden" id="bsn" type="radio" name="radio" value="BSN0601"
                                     x-on:click="radio = BSN0601" x-model="radio">
-                                <label class="flex flex-col p-4 border-2 rounded-md cursor-pointer bg-transparent"
+                                <label class="flex flex-col p-4 bg-transparent border-2 rounded-md cursor-pointer"
                                     :class="radio == 'BSN0601' ? 'ring ring-indigo-500 border-indigo-500' :
                                         'border-neutral-700'"
                                     for="bsn">
@@ -159,7 +194,7 @@
                             <div>
                                 <input class="hidden" id="bank-rakyat" type="radio" name="radio"
                                     value="BKRM0602" x-on:click="radio = BKRM0602" x-model="radio">
-                                <label class="flex flex-col p-4 border-2 rounded-md cursor-pointer bg-transparent"
+                                <label class="flex flex-col p-4 bg-transparent border-2 rounded-md cursor-pointer"
                                     :class="radio == 'BKRM0602' ? 'ring ring-indigo-500 border-indigo-500' :
                                         'border-neutral-700'"
                                     for="bank-rakyat">
@@ -169,7 +204,7 @@
                             <div>
                                 <input class="hidden" id="uob" type="radio" name="radio" value="UOB0226"
                                     x-on:click="radio = UOB0226" x-model="radio">
-                                <label class="flex flex-col p-4 border-2 rounded-md cursor-pointer bg-transparent"
+                                <label class="flex flex-col p-4 bg-transparent border-2 rounded-md cursor-pointer"
                                     :class="radio == 'UOB0226' ? 'ring ring-indigo-500 border-indigo-500' :
                                         'border-neutral-700'"
                                     for="uob">
@@ -179,7 +214,7 @@
                             <div>
                                 <input class="hidden" id="hlb" type="radio" name="radio" value="HLB0224"
                                     x-on:click="radio = HLB0224" x-model="radio">
-                                <label class="flex flex-col p-4 border-2 rounded-md cursor-pointer bg-transparent"
+                                <label class="flex flex-col p-4 bg-transparent border-2 rounded-md cursor-pointer"
                                     :class="radio == 'HLB0224' ? 'ring ring-indigo-500 border-indigo-500' :
                                         'border-neutral-700'"
                                     for="hlb">
@@ -189,7 +224,7 @@
                             <div>
                                 <input class="hidden" id="pb" type="radio" name="radio" value="PBB0233"
                                     x-on:click="radio = PBB0233" x-model="radio">
-                                <label class="flex flex-col p-4 border-2 rounded-md cursor-pointer bg-transparent"
+                                <label class="flex flex-col p-4 bg-transparent border-2 rounded-md cursor-pointer"
                                     :class="radio == 'PBB0233' ? 'ring ring-indigo-500 border-indigo-500' :
                                         'border-neutral-700'"
                                     for="pb">
@@ -199,7 +234,7 @@
                             <div>
                                 <input class="hidden" id="scb" type="radio" name="radio" value="SCB0216"
                                     x-on:click="radio = SCB0216" x-model="radio">
-                                <label class="flex flex-col p-4 border-2 rounded-md cursor-pointer bg-transparent"
+                                <label class="flex flex-col p-4 bg-transparent border-2 rounded-md cursor-pointer"
                                     :class="radio == 'SCB0216' ? 'ring ring-indigo-500 border-indigo-500' :
                                         'border-neutral-700'"
                                     for="scb">
@@ -209,7 +244,7 @@
                             <div>
                                 <input class="hidden" id="ocbc" type="radio" name="radio" value="OCBC0229"
                                     x-on:click="radio = OCBC0229" x-model="radio">
-                                <label class="flex flex-col p-4 border-2 rounded-md cursor-pointer bg-transparent"
+                                <label class="flex flex-col p-4 bg-transparent border-2 rounded-md cursor-pointer"
                                     :class="radio == 'OCBC0229' ? 'ring ring-indigo-500 border-indigo-500' :
                                         'border-neutral-700'"
                                     for="ocbc">
@@ -219,7 +254,7 @@
                             <div>
                                 <input class="hidden" id="hsbc" type="radio" name="radio" value="HSBC0223"
                                     x-on:click="radio = HSBC0223" x-model="radio">
-                                <label class="flex flex-col p-4 border-2 rounded-md cursor-pointer bg-transparent"
+                                <label class="flex flex-col p-4 bg-transparent border-2 rounded-md cursor-pointer"
                                     :class="radio == 'HSBC0223' ? 'ring ring-indigo-500 border-indigo-500' :
                                         'border-neutral-700'"
                                     for="hsbc">
@@ -227,9 +262,9 @@
                                 </label>
                             </div>
                             <div>
-                                <input class="hidden" id="alliancebank" type="radio" name="radio" value="ABMB0212"
-                                    x-on:click="radio = ABMB0212" x-model="radio">
-                                <label class="flex flex-col p-4 border-2 rounded-md cursor-pointer bg-transparent"
+                                <input class="hidden" id="alliancebank" type="radio" name="radio"
+                                    value="ABMB0212" x-on:click="radio = ABMB0212" x-model="radio">
+                                <label class="flex flex-col p-4 bg-transparent border-2 rounded-md cursor-pointer"
                                     :class="radio == 'ABMB0212' ? 'ring ring-indigo-500 border-indigo-500' :
                                         'border-neutral-700'"
                                     for="alliancebank">
@@ -262,28 +297,45 @@
                             <li
                                 class="flex justify-between p-4 transition hover:skew-y-1 rounded-xl hover:shadow-lg hover:shadow-orange-500/20 bg-neutral-900">
                                 <div class="inline-flex">
+                                    @if(Auth::check())
                                     <img class="max-h-24" src="{{ $cart->cartProduct->product_image }}"
-                                        alt="" />
+                                    alt="" />
+                                    @else
+                                    <img class="max-h-24" src="{{ $cart->options['product_image'] }}"
+                                    alt="" />
+                                    @endif
                                     <div class="ml-5">
-                                        <p class="text-base font-semibold text-white">{{ $cart->title }}</p>
-                                        <p class="text-white uppercase text-opacity-80">
-                                            {{ $cart->size }}
-                                            / {{ $cart->color }}</p>
+                                        @if (Auth::check())
+                                            <p class="text-base font-semibold text-white">{{ $cart->title }}</p>
+                                            <p class="text-white uppercase text-opacity-80">
+                                                {{ $cart->size }}
+                                                / {{ $cart->color }}</p>
+                                        @else
+                                            <p class="text-base font-semibold text-white">{{ $cart->name }}</p>
+                                            <p class="text-white uppercase text-opacity-80">
+                                                {{ $cart->options['size'] }}
+                                                / {{ $cart->options['color'] }}</p>
+                                        @endif
                                     </div>
                                 </div>
-                                <p class="text-base font-semibold text-white"> RM{{ number_format($cart->price, 2) }}
-                                    x
-                                    {{ $cart->quantity }}</p>
+                                @if (Auth::check())
+                                    <p class="text-base font-semibold text-white">
+                                        RM{{ number_format($cart->price, 2) }} x {{ $cart->quantity }}</p>
+                                @else
+                                    <p class="text-base font-semibold text-white">
+                                        RM{{ number_format($cart->price, 2) }} x {{ $cart->qty }}</p>
+                                @endif
                             </li>
                         @endforeach
                     </ul>
                     <div class="my-5 h-0.5 w-full bg-white bg-opacity-30"></div>
                     <div class="space-y-3">
-                        <x-jet-button-custom onclick="window.location.href='{{ route('profile.show') }}'"
-                            class="w-full">
-                            Change delivery address
-                        </x-jet-button-custom>
-           
+                        @if (Auth::check())
+                            <x-jet-button-custom onclick="window.location.href='{{ route('profile.show') }}'"
+                                class="w-full">
+                                Change delivery address
+                            </x-jet-button-custom>
+                        @endif
                         <p class="flex justify-between text-white"><span>Shipping (JNT
                                 Express)</span>
                             <span>RM {{ number_format($delivery, 2) }}</span>
