@@ -3,15 +3,15 @@
     <x-jet-session-message />
     <div class="relative z-20 min-h-screen pt-8">
         <img src="../image/product-selection/product-selection.jpg"
-            class="absolute inset-0  w-full h-full bg-cover object-cover" />
+            class="absolute inset-0 object-cover w-full h-full bg-cover" />
         <div
             class="max-w-6xl mx-auto shadow-md backdrop-filter backdrop-blur-[6px] rounded-3xl bg-black/40 shadow-fuchsia-500">
             <div class="max-w-5xl pt-8 mx-auto sm:flex-row">
                 <x-jet-title>
                     Products Selection
                 </x-jet-title>
-                <div x-data="{ isMobile: window.innerWidth < 820 }" x-show="isMobile" class="bg-indigo-700/50 p-2 rounded-lg min-w-lg mt-4">
-                    <div class="flex gap-2 items-center">
+                <div x-data="{ isMobile: window.innerWidth < 820 }" x-show="isMobile" class="p-2 mt-4 rounded-lg bg-indigo-700/50 min-w-lg">
+                    <div class="flex items-center gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -26,8 +26,16 @@
                     <div class="block h-48 mx-2 group sm:mx-0">
                         <a href="{{ route('product.template', 1) }}"
                             class=" relative flex flex-col items-center h-full rounded-3xl border-4 border-indigo-500 bg-black/40 p-8 transition group-hover:-translate-x-2 group-hover:-translate-y-2 group-hover:shadow-[8px_8px_0_0_#ec4899]">
-                            <p class="my-3 text-lg text-indigo-400">T-Shirt</p>
+                            <p class="my-3 text-lg text-indigo-400">Standard Tee</p>
                             <img src="../image/product-selection/tshirt.png"
+                                class="w-16 h-16 p-2 bg-indigo-500 rounded-full" />
+                        </a>
+                    </div>
+                    <div class="block h-48 mx-2 group sm:mx-0">
+                        <a href="{{ route('product.template', 2) }}"
+                            class="relative flex flex-col items-center h-full rounded-3xl border-4 border-indigo-500 bg-black/40 p-8 transition group-hover:-translate-x-2 group-hover:-translate-y-2 group-hover:shadow-[8px_8px_0_0_#ec4899]">
+                            <p class="my-3 text-lg text-indigo-400">Oversized Tee</p>
+                            <img src="../image/product-selection/oversized.png"
                                 class="w-16 h-16 p-2 bg-indigo-500 rounded-full" />
                         </a>
                     </div>
@@ -39,15 +47,6 @@
                                 class="w-16 h-16 p-2 bg-indigo-500 rounded-full" />
                             <p class="absolute px-2 uppercase rounded-md bg-rose-500/90 bottom-14">Coming Soon</p>
                         </div>
-                    </div>
-                    <div class="block h-48 mx-2 group sm:mx-0">
-                        <div
-                            class=" relative flex flex-col items-center h-full rounded-3xl border-4 border-indigo-500 bg-black/40 p-8 transition group-hover:-translate-x-2 group-hover:-translate-y-2 group-hover:shadow-[8px_8px_0_0_#ec4899]">
-                            <p class="my-3 text-lg text-indigo-400">Oversized T-Shirt</p>
-                            <img src="../image/product-selection/oversized.png"
-                                class="w-16 h-16 p-2 bg-indigo-500 rounded-full" />
-                            <p class="absolute px-2 uppercase rounded-md bg-rose-500/90 bottom-14">Coming Soon</p>
-                    </div>
                     </div>
                     <div class="block h-48 mx-2 group sm:mx-0">
                         <div
@@ -82,10 +81,10 @@
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-          const isMobile = window.innerWidth < 820;
-          Alpine.data('myComponent', () => ({
-            isMobile: isMobile,
-          }));
+            const isMobile = window.innerWidth < 820;
+            Alpine.data('myComponent', () => ({
+                isMobile: isMobile,
+            }));
         });
-      </script>
+    </script>
 </x-app-layout>
