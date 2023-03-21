@@ -2,13 +2,13 @@
     <x-jet-admin-sidebar />
     <x-jet-admin-layout>
         <x-jet-session-message />
-        @if(!$hide)
-        <div class="min-h-screen max-w-xl mx-auto">
-            <x-jet-input type="password" wire:model.lazy="unlock_password" class=" block mt-32 w-full"/>
-            <x-jet-button wire:click="unlock()" class="mt-4 w-full"><span class="mx-auto">Apocalypse Dragon</span></x-jet-button>
+        {{-- @if(!$hide)
+        <div class="max-w-xl min-h-screen mx-auto">
+            <x-jet-input type="password" wire:model.lazy="unlock_password" class="block w-full mt-32 "/>
+            <x-jet-button wire:click="unlock()" class="w-full mt-4"><span class="mx-auto">Apocalypse Dragon</span></x-jet-button>
         </div>
         @endif
-        @if ($hide)
+        @if ($hide) --}}
             <div class="grid grid-cols-2 text-white">
                 <x-jet-gradient-card>
                     <div class="flex flex-col p-6 bg-black rounded-xl">
@@ -87,7 +87,7 @@
                     </div>
                 </x-jet-gradient-card>
                 <x-jet-gradient-card>
-                    <div class="flex flex-col p-6 row-span-2 bg-black rounded-xl">
+                    <div class="flex flex-col row-span-2 p-6 bg-black rounded-xl">
                         <x-jet-header>Cosmic Controller</x-jet-header>
                         <div class="gap-2 p-2 overflow-y-scroll rounded-lg ring-2 ring-violet-500">
                             <x-jet-input type="text" name="order_id" class="block w-full mb-2" wire:model="order_id"
@@ -124,7 +124,7 @@
                     </div>
                 </x-jet-gradient-card>
                 <x-jet-gradient-card>
-                    <div class="flex flex-col p-6 bg-black rounded-xl h-full">
+                    <div class="flex flex-col h-full p-6 bg-black rounded-xl">
                         <x-jet-header>Stock Strategist</x-jet-header>
                         <div class="gap-2 p-2 overflow-y-scroll rounded-lg ring-2 ring-violet-500">
                             <x-jet-input type="text" name="product_order_id" class="block w-full mb-2"
@@ -150,7 +150,7 @@
                     </div>
                 </x-jet-gradient-card>
                 <x-jet-gradient-card>
-                    <div class="flex flex-col p-6 bg-black h-full rounded-xl">
+                    <div class="flex flex-col h-full p-6 bg-black rounded-xl">
                         <x-jet-header>Transaction Grimoire</x-jet-header>
                         <div class="gap-2 p-2 overflow-y-scroll rounded-lg ring-2 ring-violet-500">
                             <x-jet-input type="text" name="user_id" class="block w-full mb-2"
@@ -173,7 +173,7 @@
                 </x-jet-gradient-card>
 
                 <x-jet-gradient-card>
-                    <div class="flex flex-col p-6 bg-black rounded-xl h-full">
+                    <div class="flex flex-col h-full p-6 bg-black rounded-xl">
                         <x-jet-header>The Ultimate Hope</x-jet-header>
                         <div class="gap-2 p-2 overflow-y-scroll rounded-lg ring-2 ring-violet-500">
                             <x-jet-input type="text" name="wallet_user_id" class="block w-full mb-2"
@@ -189,7 +189,7 @@
                     </div>
                 </x-jet-gradient-card>
                 <x-jet-gradient-card>
-                    <div class="flex flex-col p-6 bg-black rounded-xl h-full">
+                    <div class="flex flex-col h-full p-6 bg-black rounded-xl">
                         <x-jet-header>Mastermind of the Matrix</x-jet-header>
                         <div class="gap-2 p-2 overflow-y-scroll rounded-lg ring-2 ring-violet-500">
                             <x-jet-input type="text" name="superadmin_name" class="block w-full mb-2"
@@ -205,7 +205,7 @@
                     </div>
                 </x-jet-gradient-card>
                 <x-jet-gradient-card>
-                    <div class="flex flex-col p-6 bg-black rounded-xl h-full">
+                    <div class="flex flex-col h-full p-6 bg-black rounded-xl">
                         <x-jet-header>Unforgivable Curses</x-jet-header>
                         <div class="gap-2 p-2 overflow-y-scroll rounded-lg ring-2 ring-violet-500 max-h-96">
                             <x-jet-input type="text" name="verify_user_id" class="block w-full mb-2"
@@ -214,7 +214,7 @@
                                 The Killing Curse
                             </x-jet-button-utility>
                         </div>
-                        <div class="gap-2 p-2 overflow-y-scroll rounded-lg ring-2 ring-violet-500 max-h-96 mt-6">
+                        <div class="gap-2 p-2 mt-6 overflow-y-scroll rounded-lg ring-2 ring-violet-500 max-h-96">
                             <x-jet-button-utility wire:click="deleteTemplate()">
                                 The Imperius Curse
                             </x-jet-button-utility>
@@ -222,6 +222,6 @@
                     </div>
                 </x-jet-gradient-card>
             </div>
-        @endif
+        {{-- @endif --}}
     </x-jet-admin-layout>
 </div>

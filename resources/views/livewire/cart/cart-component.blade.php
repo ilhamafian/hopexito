@@ -8,7 +8,8 @@
                 {{-- If no item in cart --}}
                 @if ($cart->count() == 0)
                     <div class="w-full p-6 md:py-0">
-                        <div class="flex flex-col items-center justify-between gap-2 py-4 border-b border-indigo-500 md:flex-row">
+                        <div
+                            class="flex flex-col items-center justify-between gap-2 py-4 border-b border-indigo-500 md:flex-row">
                             <x-jet-title-small>Shopping Cart</x-jet-title-small>
                             <x-jet-button-custom onclick="window.location.href='{{ route('shop.all') }}'" class="">
                                 Continue Shopping
@@ -19,7 +20,7 @@
                             <p>You don't have any items in your cart.</p>
                         </div>
                     </div>
-                {{-- If cart has items --}}
+                    {{-- If cart has items --}}
                 @elseif ($cart->count() != 0)
                     <div class="w-full px-6">
                         <div
@@ -88,10 +89,18 @@
                                     @endif
 
                                     {{-- Delete item in cart --}}
-                                    <button type="submit" class="w-20 text-center rounded-full bg-rose-500"
-                                        wire:click="destroyCart('{{ $cart->rowId }}')">
-                                        Remove
-                                    </button>
+                                    @if (Auth::check())
+                                        <button type="submit" class="w-20 text-center rounded-full bg-rose-500"
+                                            wire:click="destroyCart('{{ $cart->id }}')">
+                                            Remove
+                                        </button>
+                                    @else
+                                        <button type="submit" class="w-20 text-center rounded-full bg-rose-500"
+                                            wire:click="destroyCart('{{ $cart->rowId }}')">
+                                            Remove
+                                        </button>
+                                    @endif
+
                                 </div>
                                 {{-- Update cart items quantity --}}
                                 <div class="flex gap-6">

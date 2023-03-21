@@ -44,10 +44,12 @@
                                         value="White" />
                                     <x-jet-checkbox id="color" name="color[]" class="p-3.5 bg-[#808080]"
                                         value="Gray" />
+                                    <x-jet-checkbox id="color" name="color[]" class="p-3.5 bg-[#1e3a8a]"
+                                        value="Navy" />
                                     <x-jet-checkbox id="color" name="color[]" class="p-3.5 bg-black"
                                         value="Black" />
-                                    <x-jet-checkbox id="color" name="color[]" class="p-3.5 bg-[#d7c6c3]"
-                                        value="Beige" />
+                                    <x-jet-checkbox id="color" name="color[]" class="p-3.5 bg-[#dfb2ae]"
+                                        value="Pink" />
                                 </div>
                             </div>
                         </div>
@@ -69,7 +71,8 @@
                         Standard Tee Mockup
                     </x-jet-admin-header>
                     <div class="block p-2 mt-4 text-5xl">
-                        <x-jet-button-utility type="button" onclick="window.location.href = '{{  route('product.template', 1)  }}'">
+                        <x-jet-button-utility type="button"
+                            onclick="window.location.href = '{{ route('product.template', 1) }}'">
                             Go to Mockup
                         </x-jet-button-utility>
                     </div>
@@ -79,7 +82,8 @@
                         Oversized Tee Mockup
                     </x-jet-admin-header>
                     <div class="block p-2 mt-4 text-5xl">
-                        <x-jet-button-utility type="button" onclick="window.location.href = '{{  route('product.template', 2)  }}'">
+                        <x-jet-button-utility type="button"
+                            onclick="window.location.href = '{{ route('product.template', 2) }}'">
                             Go to Mockup
                         </x-jet-button-utility>
                     </div>

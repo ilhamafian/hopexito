@@ -86,11 +86,24 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="space-x-1">
-                            @foreach ($colors as $color)
-                                <button type="button" class="rounded-full w-7 h-7"
-                                    style="background-color:{{ $color }}" id="{{ $color }}"></button>
-                            @endforeach
+                        <div class="px-2">
+                            @if ($template->category == 'Oversized')
+                                <button type="button" class="rounded-full w-7 h-7 bg-[#fff]" id="White"></button>
+                                <button type="button" class="rounded-full w-7 h-7 bg-[#c9c0b7]"
+                                    id="Gray"></button>
+                                <button type="button" class="rounded-full w-7 h-7 bg-[#dfb2ae]"
+                                    id="BrightRose"></button>
+                                <button type="button" class="rounded-full w-7 h-7 bg-[#000]"
+                                    id="Black"></button>
+                                <button type="button" class="rounded-full w-7 h-7 bg-[#1e3a8a]"
+                                    id="Navy"></button>
+                            @else
+                                @foreach ($colors as $color)
+                                    <button type="button" class="rounded-full w-7 h-7"
+                                        style="background-color:{{ $color }}"
+                                        id="{{ $color }}"></button>
+                                @endforeach
+                            @endif
                         </div>
                     </div>
                     <div class="flex flex-col basis-1/3">
@@ -111,23 +124,45 @@
                             </div>
                         </div>
                         <div class="flex items-center gap-2">
-                            @foreach ($colors as $color)
-                                @if ($color == 'White')
-                                    <x-jet-checkbox id="color" name="color[]" class="p-3.5 bg-white"
+                            @if ($template->category == 'Oversized')
+                                @foreach ($colors as $color)
+                                    @if ($color == 'Gray')
+                                        <x-jet-checkbox id="color" name="color[]" class="p-3.5 bg-[#808080]"
+                                            value="{{ $color }}" />
+                                    @endif
+                                    @if ($color == 'Pink')
+                                        <x-jet-checkbox id="color" name="color[]" class="p-3.5 bg-[#dfb2ae]"
+                                            value="{{ $color }}" />
+                                    @endif
+                                    @if ($color == 'Black')
+                                        <x-jet-checkbox id="color" name="color[]" class="p-3.5 bg-[#000]"
+                                            value="{{ $color }}" />
+                                    @endif
+                                    @if ($color == 'Navy')
+                                    <x-jet-checkbox id="color" name="color[]" class="p-3.5 bg-[#1e3a8a]"
                                         value="{{ $color }}" />
                                 @endif
-                                @if ($color == 'Gray')
-                                    <x-jet-checkbox id="color" name="color[]" class="p-3.5 bg-[#808080]"
-                                        value="{{ $color }}" />
-                                @endif
-                                @if ($color == 'Black')
-                                    <x-jet-checkbox id="color" name="color[]" class="p-3.5 bg-[#000]"
-                                        value="{{ $color }}" />
-                                @endif
-                            @endforeach
-                            @error('color')
-                                <p class="w-2 h-2 rounded-full bg-rose-500"></p>
-                            @enderror
+                                @endforeach
+                            @else
+                                @foreach ($colors as $color)
+                                    @if ($color == 'White')
+                                        <x-jet-checkbox id="color" name="color[]" class="p-3.5 bg-white"
+                                            value="{{ $color }}" />
+                                    @endif
+                                    @if ($color == 'Gray')
+                                        <x-jet-checkbox id="color" name="color[]" class="p-3.5 bg-[#808080]"
+                                            value="{{ $color }}" />
+                                    @endif
+                                    @if ($color == 'Black')
+                                        <x-jet-checkbox id="color" name="color[]" class="p-3.5 bg-[#000]"
+                                            value="{{ $color }}" />
+                                    @endif
+                                @endforeach
+                                @error('color')
+                                    <p class="w-2 h-2 rounded-full bg-rose-500"></p>
+                                @enderror
+                            @endif
+
                         </div>
                     </div>
                     <div class="flex flex-col basis-1/3">
@@ -374,6 +409,14 @@
         $("Gray").onclick = function() {
             setTshirtFrontBackground('#808080');
             setTshirtBackBackground('#808080');
+        }
+        $("Navy").onclick = function() {
+            setTshirtFrontBackground('#000435');
+            setTshirtBackBackground('#000435');
+        }
+        $("BrightRose").onclick = function() {
+            setTshirtFrontBackground('#dfb2ae');
+            setTshirtBackBackground('#dfb2ae');
         }
         // When the user clicks on upload a custom picture (Front)  
         $('tshirt-file-front').addEventListener("change", function(e) {
