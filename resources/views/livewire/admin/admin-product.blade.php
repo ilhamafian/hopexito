@@ -43,7 +43,7 @@
                         @foreach ($tags as $item)
                             <a class="relative h-14" x-data="{ open: false }" x-on:mouseenter="open = true"
                                 x-on:mouseleave="open = false">
-                                <p class="px-3 py-2 transition rounded-md bg-orange-500 hover:bg-fuchsia-500">
+                                <p class="px-3 py-2 transition bg-orange-500 rounded-md hover:bg-fuchsia-500">
                                     {{ $item }}</p>
                             </a>
                         @endforeach
@@ -57,14 +57,18 @@
                         placeholder="Search by product name" />
                     <div class="grid max-h-screen grid-cols-4 gap-2 mt-5 overflow-scroll">
                         @foreach ($products as $item)
-                            <a href="{{ route('product.show', $item->slug) }}" class="relative h-16"
+                            <a href="{{ route('product.show', $item->slug) }}" class="relative flex flex-col h-28"
                                 x-data="{ open: false }" x-on:mouseenter="open = true" x-on:mouseleave="open = false">
-                                <p class="flex items-center px-3 py-2.5 transition rounded-md bg-emerald-500 hover:bg-indigo-500">
-                                    <span class="text-xs bg-black mr-2 rounded-md px-2 py-0.5">{{ $item->status }}</span>
-                                    {{ $item->id }}
-                                    {{ $item->title }}
-                                </p>
-                                <svg class="absolute p-1 transition rounded-md cursor-pointer top-0.5 right-0.5 hover:bg-indigo-500 w-7 h-7"
+                                <div class="flex flex-col gap-2 px-3 py-2.5 transition rounded-md bg-black border-2 border-indigo-500 hover:bg-indigo-500/60">
+                                    <p class="block w-full">
+                                        <span class="text-xs bg-blue-500 mr-2 rounded-md px-2 py-0.5">{{ $item->status }}</span>
+                                        <span class="text-xs bg-rose-500 mr-2 rounded-md px-2 py-0.5">{{ $item->id }}</span>
+                                        <span class="text-xs bg-lime-500 mr-2 rounded-md px-2 py-0.5">{{ $item->sold }}</span>
+                                    </p>
+                     
+                                        {{ $item->title }}
+                                </div>  
+                                <svg class="absolute p-1 transition rounded-md cursor-pointer top-2 right-2 hover:bg-rose-500 w-7 h-7"
                                     x-show="open" wire:click.prevent="deleteProduct('{{ $item->id }}')"
                                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor">

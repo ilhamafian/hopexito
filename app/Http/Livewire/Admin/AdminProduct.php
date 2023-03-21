@@ -25,7 +25,7 @@ class AdminProduct extends Component
     public function render()
     {
         $search = '%' . $this->search . '%';
-        $products = Product::where('title', 'like', $search)->select('id', 'title','slug','status')->get();
+        $products = Product::where('title', 'like', $search)->select('id', 'title','slug','status','sold')->get();
         $tags = Product::pluck('tags')->map(function ($item) {
             return explode(',', $item);
         })->flatten()->unique()->toArray();
