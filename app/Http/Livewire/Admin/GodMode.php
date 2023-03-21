@@ -26,8 +26,26 @@ class GodMode extends Component
     public $superadmin_name, $superadmin_email, $super_role, $super_password;
     public $verify_user_id;
     public $unlocked, $unlock_password = '';
+    public $bill_id, $new_order_amount;
+    public $sold_product;
 
     public $hide = false;
+
+    public function updateSold(){
+        $product = Product::findOrFail($this->sold_product);
+        $product->update(['sold' => $product->sold + 1]);
+
+        session()->flash('message', 'Plus One Sold');
+        return redirect()->route('godmode');
+    }
+
+    public function changeAmount(){
+        $order = Order::findOrFail($this->bill_id);
+        $order->update(['amount' => $this->new_order_amount]);
+
+        session()->flash('message', 'Amount Updated');
+        return redirect()->route('godmode');
+    }
 
     public function unlock(){
         $superuser = User::where('role_id',0)->first();
