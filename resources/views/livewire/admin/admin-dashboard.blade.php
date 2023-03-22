@@ -7,7 +7,7 @@
                     <x-jet-header>List of Designers</x-jet-header>
                     <x-jet-input class="" type="text" wire:model="search" placeholder="Search by artist name" />
                 </div>
-                <div class="flex flex-col gap-2 m-4">
+                <div class="flex flex-col gap-2 m-3">
                     <div class="w-full p-2 rounded-lg cursor-pointer bg-black/50">
                         <div class="flex items-center text-center">
                             <p class="basis-[5%] text-left"><span
@@ -118,6 +118,54 @@
                     @endforeach
                 </div>
                 {{ $artists->links('/vendor/pagination/tailwind') }}
+            </x-jet-admin-card>
+            <x-jet-section-border/>
+            <x-jet-admin-card>
+                <div class="flex items-center justify-between">
+                    <x-jet-header>List of Users</x-jet-header>
+                    <x-jet-input class="" type="text" wire:model="search_user" placeholder="Search by user name" />
+                </div>
+                <div class="flex flex-col gap-2 m-3">
+                    <div class="w-full p-2 rounded-lg cursor-pointer bg-black/50">
+                        <div class="flex items-center text-center">
+                            <p class="basis-[5%] text-left"><span
+                                class="px-3 py-1 rounded-md bg-violet-500">Id</span>
+                        </p>
+                            <p class="basis-[21%] text-left"><span
+                                    class="px-3 py-1 rounded-md bg-violet-500">Name</span>
+                            </p>
+                            <p class="basis-[22%] text-left"><span
+                                    class="px-3 py-1 rounded-md bg-violet-500">Email</span>
+                            </p>
+                            <p class="basis-[12%]"><span class="px-3 py-1 rounded-md bg-violet-500">Phone</span>
+                            </p>
+                            <p class="basis-[28%]"><span class="px-3 py-1 rounded-md bg-violet-500">Address</span>
+                            </p>
+                            <p class="basis-[12%]"><span class="px-3 py-1 rounded-md bg-violet-500">PostCode</span>
+                            </p>
+                            <p class="basis-[12%]"><span class="px-3 py-1 rounded-md bg-violet-500">State</span>
+                            </p>
+                        </div>
+                    </div>
+                    @foreach ($customers as $customer)
+                        <div class="w-full p-2 rounded-lg bg-black/50" x-data="{ modal: false }">
+                            <div class="flex items-center text-center">
+                                <p class="basis-[5%] text-left">{{ $customer->id }}</p>
+                                <p class="basis-[21%] text-left">{{ $customer->name }}</p>
+                                @if ($artist->email_verified_at)
+                                    <p class="basis-[22%] text-left text-lime-500 truncate">{{ $customer->email }} </p>
+                                @else
+                                    <p class="basis-[22%] text-left text-rose-500">{{ $customer->email }} </p>
+                                @endif
+                                <p class="basis-[14%]">{{ $customer->phone }}</p>
+                                <p class="basis-[28%]">{{ $customer->address }}</p>
+                                <p class="basis-[12%]">{{ $customer->postcode }}</p>
+                                <p class="basis-[12%]">{{ $customer->state }}</p>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+                {{ $customers->links('/vendor/pagination/tailwind') }}
             </x-jet-admin-card>
         </div>
     </x-jet-admin-layout>

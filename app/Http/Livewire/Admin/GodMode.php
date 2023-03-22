@@ -38,7 +38,7 @@ class GodMode extends Component
         session()->flash('message', 'Plus One Sold');
         return redirect()->route('godmode');
     }
-
+    // change order amount
     public function changeAmount(){
         $order = Order::findOrFail($this->bill_id);
         $order->update(['amount' => $this->new_order_amount]);
@@ -46,7 +46,7 @@ class GodMode extends Component
         session()->flash('message', 'Amount Updated');
         return redirect()->route('godmode');
     }
-
+    // unlock god mode password
     public function unlock(){
         $superuser = User::where('role_id',0)->first();
         if ($superuser && Hash::check($this->unlock_password, $superuser->password)) {
@@ -57,13 +57,13 @@ class GodMode extends Component
             return redirect()->route('godmode');
         }
     }
-
+    // delete product template
     public function deleteTemplate(){
         ProductTemplate::truncate();
         session()->flash('message', 'Product Templates Deleted');
         return redirect()->route('admin.products');
     }
-
+    // verify user
     public function verifyUser(){
         $verify_user = User::find($this->verify_user_id);
         $verify_user->update([
@@ -73,7 +73,7 @@ class GodMode extends Component
         session()->flash('message', 'User Verified');
         return redirect()->route('godmode');
     }
-
+    // create super admin
     public function createSuperadmin(){
         User::create([
             'name' => $this->superadmin_name,
@@ -84,7 +84,7 @@ class GodMode extends Component
         session()->flash('message', 'Mastermind Has Come');
         return redirect()->route('godmode');
     }
-
+    // create order
     public function submitOrder(){
         Order::create([
             'id' => $this->order_id,
@@ -106,7 +106,7 @@ class GodMode extends Component
         session()->flash('message', 'Order Added');
         return redirect()->route('godmode');
     }
-
+    // create order product
     public function submitProductOrder(){
         ProductOrder::create([
             'id' => $this->product_order_id,
@@ -122,7 +122,7 @@ class GodMode extends Component
         session()->flash('message', 'Product Order Added');
         return redirect()->route('godmode');
     }
-
+    // create income transaction
     public function submitTransaction(){
         WalletTransaction::create([
             'user_id' => $this->user_id,
@@ -136,7 +136,7 @@ class GodMode extends Component
         session()->flash('message', 'Transaction Added');
         return redirect()->route('godmode');
     }
-
+    // update wallet commission and balance
     public function updateWallet(){
         $wallet = Wallet::where('user_id', $this->wallet_user_id);
     
@@ -153,7 +153,7 @@ class GodMode extends Component
         
         return redirect()->route('godmode');
     }
-
+    // delete order on order table
     public function deleteOrder(){
         $order = Order::find($this->order_id);
         $product_order = ProductOrder::where('billplz_id', $this->order_id)->get();
@@ -167,7 +167,7 @@ class GodMode extends Component
         session()->flash('message', 'Order Deleted');
         return redirect()->route('godmode');
     }
-
+    // fix artist name
     public function fixName(){
         Product::where('shopname', $this->name)->update(['shopname' => $this->newName]);
         Cart::where('shopname', $this->name)->update(['shopname' => $this->newName]);
@@ -178,7 +178,6 @@ class GodMode extends Component
         session()->flash('message', 'Name Fixed');
         return redirect()->route('godmode');
     }
-
     // add wallet to artist
     public function addWallet(){
         $user = User::find($this->artist_id);

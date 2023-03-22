@@ -92,13 +92,15 @@
                 @endif
             @endif
         </div>
-        <div class="col-span-6 sm:col-span-4">
+        <div class="flex flex-col col-span-6 sm:col-span-4">
             <x-jet-label for="phone" value="{{ __('Phone Number') }}" />
-            <x-jet-input id="phone" type="text" class="block w-full mt-1" wire:model.defer="state.phone"
-                autocomplete="phone" />
+            <div class="flex gap-2">
+                <x-jet-input type="text" class="w-16 mt-1" readonly value="+60" />
+                <x-jet-input id="phone" type="text" class="block w-full mt-1" wire:model.defer="state.phone"
+                    autocomplete="phone" />
+            </div>
             <x-jet-input-error for="phone" class="mt-2" />
         </div>
-
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="address" value="{{ __('Address') }}" />
             <x-jet-input id="address" type="text" class="block w-full mt-1" wire:model.defer="state.address"

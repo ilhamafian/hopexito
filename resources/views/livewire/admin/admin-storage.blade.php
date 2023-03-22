@@ -1,60 +1,61 @@
 <div class="flex">
     <x-jet-admin-sidebar />
     <x-jet-admin-layout>
-        <div class="grid grid-cols-3 gap-8">
+        <div class="grid grid-cols-2 gap-8">
             <x-jet-admin-card>
-                <div class="flex flex-col gap-2 items-center">
+                <div class="flex flex-col items-center gap-2">
+                    <x-jet-admin-header>Database Size
+                    </x-jet-admin-header>
+                    <p class="text-xl text-indigo-400">
+                        {{ $DBSize[0]->size }} MB
+                    </p>
+                    <div class="text-center">
+                        <p class="px-2 py-0.5 bg-violet-600 rounded-md">Product Table Size</p>
+                        <p class="mt-1 text-lg text-fuchsia-400">
+                            {{ $productDBSize[0]->size }} MB
+                        </p>
+                    </div>
+                </div>
+            </x-jet-admin-card>
+            <x-jet-admin-card>
+                <div class="flex flex-col items-center gap-2">
                     <x-jet-admin-header>Disk Size
                     </x-jet-admin-header>
-                    <p class="text-lg text-indigo-400">
+                    <p class="text-xl text-indigo-400">
                         {{ $diskSize }}
                     </p>
-                </div>
-            </x-jet-admin-card>
-            <x-jet-admin-card>
-                <div class="flex flex-col gap-2 items-center">
-                    <x-jet-admin-header>Collection Image Disk Size
-                    </x-jet-admin-header>
-                    <p class="text-lg text-indigo-400">
-                        {{ $diskCollectionSize }}
-                    </p>
-                </div>
-            </x-jet-admin-card>
-            <x-jet-admin-card>
-                <div class="flex flex-col gap-2 items-center">
-                    <x-jet-admin-header>Cover Image Disk Size
-                    </x-jet-admin-header>
-                    <p class="text-lg text-indigo-400">
-                        {{ $diskCoverSize }}
-                    </p>
-                </div>
-            </x-jet-admin-card>
-            <x-jet-admin-card>
-                <div class="flex flex-col gap-2 items-center">
-                    <x-jet-admin-header>Image Back Disk Size
-                    </x-jet-admin-header>
-                    <p class="text-lg text-indigo-400">
-                        {{ $diskImageBackSize }}
-                    </p>
-                </div>
-            </x-jet-admin-card>
-            <x-jet-admin-card>
-                <div class="flex flex-col gap-2 items-center">
-                    <x-jet-admin-header>Image Front Disk Size
-                    </x-jet-admin-header>
-                    <p class="text-lg text-indigo-400">
-                        {{ $diskImageFrontSize }}
-                    </p>
-                </div>
-
-            </x-jet-admin-card>
-            <x-jet-admin-card>
-                <div class="flex flex-col gap-2 items-center">
-                    <x-jet-admin-header>Profile Photos Disk Size
-                    </x-jet-admin-header>
-                    <p class="text-lg text-indigo-400">
-                        {{ $diskProfilePhotoSize }}
-                    </p>
+                    <div class="grid grid-cols-2 gap-4 text-center">
+                        <div>
+                            <p class="px-2 py-0.5 bg-violet-600 rounded-md">Collection Image Size</p>
+                            <p class="mt-1 text-lg text-fuchsia-500">
+                                {{ $diskCollectionSize }}
+                            </p>
+                        </div>
+                        <div>
+                            <p class="px-2 py-0.5 bg-violet-600 rounded-md">Cover Image Size</p>
+                            <p class="mt-1 text-lg text-fuchsia-500">
+                                {{ $diskCoverSize }}
+                            </p>
+                        </div>
+                        <div>
+                            <p class="px-2 py-0.5 bg-violet-600 rounded-md">Image Back Size</p>
+                            <p class="mt-1 text-lg text-fuchsia-500">
+                                {{ $diskImageBackSize }}
+                            </p>
+                        </div>
+                        <div>
+                            <p class="px-2 py-0.5 bg-violet-600 rounded-md">Image Front Size</p>
+                            <p class="mt-1 text-lg text-fuchsia-500">
+                                {{ $diskImageFrontSize }}
+                            </p>
+                        </div>
+                        <div>
+                            <p class="px-2 py-0.5 bg-violet-600 rounded-md">Profile Photos Size</p>
+                            <p class="mt-1 text-lg text-fuchsia-500">
+                                {{ $diskProfilePhotoSize }}
+                            </p>
+                        </div>
+                    </div>       
                 </div>
             </x-jet-admin-card>
         </div>
@@ -63,6 +64,7 @@
         <x-jet-admin-card>
             <x-jet-admin-header>Temporary Files <span
                     class="bg-green-500 rounded-md px-2 py-0.5 ml-2">{{ count($temp) }}</span></x-jet-admin-header>
+                    
             <div class="grid grid-cols-3 mt-6">
                 @foreach ($temp as $item)
                     <div class="flex gap-2">
@@ -96,7 +98,7 @@
                     @endforeach
                     @if (!$match)
                         <button type="button" wire:click="unlink('{{ $file }}')"
-                            class="flex gap-2 p-2 hover:bg-white/10 transition rounded-md">
+                            class="flex gap-2 p-2 transition rounded-md hover:bg-white/10">
                             <p class="text-rose-400">{{ $file }}</p>
                         </button>
                     @endif
@@ -136,7 +138,7 @@
                     @endforeach
                     @if (!$match)
                         <button type="button" wire:click="unlink('{{ $file }}')"
-                            class="flex gap-2 p-2 hover:bg-white/10 transition rounded-md">
+                            class="flex gap-2 p-2 transition rounded-md hover:bg-white/10">
                             <p class="text-rose-400">{{ $file }}</p>
                         </button>
                     @endif
@@ -176,7 +178,7 @@
                     @endforeach
                     @if (!$match)
                         <button type="button" wire:click="unlink('{{ $file }}')"
-                            class="flex gap-2 p-2 hover:bg-white/10 transition rounded-md">
+                            class="flex gap-2 p-2 transition rounded-md hover:bg-white/10">
                             <p class="text-rose-400">{{ $file }}</p>
                         </button>
                     @endif
@@ -216,7 +218,7 @@
                     @endforeach
                     @if (!$match)
                         <button type="button" wire:click="unlink('{{ $file }}')"
-                            class="flex gap-2 p-2 hover:bg-white/10 transition rounded-md">
+                            class="flex gap-2 p-2 transition rounded-md hover:bg-white/10">
                             <p class="text-rose-400">{{ $file }}</p>
                         </button>
                     @endif
@@ -256,7 +258,7 @@
                     @endforeach
                     @if (!$match)
                         <button type="button" wire:click="unlink('{{ $file }}')"
-                            class="flex gap-2 p-2 hover:bg-white/10 transition rounded-md">
+                            class="flex gap-2 p-2 transition rounded-md hover:bg-white/10">
                             <p class="text-teal-400">{{ $file }}</p>
                         </button>
                     @endif
@@ -306,7 +308,7 @@
                     @endforeach
                     @if (!$match)
                         <button type="button" wire:click="unlink('{{ $file }}')"
-                            class="flex gap-2 p-2 hover:bg-white/10 transition rounded-md">
+                            class="flex gap-2 p-2 transition rounded-md hover:bg-white/10">
                             <p class="text-rose-400">{{ $file }}</p>
                         </button>
                     @endif

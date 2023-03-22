@@ -11,7 +11,7 @@ use Livewire\Component;
 
 class AdminDashboard extends Component
 {
-    public $search;
+    public $search, $search_user;
 
     // forcefully delete all artist data in a controlled manner
     public function deleteArtist($id){
@@ -27,8 +27,10 @@ class AdminDashboard extends Component
     public function render()
     {
         $search = '%' . $this->search . '%';
-        $artists = User::where('role_id', 2)->where('name','like',$search)->paginate(20);
+        $search_user = '%' . $this->search_user . '%';
+        $artists = User::where('role_id', 2)->where('name', 'like', $search)->paginate(20);
+        $customers = User::where('role_id', 3)->where('name', 'like', $search_user)->paginate(20);
 
-        return view('livewire.admin.admin-dashboard', compact('artists'));
+        return view('livewire.admin.admin-dashboard', compact('artists','customers'));
     }
 }
