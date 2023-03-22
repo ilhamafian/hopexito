@@ -46,6 +46,18 @@
                                             </svg>
                                         </x-jet-button>
                                     </a>
+                                @elseif(session()->has('delivery_info'))
+                                    <a href="{{ route('billplz-create') }}">
+                                        <x-jet-button class="w-56 py-4">
+                                            <p wire:loading.remove class="mx-auto text-xs">Checkout
+                                                RM{{ number_format($total, 2) }}</p>
+                                            <svg wire:loading viewBox="0 0 24 24"
+                                                class="block w-6 h-6 m-auto -my-1 text-white animate-spin">
+                                                <path fill="currentColor"
+                                                    d="M12,4V2A10,10 0 0,0 2,12H4A8,8 0 0,1 12,4Z" />
+                                            </svg>
+                                        </x-jet-button>
+                                    </a>
                                 @else
                                     <a href="{{ route('guest.checkout') }}">
                                         <x-jet-button class="w-56 py-4">
@@ -155,7 +167,8 @@
                                                 @else
                                                     <button type="button" disabled><svg
                                                             xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                            viewBox="0 0 24 24" stroke-width="1.5"
+                                                            stroke="currentColor"
                                                             class="mx-2 w-7 h-7 text-lime-400 active:scale-105">
                                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                                 d="M12 4.5v15m7.5-7.5h-15" />
@@ -198,135 +211,137 @@
             </div>
         </x-jet-gradient-card>
     </div>
-    {{-- <div class="max-w-5xl mx-auto mt-4">
-        <x-jet-admin-card>
-            <div class="p-6">
-                <div class="w-full px-6">
-                    <div
-                        class="flex flex-col items-center justify-between gap-2 py-2 text-center border-b border-indigo-500 md:flex-row">
-                        <x-jet-title-small>
-                            Grab Limited Time Coupon
-                        </x-jet-title-small>
-                        <div class="flex flex-col items-center gap-2 md:flex-row">
-                            <p>Expire In:</p>
-                            <p id="demo" class="px-3 py-1 bg-indigo-500 rounded-md">
-                            </p>
+    @if (Auth::check())
+        <div class="max-w-5xl mx-auto mt-8">
+            <x-jet-admin-card>
+                <div class="p-6">
+                    <div class="w-full px-6">
+                        <div
+                            class="flex flex-col items-center justify-between gap-2 py-2 text-center border-b border-indigo-500 md:flex-row">
+                            <x-jet-title-small>
+                                Grab Limited Time Coupon
+                            </x-jet-title-small>
+                            <div class="flex flex-col items-center gap-2 md:flex-row">
+                                <p>Expire In:</p>
+                                <p id="demo" class="px-3 py-1 bg-indigo-500 rounded-md">
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="grid grid-cols-4 gap-4 mt-4">
-                        <div class="relative">
-                            @if ($discount != 0.9 && $total >= 60)
-                                <button type="button" wire:click="discount('0.9')"
-                                    class="flex items-center justify-center w-full h-16 rounded-md bg-violet-500">
-                                    10% Off
-                                </button>
-                            @elseif($discount == 0.9)
-                                <button type="button" wire:click="removeDiscount('1')"
-                                    class="flex items-center justify-center w-full h-16 bg-transparent border-2 rounded-md border-violet-500">
-                                    Applied
-                                </button>
-                            @else
-                                <button type="button" disabled
-                                    class="flex items-center justify-center w-full h-16 bg-gray-500 rounded-md cursor-not-allowed">
-                                    10% Off
-                                </button>
-                            @endif
-                            @if ($total >= 60)
-                                <p class="absolute left-0 right-0 p-2 text-xs text-center -bottom-7 text-lime-500">
-                                    Minimum spend: RM60
-                                </p>
-                            @else
-                                <p class="absolute left-0 right-0 p-2 text-xs text-center -bottom-7 text-rose-500">
-                                    Minimum spend: RM60
-                                </p>
-                            @endif
+                        <div class="grid grid-cols-4 gap-4 mt-4">
+                            <div class="relative">
+                                @if ($discount != 0.9 && $total >= 60)
+                                    <button type="button" wire:click="discount('0.9')"
+                                        class="flex items-center justify-center w-full h-16 rounded-md bg-violet-500">
+                                        10% Off
+                                    </button>
+                                @elseif($discount == 0.9)
+                                    <button type="button" wire:click="removeDiscount('1')"
+                                        class="flex items-center justify-center w-full h-16 bg-transparent border-2 rounded-md border-violet-500">
+                                        Applied
+                                    </button>
+                                @else
+                                    <button type="button" disabled
+                                        class="flex items-center justify-center w-full h-16 bg-gray-500 rounded-md cursor-not-allowed">
+                                        10% Off
+                                    </button>
+                                @endif
+                                @if ($total >= 60)
+                                    <p class="absolute left-0 right-0 p-2 text-xs text-center -bottom-7 text-lime-500">
+                                        Minimum spend: RM60
+                                    </p>
+                                @else
+                                    <p class="absolute left-0 right-0 p-2 text-xs text-center -bottom-7 text-rose-500">
+                                        Minimum spend: RM60
+                                    </p>
+                                @endif
+                            </div>
+                            <div class="relative">
+                                @if ($discount != 0.85 && $total >= 90)
+                                    <button type="button" wire:click="discount('0.85')"
+                                        class="flex items-center justify-center w-full h-16 rounded-md bg-violet-500">
+                                        15% Off
+                                    </button>
+                                @elseif($discount == 0.85)
+                                    <button type="button" wire:click="removeDiscount('1')"
+                                        class="flex items-center justify-center w-full h-16 bg-transparent border-2 rounded-md border-violet-500">
+                                        Applied
+                                    </button>
+                                @else
+                                    <button type="button" disabled
+                                        class="flex items-center justify-center w-full h-16 bg-gray-500 rounded-md cursor-not-allowed">
+                                        15% Off
+                                    </button>
+                                @endif
+                                @if ($total >= 90)
+                                    <p class="absolute left-0 right-0 p-2 text-xs text-center -bottom-7 text-lime-500">
+                                        Minimum spend: RM90
+                                    </p>
+                                @else
+                                    <p class="absolute left-0 right-0 p-2 text-xs text-center -bottom-7 text-rose-500">
+                                        Minimum spend: RM90
+                                    </p>
+                                @endif
+                            </div>
+                            <div class="relative">
+                                @if ($discount != 0.8 && $total >= 120)
+                                    <button type="button" wire:click="discount('0.80')"
+                                        class="flex items-center justify-center w-full h-16 rounded-md bg-violet-500">
+                                        20% Off
+                                    </button>
+                                @elseif($discount == 0.8)
+                                    <button type="button" wire:click="removeDiscount('1')"
+                                        class="flex items-center justify-center w-full h-16 bg-transparent border-2 rounded-md border-violet-500">
+                                        Applied
+                                    </button>
+                                @else
+                                    <button type="button" disabled
+                                        class="flex items-center justify-center w-full h-16 bg-gray-500 rounded-md cursor-not-allowed">
+                                        20% Off
+                                    </button>
+                                @endif
+                                @if ($total >= 120)
+                                    <p class="absolute left-0 right-0 p-2 text-xs text-center -bottom-7 text-lime-500">
+                                        Minimum spend: RM120
+                                    </p>
+                                @else
+                                    <p class="absolute left-0 right-0 p-2 text-xs text-center -bottom-7 text-rose-500">
+                                        Minimum spend: RM120
+                                    </p>
+                                @endif
+                            </div>
+                            <div class="relative">
+                                @if ($discount != 0.7 && $total >= 200)
+                                    <button type="button" wire:click="discount('0.7')"
+                                        class="flex items-center justify-center w-full h-16 rounded-md bg-violet-500">
+                                        30% Off
+                                    </button>
+                                @elseif($discount == 0.7)
+                                    <button type="button" wire:click="removeDiscount('1')"
+                                        class="flex items-center justify-center w-full h-16 bg-transparent border-2 rounded-md border-violet-500">
+                                        Applied
+                                    </button>
+                                @else
+                                    <button type="button" disabled
+                                        class="flex items-center justify-center w-full h-16 bg-gray-500 rounded-md cursor-not-allowed">
+                                        30% Off
+                                    </button>
+                                @endif
+                                @if ($total >= 200)
+                                    <p class="absolute left-0 right-0 p-2 text-xs text-center -bottom-7 text-lime-500">
+                                        Minimum spend: RM200
+                                    </p>
+                                @else
+                                    <p class="absolute left-0 right-0 p-2 text-xs text-center -bottom-7 text-rose-500">
+                                        Minimum spend: RM200
+                                    </p>
+                                @endif
+                            </div>
                         </div>
-                        <div class="relative">
-                            @if ($discount != 0.85 && $total >= 90)
-                                <button type="button" wire:click="discount('0.85')"
-                                    class="flex items-center justify-center w-full h-16 rounded-md bg-violet-500">
-                                    15% Off
-                                </button>
-                            @elseif($discount == 0.85)
-                                <button type="button" wire:click="removeDiscount('1')"
-                                    class="flex items-center justify-center w-full h-16 bg-transparent border-2 rounded-md border-violet-500">
-                                    Applied
-                                </button>
-                            @else
-                                <button type="button" disabled
-                                    class="flex items-center justify-center w-full h-16 bg-gray-500 rounded-md cursor-not-allowed">
-                                    15% Off
-                                </button>
-                            @endif
-                            @if ($total >= 90)
-                                <p class="absolute left-0 right-0 p-2 text-xs text-center -bottom-7 text-lime-500">
-                                    Minimum spend: RM90
-                                </p>
-                            @else
-                                <p class="absolute left-0 right-0 p-2 text-xs text-center -bottom-7 text-rose-500">
-                                    Minimum spend: RM90
-                                </p>
-                            @endif
-                        </div>
-                        <div class="relative">
-                            @if ($discount != 0.8 && $total >= 120)
-                                <button type="button" wire:click="discount('0.80')"
-                                    class="flex items-center justify-center w-full h-16 rounded-md bg-violet-500">
-                                    20% Off
-                                </button>
-                            @elseif($discount == 0.8)
-                                <button type="button" wire:click="removeDiscount('1')"
-                                    class="flex items-center justify-center w-full h-16 bg-transparent border-2 rounded-md border-violet-500">
-                                    Applied
-                                </button>
-                            @else
-                                <button type="button" disabled
-                                    class="flex items-center justify-center w-full h-16 bg-gray-500 rounded-md cursor-not-allowed">
-                                    20% Off
-                                </button>
-                            @endif
-                            @if ($total >= 120)
-                                <p class="absolute left-0 right-0 p-2 text-xs text-center -bottom-7 text-lime-500">
-                                    Minimum spend: RM120
-                                </p>
-                            @else
-                                <p class="absolute left-0 right-0 p-2 text-xs text-center -bottom-7 text-rose-500">
-                                    Minimum spend: RM120
-                                </p>
-                            @endif
-                        </div>
-                        <div class="relative">
-                            @if ($discount != 0.7 && $total >= 200)
-                                <button type="button" wire:click="discount('0.7')"
-                                    class="flex items-center justify-center w-full h-16 rounded-md bg-violet-500">
-                                    30% Off
-                                </button>
-                            @elseif($discount == 0.7)
-                                <button type="button" wire:click="removeDiscount('1')"
-                                    class="flex items-center justify-center w-full h-16 bg-transparent border-2 rounded-md border-violet-500">
-                                    Applied
-                                </button>
-                            @else
-                                <button type="button" disabled
-                                    class="flex items-center justify-center w-full h-16 bg-gray-500 rounded-md cursor-not-allowed">
-                                    30% Off
-                                </button>
-                            @endif
-                            @if ($total >= 200)
-                                <p class="absolute left-0 right-0 p-2 text-xs text-center -bottom-7 text-lime-500">
-                                    Minimum spend: RM200
-                                </p>
-                            @else
-                                <p class="absolute left-0 right-0 p-2 text-xs text-center -bottom-7 text-rose-500">
-                                    Minimum spend: RM200
-                                </p>
-                            @endif
-                        </div>
-                    </div>
-        </x-jet-admin-card>
-    </div>
-</div> --}}
-    {{-- <script>
+            </x-jet-admin-card>
+        </div>
+</div>
+@endif
+<script>
     // Set the date we're counting down to
     var countDownDate = new Date("Apr 21, 2023 23:59:59").getTime();
 
@@ -355,6 +370,6 @@
             document.getElementById("demo").innerHTML = "EXPIRED";
         }
     }, 1000);
-</script> --}}
+</script>
 </div>
 </div>
