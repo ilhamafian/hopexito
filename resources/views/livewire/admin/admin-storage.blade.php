@@ -64,7 +64,7 @@
         <x-jet-admin-card>
             <x-jet-admin-header>Temporary Files <span
                     class="bg-green-500 rounded-md px-2 py-0.5 ml-2">{{ count($temp) }}</span></x-jet-admin-header>
-                    
+                    <x-jet-button class="ml-2" type="button" wire:click="clearTemp">Clear Temporary Files</x-jet-button>
             <div class="grid grid-cols-3 mt-6">
                 @foreach ($temp as $item)
                     <div class="flex gap-2">

@@ -15,6 +15,12 @@ use Livewire\Component;
 class AdminStorage extends Component
 {
 
+    public function clearTemp(){
+        TemporaryFile::query()->delete();       
+        session()->flash('message','Temporary Files Deleted');
+        return redirect()->route('admin.storage');
+    }
+
     private function formatBytes($bytes, $precision = 2)
     {
         $units = ['B', 'KB', 'MB', 'GB', 'TB'];
