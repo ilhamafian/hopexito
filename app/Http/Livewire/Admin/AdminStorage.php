@@ -32,10 +32,10 @@ class AdminStorage extends Component
         $diskSize = array_reduce(glob(storage_path("app/public/{$path}/*")), function ($accumulator, $file) {
             return $accumulator + filesize($file);
         }, 0);
-    
+
         return $this->formatBytes($diskSize);
     }
-    
+
     private function diskSize()
     {
         $diskSize = collect(Storage::disk('public')->allFiles())->map(function ($path) {
@@ -83,15 +83,14 @@ class AdminStorage extends Component
     public function render()
     {
         $DBSize = DB::table('information_schema.TABLES')
-            ->where('table_schema', env('DB_DATABASE'))
+            ->where('table_schema', config('database.connections.mysql.database'))
             ->selectRaw('sum(round(((data_length + index_length) / 1024 / 1024), 2)) as size')
             ->get();
         $productDBSize = DB::table('information_schema.TABLES')
-            ->where('table_schema', env('DB_DATABASE'))
+            ->where('table_schema', config('database.connections.mysql.database'))
             ->where('table_name', 'products')
             ->selectRaw('sum(round(((data_length + index_length) / 1024 / 1024), 2)) as size')
             ->get();
-
         $diskSize = $this->diskSize();
         $diskCollectionSize = $this->diskPathSize('collection-image');
         $diskCoverSize = $this->diskPathSize('cover-image');
