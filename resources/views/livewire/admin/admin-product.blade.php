@@ -57,7 +57,7 @@
                         placeholder="Search by product name" />
                     <div class="grid max-h-screen grid-cols-4 gap-2 mt-5 overflow-scroll">
                         @foreach ($products as $item)
-                            <a href="{{ route('product.show', $item->slug) }}" class="relative flex flex-col h-28"
+                            <a href="{{ route('product.show', $item->slug) }}" class="relative flex flex-col h-24"
                                 x-data="{ open: false }" x-on:mouseenter="open = true" x-on:mouseleave="open = false">
                                 <div class="flex flex-col gap-2 px-3 py-2.5 transition rounded-md bg-black border-2 border-indigo-500 hover:bg-indigo-500/60">
                                     <p class="block w-full">

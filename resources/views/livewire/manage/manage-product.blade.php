@@ -15,26 +15,26 @@
             </p>
         </div>
     </div>
-        <ul class="flex border-b border-gray-100 mb-10">
-            <li class="flex-1 hover:bg-white/10 transition">
+        <ul class="flex mb-10 border-b border-gray-100">
+            <li class="flex-1 transition hover:bg-white/10">
                 <a class="relative block p-4 cursor-pointer" x-on:click="nav = 1">
-                    <span x-bind:class="nav == 1 ? 'bg-fuchsia-600' : 'bg-tranparent'" class="absolute inset-x-0 -bottom-px h-px w-full"></span>
+                    <span x-bind:class="nav == 1 ? 'bg-fuchsia-600' : 'bg-tranparent'" class="absolute inset-x-0 w-full h-px -bottom-px"></span>
                     <div class="flex items-center justify-center gap-4">
                         <span x-bind:class="nav == 1 ? 'text-fuchsia-500':'text-white'" class="text-sm font-medium">Products</span>
                     </div>
                 </a>
             </li>
-            <li class="flex-1 hover:bg-white/10 transition">
+            <li class="flex-1 transition hover:bg-white/10">
                 <a class="relative block p-4 cursor-pointer" x-on:click="nav = 2">
-                    <span x-bind:class="nav == 2 ? 'bg-fuchsia-600' : 'bg-tranparent'" class="absolute inset-x-0 -bottom-px h-px w-full"></span>
+                    <span x-bind:class="nav == 2 ? 'bg-fuchsia-600' : 'bg-tranparent'" class="absolute inset-x-0 w-full h-px -bottom-px"></span>
                     <div class="flex items-center justify-center gap-4">
                         <span x-bind:class="nav == 2 ? 'text-fuchsia-500':'text-white'" class="text-sm font-medium">Collection</span>
                     </div>
                 </a>
             </li>
-            <li class="flex-1 hover:bg-white/10 transition">
+            <li class="flex-1 transition hover:bg-white/10">
                 <a class="relative block p-4 cursor-pointer" x-on:click="nav = 3">
-                    <span x-bind:class="nav == 3 ? 'bg-fuchsia-600' : 'bg-tranparent'" class="absolute inset-x-0 -bottom-px h-px w-full"></span>
+                    <span x-bind:class="nav == 3 ? 'bg-fuchsia-600' : 'bg-tranparent'" class="absolute inset-x-0 w-full h-px -bottom-px"></span>
                     <div class="flex items-center justify-center gap-4">
                         <span x-bind:class="nav == 3 ? 'text-fuchsia-500':'text-white'" class="text-sm font-medium">Archives</span>
                     </div>
@@ -117,7 +117,7 @@
                                 </form>
                             </x-jet-modal-custom>
                             {{-- Delete product --}}
-                            @if ($totalQuantity[$product->id] == 0 && $inCart[$product->id] == false)
+                            @if ($product->sold == 0 && $inCart[$product->id] == false)
                                 <button wire:click="deleteProduct('{{ $product->id }}')"
                                     class="w-full px-4 py-2 text-left rounded-md hover:bg-indigo-500">
                                     Delete
@@ -127,7 +127,7 @@
                         <div x-show="open" x-transition.duration.500ms x-cloak
                             class="absolute bottom-0 w-full p-2 text-sm text-center text-black rounded-xl bg-white/20 backdrop-blur">
                             <p class="">{{ $product->title }}</p>
-                            <p><span class="font-bold">{{ $totalQuantity[$product->id] }} </span>sold</p>
+                            <p><span class="font-bold">{{ $product->sold }} </span>sold</p>
                             <p>Price: <span
                                     class="px-1 rounded-lg bg-violet-500">{{ number_format($product->price, 2) }}</span>
                             </p>
@@ -232,7 +232,7 @@
                         <div x-show="open" x-transition.duration.500ms x-cloak
                             class="absolute bottom-0 w-full p-2 text-sm text-center text-black rounded-xl bg-white/20 backdrop-blur">
                             <p class="">{{ $archive->title }}</p>
-                            <p><span class="font-bold">{{ $totalQuantity[$archive->id] }}
+                            <p><span class="font-bold">{{ $archive->sold }}
                                 </span>sold
                             </p>
                             <p>Price: <span
