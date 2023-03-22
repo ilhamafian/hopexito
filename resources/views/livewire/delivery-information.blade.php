@@ -1,4 +1,5 @@
 <div class="max-w-2xl min-h-screen mx-auto">
+    <x-jet-session-message/>
     <x-jet-gradient-card>
         <div class="p-8 space-y-2 bg-black rounded-xl">
             <x-jet-header>Delivery Information</x-jet-header>

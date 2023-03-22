@@ -27,7 +27,7 @@
                 </div>
                 <div class="relative max-w-screen-xl mx-auto md:px-4">
                     <div class="grid gap-8 md:grid-cols-4 lg:items-start">
-                        <div class="col-span-2">
+                        <div class="col-span-4 md:col-span-2">
                             <div class="relative" x-show="preview == 1" x-transition:enter.duration.500ms>
                                 <div class="w-full overflow-hidden rounded-lg" id="product-image">
                                     <img class="h-full sm:w-full w-96" src="{{ $product->product_image }}">
@@ -48,7 +48,7 @@
                                         x-bind:class="preview == 2 ? 'ring ring-indigo-500' : ''" />
                                 @endif
                                 @if ($product->category == 'Shirt')
-                                    <div class="flex flex-col flex-no-wrap gap-2 ml-4 text-white md:ml-auto"
+                                    <div class="flex flex-col gap-2 text-white md:ml-auto"
                                         x-data="{ modal: false }">
                                         <p class="flex items-center gap-2">
                                             <span class="w-2 h-2 rounded-full bg-cyan-500"></span>
@@ -163,7 +163,7 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="relative flex flex-col w-full col-span-2 p-6">
+                        <div class="relative flex flex-col w-full col-span-4 p-6 md:col-span-2">
                             <div class="z-10 md:py-12">
                                 <p class="my-0.5 text-2xl font-medium text-indigo-400 ">{{ $product->title }}</p>
                                 <div class="flex items-center space-x-8">
@@ -241,7 +241,7 @@
                                     </div>
                                     <div class="flex flex-row gap-2 my-2">
                                         @foreach ($colors as $color)
-                                            <div class="w-24">
+                                            <div class="w-20">
                                                 <input type="radio" name="color" id="{{ $color }}"
                                                     value="{{ $color }}" class="hidden"
                                                     x-on:click="color = '{{ $color }}'" x-model="color" />
@@ -253,7 +253,7 @@
                                             </div>
                                         @endforeach
                                     </div>
-                                    <div class="flex flex-col gap-4 my-8 md:flex-row">
+                                    <div class="flex flex-col gap-4 my-6 md:flex-row">
                                         <div class="flex items-center justify-between px-4 rounded-md w-80 sm:w-auto md:px-0 ring-4 ring-indigo-500"
                                             x-data="{
                                                 quantity: 1,
@@ -283,9 +283,21 @@
                                                     d="M12 4.5v15m7.5-7.5h-15" />
                                             </svg>
                                         </div>
-                                        <x-jet-button class="py-4 mt-4 w-80 sm:w-auto md:mt-0 md:w-auto">
+                                    </div>
+                                    <div class="flex flex-col gap-4">
+                                        <x-jet-button name="add_to_cart" class="py-4 mt-3 w-80 md:mt-0">
                                             <span class="mx-auto">Add to Cart</span>
                                         </x-jet-button>
+                                        @if(!Auth::check())
+                                        <button type="submit" name="buy_now" class="relative group w-80">
+                                            <div
+                                                class="absolute transition duration-1000 rounded-lg opacity-25 -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 blur group-hover:opacity-100 group-hover:duration-200">
+                                            </div>
+                                            <div class="relative flex items-center justify-between px-6 py-4 text-white bg-black rounded-lg">
+                                                <span class="mx-auto font-sans text-xs font-semibold tracking-widest uppercase">Buy Now</span>
+                                            </div>
+                                        </button>
+                                        @endif
                                     </div>
                                 </form>
                             </div>

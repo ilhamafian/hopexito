@@ -20,37 +20,47 @@ class CartController extends Controller
     {
         //
     }
-
     // store cart into database
     public function store(Request $request)
     {
-        $request->validate([
-            'size' => 'required',
-            'color' => 'required',
-        ]);
-        $product = Product::findOrFail($request->input('product_id'));
-        $rowId = uniqid(10);
-        if (Auth::check()) {
-            $cart = Cart::create([
-                'id' => $rowId,
-                'product_id' => $product->id,
-                'email' => Auth::user()->email,
-                'shopname' => $product->shopname,
-                'title' => $product->title,
-                'quantity' => $request->input('quantity'),
-                'price' => $product->price,
-                'subtotal' => $product->price * $request->input('quantity'),
-                'weight' => 500 * $request->input('quantity'),
-                'size' => $request->input('size'),
-                'color' => $request->input('color')
+        if ($request->has('add_to_cart')) {
+            $request->validate([
+                'size' => 'required',
+                'color' => 'required',
             ]);
-            event(new AddedToCart($cart));
-        } else {
+            $product = Product::findOrFail($request->input('product_id'));
+            $rowId = uniqid(10);
+            if (Auth::check()) {
+                $cart = Cart::create([
+                    'id' => $rowId,
+                    'product_id' => $product->id,
+                    'email' => Auth::user()->email,
+                    'shopname' => $product->shopname,
+                    'title' => $product->title,
+                    'quantity' => $request->input('quantity'),
+                    'price' => $product->price,
+                    'subtotal' => $product->price * $request->input('quantity'),
+                    'weight' => 500 * $request->input('quantity'),
+                    'size' => $request->input('size'),
+                    'color' => $request->input('color')
+                ]);
+                event(new AddedToCart($cart));
+            } else {
+                $cart = SessionCart::instance('cart')->add(['id' => $product->id, 'name' => $product->title, 'qty' => $request->input('quantity'), 'price' => $product->price, 'weight' => 500 * $request->input('quantity'), 'options' => ['size' => $request->input('size'), 'color' => $request->input('color'), 'shopname' => $product->shopname, 'product_image' => $product->product_image]]);
+            }
+            session()->flash('message', 'Successfully added to cart');
+            return redirect()->route('cart.index', $product->slug);
+        } 
+        elseif ($request->has('buy_now')) {
+            $request->validate([
+                'size' => 'required',
+                'color' => 'required',
+            ]);
+            $product = Product::findOrFail($request->input('product_id'));
             $cart = SessionCart::instance('cart')->add(['id' => $product->id, 'name' => $product->title, 'qty' => $request->input('quantity'), 'price' => $product->price, 'weight' => 500 * $request->input('quantity'), 'options' => ['size' => $request->input('size'), 'color' => $request->input('color'), 'shopname' => $product->shopname, 'product_image' => $product->product_image]]);
-            
+            session()->flash('message', 'Fill in delivery information');
+            return redirect()->route('guest.checkout');
         }
-        session()->flash('message', 'Successfully added to cart');
-        return redirect()->route('product.show', $product->slug);
     }
 
     public function show(Cart $cart)
