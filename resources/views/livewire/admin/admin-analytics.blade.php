@@ -4,25 +4,25 @@
     <x-jet-admin-layout>
         <div class="grid grid-cols-3 gap-12 text-center text-white">
             <x-jet-admin-card>
-               <x-jet-admin-header>
-                Average Product Price(RM)
-               </x-jet-admin-header>
+                <x-jet-admin-header>
+                    Average Product Price(RM)
+                </x-jet-admin-header>
                 <div class="block p-2 mt-4 text-3xl">
                     {{ number_format($averagePrice, 2) }}
                 </div>
             </x-jet-admin-card>
             <x-jet-admin-card>
-               <x-jet-admin-header>
-                Total Sales(RM)
-               </x-jet-admin-header>
+                <x-jet-admin-header>
+                    Total Sales(RM)
+                </x-jet-admin-header>
                 <div class="block p-2 mt-4 text-3xl">
                     {{ number_format($totalSales, 2) }}
                 </div>
             </x-jet-admin-card>
             <x-jet-admin-card>
-               <x-jet-admin-header>
-                Total Commission(RM)
-               </x-jet-admin-header>
+                <x-jet-admin-header>
+                    Total Commission(RM)
+                </x-jet-admin-header>
                 <div class="block p-2 mt-4 text-3xl">
                     {{ number_format($totalCommission, 2) }}
                 </div>
@@ -30,33 +30,33 @@
         </div>
         <div class="grid grid-cols-4 gap-12 mt-8 text-center text-white">
             <x-jet-admin-card>
-               <x-jet-admin-header>
-                Total Product
-               </x-jet-admin-header>
+                <x-jet-admin-header>
+                    Total Product
+                </x-jet-admin-header>
                 <div class="block p-2 mt-4 text-4xl">
                     {{ $totalProducts }}
                 </div>
             </x-jet-admin-card>
             <x-jet-admin-card>
-               <x-jet-admin-header>
-                Total Product Sold
-               </x-jet-admin-header>
+                <x-jet-admin-header>
+                    Total Product Sold
+                </x-jet-admin-header>
                 <div class="block p-2 mt-4 text-3xl">
                     {{ $totalSold }}
                 </div>
             </x-jet-admin-card>
             <x-jet-admin-card>
-               <x-jet-admin-header>
-                Total Users
-               </x-jet-admin-header>
+                <x-jet-admin-header>
+                    Total Users
+                </x-jet-admin-header>
                 <div class="block p-2 mt-4 text-3xl">
                     {{ $totalUsers }}
                 </div>
             </x-jet-admin-card>
             <x-jet-admin-card>
-               <x-jet-admin-header>
-                Total Artists
-               </x-jet-admin-header>
+                <x-jet-admin-header>
+                    Total Artists
+                </x-jet-admin-header>
                 <div class="block p-2 mt-4 text-3xl">
                     {{ $totalArtists }}
                 </div>
@@ -109,5 +109,22 @@
                 @endforeach
             </x-jet-admin-card>
         </div>
+        <x-jet-section-border/>
+        <x-jet-admin-card>
+            <x-jet-header>Trending Search</x-jet-header>
+            <div class="grid grid-cols-5 gap-3">
+                @foreach ($searches as $item)
+                    <div class="relative group">
+                        <div
+                            class="absolute transition duration-1000 rounded-lg opacity-25 -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 blur group-hover:opacity-100 group-hover:duration-200">
+                        </div>
+                        <div class="relative flex items-center justify-between px-6 py-4 bg-black rounded-lg">
+                            <p class="text-white">{{ $item->keyword }}</p>
+                            <p class="px-2 py-0.5 text-white bg-purple-500 rounded-md">{{ $item->count }}</p>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </x-jet-admin-card>
     </x-jet-admin-layout>
 </div>
