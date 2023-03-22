@@ -27,7 +27,7 @@ class ExploreController extends Controller
             ->inRandomOrder()
             ->take(4)
             ->get();
-            
+
         return view('sellyourart', compact('sellers'));
     }
     // views/explore
@@ -65,25 +65,30 @@ class ExploreController extends Controller
     public function search(Request $request)
     {
         $search = $request->input('search');
-        $products = Product::query()
-        ->where('status', '<>', '2')
-        ->where(function ($query) use ($search) {
-            $query->where('title', 'LIKE', "%{$search}%")
-                ->orWhere('shopname', 'LIKE', "%{$search}%")
-                ->orWhere('category', 'LIKE', "%{$search}%")
-                ->orWhere('tags', 'LIKE', "%{$search}%");
-        })
-        ->paginate(40);
-        
+
+        $artists = User::where('role_id', 2)
+            ->where('name', 'LIKE', "%{$search}%")
+            ->get();
+
+        $products = Product::where('status', '!=', 2)
+            ->where(function ($query) use ($search) {
+                $query->where('title', 'LIKE', "%{$search}%")
+                    ->orWhere('shopname', 'LIKE', "%{$search}%")
+                    ->orWhere('category', 'LIKE', "%{$search}%")
+                    ->orWhere('tags', 'LIKE', "%{$search}%");
+            })
+            ->paginate(40);
+
         if (Auth::check()) {
             Search::create([
                 'user_id' => Auth::user()->id,
                 'keyword' => $search
             ]);
         }
-        $search_count = $products->total();
+        $product_count = $products->total();
+        $user_count = $artists->count();
 
-        return view('shop/search', compact('products', 'search', 'search_count'));
+        return view('shop/search', compact('artists','products', 'search', 'product_count','user_count'));
     }
 
     public function collection()
