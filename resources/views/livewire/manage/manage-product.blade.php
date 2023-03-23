@@ -191,12 +191,24 @@
                     @foreach ($products as $product)
                         @unless($product->collection_id != $item->id)
                             <p wire:click="removeFromCollection('{{ $product->id }}','{{ $item->id }}')"
-                                class="p-2 rounded-md cursor-pointer bg-violet-500">{{ $product->title }}</p>
+                                class="p-2 rounded-md cursor-pointer bg-violet-500">
+                                <span wire:loading.remove wire:target="removeFromCollection('{{ $product->id }}','{{ $item->id }}')">{{ $product->title }}</span>
+                                <svg wire:loading wire:target="removeFromCollection('{{ $product->id }}','{{ $item->id }}')" viewBox="0 0 24 24"
+                                    class="block w-6 h-6 m-auto -my-1 text-white animate-spin">
+                                    <path fill="currentColor"
+                                        d="M12,4V2A10,10 0 0,0 2,12H4A8,8 0 0,1 12,4Z" />
+                                </svg>
+                            </p>
                         @endunless
                         @unless($product->collection_id != null)
                             <p wire:click="addToCollection('{{ $product->id }}','{{ $item->id }}')"
                                 class="p-2 bg-transparent rounded-md cursor-pointer ring-2 ring-rose-500">
-                                {{ $product->title }}</p>
+                                <span wire:loading.remove wire:target="addToCollection('{{ $product->id }}','{{ $item->id }}')">{{ $product->title }}</span>
+                                <svg wire:loading wire:target="addToCollection('{{ $product->id }}','{{ $item->id }}')" viewBox="0 0 24 24"
+                                class="block w-6 h-6 m-auto -my-1 text-rose-400 animate-spin">
+                                <path fill="currentColor"
+                                    d="M12,4V2A10,10 0 0,0 2,12H4A8,8 0 0,1 12,4Z" />
+                            </svg></p>
                         @endunless
                     @endforeach
                 </div>

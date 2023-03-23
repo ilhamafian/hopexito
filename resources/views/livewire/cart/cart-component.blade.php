@@ -211,7 +211,7 @@
             </div>
         </x-jet-gradient-card>
     </div>
-    {{-- @if (Auth::check())
+    @if (Auth::check())
         <div class="max-w-5xl mx-auto mt-8">
             <x-jet-admin-card>
                 <div class="p-6">
@@ -232,7 +232,7 @@
                                 @if ($discount != 0.9 && $total >= 60)
                                     <button type="button" wire:click="discount('0.9')"
                                         class="flex items-center justify-center w-full h-16 rounded-md bg-violet-500">
-                                        10% Off
+                                        RM10 Off
                                     </button>
                                 @elseif($discount == 0.9)
                                     <button type="button" wire:click="removeDiscount('1')"
@@ -340,7 +340,7 @@
             </x-jet-admin-card>
         </div>
 </div>
-@endif --}}
+@endif
 <script>
     // Set the date we're counting down to
     var countDownDate = new Date("Apr 21, 2023 23:59:59").getTime();

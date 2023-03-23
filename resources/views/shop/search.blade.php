@@ -7,9 +7,9 @@
             @foreach($artists as $artist)
             <a href="{{ route('people', $artist->name) }}" class="relative group">
                 <div
-                    class="absolute transition duration-1000 rounded-lg opacity-25 -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 blur group-hover:opacity-100 group-hover:duration-200">
+                    class="absolute transition duration-1000 rounded-xl opacity-25 -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 blur group-hover:opacity-100 group-hover:duration-200">
                 </div>
-                <div class="relative flex items-center gap-3 px-6 py-4 bg-black rounded-lg">
+                <div class="relative flex items-center gap-3 px-6 py-4 bg-black rounded-xl">
                     <img class="object-cover w-16 h-16 rounded-full "
                     src="{{ $artist->profile_photo_url }}" alt="{{ $artist->name }}" />
                     <p class="text-white">{{ $artist->name }}</p>
