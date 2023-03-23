@@ -19,13 +19,13 @@ class ManageProduct extends Component
     // add product to collection
     public function addToCollection($product_id, $collection_id)
     {
-        $product = Product::where('id', $product_id)
+        $product = Product::where('id', $product_id)->pluck('collection_id')
         ->update(['collection_id' => $collection_id]);
     }
     // remove product from collection
     public function removeFromCollection($product_id, $collection_id)
     {
-        $product =Product::where('id', $product_id)
+        $product =Product::where('id', $product_id)->pluck('collection_id')
         ->update(['collection_id' => '']);
     }
     // delete entire collection
@@ -67,7 +67,7 @@ class ManageProduct extends Component
     // pin product to top by id
     public function pinProduct($id)
     {
-        $product = Product::findOrFail($id);
+        $product = Product::findOrFail($id)->pluck('status');
         $product->update(['status' => 3]);
         session()->flash('message', 'Product Pinned');
         return redirect()->route('product.manage');
@@ -75,7 +75,7 @@ class ManageProduct extends Component
     // pin product to top by id
     public function unpinProduct($id)
     {
-        $product = Product::findOrFail($id);
+        $product = Product::findOrFail($id)->pluck('status');
         $product->update(['status' => 1]);
         session()->flash('message', 'Product Unpinned');
         return redirect()->route('product.manage');
@@ -83,7 +83,7 @@ class ManageProduct extends Component
     // archive product by id
     public function archiveProduct($id)
     {
-        $product = Product::findOrFail($id);
+        $product = Product::findOrFail($id)->pluck('status');
         $product->update(['status' => 2]);
         session()->flash('message', 'Product Archived');
         return redirect()->route('product.manage');
@@ -91,7 +91,7 @@ class ManageProduct extends Component
     // unarchive product by id
     public function unarchiveProduct($id)
     {
-        $product = Product::findOrFail($id);
+        $product = Product::findOrFail($id)->pluck('status');
         $product->update(['status' => 1]);
         session()->flash('message', 'Product Unarchived');
         return redirect()->route('product.manage');
