@@ -61,7 +61,7 @@
                         </svg>
                         <ul x-cloak x-show="dropdown == true && id == '{{ $product->id }}' "
                             x-on:click.away="dropdown = false"
-                            class="absolute right-0 z-50 p-1 font-sans text-white rounded-lg shadow-lg w-36 top-9 bg-zinc-900">
+                            class="absolute right-0 z-50 p-1 font-sans text-white rounded-lg shadow-lg w-44 top-9 bg-zinc-900">
                             @if ($product->status == 3)
                                 <button wire:click="unpinProduct('{{ $product->id }}')"
                                     class="w-full px-4 py-2 text-left rounded-md hover:bg-indigo-500">
@@ -73,13 +73,24 @@
                                     Pin
                                 </button>
                             @endif
-                            <button wire:click="archiveProduct('{{ $product->id }}')"
+                            @if($product->product_image_2 && $product->preview == 0)
+                            <button wire:click="previewBack('{{ $product->id }}')"
                                 class="w-full px-4 py-2 text-left rounded-md hover:bg-indigo-500">
-                                Archive
+                                Preview (Back)
                             </button>
+                            @elseif($product->product_image_2 && $product->preview == 1)
+                            <button wire:click="previewFront('{{ $product->id }}')"
+                                class="w-full px-4 py-2 text-left rounded-md hover:bg-indigo-500">
+                                Preview (Front)
+                            </button>
+                            @endif
                             <button x-on:click="modal = true" wire:click="forceFill('{{ $product->id }}')"
                                 class="w-full px-4 py-2 text-left rounded-md hover:bg-indigo-500">
                                 Edit
+                            </button>
+                            <button wire:click="archiveProduct('{{ $product->id }}')"
+                                class="w-full px-4 py-2 text-left rounded-md hover:bg-indigo-500">
+                                Archive
                             </button>
                             <x-jet-modal-custom>
                                 <form class="flex-col w-full space-y-4">

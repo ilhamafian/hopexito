@@ -3,7 +3,7 @@
     <x-jet-session-message />
     <div class="relative z-20 min-h-screen pt-8">
         <img src="../image/product-selection/product-selection.jpg"
-            class="absolute inset-0 object-cover w-full h-full bg-cover" />
+            class="hidden lg:block absolute inset-0 object-cover w-full h-full bg-cover" />
         <div
             class="max-w-6xl mx-auto shadow-md backdrop-filter backdrop-blur-[6px] rounded-3xl bg-black/40 shadow-fuchsia-500">
             <div class="max-w-5xl pt-8 mx-auto sm:flex-row">

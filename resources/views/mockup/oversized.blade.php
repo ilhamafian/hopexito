@@ -2,10 +2,31 @@
 <x-app-layout>
     <x-jet-session-message />
     <div class="min-h-screen pb-24 mx-auto bg-neutral-900" x-data="{ modal: false, price: '', checkbox: false, open: false, confirm: false }">
+        <div class="pt-4 mx-16">
+            <div class="flex items-center gap-2 ml-2 text-white">
+                <a href="{{ route('dashboard') }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-8 h-8 p-1 transition rounded-md hover:bg-indigo-500/50">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
+                    </svg>
+                </a>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25v13.5m-7.5-13.5v13.5" />
+                </svg>
+                <a href="{{ route('product.create') }}" class="p-1 px-2 transition rounded-md hover:bg-indigo-500/50">Product Selection</a>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25v13.5m-7.5-13.5v13.5" />
+                </svg>
+                <p class="text-indigo-400">Oversized Tee</p>
+            </div>
+        </div>
         <form method="POST" action="{{ route('product.store') }}" enctype="multipart/form-data"
             class="flex flex-col w-full xl:mx-16 xl:flex-row">
             @csrf
-            <div class="w-full p-8 lg:px-24 xl:px-0 xl:w-1/3 lg:pt-24">
+            <div class="w-full p-8 lg:px-24 xl:px-0 xl:w-1/3 lg:pt-12">
                 <div class="relative flex flex-col">
                     <x-jet-label for="tshirt-file-front" value="{{ __('Front Design') }}" />
                     <div class="w-full">
@@ -86,7 +107,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="px-2">           
+                        <div class="flex gap-1">           
                                 <button type="button" class="rounded-full w-7 h-7 bg-[#c9c0b7]"
                                     id="Gray"></button>
                                     <button type="button" class="rounded-full w-7 h-7 bg-[#000]"
@@ -135,9 +156,7 @@
                                 @endforeach
                                 @error('color')
                                     <p class="w-2 h-2 rounded-full bg-rose-500"></p>
-                                @enderror
-                       
-
+                                @enderror           
                         </div>
                     </div>
                     <div class="flex flex-col basis-1/3">
@@ -149,7 +168,6 @@
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
                             </svg>
-
                         </x-jet-button-custom>
                     </div>
                 </div>
@@ -191,7 +209,45 @@
                             x-bind:value="'RM' + (price * {{ $template->commission / 100 }}).toFixed(2)" disabled />
                     </div>
                 </div>
-                <div class="flex gap-3 py-3">
+                <div class="flex flex-col mt-2" x-data="{ preview: false }">
+                    <div class="flex">
+                        <x-jet-label value="{{ __('Set Product Preview') }}" />
+                        <div class="relative flex flex-col pl-2 group w-fit">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-indigo-500">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+                            </svg>
+                            <div class="absolute bottom-2 flex-col hidden mb-4 group-hover:flex">
+                                <span
+                                    class="relative z-10 p-2 leading-none text-white whitespace-no-wrap bg-black shadow-lg text-xs w-96">
+                                    Set the preview for product that have designs on both the front and back.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-row gap-2">
+                        <div class="relative w-1/2">
+                            <input type="radio" name="preview" x-model="preview" x-on:click="preview = false"
+                                value="0" id="previewFront" class="hidden" />
+                            <label for="previewFront"
+                                :class="preview == false ? 'border-indigo-500' :
+                                    'border-gray-700'"
+                                class="grid p-2 text-white transition border-2 cursor-pointer md:text-sm place-items-center rounded-lg hover:border-indigo-500">Preview
+                                Front
+                            </label>
+                        </div>
+                        <div class="relative w-1/2">
+                            <input type="radio" name="preview" x-model="preview" x-on:click="preview = true"
+                                value="1" id="previewBack" class="hidden" />
+                            <label x-cloak for="previewBack"
+                                :class="preview == true ? 'border-indigo-500' :
+                                    'border-gray-700'"
+                                class="grid p-2 text-white transition border-2 cursor-pointer md:text-sm place-items-center rounded-lg hover:border-indigo-500">Preview
+                                Back</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex gap-3 py-3 mt-2">
                     <x-jet-checkbox x-model="checkbox" x-on:click="checkbox != checkbox" />
                     <p class="text-xs text-justify text-gray-400">I have the right to sell products containing this
                         artwork,
@@ -206,7 +262,7 @@
                     @endif
                     <x-jet-button type="button" x-bind:disabled="!checkbox"
                         x-on:click="open = false; modal = true; takeshot(); open != open; setTimeout(() => { open = !open; }, 300); confirm == true; setTimeout(() => { confirm = true; }, 1500);"
-                        class="w-full py-3">
+                        class="w-full py-3 mt-2">
                         <span class="mx-auto">Save Product</span>
                     </x-jet-button>
                     <div x-cloak x-show="modal == true" @keydown.escape.prevent.stop="modal = false; confirm = false"
@@ -267,7 +323,7 @@
                         </div>
                     </div>
                     <div>
-                        <div class="" x-show="open == true" x-transition:enter.duration.300ms>
+                        <div x-cloak class="" x-show="open == true" x-transition:enter.duration.300ms>
                             <div id="tshirt-back" class="relative -p-[0.5px] w-[880px] h-[900px]">
                                 <img id="tshirt-back-background" class="w-[880px] h-[900px] mx-auto bg-white"
                                     src="{{ asset('storage/mockup-image/' . $template->mockup_image_2) }}"
@@ -312,6 +368,7 @@
 
         fabric.Object.prototype.cornerSize = 0
         fabric.Object.prototype.borderColor = "rgba(0,0,0,0)"
+
         var $ = function(id) {
             return document.getElementById(id)
         };
@@ -319,7 +376,6 @@
         function setTshirtFrontBackground(color) {
             $("tshirt-front-background").style.background = color;
         }
-
         function setTshirtBackBackground(color) {
             $("tshirt-back-background").style.background = color;
         }
@@ -339,6 +395,7 @@
             setTshirtFrontBackground('#dfb2ae');
             setTshirtBackBackground('#dfb2ae');
         }
+
         // When the user clicks on upload a custom picture (Front)  
         $('tshirt-file-front').addEventListener("change", function(e) {
             var reader = new FileReader();

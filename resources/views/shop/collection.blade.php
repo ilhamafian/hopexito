@@ -1,6 +1,6 @@
 @section('title', 'Designers Collection | HopeXito')
 <x-app-layout>
-    <x-jet-whatsapp-contact/>
+    <x-jet-whatsapp-contact />
     <div class="w-full min-h-screen px-0 mx-auto mt-8 mb-32 lg:max-w-7xl">
         <x-jet-title>Designers Collection</x-jet-title>
         <div class="flex items-center gap-2 ml-2 text-white">
@@ -51,12 +51,18 @@
                                             class="relative p-1 transition shadow-lg cursor-pointer group rounded-xl hover:shadow-fuchsia-500/50 bg-black/10 backdrop-filter backdrop-blur-3xl">
                                             <div class="w-full overflow-hidden rounded-lg min-h-75"
                                                 x-on:mouseenter="open = true" x-on:mouseleave="open = false">
-                                                @if ($product->product_image_2)
+                                                @if ($product->product_image_2 && $product->preview == 0)
                                                     <img src="{{ $product->product_image }}" alt="{{ $product->title }}"
                                                         x-show="open == false"
                                                         class="w-full h-full transition ease-in-out rounded-t-lg">
-
                                                     <img x-cloak src="{{ $product->product_image_2 }}"
+                                                        alt="{{ $product->title }}" x-show="open == true"
+                                                        class="w-full h-full transition ease-in-out rounded-t-lg">
+                                                @elseif($product->product_image_2 && $product->preview == 1)
+                                                    <img src="{{ $product->product_image_2 }}"
+                                                        alt="{{ $product->title }}" x-show="open == false"
+                                                        class="w-full h-full transition ease-in-out rounded-t-lg">
+                                                    <img x-cloak src="{{ $product->product_image }}"
                                                         alt="{{ $product->title }}" x-show="open == true"
                                                         class="w-full h-full transition ease-in-out rounded-t-lg">
                                                 @else

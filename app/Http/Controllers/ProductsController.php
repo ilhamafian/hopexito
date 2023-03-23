@@ -51,6 +51,7 @@ class ProductsController extends Controller
         }
 
         $input = $request->all();
+        $input['preview'] = intval($request->input('preview'));
         $input['color'] = implode(',', $request->input('color'));
         $input['artist_id'] = Auth::user()->id;
         $input['shopname'] = Auth::user()->name;

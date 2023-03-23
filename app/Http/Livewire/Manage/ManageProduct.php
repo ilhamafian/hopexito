@@ -15,7 +15,21 @@ class ManageProduct extends Component
 
     public $title, $price, $tags, $commission, $search;
 
+    public function previewFront($id){
+        $product = Product::findOrFail($id);
+        $product->update(['preview' => false]);
 
+        session()->flash('message', 'Preview Changed To Front');
+        return redirect()->route('product.manage');
+    }
+
+    public function previewBack($id){
+        $product = Product::findOrFail($id);
+        $product->update(['preview' => true]);
+
+        session()->flash('message', 'Preview Changed To Back');
+        return redirect()->route('product.manage');
+    }
     // add product to collection
     public function addToCollection($product_id, $collection_id)
     {
@@ -41,7 +55,7 @@ class ManageProduct extends Component
         }
         ProductCollection::where('id', $id)->delete();
         session()->flash('message', 'Collection Deleted');
-        return redirect()->back()->with('message', 'Collection Deleted');
+        return redirect()->route('product.manage');
         
     }
     // edit product by id

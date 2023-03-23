@@ -28,7 +28,8 @@ class Product extends Model
         'status',
         'sold',
         'product_image',
-        'product_image_2'
+        'product_image_2',
+        'preview'
     ];
 
     public function productUser(){

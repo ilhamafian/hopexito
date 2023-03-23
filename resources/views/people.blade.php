@@ -228,7 +228,8 @@
                     <span x-bind:class="nav == 2 ? 'bg-indigo-500' : 'bg-tranparent'"
                         class="absolute inset-x-0 w-full h-px -bottom-px"></span>
                     <div class="flex items-center justify-center gap-4">
-                        <span x-bind:class="nav == 2 ? 'text-indigo-400' : 'text-white'" class="flex items-center gap-2 text-sm font-medium"><svg
+                        <span x-bind:class="nav == 2 ? 'text-indigo-400' : 'text-white'"
+                            class="flex items-center gap-2 text-sm font-medium"><svg
                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -256,12 +257,19 @@
                                             d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
                                     </svg>
                                 @endif
-                                @if ($product->product_image_2)
+                                @if ($product->product_image_2 && $product->preview == 0)
                                     <img src="{{ $product->product_image }}" alt="{{ $product->title }}"
                                         x-show="open == false"
                                         class="w-full h-full transition ease-in-out rounded-t-lg">
 
                                     <img x-cloak src="{{ $product->product_image_2 }}" alt="{{ $product->title }}"
+                                        x-show="open == true"
+                                        class="w-full h-full transition ease-in-out rounded-t-lg">
+                                @elseif($product->product_image_2 && $product->preview == 1)
+                                    <img src="{{ $product->product_image_2 }}" alt="{{ $product->title }}"
+                                        x-show="open == false"
+                                        class="w-full h-full transition ease-in-out rounded-t-lg">
+                                    <img x-cloak src="{{ $product->product_image }}" alt="{{ $product->title }}"
                                         x-show="open == true"
                                         class="w-full h-full transition ease-in-out rounded-t-lg">
                                 @else
@@ -271,9 +279,11 @@
                             </div>
                             <div class="flex flex-col justify-between px-2 py-1 tracking-wider md:px-4 md:py-2">
                                 @if ($product->category == 'Shirt')
-                                    <p class="px-3 py-0.5 mt-1 bg-fuchsia-700/80 rounded-md w-fit text-xs">Standard Tee</p>
+                                    <p class="px-3 py-0.5 mt-1 bg-fuchsia-700/80 rounded-md w-fit text-xs">Standard Tee
+                                    </p>
                                 @elseif($product->category == 'Oversized')
-                                    <p class="px-3 py-0.5 mt-1 rounded-md bg-indigo-700/80 w-fit text-xs">Oversized Tee</p>
+                                    <p class="px-3 py-0.5 mt-1 rounded-md bg-indigo-700/80 w-fit text-xs">Oversized Tee
+                                    </p>
                                 @else
                                     <p></p>
                                 @endif
@@ -320,12 +330,19 @@
                                             class="relative p-1 transition shadow-lg cursor-pointer group rounded-xl hover:shadow-fuchsia-500/50 bg-white/5 backdrop-filter backdrop-blur-3xl">
                                             <div class="w-full overflow-hidden rounded-lg min-h-75"
                                                 x-on:mouseenter="open = true" x-on:mouseleave="open = false">
-                                                @if ($product->product_image_2)
+                                                @if ($product->product_image_2 && $product->preview == 0)
                                                     <img src="{{ $product->product_image }}"
                                                         alt="{{ $product->title }}" x-show="open == false"
                                                         class="w-full h-full transition ease-in-out rounded-t-lg">
 
                                                     <img x-cloak src="{{ $product->product_image_2 }}"
+                                                        alt="{{ $product->title }}" x-show="open == true"
+                                                        class="w-full h-full transition ease-in-out rounded-t-lg">
+                                                @elseif($product->product_image_2 && $product->preview == 1)
+                                                    <img src="{{ $product->product_image_2 }}"
+                                                        alt="{{ $product->title }}" x-show="open == false"
+                                                        class="w-full h-full transition ease-in-out rounded-t-lg">
+                                                    <img x-cloak src="{{ $product->product_image }}"
                                                         alt="{{ $product->title }}" x-show="open == true"
                                                         class="w-full h-full transition ease-in-out rounded-t-lg">
                                                 @else
