@@ -17,7 +17,7 @@ class ManageProduct extends Component
 
     public function previewFront($id){
         $product = Product::findOrFail($id);
-        $product->update(['preview' => false]);
+        $product->update(['preview' => 0]);
 
         session()->flash('message', 'Preview Changed To Front');
         return redirect()->route('product.manage');
@@ -25,7 +25,7 @@ class ManageProduct extends Component
 
     public function previewBack($id){
         $product = Product::findOrFail($id);
-        $product->update(['preview' => true]);
+        $product->update(['preview' => 1]);
 
         session()->flash('message', 'Preview Changed To Back');
         return redirect()->route('product.manage');
@@ -179,7 +179,7 @@ class ManageProduct extends Component
     public function render()
     {
         $search = '%' . $this->search . '%';
-        $products = Product::where('shopname', Auth::user()->name)->where('status', '<>', 2)->where('title', 'like', $search)->orderBy('status', 'desc')->get();
+        $products = Product::where('shopname', Auth::user()->name)->where('status', '!=', 2)->where('title', 'like', $search)->orderBy('status', 'desc')->get();
         $productCollections = ProductCollection::where('name', Auth::user()->name)->get();
         $archives = Product::where('shopname', Auth::user()->name)->where('status', 2)->get();
         $noArchives = $archives->isEmpty();
