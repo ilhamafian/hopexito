@@ -43,7 +43,7 @@
                         @foreach ($tags as $item)
                             <a class="relative h-14" x-data="{ open: false }" x-on:mouseenter="open = true"
                                 x-on:mouseleave="open = false">
-                                <p class="px-3 py-2 transition bg-violet-500 rounded-md hover:bg-fuchsia-500">
+                                <p class="px-3 py-2 transition bg-pink-500 rounded-md hover:bg-fuchsia-500">
                                     {{ $item }}</p>
                             </a>
                         @endforeach
@@ -62,7 +62,7 @@
                                     x-data="{ open: false }" x-on:mouseenter="open = true"
                                     x-on:mouseleave="open = false">
                                     <div
-                                        class="flex flex-col gap-2 px-3 py-2.5 transition rounded-md bg-black border-2 border-indigo-500 hover:bg-indigo-500/60">
+                                        class="flex flex-col gap-2 px-3 py-2.5 transition rounded-md bg-black border-2 border-violet-600 hover:bg-violet-600/70">
                                         <p class="block w-full">
                                             <span
                                                 class="text-xs bg-blue-500 mr-2 rounded-md px-2 py-0.5">{{ $item->status }}</span>
@@ -99,7 +99,7 @@
                                     x-data="{ open: false }" x-on:mouseenter="open = true"
                                     x-on:mouseleave="open = false">
                                     <div
-                                        class="flex flex-col gap-2 px-3 py-2.5 transition rounded-md bg-black border-2 border-indigo-500 hover:bg-indigo-500/60">
+                                        class="flex flex-col gap-2 px-3 py-2.5 transition rounded-md bg-black border-2 border-violet-600 hover:bg-violet-600/70">
                                         <p class="block w-full">
                                             <span
                                                 class="text-xs bg-blue-500 mr-2 rounded-md px-2 py-0.5">{{ $item->status }}</span>
@@ -135,7 +135,7 @@
                                     x-data="{ open: false }" x-on:mouseenter="open = true"
                                     x-on:mouseleave="open = false">
                                     <div
-                                        class="flex flex-col gap-2 px-3 py-2.5 transition rounded-md bg-black border-2 border-indigo-500 hover:bg-indigo-500/60">
+                                        class="flex flex-col gap-2 px-3 py-2.5 transition rounded-md bg-black border-2 border-violet-600 hover:bg-violet-600/70">
                                         <p class="block w-full">
                                             <span
                                                 class="text-xs bg-blue-500 mr-2 rounded-md px-2 py-0.5">{{ $item->status }}</span>

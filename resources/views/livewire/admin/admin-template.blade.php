@@ -72,7 +72,7 @@
                     </x-jet-admin-header>
                     <div class="block p-2 mt-4 text-5xl">
                         <x-jet-button-utility type="button"
-                            onclick="window.location.href = '{{ route('product.template', 1) }}'">
+                            onclick="window.location.href = '{{ route('mockup.shirt') }}'">
                             Go to Mockup
                         </x-jet-button-utility>
                     </div>
@@ -83,7 +83,7 @@
                     </x-jet-admin-header>
                     <div class="block p-2 mt-4 text-5xl">
                         <x-jet-button-utility type="button"
-                            onclick="window.location.href = '{{ route('product.template', 2) }}'">
+                            onclick="window.location.href = '{{ route('mockup.oversized') }}'">
                             Go to Mockup
                         </x-jet-button-utility>
                     </div>

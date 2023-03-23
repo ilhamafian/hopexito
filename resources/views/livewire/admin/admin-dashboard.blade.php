@@ -5,7 +5,7 @@
             <x-jet-admin-card>
                 <div class="flex flex-col px-3">
                     <x-jet-header>List of Designers</x-jet-header>
-                    <x-jet-input class="" type="text" wire:model="search" placeholder="Search by artist name" />
+                    <x-jet-input class="" type="text" wire:model.lazy="search" placeholder="Search by artist name" />
                 </div>
                 <div class="flex flex-col gap-2 m-3">
                     <div class="w-full p-2 rounded-lg cursor-pointer bg-black/50">
@@ -123,7 +123,7 @@
             <x-jet-admin-card>
                 <div class="flex flex-col px-3">
                     <x-jet-header>List of Users</x-jet-header>
-                    <x-jet-input class="" type="text" wire:model="search_user" placeholder="Search by user name" />
+                    <x-jet-input class="" type="text" wire:model.lazy="search_user" placeholder="Search by user name" />
                 </div>
                 <div class="flex flex-col gap-2 m-3">
                     <div class="w-full p-2 rounded-lg cursor-pointer bg-black/50">
