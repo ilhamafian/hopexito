@@ -29,8 +29,9 @@ Route::get('billplz', [PaymentController::class, 'createBill'])->name('billplz-c
 Route::post('billplz', [PaymentController::class, 'storeBill'])->name('billplz-store');
 Route::get('billplz-callback', [PaymentController::class, 'callback'])->name('billplz-callback');
 Route::get('billplz-redirect', [PaymentController::class, 'redirect'])->name('billplz-redirect');
-// admin controller
+// admin middleware
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'admin'])->group(function () {
+    // admin controller
     Route::get('admin/dashboard', AdminDashboard::class)->name('admin.dashboard');
     Route::get('admin/analytics', AdminAnalytics::class)->name('admin.analytics');
     Route::get('admin/orders', AdminOrder::class)->name('admin.orders');
@@ -42,7 +43,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::get('admin/storage', AdminStorage::class)->name('admin.storage');
     Route::get('godmode', GodMode::class)->name('godmode');
 });
-// protected route
+// artist middleware
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
     Route::get('dashboard', [Controller::class, 'redirectUser'])->name('dashboard');
     Route::get('mockup/standard-tee', [MockupController::class, 'shirt'])->name('mockup.shirt');
