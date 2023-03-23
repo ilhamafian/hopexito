@@ -86,8 +86,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="px-2">
-                            @if ($template->category == 'Oversized')
+                        <div class="px-2">           
                                 <button type="button" class="rounded-full w-7 h-7 bg-[#fff]" id="White"></button>
                                 <button type="button" class="rounded-full w-7 h-7 bg-[#c9c0b7]"
                                     id="Gray"></button>
@@ -97,13 +96,6 @@
                                     id="Black"></button>
                                 <button type="button" class="rounded-full w-7 h-7 bg-[#1e3a8a]"
                                     id="Navy"></button>
-                            @else
-                                @foreach ($colors as $color)
-                                    <button type="button" class="rounded-full w-7 h-7"
-                                        style="background-color:{{ $color }}"
-                                        id="{{ $color }}"></button>
-                                @endforeach
-                            @endif
                         </div>
                     </div>
                     <div class="flex flex-col basis-1/3">
@@ -124,7 +116,7 @@
                             </div>
                         </div>
                         <div class="flex items-center gap-2">
-                            @if ($template->category == 'Oversized')
+                      
                                 @foreach ($colors as $color)
                                     @if ($color == 'Gray')
                                         <x-jet-checkbox id="color" name="color[]" class="p-3.5 bg-[#808080]"
@@ -143,25 +135,10 @@
                                         value="{{ $color }}" />
                                 @endif
                                 @endforeach
-                            @else
-                                @foreach ($colors as $color)
-                                    @if ($color == 'White')
-                                        <x-jet-checkbox id="color" name="color[]" class="p-3.5 bg-white"
-                                            value="{{ $color }}" />
-                                    @endif
-                                    @if ($color == 'Gray')
-                                        <x-jet-checkbox id="color" name="color[]" class="p-3.5 bg-[#808080]"
-                                            value="{{ $color }}" />
-                                    @endif
-                                    @if ($color == 'Black')
-                                        <x-jet-checkbox id="color" name="color[]" class="p-3.5 bg-[#000]"
-                                            value="{{ $color }}" />
-                                    @endif
-                                @endforeach
                                 @error('color')
                                     <p class="w-2 h-2 rounded-full bg-rose-500"></p>
                                 @enderror
-                            @endif
+                       
 
                         </div>
                     </div>
@@ -237,7 +214,7 @@
                     <div x-cloak x-show="modal == true" @keydown.escape.prevent.stop="modal = false; confirm = false"
                         class="fixed inset-0 z-50">
                         <!-- Overlay -->
-                        <div x-show="modal" x-transition.opacity class="fixed inset-0 bg-black/90 rounded-xl">
+                        <div x-show="modal" x-transition.opacity class="fixed inset-0 bg-black rounded-xl">
                         </div>
                         <!-- Panel -->
                         <div x-show="modal" x-transition x-on:click="modal = false; confirm = false"
@@ -276,55 +253,6 @@
             </div>
             {{-- Mockup template --}}
             <div class="">
-                @unless($template->category != 'Shirt')
-                    <x-jet-input type="hidden" value="{{ $template->category }}" class="hidden" name="category" />
-                    <div>
-                        <div class="" x-show="open == false" x-transition:enter.duration.300ms>
-                            <div id="tshirt-front" class="relative w-[880px] h-[900px] -p-[0.5px]">
-                                <img id="tshirt-front-background" class="w-[880px] h-[900px] mx-auto bg-white"
-                                    src="{{ asset('storage/mockup-image/' . $template->mockup_image) }}"
-                                    alt="" />
-                                <div id="drawingArea" class="absolute top-52 left-60 z-0 w-[405px] h-[525px] border-2">
-                                    <div class="w-[405px] h-[525px] relative select-none">
-                                        <canvas id="tshirt-front-canvas" width="405" height="525" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="" x-show="open == true" x-transition:enter.duration.300ms>
-                            <div id="tshirt-back" class="relative -p-[0.5px] w-[880px] h-[900px]">
-                                <img id="tshirt-back-background" class="w-[880px] h-[900px] mx-auto bg-white"
-                                    src="{{ asset('storage/mockup-image/' . $template->mockup_image_2) }}"
-                                    alt="" />
-                                <div id="drawingArea" class="absolute top-52 left-60 z-0 w-[405px] h-[525px] border-2">
-                                    <div class="w-[405px] h-[525px] relative select-none">
-                                        <canvas id="tshirt-back-canvas" width="405" height="525" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endunless
-                @unless($template->category != 'Totebag')
-                    <x-jet-input type="hidden" value="'{{ $template->category }}'" class="hidden" name="category" />
-                    <div>
-                        <div class="absolute">
-                            <div id="tshirt-front" class="relative bg-neutral-90">
-                                <img id="tshirt-front-background" class="w-[550px] bg-white"
-                                    src="{{ asset('storage/mockup-image/' . $template->mockup_image) }}"
-                                    alt="" />
-                                <div id="drawingArea" class="absolute top-[194px] left-[154px] z-0 w-[240px] h-[290px]">
-                                    <div class="w-[240px] h-[290px] relative select-none">
-                                        <canvas id="tshirt-front-canvas" width="240" height="290" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endunless
-                @unless($template->category != 'Oversized')
                     <x-jet-input type="hidden" value="{{ $template->category }}" class="hidden" name="category" />
                     <div>
                         <div class="" x-show="open == false" x-transition:enter.duration.300ms>
@@ -354,7 +282,6 @@
                             </div>
                         </div>
                     </div>
-                @endunless
             </div>
         </form>
     </div>

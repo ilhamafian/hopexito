@@ -6,6 +6,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ExploreController;
+use App\Http\Controllers\MockupController;
 use App\Http\Controllers\UploadController;
 use App\Http\Livewire\Manage\ManageProduct;
 use App\Http\Livewire\Manage\ManageOrder;
@@ -44,7 +45,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
 // protected route
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
     Route::get('dashboard', [Controller::class, 'redirectUser'])->name('dashboard');
-    Route::get('product/template/{product}', [ProductsController::class, 'template'])->name('product.template');
+    Route::get('mockup/standard-tee', [MockupController::class, 'shirt'])->name('mockup.shirt');
+    Route::get('mockup/oversized', [MockupController::class, 'oversized'])->name('mockup.oversized');
     // upload controller 
     Route::post('upload', [UploadController::class, 'store'])->name('upload');
     Route::post('upload/cover_image', [UploadController::class, 'upload_cover'])->name('upload.cover');
