@@ -10,7 +10,7 @@
                 <x-jet-title>
                     Products Selection
                 </x-jet-title>
-                <div x-data="{ isMobile: window.innerWidth < 820 }" x-show="isMobile" class="p-2 mt-4 rounded-lg bg-indigo-700/50 min-w-lg">
+                <div x-cloak x-data="{ isMobile: window.innerWidth < 820 }" x-show="isMobile" class="p-2 mt-4 rounded-lg bg-indigo-700/50 min-w-lg">
                     <div class="flex items-center gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-6 h-6">

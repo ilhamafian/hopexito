@@ -208,7 +208,7 @@
                         @endforeach
                     </div>
                 @endif
-            </div>g
+            </div>
         </x-jet-gradient-card>
     </div>
     {{-- @if (Auth::check())
