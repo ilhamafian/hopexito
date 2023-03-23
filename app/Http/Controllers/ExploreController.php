@@ -106,14 +106,14 @@ class ExploreController extends Controller
 
     public function shop()
     {
-        $products = Product::where('status', '<>', 2)->inrandomOrder()->paginate(64);
+        $products = Product::where('status', '<>', 2)->inrandomOrder()->paginate(100);
         return view('shop/all', compact('products'));
     }
     // return seller profile, views/people
     public function people($shopname)
     {
         $user = User::where('name', $shopname)->first();
-        $products = Product::where('artist_id', $user->id)->where('status', '<>', 2)->orderBy('status', 'desc')->get();
+        $products = Product::where('artist_id', $user->id)->where('status', '<>', 2)->orderBy('status', 'desc')->orderBy('created_at','desc')->get();
         $productsCollection = ProductCollection::where('name', $shopname)->get();
 
         return view('people', compact('user', 'products', 'productsCollection'));

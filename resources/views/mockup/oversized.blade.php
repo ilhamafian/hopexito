@@ -87,13 +87,12 @@
                             </div>
                         </div>
                         <div class="px-2">           
-                                <button type="button" class="rounded-full w-7 h-7 bg-[#fff]" id="White"></button>
                                 <button type="button" class="rounded-full w-7 h-7 bg-[#c9c0b7]"
                                     id="Gray"></button>
+                                    <button type="button" class="rounded-full w-7 h-7 bg-[#000]"
+                                    id="Black"></button>
                                 <button type="button" class="rounded-full w-7 h-7 bg-[#dfb2ae]"
                                     id="BrightRose"></button>
-                                <button type="button" class="rounded-full w-7 h-7 bg-[#000]"
-                                    id="Black"></button>
                                 <button type="button" class="rounded-full w-7 h-7 bg-[#1e3a8a]"
                                     id="Navy"></button>
                         </div>
@@ -116,7 +115,6 @@
                             </div>
                         </div>
                         <div class="flex items-center gap-2">
-                      
                                 @foreach ($colors as $color)
                                     @if ($color == 'Gray')
                                         <x-jet-checkbox id="color" name="color[]" class="p-3.5 bg-[#808080]"
@@ -324,10 +322,6 @@
 
         function setTshirtBackBackground(color) {
             $("tshirt-back-background").style.background = color;
-        }
-        $("White").onclick = function() {
-            setTshirtFrontBackground('#fff');
-            setTshirtBackBackground('#fff');
         }
         $("Black").onclick = function() {
             setTshirtFrontBackground('#000');

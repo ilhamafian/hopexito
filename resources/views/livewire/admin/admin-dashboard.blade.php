@@ -3,7 +3,7 @@
     <x-jet-admin-layout>
         <div class="grid grid-cols-1">
             <x-jet-admin-card>
-                <div class="flex items-center justify-between">
+                <div class="flex flex-col px-3">
                     <x-jet-header>List of Designers</x-jet-header>
                     <x-jet-input class="" type="text" wire:model="search" placeholder="Search by artist name" />
                 </div>
@@ -121,7 +121,7 @@
             </x-jet-admin-card>
             <x-jet-section-border/>
             <x-jet-admin-card>
-                <div class="flex items-center justify-between">
+                <div class="flex flex-col px-3">
                     <x-jet-header>List of Users</x-jet-header>
                     <x-jet-input class="" type="text" wire:model="search_user" placeholder="Search by user name" />
                 </div>
