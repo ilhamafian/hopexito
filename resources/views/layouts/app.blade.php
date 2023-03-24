@@ -15,6 +15,8 @@
     <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
     <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
         rel="stylesheet">
+    {{-- Animate CSS --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <!-- Scripts -->
     <script src="https://cdn.lordicon.com/xdjxvujz.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@marcreichel/alpine-typewriter@latest/dist/alpine-typewriter.min.js" defer>
@@ -81,11 +83,13 @@
     @livewire('navigation-menu')
 </head>
 
-<body class="overflow-x-hidden text-xs antialiased leading-6 text-gray-200 select-none sm:text-sm font-poppins bg-zinc-900 border-box">
+<body
+    class="overflow-x-hidden text-xs antialiased leading-6 text-gray-200 select-none sm:text-sm font-poppins bg-zinc-900 border-box">
     {{ $slot }}
     @stack('modals')
     @livewireScripts
 </body>
 {{-- Global Footer --}}
 <x-jet-footer></x-jet-footer>
+
 </html>

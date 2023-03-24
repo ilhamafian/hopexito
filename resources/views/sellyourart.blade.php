@@ -5,11 +5,11 @@
         <div
             class="grid grid-cols-1 max-w-6xl h-[380px] sm:h-[500px] mx-auto bg-black/30 mt-16 shadow-md backdrop-filter backdrop-blur-3xl rounded-2xl shadow-rose-500">
             <div class="max-w-4xl py-24 mx-auto text-center text-white sm:py-40 ">
-                <div class="h-8 sm:h-12">
+                <div class="h-8 sm:h-12 animate__animated animate__fadeInUp" >
                     <span x-data="{ texts: ['We Turn Art Into Product', 'We Bring Creativity To Life'] }" x-typewriter.3s="texts"
                         class="text-2xl font-bold tracking-wider text-transparent sm:text-3xl md:text-5xl bg-clip-text bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500"></span>
                 </div>
-                <div class="max-w-2xl mx-auto">
+                <div class="max-w-2xl mx-auto animate__animated animate__fadeInUp">
                     <p class="px-2 py-2 leading-5 text-white sm:py-4 sm:px-12 sm:text-sm ">Sell your art printed on
                         high-quality products to a nationwide audience. You design, we settle the rest, and you get
                         paid! It's easy and quick to get started.</p>
@@ -19,13 +19,13 @@
                         @if (Auth::user()->role_id == 3)
                             <form action="{{ route('upgrade', Auth::user()->id) }}" method="post">
                                 @csrf
-                                <x-jet-button-custom type="submit" class="mt-4">
+                                <x-jet-button-custom type="submit" class="mt-4 animate__animated animate__fadeInUp">
                                     Start selling
                                 </x-jet-button-custom>
                             </form>
                         @endauth
                     @else
-                        <x-jet-button-custom onclick="window.location='{{ route('register') }}'" class="mt-4">
+                        <x-jet-button-custom onclick="window.location='{{ route('register') }}'" class="mt-4 animate__animated animate__fadeInUp">
                             Get Started
                         </x-jet-button-custom>
                     @endif
@@ -52,9 +52,8 @@
                             <lord-icon src="https://cdn.lordicon.com/vpzjmdjv.json" trigger="loop"
                                 colors="primary:#f43f5e,secondary:#6366f1" style="width:150px;height:150px">
                             </lord-icon>
-                            <p class="py-2">Upload your design to the template, set your own retail prices, and then
-                                save it for
-                                others to purchase.</p>
+                            <p class="py-2">Upload your design to the product maker, set your own retail prices, and then
+                                save it for others to purchase.</p>
                         </div>
                     </div>
                     <div class="p-4 xl:w-1/4 md:w-1/2">
@@ -62,8 +61,7 @@
                             <lord-icon src="https://cdn.lordicon.com/wgydzbzz.json" trigger="loop"
                                 colors="primary:#f43f5e,secondary:#6366f1" style="width:150px;height:150px">
                             </lord-icon>
-                            <p class="py-2">Someone on the internet will discover and purchase products they love,
-                                featuring your designs</p>
+                            <p class="py-2">Your creatively designed products can be discovered and purchased by online shoppers who appreciate and love them.</p>
                         </div>
                     </div>
                     <div class="p-4 xl:w-1/4 md:w-1/2">
@@ -72,7 +70,7 @@
                                 colors="primary:#f43f5e,secondary:#6366f1" state="loop"
                                 style="width:150px;height:150px">
                             </lord-icon>
-                            <p class="py-2">We take care of your orders from A to Z, products are produced to order
+                            <p class="py-2">We take care of your orders from head to toe, products are produced to order
                                 and shipped nationwide.</p>
                         </div>
                     </div>

@@ -1,7 +1,7 @@
 @section('title', 'Explore | HopeXito')
 <x-app-layout>
     <div class="flex flex-col items-center min-h-screen gap-12 mx-auto pb-28 lg:flex-row lg:max-w-5xl xl:max-w-7xl">
-        <div class="flex flex-col px-12 py-16 space-y-2 text-center lg:px-0 lg:py-0 lg:text-left">
+        <div class="flex flex-col px-12 py-16 space-y-2 text-center lg:px-0 lg:py-0 lg:text-left animate__animated animate__fadeInUp animate__fast">
             <x-jet-title>Discover Unique Art from Independent Artists</x-jet-title>
             <p class="max-w-md px-2 pb-6 mx-auto lg:px-0 lg:pb-10 lg:mx-0">Shop custom designs featuring independent
                 artists. Find unique art to match your style
@@ -19,7 +19,7 @@
                 </a>
             </div>
         </div>
-        <div class="">
+        <div class="animate__animated animate__fadeInUp animate__fast">
             <img class="max-w-2xl shadow-lg w-96 sm:w-auto shadow-purple-500 rounded-3xl" src="image/surface-pro.png" />
         </div>
     </div>
