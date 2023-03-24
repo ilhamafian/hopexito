@@ -85,7 +85,7 @@ class ManageProduct extends Component
         $product = Product::findOrFail($id);
         $product->update(['status' => 3]);
   
-        session()->flash('message', 'Product Updated');
+        session()->flash('message', 'Product Pinned');
         return redirect()->route('product.manage');
     }
     // pin product to top by id
@@ -94,7 +94,7 @@ class ManageProduct extends Component
         $product = Product::findOrFail($id);
         $product->update(['status' => 1]);
 
-        session()->flash('message', 'Product Updated');
+        session()->flash('message', 'Product Unpinned');
         return redirect()->route('product.manage');
     }
     // archive product by id

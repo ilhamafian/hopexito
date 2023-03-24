@@ -65,7 +65,6 @@
                                         <blockquote class="w-full mx-3 h-96 group">
                                             <div class="absolute z-40 overflow-hidden rounded-lg">
                                                 <img src="{{ asset('storage/cover-image/' . $user->artist->cover_image) }}"
-                                                    alt="{{ $user->artist->title }}"
                                                     class="sm:w-[480px] w-[360px] h-56 object-cover sm:h-64">
                                                 <img class="absolute left-0 right-0 object-cover w-16 h-16 m-auto rounded-full bottom-20"
                                                     src="{{ $user->profile_photo_url }}" alt="{{ $user->name }}" />

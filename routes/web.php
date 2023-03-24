@@ -21,6 +21,7 @@ use App\Http\Livewire\Admin\AdminProduct;
 use App\Http\Livewire\Admin\AdminTemplate;
 use App\Http\Livewire\Admin\AdminStorage;
 use App\Http\Livewire\Admin\GodMode;
+use App\Http\Livewire\Admin\AdminSession;
 use App\Http\Livewire\DeliveryInformation;
 
 Route::redirect('/', 'explore');
@@ -41,6 +42,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::get('admin/templates', AdminTemplate::class)->name('admin.templates');
     Route::get('admin/inventory', AdminInventory::class)->name('admin.inventory');
     Route::get('admin/storage', AdminStorage::class)->name('admin.storage');
+    Route::get('admin/session', AdminSession::class)->name('admin.session');
     Route::get('godmode', GodMode::class)->name('godmode');
 });
 // artist middleware
