@@ -52,9 +52,8 @@
                             <lord-icon src="https://cdn.lordicon.com/vpzjmdjv.json" trigger="loop"
                                 colors="primary:#f43f5e,secondary:#6366f1" style="width:150px;height:150px">
                             </lord-icon>
-                            <p class="py-2">Upload your design to the template, set your own retail prices, and then
-                                save it for
-                                others to purchase.</p>
+                            <p class="py-2">Upload your design to the product maker, set your own retail prices, and then
+                                save it for others to purchase.</p>
                         </div>
                     </div>
                     <div class="p-4 xl:w-1/4 md:w-1/2">
@@ -62,8 +61,7 @@
                             <lord-icon src="https://cdn.lordicon.com/wgydzbzz.json" trigger="loop"
                                 colors="primary:#f43f5e,secondary:#6366f1" style="width:150px;height:150px">
                             </lord-icon>
-                            <p class="py-2">Someone on the internet will discover and purchase products they love,
-                                featuring your designs</p>
+                            <p class="py-2">Your creatively designed products can be discovered and purchased by online shoppers who appreciate and love them.</p>
                         </div>
                     </div>
                     <div class="p-4 xl:w-1/4 md:w-1/2">
@@ -72,7 +70,7 @@
                                 colors="primary:#f43f5e,secondary:#6366f1" state="loop"
                                 style="width:150px;height:150px">
                             </lord-icon>
-                            <p class="py-2">We take care of your orders from A to Z, products are produced to order
+                            <p class="py-2">We take care of your orders from head to toe, products are produced to order
                                 and shipped nationwide.</p>
                         </div>
                     </div>
