@@ -5,11 +5,11 @@
         <div
             class="grid grid-cols-1 max-w-6xl h-[380px] sm:h-[500px] mx-auto bg-black/30 mt-16 shadow-md backdrop-filter backdrop-blur-3xl rounded-2xl shadow-rose-500">
             <div class="max-w-4xl py-24 mx-auto text-center text-white sm:py-40 ">
-                <div class="h-8 sm:h-12">
+                <div class="h-8 sm:h-12 animate__animated animate__fadeInUp" >
                     <span x-data="{ texts: ['We Turn Art Into Product', 'We Bring Creativity To Life'] }" x-typewriter.3s="texts"
                         class="text-2xl font-bold tracking-wider text-transparent sm:text-3xl md:text-5xl bg-clip-text bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500"></span>
                 </div>
-                <div class="max-w-2xl mx-auto">
+                <div class="max-w-2xl mx-auto animate__animated animate__fadeInUp">
                     <p class="px-2 py-2 leading-5 text-white sm:py-4 sm:px-12 sm:text-sm ">Sell your art printed on
                         high-quality products to a nationwide audience. You design, we settle the rest, and you get
                         paid! It's easy and quick to get started.</p>
@@ -19,13 +19,13 @@
                         @if (Auth::user()->role_id == 3)
                             <form action="{{ route('upgrade', Auth::user()->id) }}" method="post">
                                 @csrf
-                                <x-jet-button-custom type="submit" class="mt-4">
+                                <x-jet-button-custom type="submit" class="mt-4 animate__animated animate__fadeInUp">
                                     Start selling
                                 </x-jet-button-custom>
                             </form>
                         @endauth
                     @else
-                        <x-jet-button-custom onclick="window.location='{{ route('register') }}'" class="mt-4">
+                        <x-jet-button-custom onclick="window.location='{{ route('register') }}'" class="mt-4 animate__animated animate__fadeInUp">
                             Get Started
                         </x-jet-button-custom>
                     @endif

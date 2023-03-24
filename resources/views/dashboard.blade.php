@@ -4,10 +4,9 @@
     <div class="relative z-20 min-h-screen pt-8">
         <div
             class="max-w-6xl mx-auto shadow-md backdrop-filter backdrop-blur-3xl rounded-3xl bg-black/30 shadow-fuchsia-500">
-            <div class="flex flex-col items-center justify-between max-w-5xl px-6 pt-8 mx-auto sm:flex-row">
-                <h1
-                    class="text-3xl font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-fuchsia-500 to-fuchsia-500">
-                    Artist Dashboard</h1>
+            <div class="flex flex-col items-center justify-between max-w-5xl px-6 pt-8 mx-auto sm:flex-row animate__animated animate__fadeInUp">
+                <x-jet-title>
+                    Dashboard</x-jet-title>
                 <div class="relative group">
                     <div
                         class="absolute inset-0 hidden transition rounded-full opacity-50 md:block group-hover:-inset-1 bg-gradient-to-r from-indigo-600 via-purple-600 to-fuchsia-600 blur group-hover:opacity-100">
@@ -21,7 +20,7 @@
             <div class="grid max-w-5xl grid-cols-1 gap-4 py-16 mx-auto text-white md:grid-cols-3">
                 <div class="block mx-2 h-96 group sm:mx-0">
                     <div
-                        class=" relative flex flex-col space-y-3 h-full rounded-3xl border-4 border-indigo-500 bg-black/40 p-8 transition group-hover:-translate-x-2 group-hover:-translate-y-2 group-hover:shadow-[8px_8px_0_0_#ec4899]">
+                        class="animate__animated animate__fadeInUp animate__faster relative flex flex-col space-y-3 h-full rounded-3xl border-4 border-indigo-500 bg-black/40 p-8 transition group-hover:-translate-x-2 group-hover:-translate-y-2 group-hover:shadow-[8px_8px_0_0_#ec4899]">
                         <div class="text-center">
                             <lord-icon src="https://cdn.lordicon.com/edxgdhxu.json" trigger="loop" delay="2000"
                                 colors="primary:#6366f1,secondary:#e879f9" state="hover-1" class="w-32 h-32">
@@ -42,7 +41,7 @@
                 </div>
                 <div class="block mx-2 h-96 group sm:mx-0">
                     <div
-                        class=" relative flex flex-col h-full rounded-3xl border-4 border-indigo-500 bg-black/40 p-8 transition group-hover:-translate-x-2 group-hover:-translate-y-2 group-hover:shadow-[8px_8px_0_0_#ec4899]">
+                        class="animate__animated animate__fadeInUp animate__fast relative flex flex-col h-full rounded-3xl border-4 border-indigo-500 bg-black/40 p-8 transition group-hover:-translate-x-2 group-hover:-translate-y-2 group-hover:shadow-[8px_8px_0_0_#ec4899]">
                         <div class="text-center">
                             <lord-icon src="https://cdn.lordicon.com/vqrsuymp.json" trigger="loop" delay="2000"
                                 colors="primary:#6366f1,secondary:#e879f9" class="w-32 h-32">
@@ -101,7 +100,7 @@
                 </div>
                 <div class="block mx-2 h-96 group sm:mx-0">
                     <div
-                        class=" relative flex flex-col h-full rounded-3xl border-4 border-indigo-500 bg-black/40 p-8 transition group-hover:-translate-x-2 group-hover:-translate-y-2 group-hover:shadow-[8px_8px_0_0_#ec4899]">
+                        class="animate__animated animate__fadeInUp relative flex flex-col h-full rounded-3xl border-4 border-indigo-500 bg-black/40 p-8 transition group-hover:-translate-x-2 group-hover:-translate-y-2 group-hover:shadow-[8px_8px_0_0_#ec4899]">
                         <div class="text-center">
                             <lord-icon src="https://cdn.lordicon.com/nqwqiffl.json" trigger="loop" delay="2000"
                                 colors="primary:#6366f1,secondary:#e879f9" class="w-32 h-32">
