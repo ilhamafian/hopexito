@@ -9,7 +9,7 @@ class AdminSession extends Component
 {
     public function render()
     {
-        $sessions = DB::table('sessions')->get();
+        $sessions = DB::table('sessions')->orderBy('last_activity', 'desc')->get();
         return view('livewire.admin.admin-session', compact('sessions'));
     }
 }
