@@ -44,7 +44,7 @@
             <x-jet-admin-card>
                 <x-jet-header>Withdrawal Request</x-jet-header>
                 <div class="flex flex-col gap-2 m-4">
-                    <div class="w-full p-2 rounded-lg cursor-pointer bg-black/50">
+                    <div class="w-full p-2 rounded-lg  bg-black/50">
                         <div class="flex items-center text-white">
                             <p class="basis-[11%]"><span class="px-3 py-1 rounded-md bg-violet-500">Wallet Name</span>
                             </p>
@@ -63,7 +63,7 @@
                         </div>
                     </div>
                     @foreach ($wallets as $wallet)
-                        <div class="w-full p-3 rounded-lg cursor-pointer bg-black/50" x-data="{ open: false, id: '' }">
+                        <div class="w-full p-3 rounded-lg  bg-black/50" x-data="{ open: false, id: '' }">
                             @if ($wallet->status == 2)
                                 <div class="flex items-center text-white">
                                     <p class="basis-[11%] text-xs">{{ $wallet->name }}</p>
@@ -113,27 +113,27 @@
             <x-jet-admin-card>
                 <x-jet-header>Income Transaction</x-jet-header>
                 <div class="flex flex-col gap-2 m-4">
-                    <div class="w-full p-2 rounded-lg cursor-pointer bg-black/50">
+                    <div class="w-full p-2 rounded-lg  bg-black/50">
                         <div class="flex items-center text-white text-center">
-                            <p class="basis-[5%]"><span class="px-3 py-1 rounded-md bg-violet-500">Id</span>
+                            <p class="basis-[30%]"><span class="px-3 py-1 rounded-md bg-violet-500">Name</span>
                             </p>
-                            <p class="basis-[20%]"><span class="px-3 py-1 rounded-md bg-violet-500">Balance</span>
+                            <p class="basis-[15%]"><span class="px-3 py-1 rounded-md bg-violet-500">Balance</span>
                             </p>
-                            <p class="basis-[20%]"><span class="px-3 py-1 rounded-md bg-violet-500">Income</span></p>
-                            <p class="basis-[20%]"><span class="px-3 py-1 rounded-md bg-violet-500">New Balance</span>
+                            <p class="basis-[15%]"><span class="px-3 py-1 rounded-md bg-violet-500">Income</span></p>
+                            <p class="basis-[15%]"><span class="px-3 py-1 rounded-md bg-violet-500">New Balance</span>
                             </p>
-                            <p class="basis-[35%]"><span class="px-3 py-1 rounded-md bg-violet-500">Created At</span>
+                            <p class="basis-[25%]"><span class="px-3 py-1 rounded-md bg-violet-500">Created At</span>
                             </p>
                         </div>
                     </div>
                     @foreach ($walletTransactions as $item)
-                        <div class="w-full p-3 rounded-lg cursor-pointer bg-black/50" x-data="{ open: false, id: '' }">
+                        <div class="w-full p-3 rounded-lg  bg-black/50" x-data="{ open: false, id: '' }">
                             <div class="flex items-center text-white text-center">
-                                <p class="basis-[5%]">{{ $item->user_id }}</p>
-                                <p class="basis-[20%]">{{ $item->balance }} </p>
-                                <p class="basis-[20%]">{{ $item->income }}</p>
-                                <p class="basis-[20%]">{{ $item->new_balance }}</p>
-                                <p class="basis-[35%]">{{ $carbon::parse($item->created_at)->format('F d, Y g:i A') }}
+                                <p class="basis-[30%] text-violet-400">{{ $item->walletHolder->name }}</p>
+                                <p class="basis-[15%]">{{ $item->balance }} </p>
+                                <p class="basis-[15%]"><span class="px-2 py-0.5 bg-teal-600 rounded-md">{{ $item->income }}</span></p>
+                                <p class="basis-[15%]">{{ $item->new_balance }}</p>
+                                <p class="basis-[25%]">{{ $carbon::parse($item->created_at)->format('F d, Y g:i A') }}
                                 </p>
                             </div>
                         </div>
@@ -239,7 +239,7 @@
                                         </div>
                                         @foreach ($wallet->walletTransaction->sortByDesc('updated_at') as $item)
                                             @unless($item->status == 3 || $item->status == 4)
-                                                <div class="w-full p-2 rounded-lg cursor-pointer bg-black/50">
+                                                <div class="w-full p-2 rounded-lg bg-black/50">
                                                     <div class="flex items-center text-center text-white">
                                                         <p class="basis-[18%]">{{ number_format($item->balance, 2) }}</p>
                                                         <p
