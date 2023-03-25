@@ -48,7 +48,6 @@
                         </div>
                     </div>
                 </x-jet-gradient-card>
-              
                 <x-jet-gradient-card>
                     <div class="flex flex-col p-6 bg-black rounded-xl">
                         <x-jet-header>Chief Finance Sorcerer</x-jet-header>
@@ -62,13 +61,13 @@
                     </div>
                 </x-jet-gradient-card>
                 <x-jet-gradient-card>
-                    <div class="flex flex-col p-6 bg-black rounded-xl">
-                        <x-jet-header>Doppelganger</x-jet-header>
+                    <div class="flex flex-col h-full p-6 bg-black rounded-xl">
+                        <x-jet-header>Elven Emporium</x-jet-header>
                         <div class="gap-2 p-2 overflow-y-scroll rounded-lg ring-2 ring-violet-500 max-h-96">
-                            <x-jet-input type="text" class="mb-2" wire:model="name" placeholder="outdated name"/>
-                            <x-jet-input type="text" class="mb-2" wire:model="newName" placeholder="latest name"/>
-                            <x-jet-button-utility wire:click="fixName()">
-                                Juxtapose
+                            <x-jet-input type="text" name="sold_product" class="block w-full mb-2"
+                                wire:model="sold_product" placeholder="product id" />
+                            <x-jet-button-utility wire:click="updateSold()">
+                                Fairy Dust
                             </x-jet-button-utility>
                         </div>
                     </div>
@@ -84,8 +83,7 @@
                             </x-jet-button-utility>
                         </div>
                     </div>
-                </x-jet-gradient-card>
-               
+                </x-jet-gradient-card> 
                 <x-jet-gradient-card>
                     <div class="flex flex-col row-span-2 p-6 bg-black rounded-xl">
                         <x-jet-header>Cosmic Controller</x-jet-header>
@@ -170,8 +168,23 @@
                             </x-jet-button-utility>
                         </div>
                     </div>
-                </x-jet-gradient-card>
-
+                </x-jet-gradient-card>                    
+                <x-jet-gradient-card>
+                    <div class="flex flex-col h-full p-6 bg-black rounded-xl">
+                        <x-jet-header>E = mc^2</x-jet-header>
+                        <div class="p-2 overflow-y-scroll rounded-lg ring-2 ring-violet-500 max-h-96">
+                            <x-jet-button-utility wire:click="clearCache">
+                                Tsar Bomba
+                            </x-jet-button-utility>
+                            {{-- <x-jet-button-utility wire:click="clearMoreCache">
+                                Deep Cleaning
+                            </x-jet-button-utility> --}}
+                            <x-jet-button-utility wire:click="deleteTemplate()">
+                                B41
+                            </x-jet-button-utility>
+                        </div>
+                    </div>
+                </x-jet-gradient-card> 
                 <x-jet-gradient-card>
                     <div class="flex flex-col h-full p-6 bg-black rounded-xl">
                         <x-jet-header>The Ultimate Hope</x-jet-header>
@@ -204,7 +217,6 @@
                         </div>
                     </div>
                 </x-jet-gradient-card>
-             
                 <x-jet-gradient-card>
                     <div class="flex flex-col h-full p-6 bg-black rounded-xl">
                         <x-jet-header>Quantum Shift</x-jet-header>
@@ -220,29 +232,13 @@
                     </div>
                 </x-jet-gradient-card>
                 <x-jet-gradient-card>
-                    <div class="flex flex-col h-full p-6 bg-black rounded-xl">
-                        <x-jet-header>Elven Emporium</x-jet-header>
+                    <div class="flex flex-col p-6 bg-black rounded-xl h-full">
+                        <x-jet-header>Doppelganger</x-jet-header>
                         <div class="gap-2 p-2 overflow-y-scroll rounded-lg ring-2 ring-violet-500 max-h-96">
-                            <x-jet-input type="text" name="sold_product" class="block w-full mb-2"
-                                wire:model="sold_product" placeholder="product id" />
-                            <x-jet-button-utility wire:click="updateSold()">
-                                Fairy Dust
-                            </x-jet-button-utility>
-                        </div>
-                    </div>
-                </x-jet-gradient-card>
-                <x-jet-gradient-card>
-                    <div class="flex flex-col h-full p-6 bg-black rounded-xl">
-                        <x-jet-header>E = mc^2</x-jet-header>
-                        <div class="p-2 overflow-y-scroll rounded-lg ring-2 ring-violet-500 max-h-96">
-                            <x-jet-button-utility wire:click="clearCache">
-                                Tsar Bomba
-                            </x-jet-button-utility>
-                            {{-- <x-jet-button-utility wire:click="clearMoreCache">
-                                Deep Cleaning
-                            </x-jet-button-utility> --}}
-                            <x-jet-button-utility wire:click="deleteTemplate()">
-                                B41
+                            <x-jet-input type="text" class="w-full mb-2" wire:model="name" placeholder="outdated name"/>
+                            <x-jet-input type="text" class="w-full mb-2" wire:model="newName" placeholder="latest name"/>
+                            <x-jet-button-utility wire:click="fixName()">
+                                Juxtapose
                             </x-jet-button-utility>
                         </div>
                     </div>

@@ -64,8 +64,12 @@ class ExploreController extends Controller
     // return search results and track search history
     public function search(Request $request)
     {
-        $search = $request->input('search');
-
+        if ($request->has('search') && !empty($request->input('search'))) {
+            $search = $request->input('search');
+        } else {
+            return redirect()->route('shop.all');
+        }
+        
         $artists = User::where('role_id', 2)
             ->where('name', 'LIKE', "%{$search}%")
             ->get();
