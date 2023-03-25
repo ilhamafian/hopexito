@@ -22,12 +22,12 @@
                     </div>
                 </x-jet-admin-card>
                 <x-jet-admin-card>
-                   <x-jet-admin-header>
-                    Total Withdrawal (RM)
+                    <x-jet-admin-header>
+                        Total Withdrawal (RM)
 
-                   </x-jet-admin-header>
+                    </x-jet-admin-header>
                     <div class="block p-2 mt-4 text-4xl">
-                        {{ number_format($walletTransaction_data->sum('withdrawal'), 2) }}
+                        {{ number_format($walletTransactions->sum('withdrawal'), 2) }}
                     </div>
                 </x-jet-admin-card>
                 <x-jet-admin-card>
@@ -105,6 +105,37 @@
                                     @endforeach
                                 </div>
                             @endif
+                        </div>
+                    @endforeach
+                </div>
+            </x-jet-admin-card>
+            <x-jet-section-border />
+            <x-jet-admin-card>
+                <x-jet-header>Income Transaction</x-jet-header>
+                <div class="flex flex-col gap-2 m-4">
+                    <div class="w-full p-2 rounded-lg cursor-pointer bg-black/50">
+                        <div class="flex items-center text-white text-center">
+                            <p class="basis-[5%]"><span class="px-3 py-1 rounded-md bg-violet-500">Id</span>
+                            </p>
+                            <p class="basis-[20%]"><span class="px-3 py-1 rounded-md bg-violet-500">Balance</span>
+                            </p>
+                            <p class="basis-[20%]"><span class="px-3 py-1 rounded-md bg-violet-500">Income</span></p>
+                            <p class="basis-[20%]"><span class="px-3 py-1 rounded-md bg-violet-500">New Balance</span>
+                            </p>
+                            <p class="basis-[35%]"><span class="px-3 py-1 rounded-md bg-violet-500">Created At</span>
+                            </p>
+                        </div>
+                    </div>
+                    @foreach ($walletTransactions as $item)
+                        <div class="w-full p-3 rounded-lg cursor-pointer bg-black/50" x-data="{ open: false, id: '' }">
+                            <div class="flex items-center text-white text-center">
+                                <p class="basis-[5%]">{{ $item->id }}</p>
+                                <p class="basis-[20%]">{{ $item->balance }} </p>
+                                <p class="basis-[20%]">{{ $item->income }}</p>
+                                <p class="basis-[20%]">{{ $item->new_balance }}</p>
+                                <p class="basis-[35%]">{{ $carbon::parse($item->created_at)->format('F d, Y g:i A') }}
+                                </p>
+                            </div>
                         </div>
                     @endforeach
                 </div>

@@ -63,7 +63,7 @@
                         {{-- "Three Dots" Separator --}}
                         @if (is_string($element))
                             <span aria-disabled="true">
-                                <span class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium leading-5 text-indigo-500 bg-transparent border border-gray-300 cursor-default">{{ $element }}</span>
+                                <span class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium leading-5 text-indigo-500 rounded-lg bg-transparent border border-indigo-500 cursor-default">{{ $element }}</span>
                             </span>
                         @endif
 
