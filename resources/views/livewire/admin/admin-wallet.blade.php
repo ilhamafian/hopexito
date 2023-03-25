@@ -129,7 +129,7 @@
                     @foreach ($walletTransactions as $item)
                         <div class="w-full p-3 rounded-lg cursor-pointer bg-black/50" x-data="{ open: false, id: '' }">
                             <div class="flex items-center text-white text-center">
-                                <p class="basis-[5%]">{{ $item->id }}</p>
+                                <p class="basis-[5%]">{{ $item->user_id }}</p>
                                 <p class="basis-[20%]">{{ $item->balance }} </p>
                                 <p class="basis-[20%]">{{ $item->income }}</p>
                                 <p class="basis-[20%]">{{ $item->new_balance }}</p>
