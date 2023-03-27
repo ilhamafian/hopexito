@@ -27,7 +27,7 @@
 
                     </x-jet-admin-header>
                     <div class="block p-2 mt-4 text-4xl">
-                        {{ number_format($walletTransactions->sum('withdrawal'), 2) }}
+                        {{ number_format($wallet_data->sum('withdrawal'), 2) }}
                     </div>
                 </x-jet-admin-card>
                 <x-jet-admin-card>
