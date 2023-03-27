@@ -34,7 +34,6 @@
                 <p class="flex-grow group-hover:text-lime-400">{{ $list }}</p>
             </a>
         @endforeach
-
     </div>
     <div class="lg:w-3/5 w-full px-2">
         <p class="text-lg tracking-wide text-indigo-500 my-2">Top Designers</p>
@@ -48,6 +47,5 @@
             @endforeach
         </div>
         <p class="text-lg tracking-wide text-indigo-500 my-2"></p>
-
     </div>
 </div>
