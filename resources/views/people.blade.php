@@ -1,4 +1,5 @@
 @section('title', $user->name . ' | HopeXito')
+@section('thumbnail', $user->profile_photo_path)
 <x-app-layout>
     <div
         class=" w-full md:p-8 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-pink-300 via-purple-300 to-indigo-400">
@@ -297,6 +298,9 @@
                         </div>
                     </a>
                 @endforeach
+            </div>
+            <div class="mt-8">
+                {{ $products->links('/vendor/pagination/tailwind') }}
             </div>
         </div>
         <div x-show="nav == 2" x-transition.opacity x-transition:enter.duration.500ms
