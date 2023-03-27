@@ -35,7 +35,7 @@
             </a>
         @endforeach
     </div>
-    {{-- <div class="lg:w-3/5 w-full px-2">
+    <div class="lg:w-3/5 w-full px-2">
         <p class="text-lg tracking-wide text-indigo-500 my-2">Top Designers</p>
         <div class="flex gap-3 p-2">
             @foreach ($users as $user)
@@ -47,5 +47,5 @@
             @endforeach
         </div>
         <p class="text-lg tracking-wide text-indigo-500 my-2"></p>
-    </div> --}}
+    </div>
 </div>

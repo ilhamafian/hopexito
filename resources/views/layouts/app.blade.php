@@ -6,7 +6,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'HopeXito')</title>
     <meta property="og:image" content="@yield('thumbnail')" />
-    {{-- <meta property="og:image" content="{{ asset('public/image/xito-icon.png') }}" /> --}}
     <!-- Fonts -->
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link rel="shortcut icon" href="{{ asset('image/xito-icon.png') }}">

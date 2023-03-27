@@ -109,6 +109,7 @@ class PaymentController extends Controller
                 'collection_id' => config('billplz.collection'),
                 'email' => Auth::user()->email,
                 'name' => Auth::user()->name,
+                'mobile' => Auth::user()->phone,
                 'description' => 'Thank you for supporting us!',
                 'amount' => $this->total() * 100,
                 'reference_1_label' => "Bank Code",
@@ -127,6 +128,7 @@ class PaymentController extends Controller
                 'collection_id' => config('billplz.collection'),
                 'email' => $details['email'],
                 'name' => $details['name'],
+                'mobile' => $details['phone'],
                 'description' => 'Thank you for supporting us!',
                 'amount' => $total * 100,
                 'reference_1_label' => "Bank Code",
@@ -137,7 +139,6 @@ class PaymentController extends Controller
         }
 
         //Live Production Key 
-
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, 'https://www.billplz.com/api/v3/bills');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -281,7 +282,7 @@ class PaymentController extends Controller
                         'id' => $billplz['id'],
                         'collection_id' => config('billplz.collection'),
                         'email' => $details['email'],
-                        'name' => $details['name'],
+                        'name' => $details['name'] . '(G)',
                         'description' => 'Thank you for supporting us!',
                         'delivery' => $delivery,
                         'status' => 1,
