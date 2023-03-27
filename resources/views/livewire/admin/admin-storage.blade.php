@@ -6,12 +6,12 @@
                 <div class="flex flex-col items-center gap-2">
                     <x-jet-admin-header>Database Size
                     </x-jet-admin-header>
-                    <p class="text-xl text-indigo-400">
+                    <p class="text-xl text-indigo-400 tracking-wider">
                         {{ $DBSize[0]->size }} MB
                     </p>
                     <div class="text-center">
                         <p class="px-2 py-0.5 bg-violet-600 rounded-md">Product Table Size</p>
-                        <p class="mt-1 text-lg text-fuchsia-400">
+                        <p class="mt-1 text-lg ring-2 ring-fuchsia-600 mx-2 rounded-md">
                             {{ $productDBSize[0]->size }} MB
                         </p>
                     </div>
@@ -21,37 +21,37 @@
                 <div class="flex flex-col items-center gap-2">
                     <x-jet-admin-header>Disk Size
                     </x-jet-admin-header>
-                    <p class="text-xl text-indigo-400">
+                    <p class="text-xl text-indigo-400 tracking-wider">
                         {{ $diskSize }}
                     </p>
                     <div class="grid grid-cols-2 gap-4 text-center">
                         <div>
                             <p class="px-2 py-0.5 bg-violet-600 rounded-md">Collection Image Size</p>
-                            <p class="mt-1 text-lg text-fuchsia-500">
+                            <p class="mt-1 text-lg ring-2 ring-fuchsia-600 mx-2 rounded-md">
                                 {{ $diskCollectionSize }}
                             </p>
                         </div>
                         <div>
                             <p class="px-2 py-0.5 bg-violet-600 rounded-md">Cover Image Size</p>
-                            <p class="mt-1 text-lg text-fuchsia-500">
+                            <p class="mt-1 text-lg ring-2 ring-fuchsia-600 mx-2 rounded-md">
                                 {{ $diskCoverSize }}
                             </p>
                         </div>
                         <div>
                             <p class="px-2 py-0.5 bg-violet-600 rounded-md">Image Back Size</p>
-                            <p class="mt-1 text-lg text-fuchsia-500">
+                            <p class="mt-1 text-lg ring-2 ring-fuchsia-600 mx-2 rounded-md">
                                 {{ $diskImageBackSize }}
                             </p>
                         </div>
                         <div>
                             <p class="px-2 py-0.5 bg-violet-600 rounded-md">Image Front Size</p>
-                            <p class="mt-1 text-lg text-fuchsia-500">
+                            <p class="mt-1 text-lg ring-2 ring-fuchsia-600 mx-2 rounded-md">
                                 {{ $diskImageFrontSize }}
                             </p>
                         </div>
                         <div>
                             <p class="px-2 py-0.5 bg-violet-600 rounded-md">Profile Photos Size</p>
-                            <p class="mt-1 text-lg text-fuchsia-500">
+                            <p class="mt-1 text-lg ring-2 ring-fuchsia-600 mx-2 rounded-md">
                                 {{ $diskProfilePhotoSize }}
                             </p>
                         </div>
@@ -63,7 +63,7 @@
         <x-jet-section-border />
         <x-jet-admin-card>
             <x-jet-admin-header>Temporary Files <span
-                    class="bg-green-500 rounded-md px-2 py-0.5 ml-2">{{ count($temp) }}</span></x-jet-admin-header>
+                    class="bg-indigo-500 rounded-md px-2 py-0.5 ml-2">{{ count($temp) }}</span></x-jet-admin-header>
                     <x-jet-button class="ml-2" type="button" wire:click="clearTemp">Clear Temporary Files</x-jet-button>
             <div class="grid grid-cols-3 mt-6">
                 @foreach ($temp as $item)
@@ -78,7 +78,7 @@
         <x-jet-section-border />
         <x-jet-admin-card>
             <x-jet-admin-header>Collection Image in Files <span
-                    class="bg-green-500 rounded-md px-2 py-0.5 ml-2">{{ count($collection_image_files) }}</span>
+                    class="bg-indigo-500 rounded-md px-2 py-0.5 ml-2">{{ count($collection_image_files) }}</span>
             </x-jet-admin-header>
             <div class="grid grid-cols-3 my-4">
                 @foreach ($collection_image_files as $file)
@@ -105,7 +105,7 @@
                 @endforeach
             </div>
             <x-jet-admin-header>Collection Image Path in Database <span
-                    class="bg-green-500 rounded-md px-2 py-0.5 ml-2">{{ count($collection_image_path) }}</span>
+                    class="bg-indigo-500 rounded-md px-2 py-0.5 ml-2">{{ count($collection_image_path) }}</span>
             </x-jet-admin-header>
             <div class="grid grid-cols-3 my-4">
                 @foreach ($collection_image_path as $item)
@@ -118,7 +118,7 @@
         <x-jet-section-border />
         <x-jet-admin-card>
             <x-jet-admin-header>Cover Image in Files <span
-                    class="bg-green-500 rounded-md px-2 py-0.5 ml-2">{{ count($cover_image_files) }}</span>
+                    class="bg-indigo-500 rounded-md px-2 py-0.5 ml-2">{{ count($cover_image_files) }}</span>
             </x-jet-admin-header>
             <div class="grid grid-cols-3 my-4">
                 @foreach ($cover_image_files as $file)
@@ -145,7 +145,7 @@
                 @endforeach
             </div>
             <x-jet-admin-header>Cover Image Path in Database <span
-                    class="bg-green-500 rounded-md px-2 py-0.5 ml-2">{{ count($cover_image_path) }}</span>
+                    class="bg-indigo-500 rounded-md px-2 py-0.5 ml-2">{{ count($cover_image_path) }}</span>
             </x-jet-admin-header>
             <div class="grid grid-cols-3 my-4">
                 @foreach ($cover_image_path as $item)
@@ -158,7 +158,7 @@
         <x-jet-section-border />
         <x-jet-admin-card>
             <x-jet-admin-header>Image Back in Files <span
-                    class="bg-green-500 rounded-md px-2 py-0.5 ml-2">{{ count($image_back_files) }}</span>
+                    class="bg-indigo-500 rounded-md px-2 py-0.5 ml-2">{{ count($image_back_files) }}</span>
             </x-jet-admin-header>
             <div class="grid grid-cols-3 my-4">
                 @foreach ($image_back_files as $file)
@@ -185,7 +185,7 @@
                 @endforeach
             </div>
             <x-jet-admin-header>Image Back Path in Database <span
-                    class="bg-green-500 rounded-md px-2 py-0.5 ml-2">{{ count($image_back_path) }}</span>
+                    class="bg-indigo-500 rounded-md px-2 py-0.5 ml-2">{{ count($image_back_path) }}</span>
             </x-jet-admin-header>
             <div class="grid grid-cols-3 my-4">
                 @foreach ($image_back_path as $item)
@@ -198,7 +198,7 @@
         <x-jet-section-border />
         <x-jet-admin-card>
             <x-jet-admin-header>Image Front in Files<span
-                    class="bg-green-500 rounded-md px-2 py-0.5 ml-2">{{ count($image_front_files) }}</span>
+                    class="bg-indigo-500 rounded-md px-2 py-0.5 ml-2">{{ count($image_front_files) }}</span>
             </x-jet-admin-header>
             <div class="grid grid-cols-3 my-4">
                 @foreach ($image_front_files as $file)
@@ -225,7 +225,7 @@
                 @endforeach
             </div>
             <x-jet-admin-header>Image Front Path in Database <span
-                    class="bg-green-500 rounded-md px-2 py-0.5 ml-2">{{ count($image_front_path) }}</span>
+                    class="bg-indigo-500 rounded-md px-2 py-0.5 ml-2">{{ count($image_front_path) }}</span>
             </x-jet-admin-header>
             <div class="grid grid-cols-3 my-4">
                 @foreach ($image_front_path as $item)
@@ -238,7 +238,7 @@
         <x-jet-section-border />
         <x-jet-admin-card>
             <x-jet-admin-header>Mockup Image in Files<span
-                    class="bg-green-500 rounded-md px-2 py-0.5 ml-2">{{ count($mockup_image_files) }}</span>
+                    class="bg-indigo-500 rounded-md px-2 py-0.5 ml-2">{{ count($mockup_image_files) }}</span>
             </x-jet-admin-header>
             <div class="grid grid-cols-3 my-4">
                 @foreach ($mockup_image_files as $file)
@@ -265,7 +265,7 @@
                 @endforeach
             </div>
             <x-jet-admin-header>Mockup Image Path in Database<span
-                    class="bg-green-500 rounded-md px-2 py-0.5 ml-2">{{ count($mockup_image_path) }}</span>
+                    class="bg-indigo-500 rounded-md px-2 py-0.5 ml-2">{{ count($mockup_image_path) }}</span>
             </x-jet-admin-header>
             <div class="grid grid-cols-3 my-4">
                 @foreach ($mockup_image_path as $item)
@@ -275,7 +275,7 @@
                 @endforeach
             </div>
             <x-jet-admin-header>Mockup Image 2 Path in Database<span
-                    class="bg-green-500 rounded-md px-2 py-0.5 ml-2">{{ count($mockup_image_2_path) }}</span>
+                    class="bg-indigo-500 rounded-md px-2 py-0.5 ml-2">{{ count($mockup_image_2_path) }}</span>
             </x-jet-admin-header>
             <div class="grid grid-cols-3 my-4">
                 @foreach ($mockup_image_2_path as $item)
@@ -288,7 +288,7 @@
         <x-jet-section-border />
         <x-jet-admin-card>
             <x-jet-admin-header>Profile Photos in Files <span
-                    class="bg-green-500 rounded-md px-2 py-0.5 ml-2">{{ count($profile_photos_files) }}</span>
+                    class="bg-indigo-500 rounded-md px-2 py-0.5 ml-2">{{ count($profile_photos_files) }}</span>
             </x-jet-admin-header>
             <div class="grid grid-cols-2 my-4">
                 @foreach ($profile_photos_files as $file)
@@ -315,7 +315,7 @@
                 @endforeach
             </div>
             <x-jet-admin-header>Profile Photos Path in Database <span
-                    class="bg-green-500 rounded-md px-2 py-0.5 ml-2">{{ count($profile_photos_path) }}</span>
+                    class="bg-rose-400 rounded-md px-2 py-0.5 ml-2">{{ count($profile_photos_path) }}</span>
             </x-jet-admin-header>
             <div class="grid grid-cols-2 my-4">
                 @foreach ($profile_photos_path as $item)

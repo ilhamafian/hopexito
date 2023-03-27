@@ -14,13 +14,13 @@
                         </svg>
                     </a>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="w-5 h-5">
+                        stroke="currentColor" class="w-4 h-4">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                     </svg>
                     <a href="{{ route('people', $product->shopname) }}"
                         class="p-1 px-2 transition rounded-md hover:bg-indigo-500/50">{{ $product->shopname }}</a>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="w-5 h-5">
+                        stroke="currentColor" class="w-4 h-4">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                     </svg>
                     <p class="text-indigo-400">{{ $product->title }}</p>
@@ -191,7 +191,7 @@
                                         @enderror
                                     </div>
                                     <div class="flex flex-row gap-2 my-2">
-                                        <div class="w-16">
+                                        <div class="w-14">
                                             <input type="radio" name="size" id="XS" value="XS"
                                                 class="hidden" x-on:click="size = 'XS'" x-model="size" />
                                             <label for="XS"
@@ -199,7 +199,7 @@
                                                     'border-white '"
                                                 class="grid p-2 text-sm text-white transition border-2 cursor-pointer place-items-center hover:scale-105">XS</label>
                                         </div>
-                                        <div class="w-16">
+                                        <div class="w-14">
                                             <input type="radio" name="size" id="S" value="S"
                                                 class="hidden" x-on:click="size = 'S'" x-model="size" />
                                             <label for="S"
@@ -207,7 +207,7 @@
                                                     'border-white '"
                                                 class="grid p-2 text-sm text-white transition border-2 cursor-pointer place-items-center hover:scale-105">S</label>
                                         </div>
-                                        <div class="w-16">
+                                        <div class="w-14">
                                             <input type="radio" name="size" id="M" value="M"
                                                 class="hidden" x-on:click="size = 'M'" x-model="size" />
                                             <label for="M"
@@ -215,7 +215,7 @@
                                                     'border-white '"
                                                 class="grid p-2 text-sm text-white transition border-2 cursor-pointer place-items-center hover:scale-105">M</label>
                                         </div>
-                                        <div class="w-16">
+                                        <div class="w-14">
                                             <input type="radio" name="size" id="L" value="L"
                                                 class="hidden" x-on:click="size = 'L'" x-model="size" />
                                             <label for="L"
@@ -223,7 +223,7 @@
                                                     'border-white '"
                                                 class="grid p-2 text-sm text-white transition border-2 cursor-pointer place-items-center hover:scale-105">L</label>
                                         </div>
-                                        <div class="w-16">
+                                        <div class="w-14">
                                             <input type="radio" name="size" id="XL" value="XL"
                                                 class="hidden" x-on:click="size = 'XL'" x-model="size" />
                                             <label for="XL"
