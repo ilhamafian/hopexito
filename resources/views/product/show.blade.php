@@ -1,4 +1,5 @@
 @section('title', $product->title . ' | HopeXito')
+@section('thumbnail', $product->product_image)
 <x-app-layout>
     <x-jet-whatsapp-contact/>
     <section class="min-h-screen pb-12 text-gray-700 bg-neutral-900" x-data="{ preview: 1 }">
