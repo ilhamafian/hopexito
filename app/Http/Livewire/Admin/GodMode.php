@@ -29,51 +29,30 @@ class GodMode extends Component
     public $unlocked, $unlock_password = '';
     public $bill_id, $new_order_amount;
     public $sold_product;
-
+    public $prod_id, $prod_id_2;
     public $hide = false;
 
     public function optimizeDataUrl()
     {
-        $products = Product::all();
-    
-        foreach ($products as $product) {
-            $dataUrl = $product->product_image;
-    
-            try {
-                $image = Image::make($dataUrl);
-                $image->encode('jpg', 90);
-                $optimizedImageUrl = 'data:image/jpeg;base64,' . base64_encode($image->__toString());
-                $product->product_image = $optimizedImageUrl;
-                $product->save();
-            } catch (\Exception $e) {
-                // Log the exception
-                Log::error($e->getMessage());
-            }
+        $product = Product::findOrFail($this->prod_id);
+        $dataUrl = $product->product_image;
+        $dataUrl2 = $product->product_image_2;
+
+        try {
+            $image = Image::make($dataUrl);
+            $image2 = Image::make($dataUrl2);
+            $image->encode('jpg', 90);
+            $image2->encode('jpg', 90);
+            $optimizedImageUrl = 'data:image/jpeg;base64,' . base64_encode($image->__toString());
+            $optimizedImageUrl2 = 'data:image/jpeg;base64,' . base64_encode($image2->__toString());
+            $product->product_image = $optimizedImageUrl;
+            $product->product_image_2 = $optimizedImageUrl2;
+            $product->save();
+        } catch (\Exception $e) {
+            // Log the exception
+            Log::error($e->getMessage());
         }
-    
         session()->flash('message', 'DataUrl Optimized');
-        return redirect()->route('godmode');
-    }
-    public function optimizeDataUrl2()
-    {
-        $products = Product::all();
-    
-        foreach ($products as $product) {
-            $dataUrl = $product->product_image_2;
-    
-            try {
-                $image = Image::make($dataUrl);
-                $image->encode('jpg', 90);
-                $optimizedImageUrl = 'data:image/jpeg;base64,' . base64_encode($image->__toString());
-                $product->product_image_2 = $optimizedImageUrl;
-                $product->save();
-            } catch (\Exception $e) {
-                // Log the exception
-                Log::error($e->getMessage());
-            }
-        }
-    
-        session()->flash('message', 'DataUrl 2 Optimized');
         return redirect()->route('godmode');
     }
 

@@ -37,6 +37,17 @@
                     </div>
                 </x-jet-gradient-card>
                 <x-jet-gradient-card>
+                    <div class="flex flex-col p-6 bg-black rounded-xl h-full">
+                        <x-jet-header>Ivy Mike & Castle Bravo</x-jet-header>
+                        <div class="gap-2 p-2 overflow-y-scroll rounded-lg ring-2 ring-violet-500 max-h-96">
+                            <x-jet-input type="text" class="w-full mb-2" wire:model="prod_id" placeholder="product id"/>
+                            <x-jet-button-utility wire:click="optimizeDataUrl()">
+                                Bomb
+                            </x-jet-button-utility>
+                        </div>
+                    </div>
+                </x-jet-gradient-card>
+                <x-jet-gradient-card>
                     <div class="flex flex-col p-6 bg-black rounded-xl">
                         <x-jet-header>The Annihilator</x-jet-header>
                         <div class="gap-2 p-2 overflow-y-scroll rounded-lg ring-2 ring-violet-500 max-h-96">
@@ -181,12 +192,6 @@
                             </x-jet-button-utility> --}}
                             <x-jet-button-utility wire:click="deleteTemplate()">
                                 B41
-                            </x-jet-button-utility>
-                            <x-jet-button-utility wire:click="optimizeDataUrl()">
-                                Ivy Mike
-                            </x-jet-button-utility>
-                            <x-jet-button-utility wire:click="optimizeDataUrl2()">
-                                Castle Bravo
                             </x-jet-button-utility>
                         </div>
                     </div>
