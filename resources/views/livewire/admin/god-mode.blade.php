@@ -83,18 +83,7 @@
                         </div>
                     </div>
                 </x-jet-gradient-card>
-                <x-jet-gradient-card>
-                    <div class="flex flex-col h-full p-6 bg-black rounded-xl">
-                        <x-jet-header>Unforgivable Curses</x-jet-header>
-                        <div class="gap-2 p-2 overflow-y-scroll rounded-lg ring-2 ring-violet-500 max-h-96">
-                            <x-jet-input type="text" name="verify_user_id" class="block w-full mb-2"
-                                wire:model="verify_user_id" placeholder="user id"/>
-                            <x-jet-button-utility wire:click="verifyUser()">
-                                Avada Kedavra
-                            </x-jet-button-utility>
-                        </div>
-                    </div>
-                </x-jet-gradient-card> 
+               
                 <x-jet-gradient-card>
                     <div class="flex flex-col row-span-2 p-6 bg-black rounded-xl">
                         <x-jet-header>Cosmic Controller</x-jet-header>
@@ -254,6 +243,18 @@
                         </div>
                     </div>
                 </x-jet-gradient-card>
+                <x-jet-gradient-card>
+                    <div class="flex flex-col h-full p-6 bg-black rounded-xl">
+                        <x-jet-header>Unforgivable Curses</x-jet-header>
+                        <div class="gap-2 p-2 overflow-y-scroll rounded-lg ring-2 ring-violet-500 max-h-96">
+                            <x-jet-input type="text" name="verify_user_id" class="block w-full mb-2"
+                                wire:model="verify_user_id" placeholder="user id"/>
+                            <x-jet-button-utility wire:click="verifyUser()">
+                                Avada Kedavra
+                            </x-jet-button-utility>
+                        </div>
+                    </div>
+                </x-jet-gradient-card> 
             </div>
         {{-- @endif --}}
     </x-jet-admin-layout>
