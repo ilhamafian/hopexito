@@ -53,16 +53,16 @@ class ProductsController extends Controller
             $temporaryFile_2->delete();
         }
         $input = $request->all();
-        $dataUrl = $input['product_image'];
-        $image = Image::make($dataUrl);
-        $image->encode('jpg', 60);
-        $optimizedImageUrl = 'data:image/jpeg;base64,' . base64_encode($image->__toString());
-        $input['product_image'] = $optimizedImageUrl;
-        $dataUrl2 = $input['product_image_2'];
-        $image2 = Image::make($dataUrl2);
-        $image2->encode('jpg', 60);
-        $optimizedImageUrl2 = 'data:image/jpeg;base64,' . base64_encode($image2->__toString());
-        $input['product_image_2'] = $optimizedImageUrl2;
+        // $dataUrl = $input['product_image'];
+        // $image = Image::make($dataUrl);
+        // $image->encode('jpg', 60);
+        // $optimizedImageUrl = 'data:image/jpeg;base64,' . base64_encode($image->__toString());
+        // $input['product_image'] = $optimizedImageUrl;
+        // $dataUrl2 = $input['product_image_2'];
+        // $image2 = Image::make($dataUrl2);
+        // $image2->encode('jpg', 60);
+        // $optimizedImageUrl2 = 'data:image/jpeg;base64,' . base64_encode($image2->__toString());
+        // $input['product_image_2'] = $optimizedImageUrl2;
         $input['preview'] = intval($request->input('preview'));
         $input['color'] = implode(',', $request->input('color'));
         $input['artist_id'] = Auth::user()->id;
