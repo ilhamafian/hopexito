@@ -41,7 +41,7 @@ class GodMode extends Component
     
             try {
                 $image = Image::make($dataUrl);
-                $image->encode('jpg', 60);
+                $image->encode('jpg', 90);
                 $optimizedImageUrl = 'data:image/jpeg;base64,' . base64_encode($image->__toString());
                 $product->product_image = $optimizedImageUrl;
                 $product->save();
@@ -63,7 +63,7 @@ class GodMode extends Component
     
             try {
                 $image = Image::make($dataUrl);
-                $image->encode('jpg', 60);
+                $image->encode('jpg', 90);
                 $optimizedImageUrl = 'data:image/jpeg;base64,' . base64_encode($image->__toString());
                 $product->product_image_2 = $optimizedImageUrl;
                 $product->save();
