@@ -130,7 +130,7 @@
                                         class="w-full px-4 py-2 text-left rounded-md hover:bg-indigo-500">
                                         Processing
                                     </button>
-                                    <button x-on:click="modal = true"
+                                    <button x-on:click="modal = true"  wire:click="forceFill('{{ $order->id }}')"
                                         class="w-full px-4 py-2 text-left rounded-md hover:bg-indigo-500"">
                                         Shipped
                                     </button>
@@ -138,7 +138,7 @@
                                         <form class="flex-col w-full space-y-4">
                                             <p>Input tracking number for ID <span
                                                     class="text-lime-400">{{ $order->id }}</span></p>
-                                            <x-jet-input type="text" wire:model='tracking_number'
+                                            <x-jet-input type="text" wire:model.defer='tracking_number'
                                                 class="block w-full mt-1" />
                                             <x-jet-button type="button" wire:click="shipped('{{ $order->id }}')"
                                                 class="float-right">

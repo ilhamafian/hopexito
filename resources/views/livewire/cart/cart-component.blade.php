@@ -215,7 +215,7 @@
         <div class="max-w-5xl mx-auto mt-8">
             <x-jet-admin-card>
                 <div class="p-6">
-                    <div class="w-full px-6">
+                    <div class="w-full lg:px-6">
                         <div
                             class="flex flex-col items-center justify-between gap-2 py-2 text-center border-b border-indigo-500 md:flex-row">
                             <x-jet-title-small>
@@ -227,12 +227,12 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="grid grid-cols-4 gap-4 mt-4">
+                        <div class="grid grid-cols-3 max-w-3xl mx-auto gap-4 my-4">
                             <div class="relative">
                                 @if ($discount != 0.9 && $total >= 60)
                                     <button type="button" wire:click="discount('0.9')"
                                         class="flex items-center justify-center w-full h-16 rounded-md bg-violet-500">
-                                        RM10 Off
+                                        10% Off
                                     </button>
                                 @elseif($discount == 0.9)
                                     <button type="button" wire:click="removeDiscount('1')"
@@ -246,11 +246,11 @@
                                     </button>
                                 @endif
                                 @if ($total >= 60)
-                                    <p class="absolute left-0 right-0 p-2 text-xs text-center -bottom-7 text-lime-500">
+                                    <p class="absolute left-0 right-0 p-2 text-xs text-center -bottom-12 md:-bottom-7 text-lime-500">
                                         Minimum spend: RM60
                                     </p>
                                 @else
-                                    <p class="absolute left-0 right-0 p-2 text-xs text-center -bottom-7 text-rose-500">
+                                    <p class="absolute left-0 right-0 p-2 text-xs text-center -bottom-12 md:-bottom-7 text-rose-500">
                                         Minimum spend: RM60
                                     </p>
                                 @endif
@@ -273,11 +273,11 @@
                                     </button>
                                 @endif
                                 @if ($total >= 90)
-                                    <p class="absolute left-0 right-0 p-2 text-xs text-center -bottom-7 text-lime-500">
+                                    <p class="absolute left-0 right-0 p-2 text-xs text-center  -bottom-12 md:-bottom-7 text-lime-500">
                                         Minimum spend: RM90
                                     </p>
                                 @else
-                                    <p class="absolute left-0 right-0 p-2 text-xs text-center -bottom-7 text-rose-500">
+                                    <p class="absolute left-0 right-0 p-2 text-xs text-center  -bottom-12 md:-bottom-7 text-rose-500">
                                         Minimum spend: RM90
                                     </p>
                                 @endif
@@ -300,47 +300,90 @@
                                     </button>
                                 @endif
                                 @if ($total >= 120)
-                                    <p class="absolute left-0 right-0 p-2 text-xs text-center -bottom-7 text-lime-500">
+                                    <p class="absolute left-0 right-0 p-2 text-xs text-center  -bottom-12 md:-bottom-7 text-lime-500">
                                         Minimum spend: RM120
                                     </p>
                                 @else
-                                    <p class="absolute left-0 right-0 p-2 text-xs text-center -bottom-7 text-rose-500">
+                                    <p class="absolute left-0 right-0 p-2 text-xs text-center  -bottom-12 md:-bottom-7 text-rose-500">
                                         Minimum spend: RM120
-                                    </p>
-                                @endif
-                            </div>
-                            <div class="relative">
-                                @if ($discount != 0.7 && $total >= 200)
-                                    <button type="button" wire:click="discount('0.7')"
-                                        class="flex items-center justify-center w-full h-16 rounded-md bg-violet-500">
-                                        30% Off
-                                    </button>
-                                @elseif($discount == 0.7)
-                                    <button type="button" wire:click="removeDiscount('1')"
-                                        class="flex items-center justify-center w-full h-16 bg-transparent border-2 rounded-md border-violet-500">
-                                        Applied
-                                    </button>
-                                @else
-                                    <button type="button" disabled
-                                        class="flex items-center justify-center w-full h-16 bg-gray-500 rounded-md cursor-not-allowed">
-                                        30% Off
-                                    </button>
-                                @endif
-                                @if ($total >= 200)
-                                    <p class="absolute left-0 right-0 p-2 text-xs text-center -bottom-7 text-lime-500">
-                                        Minimum spend: RM200
-                                    </p>
-                                @else
-                                    <p class="absolute left-0 right-0 p-2 text-xs text-center -bottom-7 text-rose-500">
-                                        Minimum spend: RM200
                                     </p>
                                 @endif
                             </div>
                         </div>
             </x-jet-admin-card>
         </div>
+    @endif --}}
 </div>
-@endif --}}
+@if (Auth::check())
+    @if ($cart->count() != 0)
+        <div class="mt-10">
+            <x-jet-gradient-card>
+                <div class="w-full bg-black rounded-lg md:p-6">
+                    <div class="w-full px-6">
+                        <div
+                            class="flex flex-col items-center justify-between gap-2 py-2 text-center border-b-2 border-indigo-500 md:flex-row">
+                            <x-jet-title-small>
+                                You May Also Like
+                            </x-jet-title-small>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 mx-auto mt-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                            @foreach ($products as $product)
+                                <a href="{{ route('product.show', $product->slug) }}" x-data="{ open: false }">
+                                    <div
+                                        class="relative p-1 transition shadow-lg cursor-pointer group rounded-xl hover:shadow-fuchsia-500/50 bg-white/5 backdrop-filter backdrop-blur-3xl">
+                                        <div class="w-full overflow-hidden rounded-lg min-h-75"
+                                            x-on:mouseenter="open = true" x-on:mouseleave="open = false">
+                                            @if ($product->product_image_2 && $product->preview == 0)
+                                                <img src="{{ $product->product_image }}" alt="{{ $product->title }}"
+                                                    x-show="open == false"
+                                                    class="w-full h-full transition ease-in-out rounded-t-lg">
+
+                                                <img x-cloak src="{{ $product->product_image_2 }}"
+                                                    alt="{{ $product->title }}" x-show="open == true"
+                                                    class="w-full h-full transition ease-in-out rounded-t-lg">
+                                            @elseif($product->product_image_2 && $product->preview == 1)
+                                                <img src="{{ $product->product_image_2 }}"
+                                                    alt="{{ $product->title }}" x-show="open == false"
+                                                    class="w-full h-full transition ease-in-out rounded-t-lg">
+                                                <img x-cloak src="{{ $product->product_image }}"
+                                                    alt="{{ $product->title }}" x-show="open == true"
+                                                    class="w-full h-full transition ease-in-out rounded-t-lg">
+                                            @else
+                                                <img src="{{ $product->product_image }}" alt="{{ $product->title }}"
+                                                    class="w-full h-full transition ease-in-out rounded-t-lg">
+                                            @endif
+                                        </div>
+                                        <div
+                                            class="flex flex-col justify-between px-2 py-1 tracking-wider md:px-4 md:py-2">
+                                            @if ($product->category == 'Shirt')
+                                                <p class="px-3 py-0.5 mt-1 bg-fuchsia-700/80 rounded-md w-fit text-xs">
+                                                    Standard
+                                                    Tee</p>
+                                            @elseif($product->category == 'Oversized')
+                                                <p class="px-3 py-0.5 mt-1 rounded-md bg-indigo-700/80 w-fit text-xs">
+                                                    Oversized
+                                                    Tee</p>
+                                            @else
+                                                <p></p>
+                                            @endif
+                                            <div class="mt-2 text-sm text-white truncate md:font-medium">
+                                                {{ $product->title }}
+                                            </div>
+                                            <h2 class="hover:text-fuchsia-500">By {{ $product->shopname }}
+                                            </h2>
+                                            <h2 class="m-1 text-lg text-center md:m-2 text-fuchsia-500">
+                                                RM{{ number_format($product->price, 2) }}</h2>
+                                        </div>
+                                    </div>
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </x-jet-gradient-card>
+        </div>
+    @endif
+@endif
 <script>
     // Set the date we're counting down to
     var countDownDate = new Date("Apr 21, 2023 23:59:59").getTime();

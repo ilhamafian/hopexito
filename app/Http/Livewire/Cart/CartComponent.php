@@ -6,6 +6,7 @@ use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use Gloudemans\Shoppingcart\Facades\Cart as SessionCart;
 use App\Models\Cart;
+use App\Models\Product;
 
 class CartComponent extends Component
 {
@@ -103,12 +104,14 @@ class CartComponent extends Component
         if (Auth::check()) {
             $cart = Cart::where('email', Auth::user()->email)->orderBy('created_at')->get();
             $discount = Cart::where('email', Auth::user()->email)->value('discount');
+            $products = Product::where('status', 3)->inRandomOrder()->take(4)->get();
             $total = $this->total();
         } else {
             $cart = SessionCart::instance('cart')->content();
             $discount = 1;
+            $products = Product::where('status', 3)->inRandomOrder()->take(4)->get();
             $total = $this->total();
         }
-        return view('livewire.cart.cart-component', compact('cart', 'total', 'discount'));
+        return view('livewire.cart.cart-component', compact('cart', 'total', 'discount','products'));
     }
 }

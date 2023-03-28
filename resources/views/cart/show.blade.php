@@ -46,7 +46,7 @@
                             <div class="col-span-6 sm:col-span-4">
                                 <x-jet-label for="phone" value="{{ __('Phone Number') }}" />
                                 <x-jet-input id="phone" type="text" name="phone" class="block w-full mt-1"
-                                    value="{{ Auth::user()->phone }}" disabled />
+                                    value="+60{{ Auth::user()->phone }}" disabled />
                             </div>
                             <div class="col-span-6 sm:col-span-4">
                                 <x-jet-label for="address" value="{{ __('Address') }}" />
@@ -79,7 +79,7 @@
                             <div class="col-span-6 sm:col-span-4">
                                 <x-jet-label for="phone" value="{{ __('Phone Number') }}" />
                                 <x-jet-input id="phone" type="text" name="phone" class="block w-full mt-1"
-                                    value="+60 {{ $details['phone'] }}" disabled />
+                                    value="+60{{ $details['phone'] }}" disabled />
                             </div>
                             <div class="col-span-6 sm:col-span-4">
                                 <x-jet-label for="address" value="{{ __('Address') }}" />

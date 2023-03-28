@@ -56,10 +56,14 @@ class AdminOrder extends Component
         return response()->download(storage_path($imageFilePath));
     }
 
+    public function forceFill($id){
+        $order = Order::findOrFail($id);
+        $this->tracking_number = $order->tracking_number;
+    }
+
     public function render()
     {
         $orders = Order::orderBy('paid_at','DESC')->get();
-        // $orders = Order::paginate(5);
         $totalOrder = Order::count();
         $totalAmount = Order::sum('amount');
         $totalDelivery = Order::sum('delivery');

@@ -41,6 +41,6 @@ class Searchbar extends Component
             ->with('wallet')
             ->get(['name', 'profile_photo_path']);
 
-        return view('livewire.searchbar', compact('keywords', 'trending_searches', 'top_artists','users'));
+        return view('livewire.searchbar', compact('keywords', 'trending_searches','users'));
     }
 }
