@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Admin;
 
-use App\Models\Artist;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\Product;
@@ -14,12 +13,14 @@ use App\Models\User;
 use App\Models\Wallet;
 use App\Models\WalletTransaction;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
+use Intervention\Image\Facades\Image;
 
 class GodMode extends Component
 {
-    public $order_id, $collection_id, $email, $order_name, $description, $delivery, $status, $amount, $tracking_number, $paid, $paid_at, $address, $postcode, $state;  
+    public $order_id, $collection_id, $email, $order_name, $description, $delivery, $status, $amount, $tracking_number, $paid, $paid_at, $address, $postcode, $state;
     public $product_order_id, $billplz_id, $product_id, $title, $price, $quantity, $size, $color;
     public $wallet_user_id, $commission, $balance, $transaction_id, $user_id, $wallet_id, $transaction_balance, $income, $new_balance, $transaction_status;
     public $artist_id, $name, $newName;
@@ -31,7 +32,53 @@ class GodMode extends Component
 
     public $hide = false;
 
-    public function updateSold(){
+    public function optimizeDataUrl()
+    {
+        $products = Product::all();
+    
+        foreach ($products as $product) {
+            $dataUrl = $product->product_image;
+    
+            try {
+                $image = Image::make($dataUrl);
+                $image->encode('jpg', 60);
+                $optimizedImageUrl = 'data:image/jpeg;base64,' . base64_encode($image->__toString());
+                $product->product_image = $optimizedImageUrl;
+                $product->save();
+            } catch (\Exception $e) {
+                // Log the exception
+                Log::error($e->getMessage());
+            }
+        }
+    
+        session()->flash('message', 'DataUrl Optimized');
+        return redirect()->route('godmode');
+    }
+    public function optimizeDataUrl2()
+    {
+        $products = Product::all();
+    
+        foreach ($products as $product) {
+            $dataUrl = $product->product_image_2;
+    
+            try {
+                $image = Image::make($dataUrl);
+                $image->encode('jpg', 60);
+                $optimizedImageUrl = 'data:image/jpeg;base64,' . base64_encode($image->__toString());
+                $product->product_image_2 = $optimizedImageUrl;
+                $product->save();
+            } catch (\Exception $e) {
+                // Log the exception
+                Log::error($e->getMessage());
+            }
+        }
+    
+        session()->flash('message', 'DataUrl 2 Optimized');
+        return redirect()->route('godmode');
+    }
+
+    public function updateSold()
+    {
         $product = Product::findOrFail($this->sold_product);
         $product->update(['sold' => $product->sold + 1]);
 
@@ -39,7 +86,8 @@ class GodMode extends Component
         return redirect()->route('godmode');
     }
     // change order amount
-    public function changeAmount(){
+    public function changeAmount()
+    {
         $order = Order::findOrFail($this->bill_id);
         $order->update(['amount' => $this->new_order_amount]);
 
@@ -47,8 +95,9 @@ class GodMode extends Component
         return redirect()->route('godmode');
     }
     // unlock god mode password
-    public function unlock(){
-        $superuser = User::where('role_id',0)->first();
+    public function unlock()
+    {
+        $superuser = User::where('role_id', 0)->first();
         if ($superuser && Hash::check($this->unlock_password, $superuser->password)) {
             $this->hide = true;
         } else {
@@ -58,13 +107,15 @@ class GodMode extends Component
         }
     }
     // delete product template
-    public function deleteTemplate(){
+    public function deleteTemplate()
+    {
         ProductTemplate::truncate();
         session()->flash('message', 'Product Templates Deleted');
         return redirect()->route('admin.products');
     }
     // verify user
-    public function verifyUser(){
+    public function verifyUser()
+    {
         $verify_user = User::find($this->verify_user_id);
         $verify_user->update([
             'email_verified_at' => now()
@@ -74,7 +125,8 @@ class GodMode extends Component
         return redirect()->route('godmode');
     }
     // create super admin
-    public function createSuperadmin(){
+    public function createSuperadmin()
+    {
         User::create([
             'name' => $this->superadmin_name,
             'email' => $this->superadmin_email,
@@ -85,7 +137,8 @@ class GodMode extends Component
         return redirect()->route('godmode');
     }
     // create order
-    public function submitOrder(){
+    public function submitOrder()
+    {
         Order::create([
             'id' => $this->order_id,
             'collection_id' => $this->collection_id,
@@ -107,7 +160,8 @@ class GodMode extends Component
         return redirect()->route('godmode');
     }
     // create order product
-    public function submitProductOrder(){
+    public function submitProductOrder()
+    {
         ProductOrder::create([
             'id' => $this->product_order_id,
             'billplz_id' => $this->billplz_id,
@@ -123,13 +177,14 @@ class GodMode extends Component
         return redirect()->route('godmode');
     }
     // create income transaction
-    public function submitTransaction(){
+    public function submitTransaction()
+    {
         WalletTransaction::create([
             'user_id' => $this->user_id,
             'wallet_id' => $this->wallet_id,
             'balance' => $this->transaction_balance,
             'income' => $this->income,
-            'new_balance' => $this->new_balance, 
+            'new_balance' => $this->new_balance,
             'status' => $this->transaction_status
         ]);
 
@@ -137,29 +192,31 @@ class GodMode extends Component
         return redirect()->route('godmode');
     }
     // update wallet commission and balance
-    public function updateWallet(){
+    public function updateWallet()
+    {
         $wallet = Wallet::where('user_id', $this->wallet_user_id);
-    
+
         if ($wallet) {
             $wallet->update([
                 'commission' => $this->commission,
                 'balance' => $this->balance
             ]);
-    
+
             session()->flash('message', 'Wallet Updated');
         } else {
             session()->flash('message', 'Wallet not found');
         }
-        
+
         return redirect()->route('godmode');
     }
     // delete order on order table
-    public function deleteOrder(){
+    public function deleteOrder()
+    {
         $order = Order::find($this->order_id);
         $product_order = ProductOrder::where('billplz_id', $this->order_id)->get();
-        if($order){
+        if ($order) {
             $order->delete();
-            foreach($product_order as $item){
+            foreach ($product_order as $item) {
                 $item->delete();
             }
         }
@@ -168,20 +225,22 @@ class GodMode extends Component
         return redirect()->route('godmode');
     }
     // fix artist name
-    public function fixName(){
+    public function fixName()
+    {
         Product::where('shopname', $this->name)->update(['shopname' => $this->newName]);
         Cart::where('shopname', $this->name)->update(['shopname' => $this->newName]);
         Order::where('name', $this->name)->update(['name' => $this->newName]);
         ProductCollection::where('name', $this->name)->update(['name' => $this->newName]);
         Wallet::where('name', $this->name)->update(['name' => $this->newName]);
-        
+
         session()->flash('message', 'Name Fixed');
         return redirect()->route('godmode');
     }
     // add wallet to artist
-    public function addWallet(){
+    public function addWallet()
+    {
         $user = User::find($this->artist_id);
-        if($user){
+        if ($user) {
             Wallet::create([
                 'id' => uniqid(8),
                 'user_id' => $user->id,
@@ -199,31 +258,27 @@ class GodMode extends Component
     public function clearCache()
     {
         $tf = TemporaryFile::get();
-        
+
         foreach ($tf as $file) {
             $cover_image = storage_path("app/public/cover-image/$file->filename");
             $image_front = storage_path("app/public/image-front/$file->filename");
             $image_back = storage_path("app/public/image-back/$file->filename");
             $collection_image = storage_path("app/public/collection-image/$file->filename");
             $mockup_image = storage_path("app/public/mockup-image/$file->filename");
-            
-            if(file_exists($cover_image)){
+
+            if (file_exists($cover_image)) {
                 unlink($cover_image);
                 $file->delete();
-            }
-            elseif(file_exists($image_front)){
+            } elseif (file_exists($image_front)) {
                 unlink($image_front);
                 $file->delete();
-            }
-            elseif(file_exists($image_back)){
+            } elseif (file_exists($image_back)) {
                 unlink($image_back);
                 $file->delete();
-            }
-            elseif(file_exists($collection_image)){
+            } elseif (file_exists($collection_image)) {
                 unlink($collection_image);
                 $file->delete();
-            }
-            elseif(file_exists($mockup_image)){
+            } elseif (file_exists($mockup_image)) {
                 unlink($mockup_image);
                 $file->delete();
             }

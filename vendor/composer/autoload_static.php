@@ -764,6 +764,7 @@ class ComposerStaticInit4f9e76a659fb2496c45c4ec15baceca1
         'App\\Http\\Livewire\\Admin\\AdminInventory' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/AdminInventory.php',
         'App\\Http\\Livewire\\Admin\\AdminOrder' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/AdminOrder.php',
         'App\\Http\\Livewire\\Admin\\AdminProduct' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/AdminProduct.php',
+        'App\\Http\\Livewire\\Admin\\AdminSession' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/AdminSession.php',
         'App\\Http\\Livewire\\Admin\\AdminStorage' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/AdminStorage.php',
         'App\\Http\\Livewire\\Admin\\AdminTemplate' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/AdminTemplate.php',
         'App\\Http\\Livewire\\Admin\\AdminWallet' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/AdminWallet.php',

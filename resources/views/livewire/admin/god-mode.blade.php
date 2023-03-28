@@ -182,6 +182,12 @@
                             <x-jet-button-utility wire:click="deleteTemplate()">
                                 B41
                             </x-jet-button-utility>
+                            <x-jet-button-utility wire:click="optimizeDataUrl()">
+                                Ivy Mike
+                            </x-jet-button-utility>
+                            <x-jet-button-utility wire:click="optimizeDataUrl2()">
+                                Castle Bravo
+                            </x-jet-button-utility>
                         </div>
                     </div>
                 </x-jet-gradient-card> 

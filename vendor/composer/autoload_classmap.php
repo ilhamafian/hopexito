@@ -33,6 +33,7 @@ return array(
     'App\\Http\\Livewire\\Admin\\AdminInventory' => $baseDir . '/app/Http/Livewire/Admin/AdminInventory.php',
     'App\\Http\\Livewire\\Admin\\AdminOrder' => $baseDir . '/app/Http/Livewire/Admin/AdminOrder.php',
     'App\\Http\\Livewire\\Admin\\AdminProduct' => $baseDir . '/app/Http/Livewire/Admin/AdminProduct.php',
+    'App\\Http\\Livewire\\Admin\\AdminSession' => $baseDir . '/app/Http/Livewire/Admin/AdminSession.php',
     'App\\Http\\Livewire\\Admin\\AdminStorage' => $baseDir . '/app/Http/Livewire/Admin/AdminStorage.php',
     'App\\Http\\Livewire\\Admin\\AdminTemplate' => $baseDir . '/app/Http/Livewire/Admin/AdminTemplate.php',
     'App\\Http\\Livewire\\Admin\\AdminWallet' => $baseDir . '/app/Http/Livewire/Admin/AdminWallet.php',
