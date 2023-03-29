@@ -211,7 +211,7 @@
             </div>
         </x-jet-gradient-card>
     </div>
-    {{-- @if (Auth::check())
+    @if (Auth::check())
         <div class="max-w-5xl mx-auto mt-8">
             <x-jet-admin-card>
                 <div class="p-6">
@@ -312,7 +312,7 @@
                         </div>
             </x-jet-admin-card>
         </div>
-    @endif --}}
+    @endif
 </div>
 @if (Auth::check())
     @if ($cart->count() != 0)
