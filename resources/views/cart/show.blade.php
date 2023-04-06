@@ -141,7 +141,7 @@
                                     <img src="image\fpx-logo\bank-islam.png" class="h-4 md:h-8" />
                                 </label>
                             </div>
-                            <div>
+                          <div>
                                 <input class="hidden" id="cimb" type="radio" name="radio" value="BCBB0235"
                                     x-on:click="radio = BCBB0235" x-model="radio">
                                 <label class="flex flex-col p-4 bg-transparent border-2 rounded-md cursor-pointer"

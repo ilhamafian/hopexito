@@ -30,8 +30,15 @@ class GodMode extends Component
     public $bill_id, $new_order_amount;
     public $sold_product;
     public $prod_id, $prod_id_2;
+    public $product_order_id_2;
     public $hide = false;
 
+    public function fixFarhana(){
+        $productorderid = ProductOrder::findOrFail($this->product_order_id_2);
+        $productorderid->update(['billplz_id' => 'pvvhk7a2']);
+        session()->flash('message', 'Fixed');
+        return redirect()->route('godmode');
+    }
     public function optimizeDataUrl()
     {
         $product = Product::findOrFail($this->prod_id);
