@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin;
 
 use App\Models\Product;
 use App\Models\ProductCollection;
+use App\Models\ProductOrder;
 use App\Models\ProductTemplate;
 use Livewire\Component;
 
@@ -30,7 +31,7 @@ class AdminProduct extends Component
             return explode(',', $item);
         })->flatten()->unique()->toArray();
         $totalProducts = Product::count();
-        $totalSold = Product::sum('sold');
+        $totalSold = ProductOrder::count();
         $averagePrice = Product::average('price');
         $totalTemplates = ProductTemplate::count();
         $totalCollection = ProductCollection::count();

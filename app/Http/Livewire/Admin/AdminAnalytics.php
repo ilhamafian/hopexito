@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin;
 
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\ProductOrder;
 use App\Models\Search;
 use App\Models\User;
 use App\Models\Wallet;
@@ -22,7 +23,7 @@ class AdminAnalytics extends Component
         $totalSales = Order::sum('amount');
         $totalCommission = Wallet::sum('commission');
         $averagePrice = Product::average('price');
-        $totalSold = Product::sum('sold');
+        $totalSold = ProductOrder::count();
         $totalUsers = User::where('role_id', 3)->count();
         $totalArtists = User::where('role_id', 2)->count();
         $products = Product::orderBy('sold','desc')->take(20)->get();
