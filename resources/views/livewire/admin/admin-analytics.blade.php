@@ -65,51 +65,55 @@
         <x-jet-section-border />
         <div class="grid grid-cols-2 gap-12 text-center text-white" x-data="{ x: 0 }">
             <x-jet-admin-card>
-                <x-jet-header>Product Leaderboard</x-jet-header>
-                @foreach ($products as $item)
-                    <a class="flex flex-col m-3" href="{{ route('product.show', $item->slug) }}">
-                        <div class="relative group">
-                            <div
-                                class="absolute transition duration-1000 rounded-lg opacity-25 -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 blur group-hover:opacity-100 group-hover:duration-200">
-                            </div>
-                            <div class="relative flex items-center justify-between px-6 py-4 bg-black rounded-lg">
-                                <p class="text-white">{{ $item->title }}</p>
-                                <div class="flex items-center gap-4">
-                                    <p class="transition text-fuchsia-400 group-hover:text-orange-400">
-                                        {{ $item->shopname }}</p>
-                                    <div class="px-6 py-2 rounded-lg bg-rose-500">
-                                        {{ $item->sold }} sold
+                <div class="overflow-y-scroll h-[500px]">
+                    <x-jet-header>Product Leaderboard</x-jet-header>
+                    @foreach ($products as $item)
+                        <a class="flex flex-col m-3" href="{{ route('product.show', $item->slug) }}">
+                            <div class="relative group">
+                                <div
+                                    class="absolute transition duration-1000 rounded-lg opacity-25 inset-0.5 bg-gradient-to-r from-purple-600 to-pink-600 blur group-hover:opacity-100 group-hover:duration-200">
+                                </div>
+                                <div class="relative flex items-center justify-between px-6 py-4 bg-black rounded-lg">
+                                    <p class="text-white">{{ $item->title }}</p>
+                                    <div class="flex items-center gap-4">
+                                        <p class="transition text-fuchsia-400 group-hover:text-orange-400">
+                                            {{ $item->shopname }}</p>
+                                        <div class="px-6 py-2 rounded-lg bg-rose-500">
+                                            {{ $item->sold }} sold
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
-                @endforeach
+                        </a>
+                    @endforeach
+                </div>
             </x-jet-admin-card>
             <x-jet-admin-card>
-                <x-jet-header>Commission Leaderboard</x-jet-header>
-                @foreach ($wallets as $wallet)
-                    <a class="flex flex-col m-3" href="{{ route('people', $wallet->name) }}">
-                        <div class="relative group">
-                            <div
-                                class="absolute transition duration-1000 rounded-lg opacity-25 -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 blur group-hover:opacity-100 group-hover:duration-200">
-                            </div>
-                            <div class="relative flex items-center justify-between px-6 py-4 bg-black rounded-lg">
-                                <p class="text-white">{{ $wallet->name }}</p>
-                                <div class="flex items-center gap-4">
-                                    <p class="transition text-fuchsia-400 group-hover:text-orange-400">
-                                        RM {{ number_format($wallet->balance, 2) }}</p>
-                                    <div class="px-6 py-2 rounded-lg bg-rose-500">
-                                        RM {{ number_format($wallet->commission, 2) }}
+                <div class="overflow-y-scroll h-[500px]">
+                    <x-jet-header>Commission Leaderboard</x-jet-header>
+                    @foreach ($wallets as $wallet)
+                        <a class="flex flex-col m-3" href="{{ route('people', $wallet->name) }}">
+                            <div class="relative group">
+                                <div
+                                    class="absolute inset-0.5 transition duration-1000 rounded-lg opacity-25 bg-gradient-to-r from-purple-600 to-pink-600 blur group-hover:opacity-100 group-hover:duration-200">
+                                </div>
+                                <div class="relative flex items-center justify-between px-6 py-4 bg-black rounded-lg">
+                                    <p class="text-white">{{ $wallet->name }}</p>
+                                    <div class="flex items-center gap-4">
+                                        <p class="transition text-fuchsia-400 group-hover:text-orange-400">
+                                            RM {{ number_format($wallet->balance, 2) }}</p>
+                                        <div class="px-6 py-2 rounded-lg bg-rose-500">
+                                            RM {{ number_format($wallet->commission, 2) }}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
-                @endforeach
+                        </a>
+                    @endforeach
+                </div>
             </x-jet-admin-card>
         </div>
-        <x-jet-section-border/>
+        <x-jet-section-border />
         <x-jet-admin-card>
             <x-jet-header>Trending Search</x-jet-header>
             <div class="grid grid-cols-5 gap-3">

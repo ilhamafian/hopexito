@@ -26,8 +26,8 @@ class AdminAnalytics extends Component
         $totalSold = ProductOrder::sum('quantity');
         $totalUsers = User::where('role_id', 3)->count();
         $totalArtists = User::where('role_id', 2)->count();
-        $products = Product::orderBy('sold','desc')->where('sold','>',0)->get();
-        $wallets = Wallet::orderBy('commission','desc')->take(5)->get();
+        $products = Product::orderBy('sold','desc')->where('sold','>', 0)->get();
+        $wallets = Wallet::orderBy('commission','desc')->where('commission', '>', 20)->get();
 
         return view('livewire.admin.admin-analytics', compact('searches','totalProducts','totalSales','totalCommission','averagePrice','totalSold','totalUsers','totalArtists','products','wallets'));
     }

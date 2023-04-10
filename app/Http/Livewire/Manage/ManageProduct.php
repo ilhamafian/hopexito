@@ -171,7 +171,7 @@ class ManageProduct extends Component
         $productCollections = ProductCollection::where('name', Auth::user()->name)->get();
         $archives = Product::where('shopname', Auth::user()->name)->where('status', 2)->get();
         $noArchives = $archives->isEmpty();
-        $totalItem = $products->sum('sold');
+        $totalItem = Product::where('name', Auth::user()->name)->sum('sold');
         $totalCommission = $this->totalCommission();
         $inCart = $this->inCart();
 
