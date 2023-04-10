@@ -23,7 +23,7 @@ class AdminAnalytics extends Component
         $totalSales = Order::sum('amount');
         $totalCommission = Wallet::sum('commission');
         $averagePrice = Product::average('price');
-        $totalSold = ProductOrder::count();
+        $totalSold = ProductOrder::sum('quantity');
         $totalUsers = User::where('role_id', 3)->count();
         $totalArtists = User::where('role_id', 2)->count();
         $products = Product::orderBy('sold','desc')->where('sold','>',0)->get();
