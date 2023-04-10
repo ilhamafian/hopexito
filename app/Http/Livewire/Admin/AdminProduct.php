@@ -31,7 +31,7 @@ class AdminProduct extends Component
             return explode(',', $item);
         })->flatten()->unique()->toArray();
         $totalProducts = Product::count();
-        $totalSold = ProductOrder::count();
+        $totalSold = ProductOrder::sum('quantity');
         $averagePrice = Product::average('price');
         $totalTemplates = ProductTemplate::count();
         $totalCollection = ProductCollection::count();
