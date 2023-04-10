@@ -63,7 +63,7 @@ class AdminOrder extends Component
 
     public function render()
     {
-        $orders = Order::orderBy('paid_at','DESC')->get();
+        $orders = Order::orderBy('paid_at','DESC')->paginate(10);
         $totalOrder = Order::count();
         $totalAmount = Order::sum('amount');
         $totalDelivery = Order::sum('delivery');

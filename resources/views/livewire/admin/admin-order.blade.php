@@ -216,7 +216,9 @@
                         @endforeach
                     </div>
                 @endforeach
-                {{-- {{ $orders->links('pagination/pagination-links') }} --}}
+                <div class="mt-4">
+                    {{ $orders->links('/vendor/pagination/tailwind') }}
+                </div>
             </div>
         </x-jet-admin-card>
     </x-jet-admin-layout>

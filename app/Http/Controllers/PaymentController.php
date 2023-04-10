@@ -175,39 +175,39 @@ class PaymentController extends Controller
 
         // return redirect('https://www.billplz-sandbox.com/bills/' . $billId . '?auto_submit=true');
     }
-      // Update Wallet
-      private function updateCommissionGuest($cart)
-      {
-          try {
-              $product = Product::findOrFail($cart->id);
-              $user = User::where('name', $cart->options['shopname'])->first();
-              $wallet = Wallet::where('user_id', $user->id)->first();
-              $wallet_balance = $wallet->balance;
-              $commission = $wallet->commission + $product->commission * $cart->qty;
-              $balance = $wallet->balance + $product->commission * $cart->qty;
-              $quantity = $product->sold + $cart->qty;
-  
-              $wallet->update([
-                  'commission' => $commission,
-                  'balance' => $balance,
-              ]);
-  
-              WalletTransaction::create([
-                  'user_id' => $user->id,
-                  'wallet_id' => $wallet->id,
-                  'balance' => $wallet_balance,
-                  'income' => $product->commission * $cart->qty,
-                  'new_balance' => $balance,
-                  'status' => 3
-              ]);
-  
-              $product->update([
-                  'sold' => $quantity
-              ]);
-          } catch (\Exception $e) {
-              print_r($e->getMessage());
-          }
-      }
+    // Update Wallet
+    private function updateCommissionGuest($cart)
+    {
+        try {
+            $product = Product::findOrFail($cart->id);
+            $user = User::where('name', $cart->options['shopname'])->first();
+            $wallet = Wallet::where('user_id', $user->id)->first();
+            $wallet_balance = $wallet->balance;
+            $commission = $wallet->commission + $product->commission * $cart->qty;
+            $balance = $wallet->balance + $product->commission * $cart->qty;
+            $quantity = $product->sold + $cart->qty;
+
+            $wallet->update([
+                'commission' => $commission,
+                'balance' => $balance,
+            ]);
+
+            WalletTransaction::create([
+                'user_id' => $user->id,
+                'wallet_id' => $wallet->id,
+                'balance' => $wallet_balance,
+                'income' => $product->commission * $cart->qty,
+                'new_balance' => $balance,
+                'status' => 3
+            ]);
+
+            $product->update([
+                'sold' => $quantity
+            ]);
+        } catch (\Exception $e) {
+            print_r($e->getMessage());
+        }
+    }
     // Update Wallet
     private function updateCommission(Cart $cart)
     {
@@ -237,6 +237,7 @@ class PaymentController extends Controller
             $product->update([
                 'sold' => $quantity
             ]);
+            
         } catch (\Exception $e) {
             print_r($e->getMessage());
         }

@@ -119,8 +119,9 @@ class ExploreController extends Controller
         $user = User::where('name', $shopname)->first();
         $products = Product::where('artist_id', $user->id)->where('status', '<>', 2)->orderBy('status', 'desc')->orderBy('created_at','desc')->paginate(16);
         $productsCollection = ProductCollection::where('name', $shopname)->get();
+        $totalSold = $products->sum('sold');
 
-        return view('people', compact('user', 'products', 'productsCollection'));
+        return view('people', compact('user', 'products', 'productsCollection', 'totalSold'));
     }
     // upgrade user from customer to seller
     public function upgrade($id)

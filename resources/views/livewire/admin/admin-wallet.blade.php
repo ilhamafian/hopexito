@@ -44,7 +44,7 @@
             <x-jet-admin-card>
                 <x-jet-header>Withdrawal Request</x-jet-header>
                 <div class="flex flex-col gap-2 m-4">
-                    <div class="w-full p-2 rounded-lg  bg-black/50">
+                    <div class="w-full p-2 rounded-lg bg-black/50">
                         <div class="flex items-center text-white">
                             <p class="basis-[11%]"><span class="px-3 py-1 rounded-md bg-violet-500">Wallet Name</span>
                             </p>
@@ -63,7 +63,7 @@
                         </div>
                     </div>
                     @foreach ($wallets as $wallet)
-                        <div class="w-full p-3 rounded-lg  bg-black/50" x-data="{ open: false, id: '' }">
+                        <div class="w-full p-3 rounded-lg bg-black/50" x-data="{ open: false, id: '' }">
                             @if ($wallet->status == 2)
                                 <div class="flex items-center text-white">
                                     <p class="basis-[11%] text-xs">{{ $wallet->name }}</p>
@@ -113,8 +113,8 @@
             <x-jet-admin-card>
                 <x-jet-header>Income Transaction</x-jet-header>
                 <div class="flex flex-col gap-2 m-4">
-                    <div class="w-full p-2 rounded-lg  bg-black/50">
-                        <div class="flex items-center text-white text-center">
+                    <div class="w-full p-2 rounded-lg bg-black/50">
+                        <div class="flex items-center text-center text-white">
                             <p class="basis-[30%]"><span class="px-3 py-1 rounded-md bg-violet-500">Name</span>
                             </p>
                             <p class="basis-[15%]"><span class="px-3 py-1 rounded-md bg-violet-500">Balance</span>
@@ -127,8 +127,8 @@
                         </div>
                     </div>
                     @foreach ($walletTransactions as $item)
-                        <div class="w-full p-3 rounded-lg  bg-black/50" x-data="{ open: false, id: '' }">
-                            <div class="flex items-center text-white text-center">
+                        <div class="w-full p-3 rounded-lg bg-black/50" x-data="{ open: false, id: '' }">
+                            <div class="flex items-center text-center text-white">
                                 <p class="basis-[30%] text-violet-400">{{ $item->walletHolder->name }}</p>
                                 <p class="basis-[15%]">{{ $item->balance }} </p>
                                 <p class="basis-[15%]"><span class="px-2 py-0.5 bg-teal-600 rounded-md">{{ $item->income }}</span></p>
@@ -138,6 +138,9 @@
                             </div>
                         </div>
                     @endforeach
+                    <div class="mt-4">
+                        {{ $walletTransactions->links('/vendor/pagination/tailwind') }}
+                    </div>
                 </div>
             </x-jet-admin-card>
             <x-jet-section-border />

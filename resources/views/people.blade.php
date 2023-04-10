@@ -21,6 +21,8 @@
             <p class="flex items-center justify-center gap-2">Joined {{ $user->created_at->format('M Y') }}
                 <span class="text-2xl">&middot;</span>
                 {{ $products->count() }} Designs
+                <span class="text-2xl">&middot;</span>
+                {{ $totalSold }}
             </p>
             <div class="p-1 mx-auto rounded-full bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 w-fit">
                 <div class="flex justify-center gap-2 p-2 bg-black rounded-full ">
@@ -96,7 +98,7 @@
                     @else
                         <a class="sm:p-1 p-0.5">
                             <svg xmlns="http://www.w3.org/2000/svg"
-                                class="w-6 h-6 bg-gray-700 rounded-full  sm:w-8 sm:h-8">
+                                class="w-6 h-6 bg-gray-700 rounded-full sm:w-8 sm:h-8">
                                 <path
                                     d="M26 4.9c0-.1 0-.1 0 0C23.3 2.4 19.8 1 16 1c-1.7 0-3.3.3-4.9.8-.2 0-.4.1-.6.2C5 4.2 1 9.7 1 16c0 4.1 1.6 7.7 4.2 10.4l.1.1C8 29.3 11.8 31 16 31c8.3 0 15-6.7 15-15 0-4.4-1.9-8.4-5-11.1zM16 4c2.7 0 5.1.9 7.1 2.4-.6 1-2.2 2.8-5.4 4-1-2.1-2.3-4.2-3.8-6.2.7-.1 1.4-.2 2.1-.2zm-5.1 1.2c1.6 2 2.8 4.1 3.9 6.2-2.6.6-5.8.8-10 .6 1.1-3.1 3.3-5.5 6.1-6.8zM4 16c0-.4 0-.8.1-1.2 1.4.2 2.7.2 3.9.2 3.2 0 5.8-.3 8-.9.2.4.3.8.5 1.2-5.3 1.8-8.6 5.4-10.3 7.6C4.9 21 4 18.6 4 16zm12 12c-2.9 0-5.5-1-7.6-2.7 1.2-1.7 4.1-5.3 9.1-7 1.3 4.4 1.7 7.9 1.8 9.2-1 .3-2.1.5-3.3.5zm3-14.8c3.4-1.4 5.4-3.2 6.4-4.7 1.4 1.7 2.3 3.9 2.6 6.2-3.1-.6-5.9-.6-8.4-.1-.3-.4-.4-.9-.6-1.4zm3.3 13c-.2-1.8-.7-5-1.8-8.7 2.1-.3 4.6-.3 7.3.3-.5 3.5-2.6 6.6-5.5 8.4z" />
                             </svg>

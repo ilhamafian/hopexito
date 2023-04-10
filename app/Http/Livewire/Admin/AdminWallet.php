@@ -27,7 +27,7 @@ class AdminWallet extends Component
         $wallet_requests = WalletTransaction::where('status', 1)->orderBy('updated_at','DESC')->get();
         $wallet_all = Wallet::where('name','like', $search)->orderBy('commission','desc')->paginate(12);
         $wallet_data = Wallet::get();
-        $walletTransactions = WalletTransaction::where('status', 3)->orderBy('created_at','desc')->get();
+        $walletTransactions = WalletTransaction::where('status', 3)->orderBy('created_at','desc')->paginate(10);
     
         return view('livewire.admin.admin-wallet',compact('wallets','wallet_requests','wallet_all','wallet_data','walletTransactions'));
     }
