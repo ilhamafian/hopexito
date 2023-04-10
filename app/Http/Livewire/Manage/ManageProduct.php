@@ -124,18 +124,6 @@ class ManageProduct extends Component
         session()->flash('message', 'Product Deleted');
         return redirect()->route('product.manage');
     }
-    // return total item sold
-    private function totalItem()
-    {
-        $totalItem = 0;
-        $products = Product::where('shopname', Auth::user()->name)->get();
-        foreach ($products as $product) {
-            foreach ($product->productOrder as $item) {
-                $totalItem += $item->quantity;
-            }
-        }
-        return $totalItem;
-    }
     // return total commission
     private function totalCommission()
     {
@@ -183,7 +171,7 @@ class ManageProduct extends Component
         $productCollections = ProductCollection::where('name', Auth::user()->name)->get();
         $archives = Product::where('shopname', Auth::user()->name)->where('status', 2)->get();
         $noArchives = $archives->isEmpty();
-        $totalItem = $this->totalItem();
+        $totalItem = $products->sum('sold');
         $totalCommission = $this->totalCommission();
         $inCart = $this->inCart();
 
