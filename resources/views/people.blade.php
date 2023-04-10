@@ -18,11 +18,14 @@
         </div>
         <div class="mt-10 space-y-3 text-center text-black">
             <p class="text-xl font-bold">{{ $user->name }}</p>
-            <p class="flex items-center justify-center gap-2">Joined {{ $user->created_at->format('M Y') }}
+            <p class="flex items-center justify-center gap-2">
+                <span class="px-1 bg-indigo-400 rounded-md ">Joined {{ $user->created_at->format('M Y') }}</span>
                 <span class="text-2xl">&middot;</span>
-                {{ $products->count() }} Designs
-                <span class="text-2xl">&middot;</span>
-                {{ $totalSold }}
+                <span class="px-1 bg-indigo-400 rounded-md ">{{ $products->count() }} Designs</span>
+                @if ($totalSold > 0)
+                    <span class="text-2xl">&middot;</span>
+                    <span class="px-1 bg-indigo-400 rounded-md ">{{ $totalSold }} Products Sold</span>
+                @endif
             </p>
             <div class="p-1 mx-auto rounded-full bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 w-fit">
                 <div class="flex justify-center gap-2 p-2 bg-black rounded-full ">
