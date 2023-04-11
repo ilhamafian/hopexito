@@ -124,20 +124,7 @@ class ManageProduct extends Component
         session()->flash('message', 'Product Deleted');
         return redirect()->route('product.manage');
     }
-    // return total commission
-    private function totalCommission()
-    {
-        $totalCommission = 0;
-        $commission = 0;
-        $products = Product::where('shopname', Auth::user()->name)->get();
-        foreach ($products as $product) {
-            $commission = $product->commission;
-            foreach ($product->productOrder as $item) {
-                $totalCommission += $commission * $item->quantity;
-            }
-        }
-        return $totalCommission;
-    }
+
     // return id(key) and boolean(value) to identify product in cart
     private function inCart()
     {
@@ -171,10 +158,8 @@ class ManageProduct extends Component
         $productCollections = ProductCollection::where('name', Auth::user()->name)->get();
         $archives = Product::where('shopname', Auth::user()->name)->where('status', 2)->get();
         $noArchives = $archives->isEmpty();
-        $totalItem = Product::where('shopname', Auth::user()->name)->sum('sold');
-        $totalCommission = $this->totalCommission();
         $inCart = $this->inCart();
 
-        return view('livewire.manage.manage-product', compact('products', 'archives', 'totalItem', 'totalCommission', 'noArchives', 'inCart', 'productCollections'));
+        return view('livewire.manage.manage-product', compact('products','archives','noArchives','inCart','productCollections'));
     }
 }

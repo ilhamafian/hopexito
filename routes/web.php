@@ -23,6 +23,7 @@ use App\Http\Livewire\Admin\AdminStorage;
 use App\Http\Livewire\Admin\GodMode;
 use App\Http\Livewire\Admin\AdminSession;
 use App\Http\Livewire\DeliveryInformation;
+use App\Http\Livewire\Manage\ManageSales;
 
 Route::redirect('/', 'explore');
 // billplz controller
@@ -58,6 +59,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     // order controller
     Route::get('order/index', ManageOrder::class)->name('order.index');
     Route::get('product/manage', ManageProduct::class)->name('product.manage');
+    Route::get('sales', ManageSales::class)->name('product.sales');
 });
 // route resource product
 Route::resource('product', ProductsController::class);

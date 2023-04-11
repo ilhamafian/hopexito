@@ -54,6 +54,9 @@
                                              <x-jet-dropdown-link href="{{ route('product.manage') }}">
                                                  {{ __('Manage Products') }}
                                              </x-jet-dropdown-link>
+                                             <x-jet-dropdown-link href="{{ route('product.sales') }}">
+                                                {{ __('Sales History') }}  <span class="px-2 ml-2 bg-indigo-500 rounded-md">New</span>
+                                            </x-jet-dropdown-link>
                                              <x-jet-button type="button"
                                                  onclick="location.href='{{ route('product.create') }}'"
                                                  class="w-60 px-8 py-2.5 mx-1 mb-3 text-white rounded-full bg-rose-500 ">
@@ -178,6 +181,10 @@
                                  <x-jet-responsive-nav-link href="{{ route('product.manage') }}" :active="request()->routeIs('product.manage')">
                                      {{ __('Manage Products') }}
                                  </x-jet-responsive-nav-link>
+                                 <x-jet-responsive-nav-link href="{{ route('product.sales') }}" :active="request()->routeIs('product.sales')">
+                                    {{ __('Sales History') }}
+                                  
+                                </x-jet-responsive-nav-link>
                                  <x-jet-section-border />
                              @endif
                              <x-jet-responsive-nav-link href="{{ route('order.index') }}" :active="request()->routeIs('order.index')">
@@ -221,7 +228,7 @@
              </div>
          </div>
      </div>
-     <div class="max-w-xl md:hidden mx-auto px-4 mb-8 mt-2 sm:mt-0">
+     <div class="max-w-xl px-4 mx-auto mt-2 mb-8 md:hidden sm:mt-0">
         <x-jet-searchbar></x-jet-searchbar>
      </div>
  </nav>

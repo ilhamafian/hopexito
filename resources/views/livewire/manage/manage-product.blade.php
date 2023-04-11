@@ -4,43 +4,41 @@
     <h1
         class="px-2 text-2xl font-bold text-transparent md:px-0 bg-clip-text bg-gradient-to-r from-red-400 to-indigo-800">
         Product Management</h1>
-    <p class="px-2 my-2 mb-8 md:px-0">Overview of product performance, including sales data and commissions
-        earned. </p>
-    <div class="mb-12">
-        <div class="flex flex-col items-center justify-between px-2 mb-4 font-mono md:flex-row">
-            <p class="">Total products sold: <span class="text-indigo-400 uppercase">{{ $totalItem }}</span>
-            </p>
-            <p class="">Total commission: <span
-                    class="text-indigo-400">RM{{ number_format($totalCommission, 2) }}</span>
-            </p>
-        </div>
-    </div>
-        <ul class="flex mb-10 border-b border-gray-100">
-            <li class="flex-1 transition hover:bg-white/10">
-                <a class="relative block p-4 cursor-pointer" x-on:click="nav = 1">
-                    <span x-bind:class="nav == 1 ? 'bg-fuchsia-600' : 'bg-tranparent'" class="absolute inset-x-0 w-full h-px -bottom-px"></span>
-                    <div class="flex items-center justify-center gap-4">
-                        <span x-bind:class="nav == 1 ? 'text-fuchsia-500':'text-white'" class="text-sm font-medium">Products</span>
-                    </div>
-                </a>
-            </li>
-            <li class="flex-1 transition hover:bg-white/10">
-                <a class="relative block p-4 cursor-pointer" x-on:click="nav = 2">
-                    <span x-bind:class="nav == 2 ? 'bg-fuchsia-600' : 'bg-tranparent'" class="absolute inset-x-0 w-full h-px -bottom-px"></span>
-                    <div class="flex items-center justify-center gap-4">
-                        <span x-bind:class="nav == 2 ? 'text-fuchsia-500':'text-white'" class="text-sm font-medium">Collection</span>
-                    </div>
-                </a>
-            </li>
-            <li class="flex-1 transition hover:bg-white/10">
-                <a class="relative block p-4 cursor-pointer" x-on:click="nav = 3">
-                    <span x-bind:class="nav == 3 ? 'bg-fuchsia-600' : 'bg-tranparent'" class="absolute inset-x-0 w-full h-px -bottom-px"></span>
-                    <div class="flex items-center justify-center gap-4">
-                        <span x-bind:class="nav == 3 ? 'text-fuchsia-500':'text-white'" class="text-sm font-medium">Archives</span>
-                    </div>
-                </a>
-            </li>
-        </ul>
+    <p class="px-2 my-2 mb-8 md:px-0">Take control of your product listings with our comprehensive product management
+        tool.
+    </p>
+    <ul class="flex mb-10 border-b border-gray-100">
+        <li class="flex-1 transition hover:bg-white/10">
+            <a class="relative block p-4 cursor-pointer" x-on:click="nav = 1">
+                <span x-bind:class="nav == 1 ? 'bg-fuchsia-600' : 'bg-tranparent'"
+                    class="absolute inset-x-0 w-full h-px -bottom-px"></span>
+                <div class="flex items-center justify-center gap-4">
+                    <span x-bind:class="nav == 1 ? 'text-fuchsia-500' : 'text-white'"
+                        class="text-sm font-medium">Products</span>
+                </div>
+            </a>
+        </li>
+        <li class="flex-1 transition hover:bg-white/10">
+            <a class="relative block p-4 cursor-pointer" x-on:click="nav = 2">
+                <span x-bind:class="nav == 2 ? 'bg-fuchsia-600' : 'bg-tranparent'"
+                    class="absolute inset-x-0 w-full h-px -bottom-px"></span>
+                <div class="flex items-center justify-center gap-4">
+                    <span x-bind:class="nav == 2 ? 'text-fuchsia-500' : 'text-white'"
+                        class="text-sm font-medium">Collection</span>
+                </div>
+            </a>
+        </li>
+        <li class="flex-1 transition hover:bg-white/10">
+            <a class="relative block p-4 cursor-pointer" x-on:click="nav = 3">
+                <span x-bind:class="nav == 3 ? 'bg-fuchsia-600' : 'bg-tranparent'"
+                    class="absolute inset-x-0 w-full h-px -bottom-px"></span>
+                <div class="flex items-center justify-center gap-4">
+                    <span x-bind:class="nav == 3 ? 'text-fuchsia-500' : 'text-white'"
+                        class="text-sm font-medium">Archives</span>
+                </div>
+            </a>
+        </li>
+    </ul>
     <div x-cloak x-show="nav == 1" x-transition.opacity x-transition:enter.duration.500ms
         x-transition:leave.duration.100ms>
         <x-jet-input class="mx-3 mb-4 md:mx-0" type="text" wire:model.lazy="search"
@@ -73,16 +71,16 @@
                                     Pin
                                 </button>
                             @endif
-                            @if($product->product_image_2 && $product->preview == 0)
-                            <button wire:click="previewBack('{{ $product->id }}')"
-                                class="w-full px-4 py-2 text-left rounded-md hover:bg-indigo-500">
-                                Preview (Back)
-                            </button>
+                            @if ($product->product_image_2 && $product->preview == 0)
+                                <button wire:click="previewBack('{{ $product->id }}')"
+                                    class="w-full px-4 py-2 text-left rounded-md hover:bg-indigo-500">
+                                    Preview (Back)
+                                </button>
                             @elseif($product->product_image_2 && $product->preview == 1)
-                            <button wire:click="previewFront('{{ $product->id }}')"
-                                class="w-full px-4 py-2 text-left rounded-md hover:bg-indigo-500">
-                                Preview (Front)
-                            </button>
+                                <button wire:click="previewFront('{{ $product->id }}')"
+                                    class="w-full px-4 py-2 text-left rounded-md hover:bg-indigo-500">
+                                    Preview (Front)
+                                </button>
                             @endif
                             <button x-on:click="modal = true" wire:click="forceFill('{{ $product->id }}')"
                                 class="w-full px-4 py-2 text-left rounded-md hover:bg-indigo-500">
@@ -200,26 +198,29 @@
                 </div>
                 <div class="grid grid-cols-3 gap-2 p-2 md:grid-cols-4">
                     @foreach ($products as $product)
-                        @unless($product->collection_id != $item->id)
+                        @unless ($product->collection_id != $item->id)
                             <p wire:click="removeFromCollection('{{ $product->id }}','{{ $item->id }}')"
                                 class="p-2 rounded-md cursor-pointer bg-violet-500">
-                                <span wire:loading.remove wire:target="removeFromCollection('{{ $product->id }}','{{ $item->id }}')">{{ $product->title }}</span>
-                                <svg wire:loading wire:target="removeFromCollection('{{ $product->id }}','{{ $item->id }}')" viewBox="0 0 24 24"
-                                    class="block w-6 h-6 m-auto -my-1 text-white animate-spin">
-                                    <path fill="currentColor"
-                                        d="M12,4V2A10,10 0 0,0 2,12H4A8,8 0 0,1 12,4Z" />
+                                <span wire:loading.remove
+                                    wire:target="removeFromCollection('{{ $product->id }}','{{ $item->id }}')">{{ $product->title }}</span>
+                                <svg wire:loading
+                                    wire:target="removeFromCollection('{{ $product->id }}','{{ $item->id }}')"
+                                    viewBox="0 0 24 24" class="block w-6 h-6 m-auto -my-1 text-white animate-spin">
+                                    <path fill="currentColor" d="M12,4V2A10,10 0 0,0 2,12H4A8,8 0 0,1 12,4Z" />
                                 </svg>
                             </p>
                         @endunless
-                        @unless($product->collection_id != null)
+                        @unless ($product->collection_id != null)
                             <p wire:click="addToCollection('{{ $product->id }}','{{ $item->id }}')"
                                 class="p-2 bg-transparent rounded-md cursor-pointer ring-2 ring-rose-500">
-                                <span wire:loading.remove wire:target="addToCollection('{{ $product->id }}','{{ $item->id }}')">{{ $product->title }}</span>
-                                <svg wire:loading wire:target="addToCollection('{{ $product->id }}','{{ $item->id }}')" viewBox="0 0 24 24"
-                                class="block w-6 h-6 m-auto -my-1 text-rose-400 animate-spin">
-                                <path fill="currentColor"
-                                    d="M12,4V2A10,10 0 0,0 2,12H4A8,8 0 0,1 12,4Z" />
-                            </svg></p>
+                                <span wire:loading.remove
+                                    wire:target="addToCollection('{{ $product->id }}','{{ $item->id }}')">{{ $product->title }}</span>
+                                <svg wire:loading
+                                    wire:target="addToCollection('{{ $product->id }}','{{ $item->id }}')"
+                                    viewBox="0 0 24 24" class="block w-6 h-6 m-auto -my-1 text-rose-400 animate-spin">
+                                    <path fill="currentColor" d="M12,4V2A10,10 0 0,0 2,12H4A8,8 0 0,1 12,4Z" />
+                                </svg>
+                            </p>
                         @endunless
                     @endforeach
                 </div>

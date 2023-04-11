@@ -33,7 +33,4 @@ class Order extends Model
         return $this->hasOne(User::class, 'email', 'email');
     } 
 
-    public function productOrder(){
-        return $this->hasMany(ProductOrder::class, 'billplz_id', 'id');
-    }
 }
