@@ -21,7 +21,7 @@ class AdminAnalytics extends Component
         ->get();
         $orders = Order::selectRaw('DATE_FORMAT(created_at, "%M %Y") as month, SUM(amount) as total_amount')
                 ->groupBy('month')
-                ->orderBy('month', 'desc')
+                ->orderBy('month', 'asc')
                 ->get();
         $totalProducts = Product::count();
         $totalSales = Order::sum('amount');
