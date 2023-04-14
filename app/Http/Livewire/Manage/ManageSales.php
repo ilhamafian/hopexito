@@ -27,10 +27,15 @@ class ManageSales extends Component
 
     public function render()
     {
-        $products = Product::with(['productOrder.order'])->where('artist_id', Auth::user()->id)->get();
+        $products = Product::with('productOrder')
+            ->where('artist_id', Auth::user()->id)
+            ->get();
+        $productOrders = ProductOrder::with('order')
+            ->whereIn('product_id', $products->pluck('id'))
+            ->get();
         $totalItem = Product::where('shopname', Auth::user()->name)->sum('sold');
         $totalCommission = $this->totalCommission();
 
-        return view('livewire.manage.manage-sales', compact('products','totalItem','totalCommission'));
+        return view('livewire.manage.manage-sales', compact('productOrders','totalItem', 'totalCommission'));
     }
 }

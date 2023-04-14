@@ -35,8 +35,9 @@ class Product extends Model
     public function productUser(){
         return $this->hasOne(User::class,'id','artist_id');
     }
-    public function productOrder(){
-        return $this->hasMany(ProductOrder::class, 'product_id', 'id');
+    public function productOrder()
+    {
+        return $this->hasMany(ProductOrder::class, 'product_id', 'id')->orderByDesc('created_at');
     }
     public function productCart(){
         return $this->hasMany(Cart::class, 'product_id', 'id');
