@@ -19,7 +19,7 @@ class AdminAnalytics extends Component
         ->groupBy('keyword')
         ->orderBy('count', 'desc')
         ->get();
-        $orders = Order::selectRaw('DATE_FORMAT(created_at, "%M %Y") as month, SUM(amount) as total_amount')
+        $orders = Order::selectRaw('MONTH(created_at) as month, SUM(amount) as total_amount')
                 ->groupBy('month')
                 ->orderBy('month', 'asc')
                 ->get();

@@ -68,7 +68,7 @@
             <div class="grid grid-cols-6">
                 @foreach ($orders as $order)
                 <div class="flex flex-col items-center">
-                    <p class="bg-violet-600 rounded-md px-2 py-0.5">{{ $order->month }}</p> 
+                    <p class="bg-violet-600 rounded-md px-2 py-0.5">{{ date('F', mktime(0, 0, 0, $order->month, 1)) }}</p> 
                     <p class="mt-2 tracking-wider text-md text-lime-400">RM{{ number_format($order->total_amount, 2) }}</p>
                 </div>
             @endforeach
