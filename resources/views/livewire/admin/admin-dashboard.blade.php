@@ -152,7 +152,7 @@
                             <div class="flex items-center text-center">
                                 <p class="basis-[5%] text-left">{{ $customer->id }}</p>
                                 <p class="basis-[21%] text-left">{{ $customer->name }}</p>
-                                @if ($artist->email_verified_at)
+                                @if ($customer->email_verified_at)
                                     <p class="basis-[22%] text-left text-lime-500 truncate">{{ $customer->email }} </p>
                                 @else
                                     <p class="basis-[22%] text-left text-rose-500">{{ $customer->email }} </p>

@@ -149,6 +149,10 @@
                                         class="w-full px-4 py-2 text-left rounded-md hover:bg-indigo-500"">
                                         Delivered
                                     </button>
+                                    <button wire:click="sendMail('{{ $order->id }}')"
+                                        class="w-full px-4 py-2 text-left rounded-md hover:bg-indigo-500"">
+                                        Send Mail
+                                    </button>
                                 </ul>
                             </div>
                             {{-- Copy delivery address based on order --}}

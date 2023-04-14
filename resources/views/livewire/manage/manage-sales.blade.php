@@ -24,8 +24,14 @@
                             src="{{ $item->product->product_image }}" alt="" />
                     </div>
                     <div class="flex flex-col gap-1 py-2 mt-4 text-center w-96 md:mt-0 md:text-left">
-                        <p class="px-2 py-0.5 bg-indigo-600 rounded-lg w-fit mx-auto md:mx-0">Purchased by
-                            {{ $item->order->name }}</p>
+                        @if (substr($order->name, -1) === 'G')
+                            {{ substr_replace($order->name, '', -1) }}
+                            <p class="px-2 py-0.5 bg-indigo-600 rounded-lg w-fit mx-auto md:mx-0">Purchased by
+                                {{ $item->order->name }}</p>
+                        @else
+                            <p class="px-2 py-0.5 bg-indigo-600 rounded-lg w-fit mx-auto md:mx-0">Purchased by
+                                {{ $item->order->name }}</p>
+                        @endif
                         <p class="mt-2 text-indigo-400">{{ $item->title }}</p>
                         <p class=uppercase">{{ $item->size }} / {{ $item->color }}
                         </p>
@@ -33,7 +39,8 @@
                         <p>Price: <span
                                 class="tracking-wider text-fuchsia-400">RM{{ number_format($item->price, 2) }}</span>
                         </p>
-                        <p>Your income: <span class="text-lime-400">RM{{ number_format($item->price * 0.15, 2) }}</span>
+                        <p>Your income: <span
+                                class="text-lime-400">RM{{ number_format($item->price * 0.15, 2) }}</span>
                         </p>
                         <p>Order created at: <span
                                 class="text-fuchsia-400">{{ $carbon::parse($item->order->paid_at)->format('F d, Y') }}</span>

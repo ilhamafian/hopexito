@@ -6,6 +6,9 @@ use Livewire\Component;
 use App\Models\Order;
 use App\Models\Product;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderConfirmation;
+
 
 class AdminOrder extends Component
 {
@@ -54,6 +57,18 @@ class AdminOrder extends Component
         $imageFilePath = 'app/public/image-back/' . $imageFileName;
 
         return response()->download(storage_path($imageFilePath));
+    }
+
+    public function sendMail($id){
+        $order = Order::findOrFail($id);
+        $toEmail = $order->email;
+    
+        // Send the email
+        Mail::to($toEmail)->send(new OrderConfirmation($order));
+        
+        // Return a response indicating the email was sent
+        return response()->json(['message' => 'Email sent'], 200);
+        
     }
 
     public function forceFill($id){
