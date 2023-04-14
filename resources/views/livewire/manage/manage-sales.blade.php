@@ -24,8 +24,8 @@
                             src="{{ $item->product->product_image }}" alt="" />
                     </div>
                     <div class="flex flex-col gap-1 py-2 mt-4 text-center w-96 md:mt-0 md:text-left">
-                        @if (substr($order->name, -1) === 'G')
-                            {{ substr_replace($order->name, '', -1) }}
+                        @if (substr($item->order->name, -1) === 'G')
+                            {{ substr_replace($item->order->name, '', -1) }}
                             <p class="px-2 py-0.5 bg-indigo-600 rounded-lg w-fit mx-auto md:mx-0">Purchased by
                                 {{ $item->order->name }}</p>
                         @else
