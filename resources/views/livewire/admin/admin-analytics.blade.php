@@ -63,6 +63,18 @@
             </x-jet-admin-card>
         </div>
         <x-jet-section-border />
+        <x-jet-admin-card>
+            <x-jet-header>Sales by Month</x-jet-header>
+            <div class="grid grid-cols-6">
+                @foreach ($orders as $order)
+                <div class="flex flex-col items-center">
+                    <p class="bg-violet-600 rounded-md px-2 py-0.5">{{ $order->month }}</p> 
+                    <p class="mt-2 tracking-wider text-md text-lime-400">RM{{ number_format($order->total_amount, 2) }}</p>
+                </div>
+            @endforeach
+            </div>
+        </x-jet-admin-card>
+        <x-jet-section-border />
         <div class="grid grid-cols-2 gap-12 text-center text-white" x-data="{ x: 0 }">
             <x-jet-admin-card>
                 <div class="overflow-y-scroll h-[500px]">

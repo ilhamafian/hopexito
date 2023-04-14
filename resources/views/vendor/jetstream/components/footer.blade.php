@@ -94,36 +94,6 @@
                         </ul>
                 </div>
                 <div class="text-center sm:text-left">
-                    <p class="text-xl font-medium text-indigo-400">Help</p>
-                        <ul class="mt-8 space-y-4 text-sm">
-                            <li>
-                                <a class="transition hover:text-indigo-400" href="/">
-                                    FAQs and Support
-                                </a>
-                            </li>
-                            <li>
-                                <a class="transition hover:text-indigo-400" href="/">
-                                    Guidelines
-                                </a>
-                            </li>
-                            <li>
-                                <a class="transition hover:text-indigo-400" href="/">
-                                    Delivery
-                                </a>
-                            </li>
-                            <li>
-                                <a class="transition hover:text-indigo-400" href="/">
-                                    Returns
-                                </a>
-                            </li>
-                            <li>
-                                <a class="transition hover:text-indigo-400" href="/">
-                                    Copyright
-                                </a>
-                            </li>
-                        </ul>
-                </div>
-                <div class="text-center sm:text-left">
                     <p class="text-xl font-medium text-indigo-400">Contact Us</p>
                     <ul class="mt-8 space-y-4 text-sm text-indigo-400">
                         <li>

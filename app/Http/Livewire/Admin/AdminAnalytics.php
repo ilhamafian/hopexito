@@ -19,6 +19,10 @@ class AdminAnalytics extends Component
         ->groupBy('keyword')
         ->orderBy('count', 'desc')
         ->get();
+        $orders = Order::selectRaw('DATE_FORMAT(created_at, "%M %Y") as month, SUM(amount) as total_amount')
+                ->groupBy('month')
+                ->orderBy('month', 'desc')
+                ->get();
         $totalProducts = Product::count();
         $totalSales = Order::sum('amount');
         $totalCommission = Wallet::sum('commission');
@@ -29,6 +33,6 @@ class AdminAnalytics extends Component
         $products = Product::orderBy('sold','desc')->where('sold','>', 0)->get();
         $wallets = Wallet::orderBy('commission','desc')->where('commission', '>', 20)->get();
 
-        return view('livewire.admin.admin-analytics', compact('searches','totalProducts','totalSales','totalCommission','averagePrice','totalSold','totalUsers','totalArtists','products','wallets'));
+        return view('livewire.admin.admin-analytics', compact('searches','orders','totalProducts','totalSales','totalCommission','averagePrice','totalSold','totalUsers','totalArtists','products','wallets'));
     }
 }
