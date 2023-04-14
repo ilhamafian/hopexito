@@ -17,7 +17,7 @@
     </div>
     <div class="grid-cols-1 space-y-6">
         @foreach ($products as $product)
-            @foreach ($product->productOrder->sortByDesc('order.created_at') as $item)
+            @foreach ($product->productOrder->sortByDesc('created_at') as $item)
                 <div class="flex flex-col space-x-4 md:flex-row">
                     <div class="relative mx-auto md:mx-0 w-60 h-60">
                         <img class="transition rounded-lg ring ring-indigo-700"
@@ -52,7 +52,7 @@
                             @if ($item->order->status == 1)
                                 <p class="text-red-400">Order Placed</p>
                             @elseif($item->order->status == 2)
-                                <p class="text-orange-400">Order Processed</p>
+                                <p class="text-amber-400">Order Processing</p>
                             @elseif($item->order->status == 3)
                                 <p class="text-lime-400">Order Shipped</p>
                             @elseif($item->order->status == 4)
