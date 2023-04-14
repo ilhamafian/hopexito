@@ -26,12 +26,9 @@
                     <div class="flex flex-col gap-1 py-2 mt-4 text-center w-96 md:mt-0 md:text-left">
                         @if (substr($item->order->name, -1) === 'G')
                             {{ substr_replace($item->order->name, '', -1) }}
-                            <p class="px-2 py-0.5 bg-indigo-600 rounded-lg w-fit mx-auto md:mx-0">Purchased by
-                                {{ $item->order->name }}</p>
-                        @else
-                            <p class="px-2 py-0.5 bg-indigo-600 rounded-lg w-fit mx-auto md:mx-0">Purchased by
-                                {{ $item->order->name }}</p>
                         @endif
+                        <p class="px-2 py-0.5 bg-indigo-600 rounded-lg w-fit mx-auto md:mx-0">Purchased by
+                            {{ $item->order->name }}</p>
                         <p class="mt-2 text-indigo-400">{{ $item->title }}</p>
                         <p class=uppercase">{{ $item->size }} / {{ $item->color }}
                         </p>
