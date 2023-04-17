@@ -31,7 +31,7 @@ class AdminOrder extends Component
         $order->update(['status' => 3, 'tracking_number' => $tracking_number]);
         
         session()->flash('message','Order Shipped');
-        return redirect()->route('admin.orders')->with('success', $id .' status updated.');
+        return redirect()->route('admin.orders');
     }
 
     // update order status as delivered
@@ -61,13 +61,11 @@ class AdminOrder extends Component
 
     public function sendMail($id){
         $order = Order::findOrFail($id);
-        $toEmail = $order->email;
+        $toEmail = 'imeor0655@gmail.com';
     
         // Send the email
         Mail::to($toEmail)->send(new OrderConfirmation($order));
-        
-        // Return a response indicating the email was sent
-        return response()->json(['message' => 'Email sent'], 200);
+        return redirect()->back();
         
     }
 

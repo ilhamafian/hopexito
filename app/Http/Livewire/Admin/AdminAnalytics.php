@@ -16,23 +16,27 @@ class AdminAnalytics extends Component
     public function render()
     {
         $searches = Search::select('keyword', DB::raw('COUNT(*) as count'))
-        ->groupBy('keyword')
-        ->orderBy('count', 'desc')
-        ->get();
+            ->groupBy('keyword')
+            ->orderBy('count', 'desc')
+            ->get();
         $orders = Order::selectRaw('MONTH(created_at) as month, SUM(amount) as total_amount')
-                ->groupBy('month')
-                ->orderBy('month', 'asc')
-                ->get();
+            ->groupBy('month')
+            ->orderBy('month', 'asc')
+            ->get();
+        $totalSold = ProductOrder::sum('quantity');
+        $totalSoldPerMonth = ProductOrder::selectRaw('MONTH(created_at) as month, SUM(quantity) as total_quantity')
+            ->groupBy('month')
+            ->orderBy('month', 'asc')
+            ->get();
         $totalProducts = Product::count();
         $totalSales = Order::sum('amount');
         $totalCommission = Wallet::sum('commission');
         $averagePrice = Product::average('price');
-        $totalSold = ProductOrder::sum('quantity');
         $totalUsers = User::where('role_id', 3)->count();
         $totalArtists = User::where('role_id', 2)->count();
-        $products = Product::orderBy('sold','desc')->where('sold','>', 0)->get();
-        $wallets = Wallet::orderBy('commission','desc')->where('commission', '>', 20)->get();
+        $products = Product::orderBy('sold', 'desc')->where('sold', '>', 0)->get();
+        $wallets = Wallet::orderBy('commission', 'desc')->where('commission', '>', 20)->get();
 
-        return view('livewire.admin.admin-analytics', compact('searches','orders','totalProducts','totalSales','totalCommission','averagePrice','totalSold','totalUsers','totalArtists','products','wallets'));
+        return view('livewire.admin.admin-analytics', compact('searches', 'orders', 'totalSold','totalSoldPerMonth','totalProducts', 'totalSales', 'totalCommission', 'averagePrice','totalUsers', 'totalArtists', 'products', 'wallets'));
     }
 }

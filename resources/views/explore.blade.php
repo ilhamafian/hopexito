@@ -44,7 +44,6 @@
                                         stroke-width="2" />
                                 </svg>
                             </button>
-
                             <button
                                 class="p-3 text-indigo-500 transition border-2 rounded-full next-button border-violet-500 hover:bg-violet-500 hover:text-white">
                                 <span class="sr-only">Next Slide</span>
@@ -56,7 +55,6 @@
                             </button>
                         </div>
                     </div>
-
                     <div class="-mx-6 lg:col-span-2 lg:mx-0">
                         <div class="swiper-container !overflow-hidden">
                             <div class=" swiper-wrapper">
@@ -111,7 +109,7 @@
                     slidesPerView: 1,
                     spaceBetween: 32,
                     autoplay: {
-                        delay: 8000,
+                        delay: 4000,
                     },
                     breakpoints: {
                         640: {

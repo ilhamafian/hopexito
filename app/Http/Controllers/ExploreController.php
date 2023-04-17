@@ -23,9 +23,9 @@ class ExploreController extends Controller
                 $query->whereNotNull('cover_image');
             })
             ->withCount('products')
-            ->having('products_count', '>', 7)
+            ->having('products_count', '>', 9)
             ->inRandomOrder()
-            ->take(8)
+            ->take(5)
             ->get();
 
         return view('sellyourart', compact('sellers'));
@@ -39,10 +39,12 @@ class ExploreController extends Controller
                 $query->whereNotNull('cover_image');
             })
             ->withCount('products')
-            ->having('products_count', '>', 7)
+            ->having('products_count', '>', 9)
             ->inRandomOrder()
-            ->take(8)
+            ->take(5)
             ->get();
+        
+      
 
         $featured = $users->pluck('id');
         $products = Product::where('status', 1)
