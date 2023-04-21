@@ -1,4 +1,4 @@
-@section('title', 'Shop Unique Art | HopeXito')
+@section('title', 'Shop Oversized Tee | HopeXito')
 <x-app-layout>
     <x-jet-whatsapp-contact />
     <div class="mx-auto mt-8 max-w-7xl">
@@ -15,7 +15,8 @@
                 stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25v13.5m-7.5-13.5v13.5" />
             </svg>
-            <p class="text-indigo-400">Shop All</p>
+            <a href="{{ route('shop.all') }}" class="p-1 px-2 transition rounded-md hover:bg-indigo-500/50">Shop
+                All</a>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25v13.5m-7.5-13.5v13.5" />
@@ -26,14 +27,13 @@
                 stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25v13.5m-7.5-13.5v13.5" />
             </svg>
-            <a href="{{ route('shop.shirt') }}"
-                class="p-1 px-2 transition rounded-md hover:bg-indigo-500/50">Standard Tee</a>
+            <a href="{{ route('shop.shirt') }}" class="p-1 px-2 transition rounded-md hover:bg-indigo-500/50">Standard
+                Tee</a>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25v13.5m-7.5-13.5v13.5" />
             </svg>
-            <a href="{{ route('shop.oversized') }}"
-                class="p-1 px-2 transition rounded-md hover:bg-indigo-500/50">Oversized Tee</a>
+            <p class="text-indigo-400">Oversized Tee</p>
         </div>
     </div>
     <div

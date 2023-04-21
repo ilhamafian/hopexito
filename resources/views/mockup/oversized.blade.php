@@ -137,21 +137,15 @@
                         </div>
                         <div class="flex items-center gap-2">
                                 @foreach ($colors as $color)
-                                    @if ($color == 'Gray')
-                                        <x-jet-checkbox id="color" name="color[]" class="p-3.5 bg-[#808080]"
+                                    @if ($color == 'White')
+                                        <x-jet-checkbox id="color" name="color[]" class="p-3.5 bg-white"
                                             value="{{ $color }}" />
                                     @endif
-                                    @if ($color == 'Pink')
-                                        <x-jet-checkbox id="color" name="color[]" class="p-3.5 bg-[#dfb2ae]"
-                                            value="{{ $color }}" />
                                     @endif
                                     @if ($color == 'Black')
                                         <x-jet-checkbox id="color" name="color[]" class="p-3.5 bg-[#000]"
                                             value="{{ $color }}" />
                                     @endif
-                                    @if ($color == 'Navy')
-                                    <x-jet-checkbox id="color" name="color[]" class="p-3.5 bg-[#1e3a8a]"
-                                        value="{{ $color }}" />
                                 @endif
                                 @endforeach
                                 @error('color')
@@ -218,9 +212,9 @@
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
                             </svg>
-                            <div class="absolute bottom-2 flex-col hidden mb-4 group-hover:flex">
+                            <div class="absolute flex-col hidden mb-4 bottom-2 group-hover:flex">
                                 <span
-                                    class="relative z-10 p-2 leading-none text-white whitespace-no-wrap bg-black shadow-lg text-xs w-96">
+                                    class="relative z-10 p-2 text-xs leading-none text-white whitespace-no-wrap bg-black shadow-lg w-96">
                                     Set the preview for product that have designs on both the front and back.</span>
                             </div>
                         </div>
@@ -232,7 +226,7 @@
                             <label for="previewFront"
                                 :class="preview == false ? 'border-indigo-500' :
                                     'border-gray-700'"
-                                class="grid p-2 text-white transition border-2 cursor-pointer md:text-sm place-items-center rounded-lg hover:border-indigo-500">Preview
+                                class="grid p-2 text-white transition border-2 rounded-lg cursor-pointer md:text-sm place-items-center hover:border-indigo-500">Preview
                                 Front
                             </label>
                         </div>
@@ -242,7 +236,7 @@
                             <label x-cloak for="previewBack"
                                 :class="preview == true ? 'border-indigo-500' :
                                     'border-gray-700'"
-                                class="grid p-2 text-white transition border-2 cursor-pointer md:text-sm place-items-center rounded-lg hover:border-indigo-500">Preview
+                                class="grid p-2 text-white transition border-2 rounded-lg cursor-pointer md:text-sm place-items-center hover:border-indigo-500">Preview
                                 Back</label>
                         </div>
                     </div>

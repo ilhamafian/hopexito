@@ -1,3 +1,4 @@
+@inject('carbon', 'Carbon\Carbon')
 @section('title', $user->name . ' | HopeXito')
 @section('thumbnail', $user->profile_photo_path)
 <x-app-layout>
@@ -283,15 +284,20 @@
                                 @endif
                             </div>
                             <div class="flex flex-col justify-between px-2 py-1 tracking-wider md:px-4 md:py-2">
-                                @if ($product->category == 'Shirt')
-                                    <p class="px-3 py-0.5 mt-1 bg-fuchsia-700/80 rounded-md w-fit text-xs">Standard Tee
-                                    </p>
-                                @elseif($product->category == 'Oversized')
-                                    <p class="px-3 py-0.5 mt-1 rounded-md bg-indigo-700/80 w-fit text-xs">Oversized Tee
-                                    </p>
-                                @else
-                                    <p></p>
-                                @endif
+                                <div class="flex gap-2">
+                                    @if ($product->category == 'Shirt')
+                                        <p class="px-3 py-0.5 mt-1 bg-fuchsia-700/80 rounded-md w-fit text-xs">Standard
+                                            Tee
+                                        </p>
+                                    @elseif($product->category == 'Oversized')
+                                        <p class="px-3 py-0.5 mt-1 rounded-md bg-indigo-700/80 w-fit text-xs">Oversized
+                                            Tee
+                                        </p>
+                                    @else
+                                        <p></p>
+                                    @endif
+                                </div>
+
                                 <div class="mt-2 text-sm text-white truncate md:font-medium">
                                     {{ $product->title }}
                                 </div>

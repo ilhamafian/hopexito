@@ -84,11 +84,11 @@
                 </div>
                 @foreach ($orders as $order)
                     {{-- Display Orders --}}
-                    <div class="w-full p-3 rounded-lg cursor-pointer bg-black/50 "
+                    <div x-cloak class="w-full p-3 rounded-lg cursor-pointer bg-black/50"
                         x-on:click="id = '{{ $order->id }}'">
                         <div class="flex items-center text-sm text-white">
                             <p class="basis-[8%] text-lime-400">#{{ $order->id }}</p>
-                            <p class="basis-[17%]">{{ $order->name }}</p>
+                            <p class="basis-[17%] text-xs">{{ $order->name }}</p>
                             <p class="basis-[13%]">RM {{ number_format($order->amount, 2) }} ({{ $order->delivery }})
                             </p>
                             <p class="basis-[20%]">

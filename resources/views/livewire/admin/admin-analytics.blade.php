@@ -76,7 +76,7 @@
         </x-jet-admin-card>
         <x-jet-section-border/>
         <x-jet-admin-card>
-            <x-jet-header>Product Sold per Month</x-jet-header>
+            <x-jet-header>Products Sold per Month</x-jet-header>
             <div class="grid grid-cols-6">
                 @foreach ($totalSoldPerMonth as $sold)
                 <div class="flex flex-col items-center">

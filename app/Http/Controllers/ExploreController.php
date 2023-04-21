@@ -43,8 +43,8 @@ class ExploreController extends Controller
             ->inRandomOrder()
             ->take(5)
             ->get();
-        
-      
+
+
 
         $featured = $users->pluck('id');
         $products = Product::where('status', 1)
@@ -71,7 +71,7 @@ class ExploreController extends Controller
         } else {
             return redirect()->route('shop.all');
         }
-        
+
         $artists = User::where('role_id', 2)
             ->where('name', 'LIKE', "%{$search}%")
             ->get();
@@ -94,7 +94,7 @@ class ExploreController extends Controller
         $product_count = $products->total();
         $user_count = $artists->count();
 
-        return view('shop/search', compact('artists','products', 'search', 'product_count','user_count'));
+        return view('shop/search', compact('artists', 'products', 'search', 'product_count', 'user_count'));
     }
 
     public function collection()
@@ -115,11 +115,23 @@ class ExploreController extends Controller
         $products = Product::where('status', '!=', 2)->inrandomOrder()->paginate(100);
         return view('shop/all', compact('products'));
     }
+
+    public function shirt()
+    {
+        $products = Product::where('status', '!=', 2)->where('category','shirt')->inrandomOrder()->paginate(100);
+        return view('shop/standard-tee', compact('products'));
+    }
+
+    public function oversized()
+    {
+        $products = Product::where('status', '!=', 2)->where('category','oversized')->inrandomOrder()->paginate(100);
+        return view('shop/oversized', compact('products'));
+    }
     // return seller profile, views/people
     public function people($shopname)
     {
         $user = User::where('name', $shopname)->first();
-        $products = Product::where('artist_id', $user->id)->where('status', '!=', 2)->orderBy('status', 'desc')->orderBy('created_at','desc')->paginate(16);
+        $products = Product::where('artist_id', $user->id)->where('status', '!=', 2)->orderBy('status', 'desc')->orderBy('created_at', 'desc')->paginate(16);
         $productsCollection = ProductCollection::where('name', $shopname)->get();
         $totalSold = Product::where('artist_id', $user->id)->sum('sold');
 
