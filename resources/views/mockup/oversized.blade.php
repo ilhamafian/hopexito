@@ -15,7 +15,8 @@
                     stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25v13.5m-7.5-13.5v13.5" />
                 </svg>
-                <a href="{{ route('product.create') }}" class="p-1 px-2 transition rounded-md hover:bg-indigo-500/50">Product Selection</a>
+                <a href="{{ route('product.create') }}"
+                    class="p-1 px-2 transition rounded-md hover:bg-indigo-500/50">Product Selection</a>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25v13.5m-7.5-13.5v13.5" />
@@ -107,15 +108,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="flex gap-1">           
-                                <button type="button" class="rounded-full w-7 h-7 bg-[#c9c0b7]"
-                                    id="Gray"></button>
-                                    <button type="button" class="rounded-full w-7 h-7 bg-[#000]"
-                                    id="Black"></button>
-                                <button type="button" class="rounded-full w-7 h-7 bg-[#dfb2ae]"
-                                    id="BrightRose"></button>
-                                <button type="button" class="rounded-full w-7 h-7 bg-[#1e3a8a]"
-                                    id="Navy"></button>
+                        <div class="flex gap-1">
+                            <button type="button" class="bg-white rounded-full w-7 h-7" id="White"></button>
+                            <button type="button" class="bg-black rounded-full w-7 h-7" id="Black"></button>
                         </div>
                     </div>
                     <div class="flex flex-col basis-1/3">
@@ -136,21 +131,19 @@
                             </div>
                         </div>
                         <div class="flex items-center gap-2">
-                                @foreach ($colors as $color)
-                                    @if ($color == 'White')
-                                        <x-jet-checkbox id="color" name="color[]" class="p-3.5 bg-white"
-                                            value="{{ $color }}" />
-                                    @endif
-                                    @endif
-                                    @if ($color == 'Black')
-                                        <x-jet-checkbox id="color" name="color[]" class="p-3.5 bg-[#000]"
-                                            value="{{ $color }}" />
-                                    @endif
+                            @foreach ($colors as $color)
+                                @if ($color == 'White')
+                                    <x-jet-checkbox id="color" name="color[]" class="p-3.5 bg-white"
+                                        value="{{ $color }}" />
                                 @endif
-                                @endforeach
-                                @error('color')
-                                    <p class="w-2 h-2 rounded-full bg-rose-500"></p>
-                                @enderror           
+                                @if ($color == 'Black')
+                                    <x-jet-checkbox id="color" name="color[]" class="p-3.5 bg-[#000]"
+                                        value="{{ $color }}" />
+                                @endif
+                            @endforeach
+                            @error('color')
+                                <p class="w-2 h-2 rounded-full bg-rose-500"></p>
+                            @enderror
                         </div>
                     </div>
                     <div class="flex flex-col basis-1/3">
@@ -301,35 +294,35 @@
             </div>
             {{-- Mockup template --}}
             <div class="">
-                    <x-jet-input type="hidden" value="{{ $template->category }}" class="hidden" name="category" />
-                    <div>
-                        <div class="" x-show="open == false" x-transition:enter.duration.300ms>
-                            <div id="tshirt-front" class="relative w-[880px] h-[900px] -p-[0.5px]">
-                                <img id="tshirt-front-background" class="w-[880px] h-[900px] mx-auto bg-white"
-                                    src="{{ asset('storage/mockup-image/' . $template->mockup_image) }}"
-                                    alt="" />
-                                <div id="drawingArea" class="absolute top-52 left-[270px] z-0 w-[360px] h-[525px]">
-                                    <div class="w-[360px] h-[525px] relative select-none">
-                                        <canvas id="tshirt-front-canvas" width="360" height="525" />
-                                    </div>
+                <x-jet-input type="hidden" value="{{ $template->category }}" class="hidden" name="category" />
+                <div>
+                    <div class="" x-show="open == false" x-transition:enter.duration.300ms>
+                        <div id="tshirt-front" class="relative w-[880px] h-[900px] -p-[0.5px]">
+                            <img id="tshirt-front-background" class="w-[880px] h-[900px] mx-auto bg-white"
+                                src="{{ asset('storage/mockup-image/' . $template->mockup_image) }}"
+                                alt="" />
+                            <div id="drawingArea" class="absolute top-52 left-[270px] z-0 w-[360px] h-[525px]">
+                                <div class="w-[360px] h-[525px] relative select-none">
+                                    <canvas id="tshirt-front-canvas" width="360" height="525" />
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <div x-cloak class="" x-show="open == true" x-transition:enter.duration.300ms>
-                            <div id="tshirt-back" class="relative -p-[0.5px] w-[880px] h-[900px]">
-                                <img id="tshirt-back-background" class="w-[880px] h-[900px] mx-auto bg-white"
-                                    src="{{ asset('storage/mockup-image/' . $template->mockup_image_2) }}"
-                                    alt="" />
-                                <div id="drawingArea" class="absolute top-44 left-[270px] z-0 w-[360px] h-[525px]">
-                                    <div class="w-[360px] h-[525px] relative select-none">
-                                        <canvas id="tshirt-back-canvas" width="360" height="525" />
-                                    </div>
+                </div>
+                <div>
+                    <div x-cloak class="" x-show="open == true" x-transition:enter.duration.300ms>
+                        <div id="tshirt-back" class="relative -p-[0.5px] w-[880px] h-[900px]">
+                            <img id="tshirt-back-background" class="w-[880px] h-[900px] mx-auto bg-white"
+                                src="{{ asset('storage/mockup-image/' . $template->mockup_image_2) }}"
+                                alt="" />
+                            <div id="drawingArea" class="absolute top-44 left-[270px] z-0 w-[360px] h-[525px]">
+                                <div class="w-[360px] h-[525px] relative select-none">
+                                    <canvas id="tshirt-back-canvas" width="360" height="525" />
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
             </div>
         </form>
     </div>
@@ -347,7 +340,7 @@
         const fileInputBack = document.querySelector('input[id="tshirt-file-back"]');
         const pond = FilePond.create(fileInput);
         const pond_2 = FilePond.create(fileInputBack);
-        
+
         FilePond.setOptions({
             server: {
                 url: '{{ route('upload') }}',
@@ -370,24 +363,18 @@
         function setTshirtFrontBackground(color) {
             $("tshirt-front-background").style.background = color;
         }
+
         function setTshirtBackBackground(color) {
             $("tshirt-back-background").style.background = color;
+        }
+
+        $("White").onclick = function() {
+            setTshirtFrontBackground('#fff');
+            setTshirtBackBackground('#fff');
         }
         $("Black").onclick = function() {
             setTshirtFrontBackground('#000');
             setTshirtBackBackground('#000');
-        }
-        $("Gray").onclick = function() {
-            setTshirtFrontBackground('#808080');
-            setTshirtBackBackground('#808080');
-        }
-        $("Navy").onclick = function() {
-            setTshirtFrontBackground('#000435');
-            setTshirtBackBackground('#000435');
-        }
-        $("BrightRose").onclick = function() {
-            setTshirtFrontBackground('#dfb2ae');
-            setTshirtBackBackground('#dfb2ae');
         }
 
         // When the user clicks on upload a custom picture (Front)  
