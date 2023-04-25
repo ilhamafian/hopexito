@@ -211,7 +211,7 @@
             </div>
         </x-jet-gradient-card>
     </div>
-    @if (Auth::check())
+    {{-- @if (Auth::check())
         <div class="max-w-5xl mx-auto mt-8">
             <x-jet-admin-card>
                 <div class="p-6">
@@ -227,7 +227,7 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="grid grid-cols-3 max-w-3xl mx-auto gap-4 my-4">
+                        <div class="grid max-w-3xl grid-cols-3 gap-4 mx-auto my-4">
                             <div class="relative">
                                 @if ($discount != 0.9 && $total >= 60)
                                     <button type="button" wire:click="discount('0.9')"
@@ -273,11 +273,11 @@
                                     </button>
                                 @endif
                                 @if ($total >= 90)
-                                    <p class="absolute left-0 right-0 p-2 text-xs text-center  -bottom-12 md:-bottom-7 text-lime-500">
+                                    <p class="absolute left-0 right-0 p-2 text-xs text-center -bottom-12 md:-bottom-7 text-lime-500">
                                         Minimum spend: RM90
                                     </p>
                                 @else
-                                    <p class="absolute left-0 right-0 p-2 text-xs text-center  -bottom-12 md:-bottom-7 text-rose-500">
+                                    <p class="absolute left-0 right-0 p-2 text-xs text-center -bottom-12 md:-bottom-7 text-rose-500">
                                         Minimum spend: RM90
                                     </p>
                                 @endif
@@ -300,11 +300,11 @@
                                     </button>
                                 @endif
                                 @if ($total >= 120)
-                                    <p class="absolute left-0 right-0 p-2 text-xs text-center  -bottom-12 md:-bottom-7 text-lime-500">
+                                    <p class="absolute left-0 right-0 p-2 text-xs text-center -bottom-12 md:-bottom-7 text-lime-500">
                                         Minimum spend: RM120
                                     </p>
                                 @else
-                                    <p class="absolute left-0 right-0 p-2 text-xs text-center  -bottom-12 md:-bottom-7 text-rose-500">
+                                    <p class="absolute left-0 right-0 p-2 text-xs text-center -bottom-12 md:-bottom-7 text-rose-500">
                                         Minimum spend: RM120
                                     </p>
                                 @endif
@@ -312,7 +312,7 @@
                         </div>
             </x-jet-admin-card>
         </div>
-    @endif
+    @endif --}}
 </div>
 @if (Auth::check())
     @if ($cart->count() != 0)
