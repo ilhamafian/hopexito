@@ -16,7 +16,7 @@
                         New
                         Product</a>
                 </div>
-            </div
+            </div>
             <div class="grid max-w-5xl grid-cols-1 gap-4 py-16 mx-auto text-white md:grid-cols-3">
                 <div class="block mx-2 h-96 group sm:mx-0">
                     <div

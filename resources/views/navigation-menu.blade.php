@@ -77,6 +77,11 @@
                                              <x-jet-dropdown-link href="{{ route('profile.show') }}">
                                                  {{ __('Account Settings') }}
                                              </x-jet-dropdown-link>
+                                             {{-- <x-jet-secondary-button type="button"
+                                                onclick="location.href='{{ route('sellyourart') }}'"
+                                                class="w-56 px-8 py-2.5 mx-3 mb-3 text-white rounded-full bg-indigo-500 ">
+                                                <span class="mx-auto">Sell your art</span>
+                                             </x-jet-secondary-button> --}}
                                              <x-jet-button type="button"
                                                  onclick="location.href='{{ route('sellyourart') }}'"
                                                  class="w-56 px-8 py-2.5 mx-3 mb-3 text-white rounded-full bg-rose-500 ">
