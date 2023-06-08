@@ -210,9 +210,9 @@
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
                             </svg>
-                            <div class="absolute bottom-2 flex-col hidden mb-4 group-hover:flex">
+                            <div class="absolute flex-col hidden mb-4 bottom-2 group-hover:flex">
                                 <span
-                                    class="relative z-10 p-2 leading-none text-white whitespace-no-wrap bg-black shadow-lg text-xs w-96">
+                                    class="relative z-10 p-2 text-xs leading-none text-white whitespace-no-wrap bg-black shadow-lg w-96">
                                     Set the preview for product that have designs on both the front and back.</span>
                             </div>
                         </div>
@@ -224,7 +224,7 @@
                             <label for="previewFront"
                                 :class="preview == false ? 'border-indigo-500' :
                                     'border-gray-700'"
-                                class="grid p-2 text-white transition border-2 cursor-pointer md:text-sm place-items-center rounded-lg hover:border-indigo-500">Preview
+                                class="grid p-2 text-white transition border-2 rounded-lg cursor-pointer md:text-sm place-items-center hover:border-indigo-500">Preview
                                 Front
                             </label>
                         </div>
@@ -234,7 +234,7 @@
                             <label x-cloak for="previewBack"
                                 :class="preview == true ? 'border-indigo-500' :
                                     'border-gray-700'"
-                                class="grid p-2 text-white transition border-2 cursor-pointer md:text-sm place-items-center rounded-lg hover:border-indigo-500">Preview
+                                class="grid p-2 text-white transition border-2 rounded-lg cursor-pointer md:text-sm place-items-center hover:border-indigo-500">Preview
                                 Back</label>
                         </div>
                     </div>
@@ -360,6 +360,7 @@
 
         fabric.Object.prototype.cornerSize = 0
         fabric.Object.prototype.borderColor = "rgba(0,0,0,0)"
+        
         var $ = function(id) {
             return document.getElementById(id)
         };

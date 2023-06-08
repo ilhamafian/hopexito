@@ -108,7 +108,7 @@
                                         class="absolute w-2 h-2 p-1 rounded-full top-1.5 -left-4 bg-lime-500"></span>Shipped
                                 </p>
                             @elseif($order->status == 4)
-                                <p class="relative basis-[12%]"><span
+                                <p cla`ss="relative basis-[12%]"><span
                                         class="absolute w-2 h-2 p-1 rounded-full top-1.5 -left-4 bg-green-500"></span>Delivered
                                 </p>
                             @endif

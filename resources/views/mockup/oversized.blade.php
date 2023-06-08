@@ -22,7 +22,8 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25v13.5m-7.5-13.5v13.5" />
                 </svg>
                 <p class="text-indigo-400">Oversized Tee</p>
-            </div>
+            </div> 
+            {{-- pada suatu hari --}}
         </div>
         <form method="POST" action="{{ route('product.store') }}" enctype="multipart/form-data"
             class="flex flex-col w-full xl:mx-16 xl:flex-row">

@@ -6,12 +6,12 @@
                 <div class="flex flex-col items-center gap-2">
                     <x-jet-admin-header>Database Size
                     </x-jet-admin-header>
-                    <p class="text-xl text-indigo-400 tracking-wider">
+                    <p class="text-xl tracking-wider text-indigo-400">
                         {{ $DBSize[0]->size }} MB
                     </p>
                     <div class="text-center">
                         <p class="px-2 py-0.5 bg-violet-600 rounded-md">Product Table Size</p>
-                        <p class="mt-1 text-lg ring-2 ring-fuchsia-600 mx-2 rounded-md">
+                        <p class="mx-2 mt-1 text-lg rounded-md ring-2 ring-fuchsia-600">
                             {{ $productDBSize[0]->size }} MB
                         </p>
                     </div>
@@ -21,37 +21,37 @@
                 <div class="flex flex-col items-center gap-2">
                     <x-jet-admin-header>Disk Size
                     </x-jet-admin-header>
-                    <p class="text-xl text-indigo-400 tracking-wider">
+                    <p class="text-xl tracking-wider text-indigo-400">
                         {{ $diskSize }}
                     </p>
                     <div class="grid grid-cols-2 gap-4 text-center">
                         <div>
                             <p class="px-2 py-0.5 bg-violet-600 rounded-md">Collection Image Size</p>
-                            <p class="mt-1 text-lg ring-2 ring-fuchsia-600 mx-2 rounded-md">
+                            <p class="mx-2 mt-1 text-lg rounded-md ring-2 ring-fuchsia-600">
                                 {{ $diskCollectionSize }}
                             </p>
                         </div>
                         <div>
                             <p class="px-2 py-0.5 bg-violet-600 rounded-md">Cover Image Size</p>
-                            <p class="mt-1 text-lg ring-2 ring-fuchsia-600 mx-2 rounded-md">
+                            <p class="mx-2 mt-1 text-lg rounded-md ring-2 ring-fuchsia-600">
                                 {{ $diskCoverSize }}
                             </p>
                         </div>
                         <div>
                             <p class="px-2 py-0.5 bg-violet-600 rounded-md">Image Back Size</p>
-                            <p class="mt-1 text-lg ring-2 ring-fuchsia-600 mx-2 rounded-md">
+                            <p class="mx-2 mt-1 text-lg rounded-md ring-2 ring-fuchsia-600">
                                 {{ $diskImageBackSize }}
                             </p>
                         </div>
                         <div>
                             <p class="px-2 py-0.5 bg-violet-600 rounded-md">Image Front Size</p>
-                            <p class="mt-1 text-lg ring-2 ring-fuchsia-600 mx-2 rounded-md">
+                            <p class="mx-2 mt-1 text-lg rounded-md ring-2 ring-fuchsia-600">
                                 {{ $diskImageFrontSize }}
                             </p>
                         </div>
                         <div>
                             <p class="px-2 py-0.5 bg-violet-600 rounded-md">Profile Photos Size</p>
-                            <p class="mt-1 text-lg ring-2 ring-fuchsia-600 mx-2 rounded-md">
+                            <p class="mx-2 mt-1 text-lg rounded-md ring-2 ring-fuchsia-600">
                                 {{ $diskProfilePhotoSize }}
                             </p>
                         </div>

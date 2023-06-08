@@ -16,7 +16,7 @@
                         New
                         Product</a>
                 </div>
-            </div>
+            </div
             <div class="grid max-w-5xl grid-cols-1 gap-4 py-16 mx-auto text-white md:grid-cols-3">
                 <div class="block mx-2 h-96 group sm:mx-0">
                     <div
@@ -60,7 +60,7 @@
                             Add an avatar
                             @if (Auth::user()->profile_photo_path)
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="ml-2 text-lime-500 w-6 h-6">
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ml-2 text-lime-500">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
@@ -75,7 +75,7 @@
                             Add a cover image
                             @if (Auth::user()->artist->cover_image)
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="ml-2 text-lime-500 w-6 h-6">
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ml-2 text-lime-500">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
@@ -90,7 +90,7 @@
                             Add link to other sites
                             @if (Auth::user()->artist()->whereNotNull('facebook')->orWhereNotNull('twitter')->orWhereNotNull('instagram')->orWhereNotNull('dribble')->orWhereNotNull('behance')->orWhereNotNull('pinterest')->orWhereNotNull('deviantart')->orWhereNotNull('tiktok')->orWhereNotNull('website')->count() > 0)
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="ml-2 text-lime-500 w-6 h-6">
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ml-2 text-lime-500">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
@@ -119,7 +119,7 @@
                             Confirm your email address
                             @if (Auth::user()->email_verified_at)
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="ml-2 text-lime-500 w-6 h-6">
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ml-2 text-lime-500">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
@@ -136,7 +136,7 @@
                                     Auth::user()->wallet->bank_name &&
                                     Auth::user()->wallet->bank_account_number)
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="ml-2 text-lime-500 w-6 h-6">
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ml-2 text-lime-500">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
@@ -148,16 +148,16 @@
         </div>
     </div>
     <div
-        class="absolute z-10 hidden rounded-full lg:block filter blur-xl bg-gradient-to-r from-indigo-500 via-violet-500 to-fuchsia-500 h-72 w-72 lg:bottom-48 lg:right-36 right-0 animate-spin">
+        class="absolute right-0 z-10 hidden rounded-full lg:block filter blur-xl bg-gradient-to-r from-indigo-500 via-violet-500 to-fuchsia-500 h-72 w-72 lg:bottom-48 lg:right-36 animate-spin">
     </div>
     <div
-        class="absolute z-10 hidden rotate-45 rounded-full h-80 w-80 lg:block filter blur-xl bg-gradient-to-r from-indigo-700 via-violet-700 to-fuchsia-700 lg:bottom-16 lg:left-36 left-0 animate-spin">
+        class="absolute left-0 z-10 hidden rotate-45 rounded-full h-80 w-80 lg:block filter blur-xl bg-gradient-to-r from-indigo-700 via-violet-700 to-fuchsia-700 lg:bottom-16 lg:left-36 animate-spin">
     </div>
     <div class="mb-48" id="wallet">
         @livewire('wallet')
     </div>
     <div class="relative w-full py-16 bg-black/50 h-72">
-        <img src="image/discord-icon.png" class="absolute hidden left-0 xl:left-48 -top-16 lg:block -rotate-12" />
+        <img src="image/discord-icon.png" class="absolute left-0 hidden xl:left-48 -top-16 lg:block -rotate-12" />
         <img src="image/xito-icon.png"
             class="absolute hidden w-32 h-32 lg:right-16 xl:right-72 bottom-12 lg:block rotate-12" />
         <div class="max-w-2xl mx-auto space-y-2 text-center">

@@ -118,24 +118,28 @@ class ExploreController extends Controller
 
     public function shirt()
     {
-        $products = Product::where('status', '!=', 2)->where('category','shirt')->inrandomOrder()->paginate(100);
+        $products = Product::where('status', '!=', 2)->where('category', 'shirt')->inrandomOrder()->paginate(100);
         return view('shop/standard-tee', compact('products'));
     }
 
     public function oversized()
     {
-        $products = Product::where('status', '!=', 2)->where('category','oversized')->inrandomOrder()->paginate(100);
+        $products = Product::where('status', '!=', 2)->where('category', 'oversized')->inrandomOrder()->paginate(100);
         return view('shop/oversized', compact('products'));
     }
     // return seller profile, views/people
     public function people($shopname)
     {
         $user = User::where('name', $shopname)->first();
-        $products = Product::where('artist_id', $user->id)->where('status', '!=', 2)->orderBy('status', 'desc')->orderBy('created_at', 'desc')->paginate(16);
+        $productsQuery = Product::where('artist_id', $user->id)->where('status', '!=', 2);
+        $productsCount = $productsQuery->count();
+        $products = $productsQuery->orderBy('status', 'desc')
+            ->orderBy('created_at', 'desc')
+            ->paginate(16);
         $productsCollection = ProductCollection::where('name', $shopname)->get();
         $totalSold = Product::where('artist_id', $user->id)->sum('sold');
 
-        return view('people', compact('user', 'products', 'productsCollection', 'totalSold'));
+        return view('people', compact('user', 'products', 'productsCount', 'productsCollection', 'totalSold'));
     }
     // upgrade user from customer to seller
     public function upgrade($id)

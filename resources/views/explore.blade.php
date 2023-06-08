@@ -43,7 +43,7 @@
                                     <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"
                                         stroke-width="2" />
                                 </svg>
-                            </button>
+                            </button>                                                                                                                         
                             <button
                                 class="p-3 text-indigo-500 transition border-2 rounded-full next-button border-violet-500 hover:bg-violet-500 hover:text-white">
                                 <span class="sr-only">Next Slide</span>

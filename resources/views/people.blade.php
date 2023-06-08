@@ -22,7 +22,7 @@
             <p class="flex items-center justify-center gap-2">
                 <span class="px-1 bg-indigo-400 rounded-md ">Joined {{ $user->created_at->format('M Y') }}</span>
                 <span class="text-2xl">&middot;</span>
-                <span class="px-1 bg-indigo-400 rounded-md ">{{ $products->count() }} Designs</span>
+                <span class="px-1 bg-indigo-400 rounded-md ">{{ $productsCount }} Designs</span>
                 @if ($totalSold > 0)
                     <span class="text-2xl">&middot;</span>
                     <span class="px-1 bg-indigo-400 rounded-md ">{{ $totalSold }} Products Sold</span>
@@ -314,7 +314,7 @@
                 {{ $products->links('/vendor/pagination/tailwind') }}
             </div>
         </div>
-        <div x-show="nav == 2" x-transition.opacity x-transition:enter.duration.500ms
+        <div x-cloak x-show="nav == 2" x-transition.opacity x-transition:enter.duration.500ms
             x-transition:leave.duration.100ms>
             <div class="relative flex flex-col gap-4 my-10">
                 @foreach ($productsCollection as $item)

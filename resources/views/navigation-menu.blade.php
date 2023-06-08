@@ -55,7 +55,8 @@
                                                  {{ __('Manage Products') }}
                                              </x-jet-dropdown-link>
                                              <x-jet-dropdown-link href="{{ route('product.sales') }}">
-                                                {{ __('Sales History') }}  <span class="px-2 ml-2 bg-indigo-500 rounded-md">New</span>
+                                                {{ __('Sales History') }}  
+                                                {{-- <span class="px-2 ml-2 bg-indigo-500 rounded-md">New</span> --}}
                                             </x-jet-dropdown-link>
                                              <x-jet-button type="button"
                                                  onclick="location.href='{{ route('product.create') }}'"
