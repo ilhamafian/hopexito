@@ -29,7 +29,6 @@ class GodMode extends Component
     public $unlocked, $unlock_password = '';
     public $bill_id, $new_order_amount;
     public $sold_product;
-    public $prod_id, $prod_id_2;
     public $hide = false;
 
     public function optimizeDataUrl()
