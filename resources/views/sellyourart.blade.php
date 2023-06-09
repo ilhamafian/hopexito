@@ -184,7 +184,7 @@
                                     @php
                                     $coverImagePath = 'storage/cover-image/' . $seller->artist->cover_image;
                                     $image = Image::make(public_path($coverImagePath));
-                                    $image->resize(720,448);
+                                    $image->resize(500,300);
                                     $image->encode('jpg', 60);
                                     $dataUrl = 'data:image/jpeg;base64,' . base64_encode($image->encoded);
                                 @endphp   

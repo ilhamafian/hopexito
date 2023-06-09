@@ -2,7 +2,6 @@
 @php
     use Intervention\Image\Facades\Image;
 @endphp
-
 <x-app-layout>
     <div class="flex flex-col items-center min-h-screen gap-12 mx-auto pb-28 lg:flex-row lg:max-w-5xl xl:max-w-7xl">
         <div class="flex flex-col px-12 py-16 space-y-2 text-center lg:px-0 lg:py-0 lg:text-left animate__animated animate__fadeInUp animate__fast">
@@ -69,8 +68,8 @@
                                                 @php
                                                     $coverImagePath = 'storage/cover-image/' . $user->artist->cover_image;
                                                     $image = Image::make(public_path($coverImagePath));
-                                                    $image->resize(720,448);
-                                                    $image->encode('jpg', 60);
+                                                    $image->resize(500,300);
+                                                    $image->encode('jpg', 80);
                                                     $dataUrl = 'data:image/jpeg;base64,' . base64_encode($image->encoded);
                                                 @endphp   
                                                 <img src="{{ $dataUrl }}"
@@ -191,7 +190,14 @@
         <div class="grid grid-cols-1 gap-2 mt-6 lg:grid-cols-2 xl:gap-12">
             @foreach ($collections as $item)
                 <div class="relative rounded-xl ">
-                    <img src="{{ asset('storage/collection-image/' . $item->collection_image) }}"
+                    @php
+                    $collectionImagePath = 'storage/collection-image/' . $item->collection_image;
+                    $image = Image::make(public_path($collectionImagePath));
+                    $image->resize(500,300);
+                    $image->encode('jpg', 60);
+                    $dataUrl = 'data:image/jpeg;base64,' . base64_encode($image->encoded);
+                    @endphp   
+                    <img src="{{ $dataUrl }}"
                         class="absolute z-0 w-full lg:inset-y-2 xl:inset-y-6 rounded-xl xl:h-96 lg:h-80" />
                     <div class="relative top-0 z-20 p-1 rounded-lg lg:m-4 xl:m-10 bg-white/20">
                         <div class="flex gap-2 md:gap-8">
