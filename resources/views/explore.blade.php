@@ -69,7 +69,7 @@
                                                     $coverImagePath = 'storage/cover-image/' . $user->artist->cover_image;
                                                     $image = Image::make(public_path($coverImagePath));
                                                     $image->resize(500,300);
-                                                    $image->encode('jpg', 80);
+                                                    $image->encode('jpg', 60);
                                                     $dataUrl = 'data:image/jpeg;base64,' . base64_encode($image->encoded);
                                                 @endphp   
                                                 <img src="{{ $dataUrl }}"
@@ -100,7 +100,6 @@
                             <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
                         </svg>
                     </button>
-
                     <button aria-label="Next slide"
                         class="p-3 text-indigo-500 transition border-2 rounded-full next-button border-violet-500 hover:bg-violet-500 hover:text-white">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -111,7 +110,6 @@
                 </div>
             </div>
         </div>
-
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 new Swiper('.swiper-container', {
@@ -191,11 +189,11 @@
             @foreach ($collections as $item)
                 <div class="relative rounded-xl ">
                     @php
-                    $collectionImagePath = 'storage/collection-image/' . $item->collection_image;
-                    $image = Image::make(public_path($collectionImagePath));
-                    $image->resize(500,300);
-                    $image->encode('jpg', 60);
-                    $dataUrl = 'data:image/jpeg;base64,' . base64_encode($image->encoded);
+                       $collectionImagePath = 'storage/collection-image/' . $item->collection_image;
+                        $image = Image::make(public_path($collectionImagePath));
+                        $image->resize(500,300);
+                        $image->encode('jpg', 60);
+                        $dataUrl = 'data:image/jpeg;base64,' . base64_encode($image->encoded);
                     @endphp   
                     <img src="{{ $dataUrl }}"
                         class="absolute z-0 w-full lg:inset-y-2 xl:inset-y-6 rounded-xl xl:h-96 lg:h-80" />
