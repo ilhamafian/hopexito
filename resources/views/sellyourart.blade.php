@@ -181,8 +181,15 @@
                         <div class="swiper-wrapper">
                             @foreach ($sellers as $seller)
                                 <div class="text-center swiper-slide">
+                                    @php
+                                    $coverImagePath = 'storage/cover-image/' . $seller->artist->cover_image;
+                                    $image = Image::make(public_path($coverImagePath));
+                                    $image->resize(720,448);
+                                    $image->encode('jpg', 60);
+                                    $dataUrl = 'data:image/jpeg;base64,' . base64_encode($image->encoded);
+                                @endphp   
                                     <div class="p-2 bg-cover rounded-xl h-72"
-                                        style="background-image: url({{ asset('storage/cover-image/' . $seller->artist->cover_image) }})">
+                                        style="background-image: url({{ $dataUrl }})">
                                         <div class="h-full space-y-2 transition rounded-lg py-14 bg-black/60">
                                             <img class="object-cover w-16 h-16 m-auto rounded-full bottom-20"
                                                 src="{{ $seller->profile_photo_url }}" alt="{{ $seller->name }}" />

@@ -68,8 +68,10 @@
                                             <div class="absolute z-40 overflow-hidden rounded-lg">
                                                 @php
                                                     $coverImagePath = 'storage/cover-image/' . $user->artist->cover_image;
-                                                    $compressedImage = Image::make(public_path($coverImagePath))->encode('jpg', 100);
-                                                    $dataUrl = 'data:image/jpeg;base64,' . base64_encode($compressedImage->encode('jpg'));
+                                                    $image = Image::make(public_path($coverImagePath));
+                                                    $image->resize(720,448);
+                                                    $image->encode('jpg', 60);
+                                                    $dataUrl = 'data:image/jpeg;base64,' . base64_encode($image->encoded);
                                                 @endphp   
                                                 <img src="{{ $dataUrl }}"
                                                     class="sm:w-[480px] w-[360px] h-56 object-cover sm:h-64">
