@@ -44,8 +44,6 @@ class ExploreController extends Controller
             ->take(5)
             ->get();
 
-
-
         $featured = $users->pluck('id');
         $products = Product::where('status', 1)
             ->whereIn('artist_id', $featured)

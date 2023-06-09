@@ -1,4 +1,8 @@
 @section('title', 'Explore | HopeXito')
+@php
+    use Intervention\Image\Facades\Image;
+@endphp
+
 <x-app-layout>
     <div class="flex flex-col items-center min-h-screen gap-12 mx-auto pb-28 lg:flex-row lg:max-w-5xl xl:max-w-7xl">
         <div class="flex flex-col px-12 py-16 space-y-2 text-center lg:px-0 lg:py-0 lg:text-left animate__animated animate__fadeInUp animate__fast">
@@ -62,7 +66,12 @@
                                     <a href="{{ route('people', $user->name) }}" class="swiper-slide">
                                         <blockquote class="w-full mx-3 h-96 group">
                                             <div class="absolute z-40 overflow-hidden rounded-lg">
-                                                <img src="{{ asset('storage/cover-image/' . $user->artist->cover_image) }}"
+                                                @php
+                                                    $coverImagePath = 'storage/cover-image/' . $user->artist->cover_image;
+                                                    $compressedImage = Image::make(public_path($coverImagePath))->encode('jpg', 100);
+                                                    $dataUrl = 'data:image/jpeg;base64,' . base64_encode($compressedImage->encode('jpg'));
+                                                @endphp   
+                                                <img src="{{ $dataUrl }}"
                                                     class="sm:w-[480px] w-[360px] h-56 object-cover sm:h-64">
                                                 <img class="absolute left-0 right-0 object-cover w-16 h-16 m-auto rounded-full bottom-20"
                                                     src="{{ $user->profile_photo_url }}" alt="{{ $user->name }}" />
