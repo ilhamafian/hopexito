@@ -34,24 +34,35 @@ class GodMode extends Component
 
     public function optimizeDataUrl()
     {
-        $product = Product::findOrFail($this->prod_id);
-        $dataUrl = $product->product_image;
-        $dataUrl2 = $product->product_image_2;
-
-        try {
-            $image = Image::make($dataUrl);
-            $image2 = Image::make($dataUrl2);
-            $image->encode('jpg', 90);
-            $image2->encode('jpg', 90);
-            $optimizedImageUrl = 'data:image/jpeg;base64,' . base64_encode($image->__toString());
-            $optimizedImageUrl2 = 'data:image/jpeg;base64,' . base64_encode($image2->__toString());
-            $product->product_image = $optimizedImageUrl;
-            $product->product_image_2 = $optimizedImageUrl2;
-            $product->save();
-        } catch (\Exception $e) {
-            // Log the exception
-            Log::error($e->getMessage());
+        $batchSize = 20; // Number of products to process in each batch
+        $totalProducts = Product::count();
+        $totalBatches = ceil($totalProducts / $batchSize);
+    
+        for ($batch = 1; $batch <= $totalBatches; $batch++) {
+            $offset = ($batch - 1) * $batchSize;
+            $products = Product::offset($offset)->limit($batchSize)->get();
+    
+            foreach ($products as $product) {
+                $dataUrl = $product->product_image;
+                $dataUrl2 = $product->product_image_2;
+    
+                try {
+                    $image = Image::make($dataUrl);
+                    $image2 = Image::make($dataUrl2);
+                    $image->encode('jpg', 100);
+                    $image2->encode('jpg', 100);
+                    $optimizedImageUrl = 'data:image/jpeg;base64,' . base64_encode($image->__toString());
+                    $optimizedImageUrl2 = 'data:image/jpeg;base64,' . base64_encode($image2->__toString());
+                    $product->product_image = $optimizedImageUrl;
+                    $product->product_image_2 = $optimizedImageUrl2;
+                    $product->save();
+                } catch (\Exception $e) {
+                    // Log the exception
+                    Log::error($e->getMessage());
+                }
+            }
         }
+    
         session()->flash('message', 'DataUrl Optimized');
         return redirect()->route('godmode');
     }

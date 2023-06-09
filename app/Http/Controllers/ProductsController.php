@@ -55,12 +55,12 @@ class ProductsController extends Controller
         $input = $request->all();
         $dataUrl = $input['product_image'];
         $image = Image::make($dataUrl);
-        $image->encode('jpg', 90);
+        $image->encode('jpg', 100);
         $optimizedImageUrl = 'data:image/jpeg;base64,' . base64_encode($image->__toString());
         $input['product_image'] = $optimizedImageUrl;
         $dataUrl2 = $input['product_image_2'];
         $image2 = Image::make($dataUrl2);
-        $image2->encode('jpg', 90);
+        $image2->encode('jpg', 100);
         $optimizedImageUrl2 = 'data:image/jpeg;base64,' . base64_encode($image2->__toString());
         $input['product_image_2'] = $optimizedImageUrl2;
         $input['preview'] = intval($request->input('preview'));
