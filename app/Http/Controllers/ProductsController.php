@@ -17,7 +17,8 @@ class ProductsController extends Controller
 {
     public function index()
     {
-        // 
+        $template = ProductTemplate::all();
+        return view('product.custom', compact('template'));
     }
     // product template selection page
     public function create()
@@ -25,14 +26,7 @@ class ProductsController extends Controller
         $template = ProductTemplate::all();
         return view('product.create', compact('template'));
     }
-    //  generate product template, views/product/template
-    public function template($id)
-    {
-        $template = ProductTemplate::findOrFail($id);
-        $colors = explode(',', $template->color);
-        return view('product.template', compact('template', 'colors'));
-    }
-
+    
     // store products into database
     public function store(Request $request)
     {

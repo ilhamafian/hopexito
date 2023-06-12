@@ -40,10 +40,20 @@
                 <div class="flex flex-col h-full p-6 bg-black rounded-xl">
                     <x-jet-header>List of Tags</x-jet-header>
                     <div class="grid max-h-screen grid-cols-6 gap-2 mt-5 overflow-scroll">
-                        @foreach ($tags as $item)
-                            <a class="relative h-14" x-data="{ open: false }" x-on:mouseenter="open = true"
+                        @foreach ($popularTags as $item => $count)
+                            <a class="relative h-12" x-data="{ open: false }" x-on:mouseenter="open = true"
                                 x-on:mouseleave="open = false">
-                                <p class="px-3 py-2 transition bg-pink-500 rounded-md hover:bg-fuchsia-500">
+                                <p class="px-3 py-2 text-xs transition bg-blue-500 rounded-md hover:bg-fuchsia-500">
+                                    {{ $item }} ({{ $count }})</p>
+                            </a>
+                        @endforeach
+                    </div>
+                    <x-jet-section-border/>
+                    <div class="grid max-h-screen grid-cols-6 gap-2 mt-5 overflow-scroll">
+                        @foreach ($tags as $item)
+                            <a class="relative h-12" x-data="{ open: false }" x-on:mouseenter="open = true"
+                                x-on:mouseleave="open = false">
+                                <p class="px-3 py-2 text-xs transition bg-pink-500 rounded-md hover:bg-fuchsia-500">
                                     {{ $item }}</p>
                             </a>
                         @endforeach
@@ -62,7 +72,7 @@
                                     x-data="{ open: false }" x-on:mouseenter="open = true"
                                     x-on:mouseleave="open = false">
                                     <div
-                                        class="flex flex-col gap-2 px-3 py-2.5 transition rounded-md bg-black border-2 border-violet-600 hover:bg-violet-600/70">
+                                        class="flex flex-col gap-2 px-3 py-3 text-xs transition bg-black border-2 rounded-md border-violet-600 hover:bg-violet-600/70">
                                         <p class="block w-full">
                                             <span
                                                 class="text-xs bg-blue-500 mr-2 rounded-md px-2 py-0.5">{{ $item->status }}</span>
@@ -71,8 +81,27 @@
                                             <span
                                                 class="text-xs bg-lime-500 mr-2 rounded-md px-2 py-0.5">{{ $item->sold }}</span>
                                         </p>
-
                                         {{ $item->title }}
+                                    </div>
+                                    <div class="absolute flex gap-1 top-2 right-10">
+                                        @if ($item->image_front)
+                                            <svg x-show="open" wire:click.prevent="exportFront('{{ $item->id }}')"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor"
+                                                class="p-1 transition rounded-md cursor-pointer hover:bg-emerald-500 w-7 h-7">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                                            </svg>
+                                        @endif
+                                        @if ($item->image_back)
+                                            <svg x-show="open" wire:click.prevent="exportBack('{{ $item->id }}')"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor"
+                                                class="p-1 transition rounded-md cursor-pointer hover:bg-emerald-500 w-7 h-7">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                                            </svg>
+                                        @endif
                                     </div>
                                     <svg class="absolute p-1 transition rounded-md cursor-pointer top-2 right-2 hover:bg-rose-500 w-7 h-7"
                                         x-show="open" wire:click.prevent="deleteProduct('{{ $item->id }}')"
@@ -99,7 +128,7 @@
                                     x-data="{ open: false }" x-on:mouseenter="open = true"
                                     x-on:mouseleave="open = false">
                                     <div
-                                        class="flex flex-col gap-2 px-3 py-2.5 transition rounded-md bg-black border-2 border-violet-600 hover:bg-violet-600/70">
+                                        class="flex flex-col gap-2 px-3 py-3 text-xs transition bg-black border-2 rounded-md border-violet-600 hover:bg-violet-600/70">
                                         <p class="block w-full">
                                             <span
                                                 class="text-xs bg-blue-500 mr-2 rounded-md px-2 py-0.5">{{ $item->status }}</span>
@@ -109,6 +138,27 @@
                                                 class="text-xs bg-lime-500 mr-2 rounded-md px-2 py-0.5">{{ $item->sold }}</span>
                                         </p>
                                         {{ $item->title }}
+                                    </div>
+                                    <div class="absolute flex gap-1 top-2 right-10">
+                                        @if ($item->image_front)
+                                            <svg x-show="open" wire:click.prevent="exportFront('{{ $item->id }}')"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor"
+                                                class="p-1 transition rounded-md cursor-pointer hover:bg-emerald-500 w-7 h-7">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                                            </svg>
+                                        @endif
+                                        @if ($item->image_back)
+                                            <svg x-show="open"
+                                                wire:click.prevent="exportBack('{{ $item->id }}')"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor"
+                                                class="p-1 transition rounded-md cursor-pointer hover:bg-emerald-500 w-7 h-7">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                                            </svg>
+                                        @endif
                                     </div>
                                     <svg class="absolute p-1 transition rounded-md cursor-pointer top-2 right-2 hover:bg-rose-500 w-7 h-7"
                                         x-show="open" wire:click.prevent="deleteProduct('{{ $item->id }}')"
@@ -131,11 +181,11 @@
                     <div class="grid max-h-screen grid-cols-4 gap-2 mt-5 overflow-scroll">
                         @foreach ($products as $item)
                             @if ($item->status == 3)
-                                <a href="{{ route('product.show', $item->slug) }}" class="relative flex flex-col h-24"
-                                    x-data="{ open: false }" x-on:mouseenter="open = true"
-                                    x-on:mouseleave="open = false">
+                                <a href="{{ route('product.show', $item->slug) }}"
+                                    class="relative flex flex-col h-24" x-data="{ open: false }"
+                                    x-on:mouseenter="open = true" x-on:mouseleave="open = false">
                                     <div
-                                        class="flex flex-col gap-2 px-3 py-2.5 transition rounded-md bg-black border-2 border-violet-600 hover:bg-violet-600/70">
+                                        class="flex flex-col gap-2 px-3 py-3 text-xs transition bg-black border-2 rounded-md border-violet-600 hover:bg-violet-600/70">
                                         <p class="block w-full">
                                             <span
                                                 class="text-xs bg-blue-500 mr-2 rounded-md px-2 py-0.5">{{ $item->status }}</span>
@@ -145,6 +195,28 @@
                                                 class="text-xs bg-lime-500 mr-2 rounded-md px-2 py-0.5">{{ $item->sold }}</span>
                                         </p>
                                         {{ $item->title }}
+                                    </div>
+                                    <div class="absolute flex gap-1 top-2 right-10">
+                                        @if ($item->image_front)
+                                            <svg x-show="open"
+                                                wire:click.prevent="exportFront('{{ $item->id }}')"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor"
+                                                class="p-1 transition rounded-md cursor-pointer hover:bg-emerald-500 w-7 h-7">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                                            </svg>
+                                        @endif
+                                        @if ($item->image_back)
+                                            <svg x-show="open"
+                                                wire:click.prevent="exportBack('{{ $item->id }}')"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor"
+                                                class="p-1 transition rounded-md cursor-pointer hover:bg-emerald-500 w-7 h-7">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                                            </svg>
+                                        @endif
                                     </div>
                                     <svg class="absolute p-1 transition rounded-md cursor-pointer top-2 right-2 hover:bg-rose-500 w-7 h-7"
                                         x-show="open" wire:click.prevent="deleteProduct('{{ $item->id }}')"

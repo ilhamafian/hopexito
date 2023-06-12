@@ -90,7 +90,7 @@ class UploadController extends Controller
         }
     }
     // upload cover image
-    public function upload_cover(Request $request)
+    public function uploadCover(Request $request)
     {
         $request->validate([
             'cover_image' => 'required|string',
@@ -110,7 +110,7 @@ class UploadController extends Controller
         return redirect()->route('profile.show');
     }
     // upload product template image
-    public function upload_template(Request $request)
+    public function uploadTemplate(Request $request)
     {
         $request->validate([
             'category' => 'required|string',
@@ -144,7 +144,7 @@ class UploadController extends Controller
         return redirect()->route('admin.templates');
     }
     // upload collection image
-    public function upload_collection(Request $request)
+    public function uploadCollection(Request $request)
     {
         $request->validate([
             'title' => 'required|string',

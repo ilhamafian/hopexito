@@ -19,22 +19,43 @@ class AdminProduct extends Component
         if ($product) {
             $product->delete();
         }
-        session()->flash('message','Product Deleted');
+        session()->flash('message', 'Product Deleted');
         return redirect()->route('admin.products');
+    }
+
+    // export product image
+    public function exportFront($id)
+    {
+        $product = Product::findOrFail($id);
+        $imageFileName = $product->image_front;
+        $imageFilePath = 'app/public/image-front/' . $imageFileName;
+
+        return response()->download(storage_path($imageFilePath));
+    }
+
+    public function exportBack($id)
+    {
+        $product = Product::findOrFail($id);
+        $imageFileName = $product->image_back;
+        $imageFilePath = 'app/public/image-back/' . $imageFileName;
+
+        return response()->download(storage_path($imageFilePath));
     }
 
     public function render()
     {
         $search = '%' . $this->search . '%';
-        $products = Product::where('title', 'like', $search)->select('id', 'title','slug','status','sold')->get();
+        $products = Product::where('title', 'like', $search)->select('id', 'title', 'slug', 'status', 'sold', 'image_front', 'image_back')->get();
         $tags = Product::pluck('tags')->map(function ($item) {
-            return explode(',', $item);
-        })->flatten()->unique()->toArray();
+            return str_getcsv($item);
+        })->flatten();
+        $tagCounts = $tags->countBy();
+        $popularTags = $tagCounts->sortDesc()->take(20);
         $totalProducts = Product::count();
         $totalSold = ProductOrder::sum('quantity');
         $averagePrice = Product::average('price');
         $totalTemplates = ProductTemplate::count();
         $totalCollection = ProductCollection::count();
-        return view('livewire.admin.admin-product', compact('products','tags','totalProducts','totalSold','averagePrice','totalTemplates','totalCollection'));
+        return view('livewire.admin.admin-product', compact('products', 'tags', 'popularTags','totalProducts', 'totalSold', 'averagePrice', 'totalTemplates', 'totalCollection'));
     }
 }

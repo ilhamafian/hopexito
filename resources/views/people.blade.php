@@ -267,7 +267,6 @@
                                     <img src="{{ $product->product_image }}" alt="{{ $product->title }}"
                                         x-show="open == false"
                                         class="w-full h-full transition ease-in-out rounded-t-lg">
-
                                     <img x-cloak src="{{ $product->product_image_2 }}" alt="{{ $product->title }}"
                                         x-show="open == true"
                                         class="w-full h-full transition ease-in-out rounded-t-lg">

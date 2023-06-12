@@ -1,7 +1,7 @@
 @section('title', $product->title . ' | HopeXito')
 @section('thumbnail', $product->product_image)
 <x-app-layout>
-    <x-jet-whatsapp-contact/>
+    <x-jet-whatsapp-contact />
     <section class="min-h-screen pb-12 text-gray-700 bg-neutral-900" x-data="{ preview: 1 }">
         <x-jet-session-message />
         <div class="py-4 mx-auto">
@@ -49,8 +49,7 @@
                                         x-bind:class="preview == 2 ? 'ring ring-indigo-500' : ''" />
                                 @endif
                                 @if ($product->category == 'Shirt')
-                                    <div class="flex flex-col gap-2 text-white md:ml-auto"
-                                        x-data="{ modal: false }">
+                                    <div class="flex flex-col gap-2 text-white md:ml-auto" x-data="{ modal: false }">
                                         <p class="flex items-center gap-2">
                                             <span class="w-2 h-2 rounded-full bg-cyan-500"></span>
                                             100% Cotton
@@ -174,7 +173,7 @@
                                     </p>
                                 </div>
                                 <div class="flex flex-wrap items-center gap-2 my-3 w-96">
-                                    @foreach (explode(',', $product->tags) as $tag)
+                                    @foreach (preg_split('/[,，]/u', $product->tags) as $tag)
                                         <p class="px-2 py-0.5 bg-violet-500 rounded-md text-white">{{ $tag }}
                                         </p>
                                     @endforeach
@@ -289,15 +288,18 @@
                                         <x-jet-button name="add_to_cart" class="py-4 mt-3 w-80 md:mt-0">
                                             <span class="mx-auto">Add to Cart</span>
                                         </x-jet-button>
-                                        @if(!Auth::check())
-                                        <button type="submit" name="buy_now" class="relative group w-80">
-                                            <div
-                                                class="absolute transition duration-1000 rounded-lg opacity-25 -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 blur group-hover:opacity-100 group-hover:duration-200">
-                                            </div>
-                                            <div class="relative flex items-center justify-between px-6 py-4 text-white bg-black rounded-lg">
-                                                <span class="mx-auto font-sans text-xs font-semibold tracking-widest uppercase">Buy Now</span>
-                                            </div>
-                                        </button>
+                                        @if (!Auth::check())
+                                            <button type="submit" name="buy_now" class="relative group w-80">
+                                                <div
+                                                    class="absolute transition duration-1000 rounded-lg opacity-25 -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 blur group-hover:opacity-100 group-hover:duration-200">
+                                                </div>
+                                                <div
+                                                    class="relative flex items-center justify-between px-6 py-4 text-white bg-black rounded-lg">
+                                                    <span
+                                                        class="mx-auto font-sans text-xs font-semibold tracking-widest uppercase">Buy
+                                                        Now</span>
+                                                </div>
+                                            </button>
                                         @endif
                                     </div>
                                 </form>

@@ -53,9 +53,9 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('mockup/oversized', [MockupController::class, 'oversized'])->name('mockup.oversized');
     // upload controller 
     Route::post('upload', [UploadController::class, 'store'])->name('upload');
-    Route::post('upload/cover_image', [UploadController::class, 'upload_cover'])->name('upload.cover');
-    Route::post('upload/product_template', [UploadController::class, 'upload_template'])->name('upload.template');
-    Route::post('upload/product_collection', [UploadController::class, 'upload_collection'])->name('upload.collection');
+    Route::post('upload/cover_image', [UploadController::class, 'uploadCover'])->name('upload.cover');
+    Route::post('upload/product_template', [UploadController::class, 'uploadTemplate'])->name('upload.template');
+    Route::post('upload/product_collection', [UploadController::class, 'uploadCollection'])->name('upload.collection');
     // order controller
     Route::get('order/index', ManageOrder::class)->name('order.index');
     Route::get('product/manage', ManageProduct::class)->name('product.manage');
