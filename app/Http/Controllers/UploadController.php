@@ -3,17 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\Artist;
+use App\Models\CustomProduct;
 use App\Models\ProductCollection;
 use App\Models\ProductTemplate;
 use App\Models\TemporaryFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
 class UploadController extends Controller
 {
     public function store(Request $request)
     {
-        // request from views/product/template
+        // request from views/mockup
         if ($request->hasFile('image_front')) {
             $file = $request->file('image_front');
             $extension = $file->getClientOriginalExtension();
@@ -36,6 +39,29 @@ class UploadController extends Controller
             ]);
             return $filename;
         }
+        //  request from views/custom/
+        // if ($request->hasFile('custom_image_front')) {
+        //     $file = $request->file('custom_image_front');
+        //     $extension = $file->getClientOriginalExtension();
+        //     $filename = uniqid('120') . '-' . Auth::user()->name . '.' . $extension;
+        //     $file->storeAs('public/custom-image-front/', $filename);
+
+        //     TemporaryFile::create([
+        //         'filename' => $filename
+        //     ]);
+        //     return $filename;
+        // }
+        // if ($request->hasFile('custom_image_back')) {
+        //     $file = $request->file('custom_image_back');
+        //     $extension = $file->getClientOriginalExtension();
+        //     $filename = uniqid('120') . '-' . Auth::user()->name . '.' . $extension;
+        //     $file->storeAs('public/custom-image-back/', $filename);
+
+        //     TemporaryFile::create([
+        //         'filename' => $filename
+        //     ]);
+        //     return $filename;
+        // }
         // request from views/
         if ($request->hasFile('cover_image')) {
             $file = $request->file('cover_image');
@@ -165,5 +191,42 @@ class UploadController extends Controller
 
         session()->flash('message', 'New Collection Added');
         return redirect()->route('product.manage');
+    }
+
+    public function uploadCustom(Request $request)
+    {
+        $request->validate([
+            'size' => 'required',
+            'color' => 'required',
+        ]);
+        $temporaryFile = TemporaryFile::where('filename', $request->custom_image_front)->first();
+        if ($temporaryFile) {
+            $temporaryFile->delete();
+        }
+        $temporaryFile_2 = TemporaryFile::where('filename', $request->custom_image_back)->first();
+        if ($temporaryFile_2) {
+            $temporaryFile_2->delete();
+        }
+        $input = $request->all();
+        $dataUrl = $input['custom_product_image'];
+        $image = Image::make($dataUrl);
+        $image->encode('png');
+        $filename = uniqid() . '-' . Auth::user()->name . '.png';
+        Storage::disk('public')->put('custom-product-front/' . $filename, $image->stream());
+        $input['custom_product_image'] = $filename;
+        $dataUrl2 = $input['custom_product_image_2'];
+        $image2 = Image::make($dataUrl2);
+        $image2->encode('png');
+        $filename2 = uniqid() . '-' . Auth::user()->name . '.png';
+        Storage::disk('public')->put('custom-product-back/' . $filename2, $image2->stream());
+        $input['custom_product_image_2'] = $filename2;
+        $input['user_id'] = Auth::user()->id;
+        $input['price'] = 35;
+        $product = CustomProduct::create($input);
+        if($product){
+            $id = $product->id;
+        }
+        dd($product);
+        return redirect()->route('');
     }
 }

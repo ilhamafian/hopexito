@@ -9,8 +9,7 @@ use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use App\Models\User;
 use App\Models\Wallet;
-use App\Models\WalletTransaction;
-use Spatie\Permission\Models\Permission;
+
 
 class DatabaseSeeder extends Seeder
 {

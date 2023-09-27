@@ -13,7 +13,7 @@ module.exports = {
         extend: {
             fontFamily: {
                 sans: ['Inter var', ...defaultTheme.fontFamily.sans],
-                'poppins': ['Poppins', 'sand-serif']
+                'poppins': ['Poppins', 'sans-serif']
             },
         },
         transitionDuration: {

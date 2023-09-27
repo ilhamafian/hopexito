@@ -181,10 +181,10 @@
                         @foreach ($order->productOrder as $item)
                             <div class="flex p-4 space-x-4 basis-1/3" x-data="{ download: false }"
                                 x-on:mouseenter="download = true" x-on:mouseleave="download = false">
-                                <div class="relative w-40 h-40">
-                                    <img class="transition rounded-lg hover:scale-150"
+                                <a href="{{ route('product.show', $item->product_id) }}" class="relative w-40 h-40">
+                                    <img class="transition rounded-lg"
                                         src="{{ $item->product->product_image }}" alt="" />
-                                </div>
+                                </a>
                                 <div class="flex-col w-40 tracking-wider text-black">
                                     <p class="truncate">{{ $item->title }}</p>
                                     <p class="text-black uppercase">{{ $item->size }} /

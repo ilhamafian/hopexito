@@ -283,7 +283,7 @@ class PaymentController extends Controller
                         'id' => $billplz['id'],
                         'collection_id' => config('billplz.collection'),
                         'email' => $details['email'],
-                        'name' => $details['name'] . '(G)',
+                        'name' => $details['name'] . ' (G)',
                         'description' => 'Thank you for supporting us!',
                         'delivery' => $delivery,
                         'status' => 1,

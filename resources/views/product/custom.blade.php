@@ -1,16 +1,17 @@
-@section('title', 'Choose Product | HopeXito')
+@section('title', 'Select Product | HopeXito')
 <x-app-layout>
     <x-jet-session-message />
     <div class="relative z-20 min-h-screen pt-8">
-        <img src="../image/product-selection/product-selection.jpg"
-            class="absolute inset-0 hidden object-cover w-full h-full bg-cover lg:block" />
+        {{-- <img src="../image/product-selection/product-selection.jpg"
+            class="absolute inset-0 hidden object-cover w-full h-full bg-cover lg:block" /> --}}
         <div
             class="max-w-6xl mx-auto shadow-md backdrop-filter backdrop-blur-[6px] rounded-3xl bg-black/40 shadow-fuchsia-500">
             <div class="max-w-5xl pt-8 mx-auto sm:flex-row">
                 <x-jet-title>
                     Select a product
                 </x-jet-title>
-                <div x-cloak x-data="{ isMobile: window.innerWidth < 820 }" x-show="isMobile" class="p-2 mt-4 rounded-lg bg-indigo-700/50 min-w-lg">
+                <div x-cloak x-data="{ isMobile: window.innerWidth < 820 }" x-show="isMobile"
+                    class="p-2 mt-4 rounded-lg bg-indigo-700/50 min-w-lg">
                     <div class="flex items-center gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-6 h-6">
@@ -23,58 +24,26 @@
                     </div>
                 </div>
                 <div class="grid grid-cols-1 gap-4 py-16 mx-auto text-white md:grid-cols-3">
-                    <div class="block h-48 mx-2 group sm:mx-0">
-                        <a href="{{ route('mockup.shirt') }}"
-                            class=" relative flex flex-col items-center h-full rounded-3xl border-4 border-indigo-500 bg-black/40 p-8 transition group-hover:-translate-x-2 group-hover:-translate-y-2 group-hover:shadow-[8px_8px_0_0_#ec4899]">
-                            <p class="my-3 text-lg text-indigo-400">Standard Tee</p>
-                            <img src="../image/product-selection/tshirt.png"
-                                class="w-16 h-16 p-2 bg-indigo-500 rounded-full" />
-                        </a>
-                    </div>
-                    <div class="block h-48 mx-2 group sm:mx-0">
-                        <a href="{{ route('mockup.oversized') }}"
-                            class="relative flex flex-col items-center h-full rounded-3xl border-4 border-indigo-500 bg-black/40 p-8 transition group-hover:-translate-x-2 group-hover:-translate-y-2 group-hover:shadow-[8px_8px_0_0_#ec4899]">
-                            <p class="my-3 text-lg text-indigo-400">Oversized Tee</p>
-                            <img src="../image/product-selection/oversized.png"
-                                class="w-16 h-16 p-2 bg-indigo-500 rounded-full" />
-                        </a>
-                    </div>
-                    <div class="block h-48 mx-2 group sm:mx-0">
-                        <div
-                            class=" relative flex flex-col items-center h-full rounded-3xl border-4 border-indigo-500 bg-black/40 p-8 transition group-hover:-translate-x-2 group-hover:-translate-y-2 group-hover:shadow-[8px_8px_0_0_#ec4899]">
-                            <p class="my-3 text-lg text-indigo-400">Totebag</p>
-                            <img src="../image/product-selection/totebag.png"
-                                class="w-16 h-16 p-2 bg-indigo-500 rounded-full" />
-                            <p class="absolute px-2 uppercase rounded-md bg-rose-500/90 bottom-14">Coming Soon</p>
-                        </div>
-                    </div>
-                    <div class="block h-48 mx-2 group sm:mx-0">
-                        <div
-                            class=" relative flex flex-col items-center h-full rounded-3xl border-4 border-indigo-500 bg-black/40 p-8 transition group-hover:-translate-x-2 group-hover:-translate-y-2 group-hover:shadow-[8px_8px_0_0_#ec4899]">
-                            <p class="my-3 text-lg text-indigo-400">Hoodie</p>
-                            <img src="../image/product-selection/hoodie.png"
-                                class="w-16 h-16 p-2 bg-indigo-500 rounded-full" />
-                            <p class="absolute px-2 uppercase rounded-md bg-rose-500/90 bottom-14">Coming Soon</p>
-                        </div>
-                    </div>
-                    <div class="block h-48 mx-2 group sm:mx-0">
-                        <div
-                            class=" relative flex flex-col items-center h-full rounded-3xl border-4 border-indigo-500 bg-black/40 p-8 transition group-hover:-translate-x-2 group-hover:-translate-y-2 group-hover:shadow-[8px_8px_0_0_#ec4899]">
-                            <p class="my-3 text-lg text-indigo-400">Sweater</p>
-                            <img src="../image/product-selection/sweater.png"
-                                class="w-16 h-16 p-2 bg-indigo-500 rounded-full" />
-                            <p class="absolute px-2 uppercase rounded-md bg-rose-500/90 bottom-14">Coming Soon</p>
-                        </div>
-                    </div>
-                    <div class="block h-48 mx-2 group sm:mx-0">
-                        <div
-                            class=" relative flex flex-col items-center h-full rounded-3xl border-4 border-indigo-500 bg-black/40 p-8 transition group-hover:-translate-x-2 group-hover:-translate-y-2 group-hover:shadow-[8px_8px_0_0_#ec4899]">
-                            <p class="my-3 text-lg text-indigo-400">Sublimation</p>
-                            <img src="../image/product-selection/jersey.png"
-                                class="w-16 h-16 p-2 bg-indigo-500 rounded-full" />
-                            <p class="absolute px-2 uppercase rounded-md bg-rose-500/90 bottom-14">Coming Soon</p>
-                        </div>
-                    </div>
+                    <a href="{{ route('custom.shirt') }}"
+                        class="relative block p-8 transition border border-gray-800 shadow-xl group rounded-xl hover:border-pink-500 hover:shadow-pink-500/20">
+                        <img src="../image/product-selection/tshirt.png"
+                            class="w-16 h-16 p-2 transition rounded-full bg-fuchsia-400 group-hover:bg-pink-500" />
+                        <h2 class="my-2 text-xl font-bold transition text-fuchsia-400 group-hover:text-pink-500">
+                            Standard Tee</h2>
+                        <p class="absolute bottom-0 px-3 pt-0.5 text-lg bg-indigo-500 rounded-t-md">
+                            RM 35
+                        </p>
+                    </a>
+                    <a href="{{ route('custom.oversized') }}"
+                        class="relative block p-8 transition border border-gray-800 shadow-xl group rounded-xl hover:border-pink-500 hover:shadow-pink-500/20">
+                        <img src="../image/product-selection/oversized.png"
+                            class="w-16 h-16 p-0.5 transition rounded-full bg-fuchsia-400 group-hover:bg-pink-500" />
+                        <h2 class="my-2 text-xl font-bold transition text-fuchsia-400 group-hover:text-pink-500">
+                            Oversized Tee</h2>
+                        <p class="absolute bottom-0 px-3 pt-0.5 text-lg bg-indigo-500 rounded-t-md">
+                            RM 50
+                        </p>
+                    </a>
                 </div>
             </div>
         </div>

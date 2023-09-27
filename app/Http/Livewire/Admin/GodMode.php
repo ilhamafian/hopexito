@@ -185,7 +185,7 @@ class GodMode extends Component
     {
         $wallet = Wallet::where('user_id', $this->wallet_user_id);
 
-        if ($wallet) {
+        if ($wallet) { 
             $wallet->update([
                 'commission' => $this->commission,
                 'balance' => $this->balance

@@ -51,11 +51,14 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('dashboard', [Controller::class, 'redirectUser'])->name('dashboard');
     Route::get('mockup/standard-tee', [MockupController::class, 'shirt'])->name('mockup.shirt');
     Route::get('mockup/oversized', [MockupController::class, 'oversized'])->name('mockup.oversized');
+    Route::get('custom/standard-tee', [MockupController::class, 'customShirt'])->name('custom.shirt');
+    Route::get('custom/oversized', [MockupController::class, 'customOversized'])->name('custom.oversized');
     // upload controller 
     Route::post('upload', [UploadController::class, 'store'])->name('upload');
-    Route::post('upload/cover_image', [UploadController::class, 'uploadCover'])->name('upload.cover');
-    Route::post('upload/product_template', [UploadController::class, 'uploadTemplate'])->name('upload.template');
-    Route::post('upload/product_collection', [UploadController::class, 'uploadCollection'])->name('upload.collection');
+    Route::post('upload/cover-image', [UploadController::class, 'uploadCover'])->name('upload.cover');
+    Route::post('upload/product-template', [UploadController::class, 'uploadTemplate'])->name('upload.template');
+    Route::post('upload/product-collection', [UploadController::class, 'uploadCollection'])->name('upload.collection');
+    Route::post('upload/custom', [UploadController::class, 'uploadCustom'])->name('upload.custom');
     // order controller
     Route::get('order/index', ManageOrder::class)->name('order.index');
     Route::get('product/manage', ManageProduct::class)->name('product.manage');

@@ -23,7 +23,6 @@
                 </svg>
                 <p class="text-indigo-400">Oversized Tee</p>
             </div> 
-            {{-- pada suatu hari --}}
         </div>
         <form method="POST" action="{{ route('product.store') }}" enctype="multipart/form-data"
             class="flex flex-col w-full xl:mx-16 xl:flex-row">

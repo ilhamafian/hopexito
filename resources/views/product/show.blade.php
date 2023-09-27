@@ -231,7 +231,6 @@
                                                     'border-white '"
                                                 class="grid p-2 text-sm text-white transition border-2 cursor-pointer place-items-center hover:scale-105">XL</label>
                                         </div>
-
                                     </div>
                                     <div class="flex items-center gap-2">
                                         <h2 class="text-indigo-300">Choose Color</h2>

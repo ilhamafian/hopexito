@@ -80,7 +80,7 @@
                                              {{-- <x-jet-button-utility type="button"
                                                 onclick="location.href='{{ route('product.index') }}'"
                                                 class="w-56 px-8 py-2.5 mx-3 mb-3 text-white rounded-full bg-indigo-500 ">
-                                                <span class="mx-auto">Order For You</span>
+                                                <span class="mx-auto">Buy For You</span>
                                              </x-jet-button-utility> --}}
                                              <x-jet-button type="button"
                                                  onclick="location.href='{{ route('sellyourart') }}'"
